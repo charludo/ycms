@@ -1,7 +1,7 @@
 # Language file for the german translation of the YCMS
 # Copyright (C) 2023 YCMS
 # This file is distributed under the same license as the CMS package.
-# Projectname <infoycms-app.de>
+# YCMS <info@ycms-app.de>
 # https://github.com/charludo/
 #
 msgid ""
@@ -10,8 +10,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Projectname <info@ycms-app.de>\n"
-"Language-Team: Projectname <info@ycms-app.de>\n"
+"Last-Translator: YCMS <info@ycms-app.de>\n"
+"Language-Team: YCMS <info@ycms-app.de>\n"
 "Language: German\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -241,8 +241,8 @@ msgid ""
 "You are receiving this e-mail because you requested a password reset in "
 "YCMS. If you did not perform this action, please ignore this email."
 msgstr ""
-"Sie erhalten diese Email da Sie eine Passwortrücksetzung im Projectname "
-"Compass beantragt haben. Falls Sie dies nicht getan haben sollten, "
+"Sie erhalten diese Email da Sie eine Passwortrücksetzung im YCMS "
+"beantragt haben. Falls Sie dies nicht getan haben sollten, "
 "ignorieren Sie diese Email bitte."
 
 #: cms/templates/emails/password_reset_email.html
