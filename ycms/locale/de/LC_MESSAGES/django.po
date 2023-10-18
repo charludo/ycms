@@ -1,0 +1,385 @@
+# Language file for the german translation of the YCMS
+# Copyright (C) 2023 YCMS
+# This file is distributed under the same license as the CMS package.
+# Projectname <infoycms-app.de>
+# https://github.com/charludo/
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Projectname <info@ycms-app.de>\n"
+"Language-Team: Projectname <info@ycms-app.de>\n"
+"Language: German\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: cms/apps.py
+msgid "CMS"
+msgstr "CMS"
+
+#: cms/constants/group_names.py
+msgid "Manager"
+msgstr "Manager"
+
+#: cms/constants/group_names.py
+msgid "Doctor"
+msgstr "Arzt"
+
+#: cms/constants/group_names.py
+msgid "Nurse"
+msgstr "Krankenpfleger*in"
+
+#: cms/constants/insurance_types.py
+msgid "statutory"
+msgstr "gesetzlich"
+
+#: cms/constants/insurance_types.py
+msgid "private"
+msgstr "privat"
+
+#: cms/forms/authentication/password_reset_request_form.py
+#: cms/templates/authentication/login.html
+msgid "Enter your email"
+msgstr "Email eingeben"
+
+#: cms/forms/authentication/registration_form.py
+msgid "Confirm password"
+msgstr "Passwort bestätigen"
+
+#: cms/forms/authentication/registration_form.py
+msgid "Passwords do not match."
+msgstr "Die Passwörter stimmen nicht überein."
+
+#: cms/forms/authentication/registration_form.py
+msgid ""
+"An account for the email \"{}\" does already exist. Did you mean to log in?"
+msgstr ""
+"Ein Account mit der Email \"{}\" existiert bereits. Wollten Sie sich "
+"stattdessen anmelden?"
+
+#: cms/forms/authentication/registration_form.py
+msgid "The display name \"{}\" is already taken."
+msgstr "Der Anzeigename \"{}\" ist bereits vergeben."
+
+#: cms/forms/custom_model_form.py
+msgid "Enter {} here"
+msgstr "{} hier eingeben"
+
+#: cms/models/patients/patient.py
+msgid "first name"
+msgstr "Vorname"
+
+#: cms/models/patients/patient.py
+msgid "First name of the patient"
+msgstr "Vorname des Patienten / der Patientin"
+
+#: cms/models/patients/patient.py
+msgid "last name"
+msgstr "Nachname"
+
+#: cms/models/patients/patient.py
+msgid "Surname of the patient"
+msgstr "Nachname des Patienten / der Patientin"
+
+#: cms/models/patients/patient.py
+msgid "insurance type"
+msgstr "Versicherungstyp"
+
+#: cms/models/patients/patient.py
+msgid "Whether the patient is privately insured or not"
+msgstr "Ob der Patient / die Patientin privat versichert ist oder nicht"
+
+#: cms/models/patients/patient.py
+msgid "diagnosis code"
+msgstr "Diagnosecode"
+
+#: cms/models/patients/patient.py
+msgid "Diagnosis code according to ICD10-2019"
+msgstr "Diagnosecode nach ICD10-2019"
+
+#: cms/models/patients/patient.py
+msgid "patient"
+msgstr "Patient*in"
+
+#: cms/models/patients/patient.py
+msgid "patients"
+msgstr "Patient*innen"
+
+#: cms/models/users/user.py
+msgid "email"
+msgstr "E-Mail"
+
+#: cms/models/users/user.py
+msgid "Valid email address for this user"
+msgstr "Gültige E-Mail-Adresse für diesen Benutzer"
+
+#: cms/models/users/user.py
+msgid "display name"
+msgstr "Anzeigename"
+
+#: cms/models/users/user.py
+msgid "This name will be shown as the author of changes"
+msgstr "Dieser Name wird als Autor von Änderungen angezeigt"
+
+#: cms/models/users/user.py
+msgid "user"
+msgstr "Benutzer"
+
+#: cms/models/users/user.py
+msgid "users"
+msgstr "Benutzer"
+
+#: cms/models/validators.py
+msgid "File too large. Size should not exceed {}."
+msgstr "Datei zu groß. Größe darf {} nicht überschreiten."
+
+#: cms/templates/_base.html
+msgid "Logo"
+msgstr "Logo"
+
+#: cms/templates/_base.html
+msgid "Manage Patients"
+msgstr "Patient*innen verwalten"
+
+#: cms/templates/_base.html
+msgid "Logout"
+msgstr "Abmelden"
+
+#: cms/templates/_base.html cms/templates/authentication/login.html
+msgid "Login"
+msgstr "Login"
+
+#: cms/templates/_base.html
+msgid "Register"
+msgstr "Registrieren"
+
+#: cms/templates/authentication/login.html
+msgid "The username or the password is incorrect."
+msgstr "Der Benutzername oder das Passwort sind inkorrekt."
+
+#: cms/templates/authentication/login.html
+msgid "Please try again."
+msgstr "Bitte erneut versuchen."
+
+#: cms/templates/authentication/login.html
+msgid "Enter your password"
+msgstr "Passwort eingeben"
+
+#: cms/templates/authentication/login.html
+msgid "Forgot password?"
+msgstr "Passwort vergessen?"
+
+#: cms/templates/authentication/login.html
+msgid "Sign In"
+msgstr "Einloggen"
+
+#: cms/templates/authentication/password_reset_confirm.html
+msgid "Set a new password"
+msgstr "Neues Passwort festlegen"
+
+#: cms/templates/authentication/password_reset_confirm.html
+msgid "Set password"
+msgstr "Passwort festlegen"
+
+#: cms/templates/authentication/password_reset_request.html
+msgid "Request password reset"
+msgstr "Passwortrücksetzung anfordern"
+
+#: cms/templates/authentication/password_reset_request.html
+msgid "Request reset"
+msgstr "Rücksetzung anfordern"
+
+#: cms/templates/authentication/registration.html
+msgid "Registration"
+msgstr "Registrierung"
+
+#: cms/templates/authentication/registration.html
+msgid "Register as an Offer Provider"
+msgstr "Als Maßnahmen-Anbieter registrieren"
+
+#: cms/templates/authentication/registration.html
+msgid "Sign Up"
+msgstr "Registrieren"
+
+#: cms/templates/emails/activation_email.html
+#: cms/templates/emails/activation_email.txt
+msgid "Welcome"
+msgstr "Willkommen"
+
+#: cms/templates/emails/activation_email.html
+#: cms/templates/emails/activation_email.txt
+msgid ""
+"You are receiving this e-mail because you created an account with Project "
+"Name."
+msgstr ""
+"Sie erhalten diese Email da Sie einen Account im YCMS angelegt haben."
+
+#: cms/templates/emails/activation_email.html
+#: cms/templates/emails/activation_email.txt
+msgid "Please use the link below to activate your account."
+msgstr "Nutzen Sie den folgenden Link um Ihren Account zu aktivieren."
+
+#: cms/templates/emails/activation_email.txt
+#: cms/templates/emails/password_reset_email.txt
+msgid ""
+"If using the link above does not work, please copy the URL and paste it into "
+"the address bar of your browser."
+msgstr ""
+"Falls obiger Link nicht funktioniert, kopieren Sie die URL bitte und fügen "
+"Sie sie in der Adresszeile Ihres Browsers ein."
+
+#: cms/templates/emails/password_reset_email.html
+#: cms/templates/emails/password_reset_email.txt
+msgid "Hello"
+msgstr "Hallo"
+
+#: cms/templates/emails/password_reset_email.html
+#: cms/templates/emails/password_reset_email.txt
+msgid ""
+"You are receiving this e-mail because you requested a password reset in "
+"YCMS. If you did not perform this action, please ignore this email."
+msgstr ""
+"Sie erhalten diese Email da Sie eine Passwortrücksetzung im Projectname "
+"Compass beantragt haben. Falls Sie dies nicht getan haben sollten, "
+"ignorieren Sie diese Email bitte."
+
+#: cms/templates/emails/password_reset_email.html
+#: cms/templates/emails/password_reset_email.txt
+msgid "Use the link below to set a new password."
+msgstr "Nutzen Sie den folgenden Link um ein neues Passwort festzulegen."
+
+#: cms/templates/index.html
+msgid "Home"
+msgstr "Start"
+
+#: cms/templates/index.html
+msgid "Add new patient"
+msgstr "Patient*in hinzufügen"
+
+#: cms/templates/index.html
+msgid "Fields with * are required."
+msgstr "Felder mit * sind Pflichtfelder."
+
+#: cms/templates/index.html
+msgid "Patients list"
+msgstr "Patientenliste"
+
+#: cms/templates/index.html
+msgid "Privately insured"
+msgstr "Privatversichert"
+
+#: cms/templates/index.html
+msgid "Diagnosis"
+msgstr "Diagnose"
+
+#: cms/templates/index.html
+msgid "Added by"
+msgstr "Hinzugefügt von"
+
+#: cms/templates/index.html
+msgid "Added at"
+msgstr "Hinzugefügt am"
+
+#: cms/templates/index.html
+msgid "You do not have permission view patient data. To do so, please log in."
+msgstr ""
+"Sie haben keine Berechtigung zum Betrachten von Patientendaten. Um dies zu "
+"tun, loggen Sie sich bitte ein."
+
+#: cms/utils/email_utils.py
+msgid "YCMS | Activate your account"
+msgstr "YCMS | Aktivieren Sie Ihren Account"
+
+#: cms/utils/email_utils.py
+msgid "activation mail"
+msgstr "Aktivierungs-Mail"
+
+#: cms/utils/email_utils.py
+msgid "YCMS | Your requested password reset"
+msgstr "YCMS | Ihre angeforderte Passwortrücksetzung"
+
+#: cms/utils/email_utils.py
+msgid "password reset mail"
+msgstr "Passwort-Zurücksetzen-Mail"
+
+#: cms/views/authentication/account_activation_view.py
+#: cms/views/authentication/password_reset_confirm_view.py
+msgid "You are already logged in."
+msgstr "Sie sind bereits eingeloggt."
+
+#: cms/views/authentication/account_activation_view.py
+msgid "The account you are trying to activate does not exist."
+msgstr "Der Account den Sie versuchen zu aktivieren existiert nicht."
+
+#: cms/views/authentication/account_activation_view.py
+msgid "Your account has been successfully activated."
+msgstr "Ihr Account wurde erfolgreich freigeschalten."
+
+#: cms/views/authentication/account_activation_view.py
+msgid "This account activation link is invalid."
+msgstr "Der Accountaktivierungslink ist ungültig."
+
+#: cms/views/authentication/account_activation_view.py
+#: cms/views/authentication/password_reset_confirm_view.py
+msgid "It may have already been used."
+msgstr "Möglicherweise wurde er bereits verwendet."
+
+#: cms/views/authentication/account_activation_view.py
+msgid ""
+"Please contact an administrator to request a new link to activate your "
+"account."
+msgstr ""
+"Bitte kontaktieren Sie einen Administrator um einen neuen Link anzufordern."
+
+#: cms/views/authentication/password_reset_confirm_view.py
+msgid "This password reset link is invalid."
+msgstr "Der Passwort-Zurücksetzen-Link ist ungültig."
+
+#: cms/views/authentication/password_reset_confirm_view.py
+msgid "Please request a new link to reset your password."
+msgstr "Bitte fordern Sie einen neuen Passwort-Zurücksetzen-Link an."
+
+#: cms/views/authentication/password_reset_confirm_view.py
+msgid "Your password has been successfully reset."
+msgstr "Ihr Passwort wurde erfolgreich zurückgesetzt."
+
+#: cms/views/authentication/password_reset_confirm_view.py
+msgid "You can now log in with your new password."
+msgstr "Sie können Sich nun mit Ihrem neuen Passwort einloggen."
+
+#: cms/views/authentication/password_reset_request_view.py
+msgid ""
+"An email has been sent to \"{}\". Please use the link in the email to reset "
+"your password."
+msgstr ""
+"Wir haben eine Bestätigungsmail an \"{}\" gesandt. Bitten nutzen Sie den "
+"Link in der E-Mail, um Ihr Passwort zurückzusetzen."
+
+#: cms/views/authentication/registration_view.py
+msgid ""
+"A confirmation email has been sent to \"{}\". Please use the link in the "
+"email to activate your account."
+msgstr ""
+"Wir haben eine Bestätigungsmail an \"{}\" gesandt. Bitten nutzen Sie den "
+"Link in der E-Mail, um Ihren Account zu aktivieren."
+
+#: cms/views/index.py
+msgid "Patient \"{} {}\" has been saved with diagnosis \"{}\"."
+msgstr "Patient*in \"{} {}\" wurde mit Diagnose \"{}\" gespeichert."
+
+#: core/apps.py
+msgid "Core"
+msgstr "Core"
+
+#: core/settings.py
+msgid "German"
+msgstr "Deutsch"
+
+#: core/settings.py
+msgid "English"
+msgstr "Englisch"

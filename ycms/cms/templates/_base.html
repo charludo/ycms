@@ -1,0 +1,72 @@
+{% extends "_raw.html" %}
+{% load i18n %}
+{% load static %}
+{% block raw_content %}
+    <div class="flex justify-between items-center shadow-md bg-secondary z-40 fixed w-screen top-0">
+        <div class="mx-12 w-full flex items-center font-medium text-xl text-white">
+            <a href="{% url 'cms:public:index' %}">
+                <img src="{% static 'images/logo-ycms.png' %}"
+                     width="200"
+                     height="200"
+                     alt="{% translate "Logo" %}"
+                     class="h-24 w-48">
+            </a>
+            {% url 'cms:public:index' as url %}
+            <a href="{% url 'cms:public:index' %}"
+               class="ml-6 mr-4 hover:text-primary {% if request.path == url %}border-primary border-b-4{% else %}border-b-4 border-transparent{% endif %} h-24 flex items-center">{% translate "Manage Patients" %}</a>
+            {% if user.is_authenticated %}
+                <div class="ml-auto flex-align-right font-bold hover:text-primary">
+                    <span class="text-primary">{{ user.display_name }}</span>
+                    <a href="{% url 'cms:public:logout' %}">({% translate "Logout" %})</a>
+                </div>
+            {% else %}
+                <div class="ml-auto flex-align-right font-bold hover:text-primary">
+                    <a href="{% url 'cms:public:login' %}">{% translate "Login" %}</a>
+                </div>
+                <div class="ml-4 mr-4 flex-align-right font-bold hover:text-white">
+                    <a href="{% url 'cms:public:register' %}"
+                       class="text-primary hover:text-white">{% translate "Register" %}</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    {% if messages and not messages_suppressed %}
+        <div id="messages"
+             class="absolute top-32 right-8 flex flex-col max-w-screen-sm z-50">
+            {% for msg in messages %}
+                {% if msg.level_tag == 'info' %}
+                    <div class="message bg-blue-100 border-l-4 border-blue-500 text-blue-500"
+                         role="alert">
+                        <p>{{ msg.message }}</p>
+                        <i icon-name="x" class="message-close"></i>
+                    </div>
+                {% endif %}
+                {% if msg.level_tag == 'success' %}
+                    <div class="message bg-green-100 border-l-4 border-green-500 text-green-500"
+                         role="alert">
+                        <p>{{ msg.message }}</p>
+                        <i icon-name="x" class="message-close"></i>
+                    </div>
+                {% endif %}
+                {% if msg.level_tag == 'warning' %}
+                    <div class="message bg-yellow-100 border-l-4 border-yellow-500 text-yellow-600"
+                         role="alert">
+                        <p>{{ msg.message }}</p>
+                        <i icon-name="x" class="message-close"></i>
+                    </div>
+                {% endif %}
+                {% if msg.level_tag == 'error' %}
+                    <div class="message bg-red-100 border-l-4 border-red-500 text-red-500"
+                         role="alert">
+                        <p>{{ msg.message }}</p>
+                        <i icon-name="x" class="message-close"></i>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
+    <div class="py-6 mt-24 mx-12">
+        {% block content %}
+        {% endblock content %}
+    </div>
+{% endblock raw_content %}

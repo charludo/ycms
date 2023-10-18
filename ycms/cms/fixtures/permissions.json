@@ -1,0 +1,30 @@
+[
+  {
+    "model": "auth.group",
+    "fields": {
+      "name": "MANAGER",
+      "permissions": [
+        ["view_patient", "cms", "patient"],
+        ["change_patient", "cms", "patient"]
+      ]
+    }
+  },
+  {
+    "model": "auth.group",
+    "fields": {
+      "name": "DOCTOR",
+      "permissions": [
+        ["view_patient", "cms", "patient"],
+        ["add_patient", "cms", "patient"],
+        ["change_patient", "cms", "patient"]
+      ]
+    }
+  },
+  {
+    "model": "auth.group",
+    "fields": {
+      "name": "NURSE",
+      "permissions": [["view_patient", "cms", "patient"]]
+    }
+  }
+]

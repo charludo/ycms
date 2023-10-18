@@ -1,0 +1,24 @@
+# Include all non-python files in the ycms directory
+graft ycms
+
+# Exclude the static source files since we only need the compiled files in ycms/static/dist
+prune ycms/static/src
+
+# Exclude media files
+prune ycms/media
+
+# Exclude development settings
+exclude ycms/core/*_settings.py
+
+# Exclude test data
+exclude ycms/cms/fixtures/test_*.json
+
+# Exclude byte code cache files
+global-exclude *.py[co]
+global-exclude __pycache__
+
+# Exclude existing log file
+exclude ycms/ycms.log
+
+# Exclude source of translation file
+exclude ycms/locale/*/LC_MESSAGES/django.po

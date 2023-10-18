@@ -1,0 +1,142 @@
+# shellcheck shell=bash
+# This file contains utility functions which can be used in the tools.
+# Do not execute it directly, but include it with `source`.
+
+# shellcheck source=./tools/utils/docker.sh
+source "$(dirname "${BASH_SOURCE[0]}")/docker.sh"
+# shellcheck source=./tools/utils/logging.sh
+source "$(dirname "${BASH_SOURCE[0]}")/logging.sh"
+# shellcheck source=./tools/utils/permissions.sh
+source "$(dirname "${BASH_SOURCE[0]}")/permissions.sh"
+
+# Do not continue execution if one of the commands fail
+set -eo pipefail -o functrace
+
+# Check if the --verbose option is given
+if [[ "$*" == *"--verbose"* ]]; then
+    # The shell writes a trace for each command to standard error after it expands the command and before it executes it.
+    set -vx
+fi
+# The Port on which the YCMS development server should be started (do not use 9000 since this is used for webpack)
+YCMS_PORT=8086
+# The name of the used database docker container
+DOCKER_CONTAINER_NAME="ycms_django_postgres"
+YCMS="ycms"
+
+# Change to dev tools directory
+cd "$(dirname "${BASH_SOURCE[0]}")"
+# The absolute path to the dev tools directory
+cd ..
+DEV_TOOL_DIR=$(pwd)
+# Change to base directory
+cd ..
+# The absolute path to the base directory of the repository
+BASE_DIR=$(pwd)
+# The path to the package
+PACKAGE_DIR_REL="ycms"
+PACKAGE_DIR="${BASE_DIR}/${PACKAGE_DIR_REL}"
+# The filename of the currently running script
+SCRIPT_NAME=$(basename "$0")
+# The absolute path to the currently running script (required to allow restarting with different permissions
+SCRIPT_PATH="${DEV_TOOL_DIR}/${SCRIPT_NAME}"
+# The arguments which were passed to the currently running script
+SCRIPT_ARGS=("$@")
+# The verbosity of the output (can be one of {0,1,2,3})
+SCRIPT_VERBOSITY="1"
+
+# This function shows a success message once the Projectname development server is running
+function listen_for_devserver {
+    until nc -z localhost "$YCMS_PORT"; do sleep 0.1; done
+    echo "✔ Started YCMS at http://localhost:${YCMS_PORT}" | print_success
+}
+
+# This function makes sure a database is available
+function require_database {
+    # Check if local postgres server is running
+    if nc -z localhost 5432; then
+        ensure_not_root
+        echo "✔ Running PostgreSQL database detected" | print_success
+        # Migrate database
+        migrate_database
+
+        # Set default settings for other dev tools, e.g. testing
+        export DJANGO_SETTINGS_MODULE="ycms.core.settings"
+    else
+        # Set docker settings
+        export DJANGO_SETTINGS_MODULE="ycms.core.docker_settings"
+        # Make sure a docker container is up and running
+        ensure_docker_container_running
+    fi
+}
+
+# This function migrates the database
+function migrate_database {
+    # Check for the variable DATABASE_MIGRATED to prevent multiple subsequent migration commands
+    if [[ -z "$DATABASE_MIGRATED" ]]; then
+        echo "Migrating database..." | print_info
+        # Make sure the migrations directory exists
+        deescalate_privileges mkdir -pv "${PACKAGE_DIR}/cms/migrations"
+        deescalate_privileges touch "${PACKAGE_DIR}/cms/migrations/__init__.py"
+        # Generate migration files
+        deescalate_privileges ycms-cli makemigrations --verbosity "${SCRIPT_VERBOSITY}"
+        # Execute migrations
+        deescalate_privileges ycms-cli migrate --verbosity "${SCRIPT_VERBOSITY}"
+        echo "✔ Finished database migrations" | print_success
+        DATABASE_MIGRATED=1
+    fi
+
+    # Load permissions fixture
+    deescalate_privileges ycms-cli loaddata permissions
+}
+
+
+# This function checks if the ycms is installed
+function require_installed {
+    if [[ -z "$YCMS_INSTALLED" ]]; then
+        echo "Checking if YCMS is installed..." | print_info
+        # Check if script was invoked with sudo
+        if [[ $(id -u) == 0 ]] && [[ -n "$SUDO_USER" ]]; then
+            # overwrite $HOME directory in case script was called with sudo but without the -E flag
+            HOME="$(bash -c "cd ~${SUDO_USER} && pwd")"
+        fi
+        # Check if virtual environment exists
+        if [[ -f ".venv/bin/activate" ]]; then
+            # Activate virtual environment
+            # shellcheck disable=SC1091
+            source .venv/bin/activate
+        else
+            echo -e "The virtual environment for this project is missing. Please install it with:\n"  | print_error
+            echo -e "\t$(dirname "${BASH_SOURCE[0]}")/install.sh\n" | print_bold
+            exit 1
+        fi
+        # Check if ycms-cli is available in virtual environment
+        if [[ ! -x "$(env bash -c "command -v ycms-cli")" ]]; then
+            echo -e "The YCMS is not installed. Please install it with:\n"  | print_error
+            echo -e "\t$(dirname "${BASH_SOURCE[0]}")/install.sh\n" | print_bold
+            exit 1
+        fi
+        echo "✔ YCMS is installed" | print_success
+        YCMS_INSTALLED=1
+        export YCMS_INSTALLED
+        # Check if script is running in CircleCI context and set DEBUG=True if not
+        if [[ -z "$CIRCLECI" ]]; then
+            # Set debug mode for
+            YCMS_DEBUG=1
+            export YCMS_DEBUG
+        fi
+    fi
+}
+
+# This function applies different sed replacements to make sure the matched lines from grep are aligned and colored
+function format_grep_output {
+    while read -r line; do
+        echo "$line" | sed --regexp-extended \
+            -e "s/^([0-9])([:-])(.*)/\1\2      \3/"         `# Pad line numbers with 1 digit` \
+            -e "s/^([0-9]{2})([:-])(.*)/\1\2     \3/"       `# Pad line numbers with 2 digits` \
+            -e "s/^([0-9]{3})([:-])(.*)/\1\2    \3/"        `# Pad line numbers with 3 digits` \
+            -e "s/^([0-9]{4})([:-])(.*)/\1\2   \3/"         `# Pad line numbers with 4 digits` \
+            -e "s/^([0-9]{5})([:-])(.*)/\1\2  \3/"          `# Pad line numbers with 5 digits` \
+            -e "s/^([0-9]+):(.*)/\x1b[1;31m\1\2\x1b[0;39m/" `# Make matched line red` \
+            -e "s/^([0-9]+)-(.*)/\1\2/"                     `# Remove dash of unmatched line`
+    done
+}

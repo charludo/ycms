@@ -1,0 +1,67 @@
+{% extends "_base.html" %}
+{% load i18n %}
+{% load static %}
+{% load widget_tweaks %}
+{% load render_bundle from webpack_loader %}
+{% block title %}
+    {% translate "Home" %}
+{% endblock title %}
+{% block content %}
+    <div class="max-w-6xl mx-auto">
+        {% if perms.cms.add_patient %}
+            <form enctype="multipart/form-data"
+                  method="post"
+                  id="patient_form"
+                  class="mb-12"
+                  data-unsaved-warning>
+                {% csrf_token %}
+                <div class="w-full flex flex-col flex-wrap mb-6">
+                    <h1 class="heading">{% translate "Add new patient" %}</h1>
+                    <p class="text-left font-small text-gray-500">{% translate "Fields with * are required." %}</p>
+                </div>
+                {% with WIDGET_ERROR_CLASS="border-red-500" %}
+                    <div>
+                        {% for field in form %}
+                            <div>
+                                <label for="{{ field.id_for_label }}"
+                                       {% if field.field.required %}class="field-required"{% endif %}>
+                                    {{ field.label }}
+                                </label>
+                                {% render_field field %}
+                                <div class="help-text">{{ field.help_text }}</div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <button type="submit" class="btn mt-4">{% translate "Add new patient" %}</button>
+                {% endwith %}
+            </form>
+        {% endif %}
+        {% if perms.cms.view_patient %}
+            <div class="w-full flex flex-col flex-wrap mb-6">
+                <h1 class="heading">{% translate "Patients list" %}</h1>
+            </div>
+            {% for patient in patients %}
+                <div class="bg-white border-2 justify-between border-gray-200 rounded-lg shadow-md shadow-inner mb-8 gap-6 overflow-hidden">
+                    <div class="px-8 py-6 grow">
+                        <p class="text-xl font-bold">
+                            <span class="font-bold">{{ patient.last_name }}</span>, {{ patient.first_name }}
+                        </p>
+                        <p>
+                            {% translate "Privately insured" %}:
+                            {% if patient.private_patient %}
+                                <i icon-name="check" class="w-4 h-4 text-green-700"></i>
+                            {% else %}
+                                <i icon-name="x" class="w-4 h-4 text-red-700"></i>
+                            {% endif %}
+                        </p>
+                        <p class="text-gray-800 my-4">{% translate "Diagnosis" %}: {{ patient.diagnosis_code }}</p>
+                        <p class="text-gray-600">{% translate "Added by" %}: {{ patient.creator.display_name }}</p>
+                        <p class="text-gray-600">{% translate "Added at" %}: {{ patient.created_at }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <h2 class="text-center">{% translate "You do not have permission view patient data. To do so, please log in." %}</h2>
+        {% endif %}
+    </div>
+{% endblock content %}
