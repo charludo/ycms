@@ -15,6 +15,15 @@ Following packages are required before installing the project (install them with
 * `python3-pip` (Debian-based distributions) / `python-pip` (Arch-based distributions)
 * `python3-venv` (only on Debian-based distributions)
 * `docker` to run a local database server
+* `postgresql` to run the sql service
+
+### Database setup
+
+```
+sudo -u postgres psql
+CREATE USER ycms WITH PASSWORD 'password';
+CREATE DATABASE ycms;
+```
 
 ### Installation
 
