@@ -1,4 +1,6 @@
-# YCMS
+[![CircleCI](https://circleci.com/gh/charludo/ycms.svg?style=shield)](https://circleci.com/gh/charludo/ycms)
+![Coverage](https://img.shields.io/codeclimate/coverage/charludo/ycms)
+[![ReadTheDocs](https://readthedocs.org/projects/ycms/badge/?version=latest)](https://ycms.readthedocs.io/en/latest/)
 
 This is a Django 4 based web application. The main goal is to...
 
@@ -41,12 +43,9 @@ cd ycms
 
 All default users share the password `changeme`.
 
-## Project Architecture / Reference
+## Documentation
 
-
-- [YCMS](ycmss): The main package of the ycms with the following sub-packages:
-  - ...
-- [Tests](tests): This app contains all tests to verify ycms works as intended
+Read the docs at [ycms.readthedocs.io](https://ycms.readthedocs.io/en/latest/).
 
 
 ## License
