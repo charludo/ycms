@@ -14,17 +14,9 @@ app_name = "cms"
 
 #: The url patterns of this module (see :doc:`django:topics/http/urls`)
 urlpatterns = [
+    path("", include(("ycms.cms.urls.public", app_name), namespace=namespaces.PUBLIC)),
     path(
         "",
-        include(
-            ("ycms.cms.urls.public", app_name), namespace=namespaces.PUBLIC
-        ),
-    ),
-    path(
-        "",
-        include(
-            ("ycms.cms.urls.protected", app_name),
-            namespace=namespaces.PROTECTED,
-        ),
+        include(("ycms.cms.urls.protected", app_name), namespace=namespaces.PROTECTED),
     ),
 ]

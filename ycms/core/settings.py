@@ -36,9 +36,7 @@ HOSTNAME = urlparse(BASE_URL).hostname
 
 #: This is a security measure to prevent HTTP Host header attacks, which are possible even under many seemingly-safe
 ALLOWED_HOSTS = [".localhost", "127.0.0.1", "[::1]", HOSTNAME] + [
-    x.strip()
-    for x in os.environ.get("YCMS_ALLOWED_HOSTS", "").splitlines()
-    if x
+    x.strip() for x in os.environ.get("YCMS_ALLOWED_HOSTS", "").splitlines() if x
 ]
 
 # Application definition
@@ -98,9 +96,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": os.environ.get("YCMS_DB_NAME", "ycms"),
         "USER": os.environ.get("YCMS_DB_USER", "ycms"),
-        "PASSWORD": os.environ.get(
-            "YCMS_DB_PASSWORD", "password" if DEBUG else ""
-        ),
+        "PASSWORD": os.environ.get("YCMS_DB_PASSWORD", "password" if DEBUG else ""),
         "HOST": os.environ.get("YCMS_DB_HOST", "localhost"),
         "PORT": os.environ.get("YCMS_DB_PORT", "5432"),
     }
@@ -241,9 +237,7 @@ MEDIA_MAX_UPLOAD_SIZE = int(
 LOG_LEVEL = os.environ.get("YCMS_LOG_LEVEL", "DEBUG" if DEBUG else "INFO")
 
 #: The file path of the logfile. Needs to be writable by the application.
-LOGFILE = os.environ.get(
-    "YCMS_LOGFILE", os.path.join(BASE_DIR, "ycms.log")
-)
+LOGFILE = os.environ.get("YCMS_LOGFILE", os.path.join(BASE_DIR, "ycms.log"))
 
 #: Logging configuration dictionary (see :setting:`django:LOGGING`)
 LOGGING = {
@@ -290,10 +284,7 @@ LOGGING = {
         },
     },
     "loggers": {
-        "ycms": {
-            "handlers": ["console-colored", "logfile"],
-            "level": LOG_LEVEL,
-        },
+        "ycms": {"handlers": ["console-colored", "logfile"], "level": LOG_LEVEL},
         "ycms.core.management.commands": {
             "handlers": ["management-command", "logfile"],
             "level": LOG_LEVEL,

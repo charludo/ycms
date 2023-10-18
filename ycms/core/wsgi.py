@@ -13,6 +13,7 @@ import os
 from django.core.wsgi import get_wsgi_application
 
 
+# pylint: disable=duplicate-code
 def application(environ, start_response):
     """
     This returns the WSGI callable
