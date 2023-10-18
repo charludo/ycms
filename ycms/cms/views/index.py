@@ -1,6 +1,8 @@
 import logging
 
 from django.contrib import messages
+from django.contrib.auth.views import redirect_to_login
+from django.core.exceptions import PermissionDenied
 from django.db import transaction
 from django.shortcuts import redirect, render
 from django.utils.translation import gettext as _
@@ -49,7 +51,7 @@ class IndexView(TemplateView):
     @transaction.atomic
     def post(self, request, *args, **kwargs):
         r"""
-        Submit :class:`~integreat_compass.cms.forms.patients.patient_form.PatientForm`
+        Submit :class:`~ycms.cms.forms.patients.patient_form.PatientForm`
 
         :param request: The current request
         :type request: ~django.http.HttpRequest
@@ -60,20 +62,41 @@ class IndexView(TemplateView):
         :param \**kwargs: The supplied keyword arguments
         :type \**kwargs: dict
 
+        :raises ~django.core.exceptions.PermissionDenied: If user does not have the permission to edit the specific page
+
         :return: Redirect to list of patients
         :rtype: ~django.http.HttpResponseRedirect
         """
+        if not request.user.is_authenticated:
+            # Note: this is just for demonstration purposes. Usually, you would have
+            # a ListView for the existing patients, and a separate CreateView for creating
+            # them. Then the redirecting is handled by the AccessControlMiddleware in
+            # ~ycms.core.middleware.access_control_middleware
+            return redirect_to_login(request.path)
+
+        if not request.user.has_perm("cms.add_patient"):
+            raise PermissionDenied()
+
         form = PatientForm(
             data=request.POST, additional_instance_attributes={"creator": request.user}
         )
         if not form.is_valid():
             form.add_error_messages(request)
-        else:
-            patient = form.save()
-            messages.success(
+            return render(
                 request,
-                _('Patient "{} {}" has been saved with diagnosis "{}".').format(
-                    patient.first_name, patient.last_name, patient.diagnosis_code
-                ),
+                self.template_name,
+                {
+                    "form": form,
+                    "patients": Patient.objects.all(),
+                    **self.get_context_data(**kwargs),
+                },
             )
+
+        patient = form.save()
+        messages.success(
+            request,
+            _('Patient "{} {}" has been saved with diagnosis "{}".').format(
+                patient.first_name, patient.last_name, patient.diagnosis_code
+            ),
+        )
         return redirect("cms:public:index")

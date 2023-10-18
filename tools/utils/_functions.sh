@@ -44,7 +44,7 @@ SCRIPT_ARGS=("$@")
 # The verbosity of the output (can be one of {0,1,2,3})
 SCRIPT_VERBOSITY="1"
 
-# This function shows a success message once the Projectname development server is running
+# This function shows a success message once the YCMS development server is running
 function listen_for_devserver {
     until nc -z localhost "$YCMS_PORT"; do sleep 0.1; done
     echo "✔ Started YCMS at http://localhost:${YCMS_PORT}" | print_success

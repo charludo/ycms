@@ -5,6 +5,7 @@
       "name": "MANAGER",
       "permissions": [
         ["view_patient", "cms", "patient"],
+        ["add_patient", "cms", "patient"],
         ["change_patient", "cms", "patient"]
       ]
     }
@@ -15,8 +16,7 @@
       "name": "DOCTOR",
       "permissions": [
         ["view_patient", "cms", "patient"],
-        ["add_patient", "cms", "patient"],
-        ["change_patient", "cms", "patient"]
+        ["add_patient", "cms", "patient"]
       ]
     }
   },
