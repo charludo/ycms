@@ -213,11 +213,8 @@ msgstr "Willkommen"
 
 #: cms/templates/emails/activation_email.html
 #: cms/templates/emails/activation_email.txt
-msgid ""
-"You are receiving this e-mail because you created an account with Project "
-"Name."
-msgstr ""
-"Sie erhalten diese Email da Sie einen Account im YCMS angelegt haben."
+msgid "You are receiving this e-mail because you created an account with YCMS."
+msgstr "Sie erhalten diese Email da Sie einen Account im YCMS angelegt haben."
 
 #: cms/templates/emails/activation_email.html
 #: cms/templates/emails/activation_email.txt
