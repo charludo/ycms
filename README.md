@@ -50,4 +50,4 @@ Read the docs at [ycms.readthedocs.io](https://ycms.readthedocs.io/en/latest/).
 ## License
 
 This project is licensed under the Apache 2.0 License, see [LICENSE](./LICENSE).
-It is based paths on [digitalfabrik/integreat_cms](https://github.com/digitalfabrik/integreat-cms/).
+It is based on [digitalfabrik/integreat_cms](https://github.com/digitalfabrik/integreat-cms/).
