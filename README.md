@@ -7,6 +7,8 @@ This is a Django 4 based web application. The main goal is to...
 
 ### Prerequisites
 
+**Note:** if you absolutely MUST use Windows, follow the guide in `WSL.md`. No guarantees though.
+
 Following packages are required before installing the project (install them with your package manager):
 
 * `npm` version 7 or later
