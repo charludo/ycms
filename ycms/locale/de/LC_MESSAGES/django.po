@@ -139,8 +139,8 @@ msgid "File too large. Size should not exceed {}."
 msgstr "Datei zu groß. Größe darf {} nicht überschreiten."
 
 #: cms/templates/_base.html
-msgid "Logo"
-msgstr "Logo"
+msgid " Logo"
+msgstr " Logo"
 
 #: cms/templates/_base.html
 msgid "Manage Patients"
@@ -153,10 +153,6 @@ msgstr "Abmelden"
 #: cms/templates/_base.html cms/templates/authentication/login.html
 msgid "Login"
 msgstr "Login"
-
-#: cms/templates/_base.html
-msgid "Register"
-msgstr "Registrieren"
 
 #: cms/templates/authentication/login.html
 msgid "The username or the password is incorrect."
@@ -241,9 +237,9 @@ msgid ""
 "You are receiving this e-mail because you requested a password reset in "
 "YCMS. If you did not perform this action, please ignore this email."
 msgstr ""
-"Sie erhalten diese Email da Sie eine Passwortrücksetzung im YCMS "
-"beantragt haben. Falls Sie dies nicht getan haben sollten, "
-"ignorieren Sie diese Email bitte."
+"Sie erhalten diese Email da Sie eine Passwortrücksetzung im YCMS beantragt "
+"haben. Falls Sie dies nicht getan haben sollten, ignorieren Sie diese Email "
+"bitte."
 
 #: cms/templates/emails/password_reset_email.html
 #: cms/templates/emails/password_reset_email.txt
@@ -380,3 +376,6 @@ msgstr "Deutsch"
 #: core/settings.py
 msgid "English"
 msgstr "Englisch"
+
+#~ msgid "Register"
+#~ msgstr "Registrieren"
