@@ -1,6 +1,22 @@
 {% extends "_raw.html" %}
 {% load i18n %}
 {% load static %}
+{% comment %}
+Copyright [2019] [Integreat Project]
+Copyright [2023] [YCMS]
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+{% endcomment %}
 {% block raw_content %}
     <div class="flex justify-between items-center shadow-md bg-secondary z-40 fixed w-screen top-0">
         <div class="mx-12 w-full flex items-center font-medium text-xl text-white">
@@ -8,12 +24,13 @@
                 <img src="{% static 'images/logo-ycms.png' %}"
                      width="200"
                      height="200"
-                     alt="{% translate "Logo" %}"
+                     alt="{% translate " Logo" %}"
                      class="h-24 w-48">
             </a>
             {% url 'cms:public:index' as url %}
             <a href="{% url 'cms:public:index' %}"
-               class="ml-6 mr-4 hover:text-primary {% if request.path == url %}border-primary border-b-4{% else %}border-b-4 border-transparent{% endif %} h-24 flex items-center">{% translate "Manage Patients" %}</a>
+               class="ml-6 mr-4 hover:text-primary {% if request.path == url %}border-primary border-b-4{% else %}border-b-4 border-transparent{% endif %} h-24 flex items-center">
+            {% translate "Manage Patients" %}</a>
             {% if user.is_authenticated %}
                 <div class="ml-auto flex-align-right font-bold hover:text-primary">
                     <span class="text-primary">{{ user.display_name }}</span>
@@ -25,7 +42,8 @@
                 </div>
                 <div class="ml-4 mr-4 flex-align-right font-bold hover:text-white">
                     <a href="{% url 'cms:public:register' %}"
-                       class="text-primary hover:text-white">{% translate "Register" %}</a>
+                       class="text-primary hover:text-white">{% translate "Register"
+                    %}</a>
                 </div>
             {% endif %}
         </div>
