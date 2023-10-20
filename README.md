@@ -65,5 +65,6 @@ Read the docs at [ycms.readthedocs.io](https://ycms.readthedocs.io/en/latest/).
 
 ## License
 
-This project is licensed under the Apache 2.0 License, see [LICENSE](./LICENSE).
-It is based on [digitalfabrik/integreat_cms](https://github.com/digitalfabrik/integreat-cms/).
+This project is licensed under the [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0), see [LICENSE](./LICENSE) and [NOTICE.md](./NOTICE.md).
+It is based on [digitalfabrik/integreat_cms](https://github.com/digitalfabrik/integreat-cms/), Copyright © 2023 [Tür an Tür - Digitalfabrik gGmbH](https://github.com/digitalfabrik) and [individual contributors](https://github.com/digitalfabrik/integreat-compass/graphs/contributors).
+All rights reserved.
