@@ -187,7 +187,7 @@ dev-pinned = [
 
 [tool.setuptools]
 script-files = ["ycms/ycms-cli"]
-license-files = ["LICENSE.txt"]
+license-files = ["LICENSE.txt", "NOTICE.md"]
 
 [tool.setuptools.dynamic]
 version = { attr = "ycms.__version__" }
