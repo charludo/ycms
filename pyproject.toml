@@ -245,6 +245,7 @@ enable = [
 disable = [
     "consider-using-namedtuple-or-dataclass",
     "consider-using-tuple",
+    "duplicate-code",
 ]
 recursive = true
 ignore-paths = [

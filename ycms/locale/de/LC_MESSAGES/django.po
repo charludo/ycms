@@ -22,6 +22,22 @@ msgstr ""
 msgid "CMS"
 msgstr "CMS"
 
+#: cms/constants/bed_types.py
+msgid "normal"
+msgstr "normales"
+
+#: cms/constants/gender.py
+msgid "male"
+msgstr "männlich"
+
+#: cms/constants/gender.py
+msgid "female"
+msgstr "weiblich"
+
+#: cms/constants/gender.py
+msgid "diverse"
+msgstr "divers"
+
 #: cms/constants/group_names.py
 msgid "Manager"
 msgstr "Manager"
@@ -41,6 +57,14 @@ msgstr "gesetzlich"
 #: cms/constants/insurance_types.py
 msgid "private"
 msgstr "privat"
+
+#: cms/constants/record_types.py
+msgid "admission"
+msgstr "Aufnahme"
+
+#: cms/constants/record_types.py cms/models/medical_record.py
+msgid "note"
+msgstr "Notiz"
 
 #: cms/forms/authentication/password_reset_request_form.py
 #: cms/templates/authentication/login.html
@@ -70,73 +94,243 @@ msgstr "Der Anzeigename \"{}\" ist bereits vergeben."
 msgid "Enter {} here"
 msgstr "{} hier eingeben"
 
-#: cms/models/patients/patient.py
-msgid "first name"
-msgstr "Vorname"
+#: cms/models/bed.py
+msgid "bed type"
+msgstr "Betttyp"
 
-#: cms/models/patients/patient.py
-msgid "First name of the patient"
-msgstr "Vorname des Patienten / der Patientin"
+#: cms/models/bed.py
+msgid "specialty bed types may be available"
+msgstr "spezielle Betttypen stehen möglicherweise zur Verfügung"
 
-#: cms/models/patients/patient.py
-msgid "last name"
-msgstr "Nachname"
+#: cms/models/bed.py
+msgid "is available"
+msgstr "ist verfügbar"
 
-#: cms/models/patients/patient.py
-msgid "Surname of the patient"
-msgstr "Nachname des Patienten / der Patientin"
+#: cms/models/bed.py
+msgid "current availability status of the bed"
+msgstr "aktueller Verfügbarkeitsstatus des Betts"
 
-#: cms/models/patients/patient.py
-msgid "insurance type"
-msgstr "Versicherungstyp"
+#: cms/models/bed.py cms/models/room.py
+msgid "room"
+msgstr "Zimmer"
 
-#: cms/models/patients/patient.py
-msgid "Whether the patient is privately insured or not"
-msgstr "Ob der Patient / die Patientin privat versichert ist oder nicht"
+#: cms/models/bed.py
+msgid "The room this bed belongs to"
+msgstr "Zimmer, zu welchem dieses Bett gehört"
 
-#: cms/models/patients/patient.py
-msgid "diagnosis code"
-msgstr "Diagnosecode"
+#: cms/models/bed.py cms/models/bed_assignment.py
+msgid "bed"
+msgstr "Bett"
 
-#: cms/models/patients/patient.py
-msgid "Diagnosis code according to ICD10-2019"
-msgstr "Diagnosecode nach ICD10-2019"
+#: cms/models/bed.py
+msgid "beds"
+msgstr "Betten"
 
-#: cms/models/patients/patient.py
+#: cms/models/bed_assignment.py cms/models/medical_record.py
+#: cms/models/patient.py
 msgid "patient"
 msgstr "Patient*in"
 
-#: cms/models/patients/patient.py
+#: cms/models/bed_assignment.py
+msgid "The patient assigned to the bed"
+msgstr "Diesem Bett zugewiesene*r Patient*in"
+
+#: cms/models/bed_assignment.py
+msgid "registration date"
+msgstr "Registrierung"
+
+#: cms/models/bed_assignment.py
+msgid "date the need for a hospital stay became known"
+msgstr ""
+"Datum zu dem die Notwendigkeit eines Krankenhausaufenthalts bekannt wurde"
+
+#: cms/models/bed_assignment.py
+msgid "admission date"
+msgstr "Aufnahmedatum"
+
+#: cms/models/bed_assignment.py
+msgid "date the hostpital stay begins"
+msgstr "Datum zu dem der Krankenhausaufenthalt beginnt"
+
+#: cms/models/bed_assignment.py
+msgid "discharge date"
+msgstr "Entlassungsdatum"
+
+#: cms/models/bed_assignment.py
+msgid "date the hospital stay ends"
+msgstr "Datum der Entlassung"
+
+#: cms/models/bed_assignment.py
+msgid "accompanied"
+msgstr "mit Begleitung"
+
+#: cms/models/bed_assignment.py
+msgid "Whether the patient is accompanied by a chaperone"
+msgstr "Ob der Patient / die Patientin eine Belgeitperson hat"
+
+#: cms/models/bed_assignment.py cms/models/medical_record.py
+msgid "medical record"
+msgstr "medizinische Unterlage"
+
+#: cms/models/bed_assignment.py
+msgid "The medical record associated with this bed assignment"
+msgstr "Die mit dieser Bettzuweisung gehörende medizinische Unterlage"
+
+#: cms/models/bed_assignment.py
+msgid "The bed assigned to the patient"
+msgstr "Diesem Patienten / dieser Patientin zugewiesenes Bett"
+
+#: cms/models/bed_assignment.py
+msgid "bed assignment"
+msgstr "Bettzuweisung"
+
+#: cms/models/bed_assignment.py
+msgid "bed assignments"
+msgstr "Bettzuweisungen"
+
+#: cms/models/medical_record.py
+msgid "The patient associated with this medical record"
+msgstr "Der / die zu dieser medizinischen Unterlage gehörende Patient*in"
+
+#: cms/models/medical_record.py
+msgid "diagnosis code"
+msgstr "Diagnosecode"
+
+#: cms/models/medical_record.py
+msgid "Diagnosis code according to ICD-10"
+msgstr "Diagnosecode nach ICD-10"
+
+#: cms/models/medical_record.py
+msgid "record type"
+msgstr "Unterlagenart"
+
+#: cms/models/medical_record.py
+msgid "type of this record"
+msgstr "Art dieser Unterlage"
+
+#: cms/models/medical_record.py
+msgid "Additional notes for this medical record"
+msgstr "Zusätzliche Notizen zu dieser medizinischen Unterlage"
+
+#: cms/models/medical_record.py
+msgid "medical records"
+msgstr "medizinische Unterlagen"
+
+#: cms/models/patient.py
+msgid "insurance type"
+msgstr "Versicherungstyp"
+
+#: cms/models/patient.py
+msgid "Whether the patient is privately insured or not"
+msgstr "Ob der Patient / die Patientin privat versichert ist oder nicht"
+
+#: cms/models/patient.py
+msgid "first name"
+msgstr "Vorname"
+
+#: cms/models/patient.py
+msgid "First name of the patient"
+msgstr "Vorname des Patienten / der Patientin"
+
+#: cms/models/patient.py
+msgid "last name"
+msgstr "Nachname"
+
+#: cms/models/patient.py
+msgid "Last name of the patient"
+msgstr "Nachname des Patienten / der Patientin"
+
+#: cms/models/patient.py
+msgid "gender"
+msgstr "Geschlecht"
+
+#: cms/models/patient.py
+msgid "Gender of the patient"
+msgstr "Geschlecht des Patienten / der Patientin"
+
+#: cms/models/patient.py
+msgid "date of birth"
+msgstr "Geburtsdatum"
+
+#: cms/models/patient.py
+msgid "Date of birth of the patient"
+msgstr "Geburtsdatum des Patienten / der Patientin"
+
+#: cms/models/patient.py
 msgid "patients"
 msgstr "Patient*innen"
 
-#: cms/models/users/user.py
+#: cms/models/room.py
+msgid "room number"
+msgstr "Zimmernummer"
+
+#: cms/models/room.py
+msgid "number of this room within its ward"
+msgstr "Nummer des Zimmers auf dieser Station"
+
+#: cms/models/room.py cms/models/ward.py
+msgid "ward"
+msgstr "Station"
+
+#: cms/models/room.py
+msgid "The ward this room belongs to"
+msgstr "DIe Station zu der dieses Zimmer gehört"
+
+#: cms/models/room.py
+msgid "rooms"
+msgstr "Zimmer"
+
+#: cms/models/user.py
 msgid "email"
 msgstr "E-Mail"
 
-#: cms/models/users/user.py
+#: cms/models/user.py
 msgid "Valid email address for this user"
 msgstr "Gültige E-Mail-Adresse für diesen Benutzer"
 
-#: cms/models/users/user.py
+#: cms/models/user.py
 msgid "display name"
 msgstr "Anzeigename"
 
-#: cms/models/users/user.py
+#: cms/models/user.py
 msgid "This name will be shown as the author of changes"
 msgstr "Dieser Name wird als Autor von Änderungen angezeigt"
 
-#: cms/models/users/user.py
+#: cms/models/user.py
 msgid "user"
 msgstr "Benutzer"
 
-#: cms/models/users/user.py
+#: cms/models/user.py
 msgid "users"
 msgstr "Benutzer"
 
-#: cms/models/validators.py
-msgid "File too large. Size should not exceed {}."
-msgstr "Datei zu groß. Größe darf {} nicht überschreiten."
+#: cms/models/ward.py
+msgid "ward number"
+msgstr "Stationsnummer"
+
+#: cms/models/ward.py
+msgid "Number of the ward"
+msgstr "Nummer der Station"
+
+#: cms/models/ward.py
+msgid "floor"
+msgstr "Stockwerk"
+
+#: cms/models/ward.py
+msgid "Floor on which the nurse station for this ward is located"
+msgstr "Stockwerk, auf dem dich das Pflegendenzimer dieser Station befindet"
+
+#: cms/models/ward.py
+msgid "ward name"
+msgstr "Stationsname"
+
+#: cms/models/ward.py
+msgid "Name this ward is commonly referred to by"
+msgstr "Name, der üblicherweise für diese Station verwendet wird"
+
+#: cms/models/ward.py
+msgid "wards"
+msgstr "Stationen"
 
 #: cms/templates/_base.html
 msgid " Logo"
@@ -267,8 +461,8 @@ msgid "Privately insured"
 msgstr "Privatversichert"
 
 #: cms/templates/index.html
-msgid "Diagnosis"
-msgstr "Diagnose"
+msgid "DOB"
+msgstr "Geb. Dat."
 
 #: cms/templates/index.html
 msgid "Added by"
@@ -362,8 +556,8 @@ msgstr ""
 "Link in der E-Mail, um Ihren Account zu aktivieren."
 
 #: cms/views/index.py
-msgid "Patient \"{} {}\" has been saved with diagnosis \"{}\"."
-msgstr "Patient*in \"{} {}\" wurde mit Diagnose \"{}\" gespeichert."
+msgid "Patient \"{} {}\" has been saved."
+msgstr "Patient*in \"{} {}\" wurde gespeichert."
 
 #: core/apps.py
 msgid "Core"
@@ -376,6 +570,12 @@ msgstr "Deutsch"
 #: core/settings.py
 msgid "English"
 msgstr "Englisch"
+
+#~ msgid "File too large. Size should not exceed {}."
+#~ msgstr "Datei zu groß. Größe darf {} nicht überschreiten."
+
+#~ msgid "Diagnosis"
+#~ msgstr "Diagnose"
 
 #~ msgid "Register"
 #~ msgstr "Registrieren"
