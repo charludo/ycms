@@ -49,12 +49,13 @@ cd ycms
 * Go to your browser and open the URL `http://localhost:8086`
 * By default, the following users exist:
 
-| Email                  | Group   |
-|------------------------|---------|
-| root@ycms.de    | -       |
-| manager@ycms.de | MANAGER |
-| doctor@ycms.de  | DOCTOR  |
-| nurse@ycms.de   | NURSE   |
+| Personnel ID | Group              |
+|--------------|--------------------|
+| ROOT_00001   | -                  |
+| ZBM_000001   | ZBM                |
+| STATION_MG   | STATION_MANAGEMENT |
+| DR_0000001   | MEDICAL_PERSONNEL  |
+| NURSE_0001   | MEDICAL_PERSONNEL  |
 
 All default users share the password `changeme`.
 

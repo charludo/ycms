@@ -1,7 +1,6 @@
 import logging
 
 from django.contrib import messages
-from django.contrib.auth.views import redirect_to_login
 from django.core.exceptions import PermissionDenied
 from django.db import transaction
 from django.shortcuts import redirect, render
@@ -67,13 +66,6 @@ class IndexView(TemplateView):
         :return: Redirect to list of patients
         :rtype: ~django.http.HttpResponseRedirect
         """
-        if not request.user.is_authenticated:
-            # Note: this is just for demonstration purposes. Usually, you would have
-            # a ListView for the existing patients, and a separate CreateView for creating
-            # them. Then the redirecting is handled by the AccessControlMiddleware in
-            # ~ycms.core.middleware.access_control_middleware
-            return redirect_to_login(request.path)
-
         if not request.user.has_perm("cms.add_patient"):
             raise PermissionDenied()
 
@@ -99,4 +91,4 @@ class IndexView(TemplateView):
                 patient.first_name, patient.last_name
             ),
         )
-        return redirect("cms:public:index")
+        return redirect("cms:protected:index")

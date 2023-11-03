@@ -21,10 +21,7 @@ from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.utils.translation import gettext as _
 
-from .token_generator import (
-    account_activation_token_generator,
-    password_reset_token_generator,
-)
+from .token_generator import password_reset_token_generator
 
 logger = logging.getLogger(__name__)
 
@@ -78,7 +75,7 @@ def send_activation_mail(user):
     context = {"user": user}
     subject = _("YCMS | Activate your account")
 
-    token = account_activation_token_generator.make_token(user)
+    token = password_reset_token_generator.make_token(user)
     uid = urlsafe_base64_encode(force_bytes(user.pk))
 
     debug_mail_type = _("activation mail")

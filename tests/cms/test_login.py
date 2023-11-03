@@ -18,10 +18,10 @@ from django.urls import reverse
 
 
 @pytest.mark.django_db
-@pytest.mark.parametrize("email", ["root@ycms.de", "manager@ycms.de"])
-def test_login_success(load_test_data, client, settings, email):
+@pytest.mark.parametrize("personnel_id", ["ROOT_00001", "ZBM_000001"])
+def test_login_success(load_test_data, client, settings, personnel_id):
     """
-    Test whether login via username & email works as expected
+    Test whether login via personnel_id works as expected
 
     :param load_test_data: The fixture providing the test data (see :meth:`~tests.conftest.load_test_data`)
     :type load_test_data: tuple
@@ -32,11 +32,12 @@ def test_login_success(load_test_data, client, settings, email):
     :param settings: The Django settings
     :type settings: :fixture:`settings`
 
-    :param email: The email to use for login
-    :type email: str
+    :param personnel_id: The personnel_id to use for login
+    :type personnel_id: str
     """
     response = client.post(
-        reverse(settings.LOGIN_URL), data={"username": email, "password": "changeme"}
+        reverse(settings.LOGIN_URL),
+        data={"username": personnel_id, "password": "changeme"},
     )
     assert response.status_code == 302
     response = client.get(reverse(settings.LOGIN_REDIRECT_URL))
@@ -46,9 +47,10 @@ def test_login_success(load_test_data, client, settings, email):
 
 @pytest.mark.django_db
 @pytest.mark.parametrize(
-    "email", ["root", "manager@ycms.de", "non-existing-email@example.com", ""]
+    "personnel_id",
+    ["root", "manager@ycms.de", "ROOT_00001", "non-existing-email@example.com", ""],
 )
-def test_login_failure(load_test_data, client, settings, email):
+def test_login_failure(load_test_data, client, settings, personnel_id):
     """
     Test whether login with incorrect credentials does not work
 
@@ -61,12 +63,13 @@ def test_login_failure(load_test_data, client, settings, email):
     :param settings: The Django settings
     :type settings: :fixture:`settings`
 
-    :param email: The email to use for login
-    :type email: str
+    :param personnel_id: The personnel_id to use for login
+    :type personnel_id: str
     """
     settings.LANGUAGE_CODE = "en"
     response = client.post(
-        reverse(settings.LOGIN_URL), data={"username": email, "password": "incorrect"}
+        reverse(settings.LOGIN_URL),
+        data={"username": personnel_id, "password": "incorrect"},
     )
     assert response.status_code == 200
     assert "The username or the password is incorrect." in response.content.decode()

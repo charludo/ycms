@@ -21,14 +21,14 @@ limitations under the License.
     <br />
     <br />
     {% blocktranslate trimmed %}
-        You are receiving this e-mail because you created an account with YCMS.
+        You are receiving this e-mail because an account with YCMS has been created for you.
     {% endblocktranslate %}
     <br />
     {% translate "Please use the link below to activate your account." %}
     <br />
     <br />
-    <a href="{{ base_url }}{% url 'cms:public:activate_account' uidb64=uid token=token %}">
-        {{ base_url }}{% url 'cms:public:activate_account' uidb64=uid token=token %}
+    <a href="{{ base_url }}{% url 'cms:public:password_reset_confirm' uidb64=uid token=token %}">
+        {{ base_url }}{% url 'cms:public:password_reset_confirm' uidb64=uid token=token %}
     </a>
     <br />
     <br />

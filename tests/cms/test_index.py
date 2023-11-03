@@ -12,11 +12,10 @@ def test_offer_list_success(load_test_data):
     :type load_test_data: tuple
     """
     client = Client()
-    view_name = "cms:public:index"
+    view_name = "cms:protected:index"
     endpoint = reverse(view_name)
     # Check whether the endpoints resolve correctly
     match = resolve("/")
     assert match.view_name == view_name
     response = client.get(endpoint, {}, format="html", content_type="text/html")
-    assert response.status_code == 200
-    assert len(response.context["patients"]) == 2
+    assert response.status_code == 302

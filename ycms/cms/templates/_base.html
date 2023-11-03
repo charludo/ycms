@@ -20,30 +20,29 @@ limitations under the License.
 {% block raw_content %}
     <div class="flex justify-between items-center shadow-md bg-secondary z-40 fixed w-screen top-0">
         <div class="mx-12 w-full flex items-center font-medium text-xl text-white">
-            <a href="{% url 'cms:public:index' %}">
+            <a href="{% url 'cms:protected:index' %}">
                 <img src="{% static 'images/logo-ycms.png' %}"
                      width="200"
                      height="200"
                      alt="{% translate " Logo" %}"
                      class="h-24 w-48">
             </a>
-            {% url 'cms:public:index' as url %}
-            <a href="{% url 'cms:public:index' %}"
+            {% url 'cms:protected:index' as url %}
+            <a href="{% url 'cms:protected:index' %}"
                class="ml-6 mr-4 hover:text-primary {% if request.path == url %}border-primary border-b-4{% else %}border-b-4 border-transparent{% endif %} h-24 flex items-center">
             {% translate "Manage Patients" %}</a>
             {% if user.is_authenticated %}
                 <div class="ml-auto flex-align-right font-bold hover:text-primary">
-                    <span class="text-primary">{{ user.display_name }}</span>
+                    <span class="text-primary">{{ user.first_name }} {{ user.last_name }}</span>
                     <a href="{% url 'cms:public:logout' %}">({% translate "Logout" %})</a>
+                </div>
+                <div class="ml-4 mr-4 flex-align-right font-bold hover:text-white">
+                    <a href="{% url 'cms:protected:create_user' %}"
+                       class="text-primary hover:text-white">{% translate "Create User" %}</a>
                 </div>
             {% else %}
                 <div class="ml-auto flex-align-right font-bold hover:text-primary">
                     <a href="{% url 'cms:public:login' %}">{% translate "Login" %}</a>
-                </div>
-                <div class="ml-4 mr-4 flex-align-right font-bold hover:text-white">
-                    <a href="{% url 'cms:public:register' %}"
-                       class="text-primary hover:text-white">{% translate "Register"
-                    %}</a>
                 </div>
             {% endif %}
         </div>

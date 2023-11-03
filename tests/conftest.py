@@ -19,13 +19,13 @@ from django.contrib.auth import get_user_model
 from django.core.management import call_command
 from django.test.client import Client
 
-ROOT = "root@ycms.de"
-MANAGER = "manager@ycms.de"
-DOCTOR = "doctor@ycms.de"
-NURSE = "nurse@ycms.de"
+ROOT = "ROOT_00001"
+ZBM = "ZBM_000001"
+STATION_MANAGEMENT = "STATION_MG"
+MEDICAL_PERSONNEL = "NURSE_0001"
 ANONYMOUS = "ANONYMOUS"
 
-ROLES = [ROOT, MANAGER, DOCTOR, NURSE]
+ROLES = [ROOT, ZBM, STATION_MANAGEMENT, MEDICAL_PERSONNEL]
 ALL_ROLES = ROLES + [ANONYMOUS]
 
 
@@ -84,6 +84,6 @@ def login_role_user(request, load_test_data, django_db_blocker):
     if request.param != ANONYMOUS:
         with django_db_blocker.unblock():
             print(request.param.lower())
-            user = get_user_model().objects.get(email=request.param.lower())
+            user = get_user_model().objects.get(personnel_id=request.param)
             client.force_login(user)
     return client, request.param

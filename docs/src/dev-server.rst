@@ -34,14 +34,15 @@ If you want to speed up this process and don't need the extra functionality, you
 
 After that, open your browser and navigate to http://localhost:8086/. By default, the following users exist:
 
-================  ========
-Email             Group
-================  ========
-root@ycms.de      \-
-manager@ycms.de   MANAGER
-doctor@ycms.de    DOCTOR
-nurse@ycms.de     NURSE
-================  ========
+=============  ==================
+Personnel ID   Group
+=============  ==================
+ROOT_00001     \-
+ZBM_000001     ZBM
+STATION_MG     STATION_MANAGEMENT
+DR_0000001     MEDICAL_PERSONNEL
+NURSE_0001     MEDICAL_PERSONNEL
+=============  ==================
 
 All default users share the password `changeme`.
 

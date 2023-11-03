@@ -18,11 +18,14 @@ from django.contrib.auth.models import (
     Group,
     PermissionsMixin,
 )
+from django.core.exceptions import PermissionDenied
+from django.core.validators import MinLengthValidator
 from django.db import models
+from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 
-from ..constants import group_names
+from ..constants import group_names, job_types
 from .abstract_base_model import AbstractBaseModel
 
 
@@ -33,60 +36,76 @@ class CustomUserManager(BaseUserManager):
 
     def create_user(
         self,
+        creator,
+        personnel_id,
         email,
-        display_name,
-        password=None,
-        group=None,
+        group,
+        assigned_ward=None,
         is_active=False,
         **extra_fields,
     ):
         """
         Create a new user and ensure they are added to the correct group (if any)
 
+        :param creator: the user who attempts to create this new user
+        :type creator: ~ycms.cms.models.user.User
+
+        :param personnel_id: employee's ID
+        :type personnel_id: int
+
         :param email: email address of the user, also used in lieu of username
         :type email: str
 
-        :param display_name: name used for comments etc.
-        :type display_name: str
-
-        :param password: user password
-        :type password: str
-
-        :param group: either None or one of :attr:`~ycms.cms.constants.group_names.CHOICES`
+        :param group: one of :attr:`~ycms.cms.constants.group_names.CHOICES`
         :type group: str
 
-        :param extra_fields: additional fields
-        :type extra_fields: dict
+        :param assigned_ward: the ward this user is assigned to or None
+        :type assigned_ward: ~ycms.cms.models.ward.Ward
 
         :param is_active: Whether this user should be active
         :type is_active: bool
 
+        :param extra_fields: additional fields
+        :type extra_fields: dict
+
         :return: the newly created user
         :rtype: ~ycms.cms.models.users.user.User
         """
+        # Check that no user is able to create over-privileged new users
+        if not self.filter(id=creator.id).exists() or not (
+            creator.is_superuser
+            or str(group)
+            in dict(group_names.IS_CREATABLE_BY[str(creator.group)]).keys()
+        ):
+            raise PermissionDenied()
+
         email = self.normalize_email(email)
         user = self.model(
-            email=email, display_name=display_name, is_active=is_active, **extra_fields
+            creator=creator,
+            personnel_id=personnel_id,
+            email=email,
+            assigned_ward=assigned_ward,
+            is_active=is_active,
+            **extra_fields,
         )
 
-        user.set_password(password)
+        user.set_password(None)
         user.save(using=self._db)
 
-        if group and group in dict(group_names.CHOICES):
-            user.groups.add(Group.objects.get(name=group))
-            user.save()
+        user.groups.add(Group.objects.get(name=group))
+        user.save()
 
         return user
 
-    def create_superuser(self, email, display_name, password=None, **extra_fields):
+    def create_superuser(self, personnel_id, email, password=None, **extra_fields):
         """
         Create a new super user
 
+        :param personnel_id: employee's ID
+        :type personnel_id: int
+
         :param email: email address of the user, also used in lieu of username
         :type email: str
-
-        :param display_name: name used for comments etc.
-        :type display_name: str
 
         :param password: user password
         :type password: str
@@ -99,7 +118,7 @@ class CustomUserManager(BaseUserManager):
         """
         extra_fields.setdefault("is_staff", True)
         extra_fields.setdefault("is_superuser", True)
-        return self.create_user(email, display_name, password, **extra_fields)
+        return self.create_user(personnel_id, email, password, **extra_fields)
 
 
 class User(AbstractBaseUser, PermissionsMixin, AbstractBaseModel):
@@ -107,23 +126,60 @@ class User(AbstractBaseUser, PermissionsMixin, AbstractBaseModel):
     A custom User model that replaces the default Django User model.
     """
 
+    creator = models.ForeignKey(
+        "self", null=True, blank=True, on_delete=models.SET_NULL
+    )
+    created_at = models.DateTimeField(default=timezone.now, null=False)
+    updated_at = models.DateTimeField(auto_now=True, null=False)
+    personnel_id = models.CharField(
+        null=True,
+        unique=True,
+        verbose_name=_("personnel ID"),
+        help_text=_(
+            "Employment ID number of the hospital staff. Used for authentication."
+        ),
+        max_length=10,
+        validators=[MinLengthValidator(10)],
+    )
     email = models.EmailField(
         unique=True,
         verbose_name=_("email"),
         help_text=_("Valid email address for this user"),
     )
-    display_name = models.CharField(
-        max_length=128,
-        verbose_name=_("display name"),
-        help_text=_("This name will be shown as the author of changes"),
+    job_type = models.CharField(
+        null=True,
+        max_length=16,
+        verbose_name=_("job type"),
+        help_text=_("Job type of the employee"),
+        choices=job_types.CHOICES,
+    )
+    first_name = models.CharField(
+        null=True,
+        max_length=32,
+        verbose_name=_("first name"),
+        help_text=_("First name of the employee"),
+    )
+    last_name = models.CharField(
+        null=True,
+        max_length=64,
+        verbose_name=_("last name"),
+        help_text=_("Last name of the employee"),
+    )
+    assigned_ward = models.ForeignKey(
+        "cms.Ward",
+        null=True,
+        blank=True,
+        verbose_name=_("Ward"),
+        help_text=_("Ward this employee is assigned to (if any)"),
+        on_delete=models.SET_NULL,
     )
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
     objects = CustomUserManager()
 
-    USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["display_name"]
+    USERNAME_FIELD = "personnel_id"
+    REQUIRED_FIELDS = ["email", "job_type", "first_name", "last_name"]
 
     @cached_property
     def group(self):
@@ -143,7 +199,7 @@ class User(AbstractBaseUser, PermissionsMixin, AbstractBaseModel):
         :return: A readable string representation of the user
         :rtype: str
         """
-        return f"{self.display_name} ({self.email})"
+        return f"{self.job_type} {self.last_name} ({self.personnel_id})"
 
     def get_repr(self):
         """
@@ -155,8 +211,11 @@ class User(AbstractBaseUser, PermissionsMixin, AbstractBaseModel):
         """
         fields = [
             f"id: {self.id}",
+            f"personnel_id: {self.personnel_id}",
             f"email: {self.email}",
-            f"display_name: {self.display_name}",
+            f"job_type: {self.job_type}",
+            f"first_name: {self.first_name}",
+            f"last_name: {self.last_name}",
             f"group: {self.groups.first()}",
             f"is_staff: {self.is_staff}",
         ]
@@ -165,5 +224,5 @@ class User(AbstractBaseUser, PermissionsMixin, AbstractBaseModel):
     class Meta:
         verbose_name = _("user")
         verbose_name_plural = _("users")
-        ordering = ["email"]
+        ordering = ["personnel_id"]
         default_permissions = ("change", "delete", "view")

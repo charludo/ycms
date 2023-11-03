@@ -22,12 +22,12 @@ limitations under the License.
 {% block content %}
     <div class="flex justify-center items-center">
         <div class="w-1/3 bg-white shadow p-8">
-            <h2>{% translate "Register as an Offer Provider" %}</h2>
-            <form action="{% url 'cms:public:register' %}" method="post">
+            <h2>{% translate "Create a new user" %}</h2>
+            <form action="{% url 'cms:protected:create_user' %}" method="post">
                 {% csrf_token %}
                 {{ form }}
                 <div class="mt-6 flex items-center justify-between">
-                    <button class="btn" type="submit">{% translate "Sign Up" %}</button>
+                    <button class="btn" type="submit">{% translate "Create" %}</button>
                 </div>
             </form>
         </div>

@@ -18,8 +18,10 @@ from django.contrib.auth import views as auth_views
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
+from django.utils.http import urlsafe_base64_decode
 from django.utils.translation import gettext as _
 
+from ...models import User
 from ...utils.token_generator import password_reset_token_generator
 
 logger = logging.getLogger(__name__)
@@ -49,7 +51,22 @@ class PasswordResetConfirmView(auth_views.PasswordResetConfirmView):
         """
         if self.request.user.is_authenticated:
             messages.success(self.request, _("You are already logged in."))
-            return redirect("cms:public:index")
+            return redirect("cms:protected:index")
+
+        user = User.objects.filter(
+            pk=int(urlsafe_base64_decode(kwargs.get("uidb64")))
+        ).first()
+        if not user:
+            messages.error(
+                self.request,
+                _("The account you are trying to set a password for does not exist."),
+            )
+            return redirect("cms:protected:index")
+
+        if self.token_generator.check_token(user, kwargs.get("token")):
+            user.is_active = True
+            user.save()
+            logger.info("Account activation for user %r was successful", user)
 
         response = super().dispatch(*args, **kwargs)
         if isinstance(response, HttpResponseRedirect) or self.validlink:
