@@ -22,8 +22,8 @@ from django.db import models
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 
-from ...constants import group_names
-from ..abstract_base_model import AbstractBaseModel
+from ..constants import group_names
+from .abstract_base_model import AbstractBaseModel
 
 
 class CustomUserManager(BaseUserManager):

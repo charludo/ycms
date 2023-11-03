@@ -20,18 +20,8 @@
                     <p class="text-left font-small text-gray-500">{% translate "Fields with * are required." %}</p>
                 </div>
                 {% with WIDGET_ERROR_CLASS="border-red-500" %}
-                    <div>
-                        {% for field in form %}
-                            <div>
-                                <label for="{{ field.id_for_label }}"
-                                       {% if field.field.required %}class="field-required"{% endif %}>
-                                    {{ field.label }}
-                                </label>
-                                {% render_field field %}
-                                <div class="help-text">{{ field.help_text }}</div>
-                            </div>
-                        {% endfor %}
-                    </div>
+                    {{ form }}
+                    <br />
                     <button type="submit" class="btn mt-4">{% translate "Add new patient" %}</button>
                 {% endwith %}
             </form>
@@ -48,13 +38,13 @@
                         </p>
                         <p>
                             {% translate "Privately insured" %}:
-                            {% if patient.private_patient %}
+                            {% if patient.insurance_type %}
                                 <i icon-name="check" class="w-4 h-4 text-green-700"></i>
                             {% else %}
                                 <i icon-name="x" class="w-4 h-4 text-red-700"></i>
                             {% endif %}
                         </p>
-                        <p class="text-gray-800 my-4">{% translate "Diagnosis" %}: {{ patient.diagnosis_code }}</p>
+                        <p class="text-gray-800 my-4">{% translate "DOB" %}: {{ patient.date_of_birth }}</p>
                         <p class="text-gray-600">{% translate "Added by" %}: {{ patient.creator.display_name }}</p>
                         <p class="text-gray-600">{% translate "Added at" %}: {{ patient.created_at }}</p>
                     </div>

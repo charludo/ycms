@@ -20,5 +20,11 @@ class PatientForm(CustomModelForm):
         """
 
         model = Patient
-        fields = ["first_name", "last_name", "private_patient", "diagnosis_code"]
-        widgets = {"private_patient": forms.RadioSelect()}
+        fields = [
+            "first_name",
+            "last_name",
+            "gender",
+            "date_of_birth",
+            "insurance_type",
+        ]
+        widgets = {"insurance_type": forms.RadioSelect()}

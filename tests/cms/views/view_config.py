@@ -33,8 +33,9 @@ VIEWS = [
                 {
                     "first_name": "Firstname",
                     "last_name": "Lastname",
-                    "private_patient": True,
-                    "diagnosis_code": "Testcode",
+                    "insurance_type": True,
+                    "date_of_birth": "2023-01-01",
+                    "gender": "d",
                 },
             ),
         ],

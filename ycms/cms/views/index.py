@@ -95,8 +95,8 @@ class IndexView(TemplateView):
         patient = form.save()
         messages.success(
             request,
-            _('Patient "{} {}" has been saved with diagnosis "{}".').format(
-                patient.first_name, patient.last_name, patient.diagnosis_code
+            _('Patient "{} {}" has been saved.').format(
+                patient.first_name, patient.last_name
             ),
         )
         return redirect("cms:public:index")
