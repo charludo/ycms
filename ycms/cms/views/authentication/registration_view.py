@@ -30,9 +30,20 @@ class RegistrationView(CreateView):
     View allowing new users to sign up as offer providers
     """
 
-    template_name = "authentication/registration.html"
+    template_name = "authentication/create_user.html"
     form_class = RegistrationForm
-    success_url = reverse_lazy("cms:public:login")
+    success_url = reverse_lazy("cms:protected:index")
+
+    def get_form_kwargs(self):
+        """
+        Return the keyword arguments for instantiating the form
+
+        :return: The form kwargs
+        :rtype: dict
+        """
+        kwargs = super().get_form_kwargs()
+        kwargs["additional_instance_attributes"] = {"creator": self.request.user}
+        return kwargs
 
     def form_valid(self, form):
         r"""
@@ -45,7 +56,7 @@ class RegistrationView(CreateView):
         messages.success(
             self.request,
             _(
-                'A confirmation email has been sent to "{}". Please use the link in the email to activate your account.'
+                'A confirmation email has been sent to "{}". Please use the link in the email to activate the account.'
             ).format(self.object.email),
         )
 

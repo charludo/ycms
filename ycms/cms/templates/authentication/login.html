@@ -33,9 +33,9 @@ limitations under the License.
                     </div>
                 {% endif %}
                 <div class="mb-4">
-                    <label for="{{ form.email.id_for_label }}">{{ form.username.label }}*</label>
+                    <label for="{{ form.personnel_id.id_for_label }}">{{ form.username.label }}*</label>
                     {% blocktranslate trimmed asvar username_placeholder %}
-                        Enter your email
+                        Enter your personnel ID
                     {% endblocktranslate %}
                     {% render_field form.username placeholder=username_placeholder %}
                 </div>

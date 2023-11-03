@@ -16,7 +16,7 @@
 This modules contains the config for the view tests
 """
 
-from ...conftest import ALL_ROLES, DOCTOR, MANAGER, ROOT
+from ...conftest import ROLES, ROOT, STATION_MANAGEMENT
 
 #: This list contains the config for all views
 #: Each element is a tuple which consists of two elements: A list of view configs and the keyword arguments that are
@@ -26,10 +26,10 @@ from ...conftest import ALL_ROLES, DOCTOR, MANAGER, ROOT
 VIEWS = [
     (
         [
-            ("cms:public:index", ALL_ROLES),
+            ("cms:protected:index", ROLES),
             (
-                "cms:public:index",
-                [ROOT, MANAGER, DOCTOR],
+                "cms:protected:index",
+                [ROOT, STATION_MANAGEMENT],
                 {
                     "first_name": "Firstname",
                     "last_name": "Lastname",

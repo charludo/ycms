@@ -15,7 +15,6 @@
 import logging
 
 from django import forms
-from django.contrib.auth.password_validation import validate_password
 from django.utils.translation import gettext as _
 
 from ...constants import group_names
@@ -30,11 +29,12 @@ class RegistrationForm(CustomModelForm):
     Form for user self-registration
     """
 
-    password = forms.CharField(
-        widget=forms.PasswordInput(), validators=[validate_password]
-    )
-    password_confirm = forms.CharField(
-        label=_("Confirm password"), widget=forms.PasswordInput()
+    group = forms.ChoiceField(
+        choices=[("", "---------")],
+        required=True,
+        initial="",
+        label=_("Permission group"),
+        help_text=_("Determines what permissions the user will have"),
     )
 
     class Meta:
@@ -44,29 +44,60 @@ class RegistrationForm(CustomModelForm):
         """
 
         model = User
-        fields = ["email", "display_name"]
+        fields = [
+            "personnel_id",
+            "email",
+            "job_type",
+            "first_name",
+            "last_name",
+            "assigned_ward",
+        ]
 
-    def clean(self):
-        """
-        Validate form fields which depend on each other, see :meth:`django.forms.Form.clean`:
-        If passwords do not match, add a :class:`~django.core.exceptions.ValidationError`.
+    def __init__(self, *args, **kwargs):
+        r"""
+        Initialize region form
 
-        :return: The cleaned form data
-        :rtype: dict
+        :param \*args: The supplied arguments
+        :type \*args: list
+
+        :param \**kwargs: The supplied keyword arguments
+        :type \**kwargs: dict
         """
-        cleaned_data = super().clean()
-        if cleaned_data.get("password") != cleaned_data.get("password_confirm"):
+        super().__init__(*args, **kwargs)
+
+        self.fields["group"].choices += (
+            group_names.IS_CREATABLE_BY[str(self.instance.creator.group)]
+            if not self.instance.creator.is_superuser
+            else group_names.CHOICES
+        )
+
+    def clean_personnel_id(self):
+        """
+        Ensure the personnel_id does not exist yet, see :ref:`overriding-modelform-clean-method`:
+        If the personnel_id is already registered, add a :class:`~django.core.exceptions.ValidationError`.
+
+        :return: The personnel_id
+        :rtype: str
+        """
+
+        personnel_id = self.cleaned_data["personnel_id"]
+        if User.objects.filter(personnel_id=personnel_id).first():
             self.add_error(
-                "password_confirm", forms.ValidationError(_("Passwords do not match."))
+                "personnel_id",
+                forms.ValidationError(
+                    _(
+                        'An account for the personnel ID "{}" does already exist.'
+                    ).format(personnel_id)
+                ),
             )
-        return cleaned_data
+        return personnel_id
 
     def clean_email(self):
         """
         Ensure the email does not exist yet, see :ref:`overriding-modelform-clean-method`:
         If the email is already registered, add a :class:`~django.core.exceptions.ValidationError`.
 
-        :return: The password
+        :return: The email
         :rtype: str
         """
 
@@ -75,31 +106,10 @@ class RegistrationForm(CustomModelForm):
             self.add_error(
                 "email",
                 forms.ValidationError(
-                    _(
-                        'An account for the email "{}" does already exist. Did you mean to log in?'
-                    ).format(email)
+                    _('An account for the email "{}" does already exist.').format(email)
                 ),
             )
         return email
-
-    def clean_display_name(self):
-        """
-        Ensure the display_name does not exist yet, see :ref:`overriding-modelform-clean-method`:
-        If the display_name is already taken, add a :class:`~django.core.exceptions.ValidationError`.
-
-        :return: The display_name
-        :rtype: str
-        """
-
-        display_name = self.cleaned_data["display_name"]
-        if User.objects.filter(display_name=display_name).first():
-            self.add_error(
-                "display_name",
-                forms.ValidationError(
-                    _('The display name "{}" is already taken.').format(display_name)
-                ),
-            )
-        return display_name
 
     def save(self, commit=True):
         """
@@ -114,12 +124,16 @@ class RegistrationForm(CustomModelForm):
         """
         cleaned_data = self.cleaned_data
         new_user = User.objects.create_user(
+            creator=self.instance.creator,
+            personnel_id=cleaned_data["personnel_id"],
             email=cleaned_data["email"],
-            display_name=cleaned_data["display_name"],
-            password=cleaned_data["password"],
-            group=group_names.NURSE,
+            job_type=cleaned_data["job_type"],
+            first_name=cleaned_data["first_name"],
+            last_name=cleaned_data["last_name"],
+            group=cleaned_data["group"],
+            assigned_ward=cleaned_data["assigned_ward"],
             is_active=False,
         )
 
-        logger.debug("Created new user %s", self.cleaned_data["email"])
+        logger.debug("Created new user %s", self.cleaned_data["personnel_id"])
         return new_user

@@ -47,7 +47,7 @@ class AccessControlMiddleware:
         :param request: Django request
         :type request: ~django.http.HttpRequest
 
-        :return: The response after the region has been added to the request variable
+        :return: The response
         :rtype: ~django.http.HttpResponse
         """
         resolver_match = resolve(request.path)

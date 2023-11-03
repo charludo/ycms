@@ -39,16 +39,16 @@ msgid "diverse"
 msgstr "divers"
 
 #: cms/constants/group_names.py
-msgid "Manager"
-msgstr "Manager"
+msgid "Medical Personnel"
+msgstr "medizinische Angestellte"
 
 #: cms/constants/group_names.py
-msgid "Doctor"
-msgstr "Arzt"
+msgid "Station Management"
+msgstr "Stationsmanagement"
 
 #: cms/constants/group_names.py
-msgid "Nurse"
-msgstr "Krankenpfleger*in"
+msgid "Central Bed Management"
+msgstr "Zentrales Bettmanagement"
 
 #: cms/constants/insurance_types.py
 msgid "statutory"
@@ -57,6 +57,18 @@ msgstr "gesetzlich"
 #: cms/constants/insurance_types.py
 msgid "private"
 msgstr "privat"
+
+#: cms/constants/job_types.py
+msgid "Administrator"
+msgstr "Administrator*in"
+
+#: cms/constants/job_types.py
+msgid "Dr."
+msgstr "Dr."
+
+#: cms/constants/job_types.py
+msgid "Nurse"
+msgstr "Krankenpfleger*in"
 
 #: cms/constants/record_types.py
 msgid "admission"
@@ -67,28 +79,24 @@ msgid "note"
 msgstr "Notiz"
 
 #: cms/forms/authentication/password_reset_request_form.py
-#: cms/templates/authentication/login.html
 msgid "Enter your email"
 msgstr "Email eingeben"
 
 #: cms/forms/authentication/registration_form.py
-msgid "Confirm password"
-msgstr "Passwort bestätigen"
+msgid "Permission group"
+msgstr "Berechtigungsgruppe"
 
 #: cms/forms/authentication/registration_form.py
-msgid "Passwords do not match."
-msgstr "Die Passwörter stimmen nicht überein."
+msgid "Determines what permissions the user will have"
+msgstr "Legt fest, welche Berechtigungen der Nutzer / die Nutzerin haben wird"
 
 #: cms/forms/authentication/registration_form.py
-msgid ""
-"An account for the email \"{}\" does already exist. Did you mean to log in?"
-msgstr ""
-"Ein Account mit der Email \"{}\" existiert bereits. Wollten Sie sich "
-"stattdessen anmelden?"
+msgid "An account for the personnel ID \"{}\" does already exist."
+msgstr "Ein Account für die Personalnummer \"{}\" existiert bereits."
 
 #: cms/forms/authentication/registration_form.py
-msgid "The display name \"{}\" is already taken."
-msgstr "Der Anzeigename \"{}\" ist bereits vergeben."
+msgid "An account for the email \"{}\" does already exist."
+msgstr "Ein Account für die Email \"{}\" existiert bereits."
 
 #: cms/forms/custom_model_form.py
 msgid "Enter {} here"
@@ -224,7 +232,7 @@ msgstr "Versicherungstyp"
 msgid "Whether the patient is privately insured or not"
 msgstr "Ob der Patient / die Patientin privat versichert ist oder nicht"
 
-#: cms/models/patient.py
+#: cms/models/patient.py cms/models/user.py
 msgid "first name"
 msgstr "Vorname"
 
@@ -232,7 +240,7 @@ msgstr "Vorname"
 msgid "First name of the patient"
 msgstr "Vorname des Patienten / der Patientin"
 
-#: cms/models/patient.py
+#: cms/models/patient.py cms/models/user.py
 msgid "last name"
 msgstr "Nachname"
 
@@ -281,6 +289,15 @@ msgid "rooms"
 msgstr "Zimmer"
 
 #: cms/models/user.py
+msgid "personnel ID"
+msgstr "Personalnummer"
+
+#: cms/models/user.py
+msgid "Employment ID number of the hospital staff. Used for authentication."
+msgstr ""
+"Personalnummer der im Krankenhaus angestellten. Wird zur Anmeldung genutzt."
+
+#: cms/models/user.py
 msgid "email"
 msgstr "E-Mail"
 
@@ -289,12 +306,28 @@ msgid "Valid email address for this user"
 msgstr "Gültige E-Mail-Adresse für diesen Benutzer"
 
 #: cms/models/user.py
-msgid "display name"
-msgstr "Anzeigename"
+msgid "job type"
+msgstr "Arbeitsart"
 
 #: cms/models/user.py
-msgid "This name will be shown as the author of changes"
-msgstr "Dieser Name wird als Autor von Änderungen angezeigt"
+msgid "Job type of the employee"
+msgstr "Arbeitsart dieses Angestellte / dieser Angestellten"
+
+#: cms/models/user.py
+msgid "First name of the employee"
+msgstr "Vorname des Angestellten / der Angestellten"
+
+#: cms/models/user.py
+msgid "Last name of the employee"
+msgstr "Nachname des Angestellten / der Angestellten"
+
+#: cms/models/user.py
+msgid "Ward"
+msgstr "Station"
+
+#: cms/models/user.py
+msgid "Ward this employee is assigned to (if any)"
+msgstr "Station, welcher diese*r Angestelle zugeordnet ist (optional)"
 
 #: cms/models/user.py
 msgid "user"
@@ -344,9 +377,25 @@ msgstr "Patient*innen verwalten"
 msgid "Logout"
 msgstr "Abmelden"
 
+#: cms/templates/_base.html
+msgid "Create User"
+msgstr "Nutzer anlegen"
+
 #: cms/templates/_base.html cms/templates/authentication/login.html
 msgid "Login"
 msgstr "Login"
+
+#: cms/templates/authentication/create_user.html
+msgid "Registration"
+msgstr "Registrierung"
+
+#: cms/templates/authentication/create_user.html
+msgid "Create a new user"
+msgstr "Neuen Benutzer anlegen"
+
+#: cms/templates/authentication/create_user.html
+msgid "Create"
+msgstr "Anlegen"
 
 #: cms/templates/authentication/login.html
 msgid "The username or the password is incorrect."
@@ -355,6 +404,10 @@ msgstr "Der Benutzername oder das Passwort sind inkorrekt."
 #: cms/templates/authentication/login.html
 msgid "Please try again."
 msgstr "Bitte erneut versuchen."
+
+#: cms/templates/authentication/login.html
+msgid "Enter your personnel ID"
+msgstr "Personalnummer eingeben"
 
 #: cms/templates/authentication/login.html
 msgid "Enter your password"
@@ -384,18 +437,6 @@ msgstr "Passwortrücksetzung anfordern"
 msgid "Request reset"
 msgstr "Rücksetzung anfordern"
 
-#: cms/templates/authentication/registration.html
-msgid "Registration"
-msgstr "Registrierung"
-
-#: cms/templates/authentication/registration.html
-msgid "Register as an Offer Provider"
-msgstr "Als Maßnahmen-Anbieter registrieren"
-
-#: cms/templates/authentication/registration.html
-msgid "Sign Up"
-msgstr "Registrieren"
-
 #: cms/templates/emails/activation_email.html
 #: cms/templates/emails/activation_email.txt
 msgid "Welcome"
@@ -403,8 +444,11 @@ msgstr "Willkommen"
 
 #: cms/templates/emails/activation_email.html
 #: cms/templates/emails/activation_email.txt
-msgid "You are receiving this e-mail because you created an account with YCMS."
-msgstr "Sie erhalten diese Email da Sie einen Account im YCMS angelegt haben."
+msgid ""
+"You are receiving this e-mail because an account with YCMS has been created "
+"for you."
+msgstr ""
+"Sie erhalten diese Email da für Sie ein Account im YCMS angelegt wurde."
 
 #: cms/templates/emails/activation_email.html
 #: cms/templates/emails/activation_email.txt
@@ -449,10 +493,6 @@ msgid "Add new patient"
 msgstr "Patient*in hinzufügen"
 
 #: cms/templates/index.html
-msgid "Fields with * are required."
-msgstr "Felder mit * sind Pflichtfelder."
-
-#: cms/templates/index.html
 msgid "Patients list"
 msgstr "Patientenliste"
 
@@ -494,38 +534,22 @@ msgstr "YCMS | Ihre angeforderte Passwortrücksetzung"
 msgid "password reset mail"
 msgstr "Passwort-Zurücksetzen-Mail"
 
-#: cms/views/authentication/account_activation_view.py
 #: cms/views/authentication/password_reset_confirm_view.py
 msgid "You are already logged in."
 msgstr "Sie sind bereits eingeloggt."
 
-#: cms/views/authentication/account_activation_view.py
-msgid "The account you are trying to activate does not exist."
-msgstr "Der Account den Sie versuchen zu aktivieren existiert nicht."
-
-#: cms/views/authentication/account_activation_view.py
-msgid "Your account has been successfully activated."
-msgstr "Ihr Account wurde erfolgreich freigeschalten."
-
-#: cms/views/authentication/account_activation_view.py
-msgid "This account activation link is invalid."
-msgstr "Der Accountaktivierungslink ist ungültig."
-
-#: cms/views/authentication/account_activation_view.py
 #: cms/views/authentication/password_reset_confirm_view.py
-msgid "It may have already been used."
-msgstr "Möglicherweise wurde er bereits verwendet."
-
-#: cms/views/authentication/account_activation_view.py
-msgid ""
-"Please contact an administrator to request a new link to activate your "
-"account."
+msgid "The account you are trying to set a password for does not exist."
 msgstr ""
-"Bitte kontaktieren Sie einen Administrator um einen neuen Link anzufordern."
+"Der Account für den Sie versuchen ein Passwort zu setzen existiert nicht."
 
 #: cms/views/authentication/password_reset_confirm_view.py
 msgid "This password reset link is invalid."
 msgstr "Der Passwort-Zurücksetzen-Link ist ungültig."
+
+#: cms/views/authentication/password_reset_confirm_view.py
+msgid "It may have already been used."
+msgstr "Möglicherweise wurde er bereits verwendet."
 
 #: cms/views/authentication/password_reset_confirm_view.py
 msgid "Please request a new link to reset your password."
@@ -550,7 +574,7 @@ msgstr ""
 #: cms/views/authentication/registration_view.py
 msgid ""
 "A confirmation email has been sent to \"{}\". Please use the link in the "
-"email to activate your account."
+"email to activate the account."
 msgstr ""
 "Wir haben eine Bestätigungsmail an \"{}\" gesandt. Bitten nutzen Sie den "
 "Link in der E-Mail, um Ihren Account zu aktivieren."
@@ -570,6 +594,49 @@ msgstr "Deutsch"
 #: core/settings.py
 msgid "English"
 msgstr "Englisch"
+
+#~ msgid "Fields with * are required."
+#~ msgstr "Felder mit * sind Pflichtfelder."
+
+#~ msgid "Manager"
+#~ msgstr "Manager"
+
+#~ msgid "Doctor"
+#~ msgstr "Arzt"
+
+#~ msgid "Confirm password"
+#~ msgstr "Passwort bestätigen"
+
+#~ msgid "Passwords do not match."
+#~ msgstr "Die Passwörter stimmen nicht überein."
+
+#~ msgid "The display name \"{}\" is already taken."
+#~ msgstr "Der Anzeigename \"{}\" ist bereits vergeben."
+
+#~ msgid "display name"
+#~ msgstr "Anzeigename"
+
+#~ msgid "This name will be shown as the author of changes"
+#~ msgstr "Dieser Name wird als Autor von Änderungen angezeigt"
+
+#~ msgid "Register as an Offer Provider"
+#~ msgstr "Als Maßnahmen-Anbieter registrieren"
+
+#~ msgid "Sign Up"
+#~ msgstr "Registrieren"
+
+#~ msgid "Your account has been successfully activated."
+#~ msgstr "Ihr Account wurde erfolgreich freigeschalten."
+
+#~ msgid "This account activation link is invalid."
+#~ msgstr "Der Accountaktivierungslink ist ungültig."
+
+#~ msgid ""
+#~ "Please contact an administrator to request a new link to activate your "
+#~ "account."
+#~ msgstr ""
+#~ "Bitte kontaktieren Sie einen Administrator um einen neuen Link "
+#~ "anzufordern."
 
 #~ msgid "File too large. Size should not exceed {}."
 #~ msgstr "Datei zu groß. Größe darf {} nicht überschreiten."

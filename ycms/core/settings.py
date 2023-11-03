@@ -118,8 +118,8 @@ DATABASES = {
 
 AUTH_USER_MODEL = "cms.User"
 LOGIN_URL = "cms:public:login"
-LOGIN_REDIRECT_URL = "cms:public:index"
-LOGOUT_REDIRECT_URL = "cms:public:index"
+LOGIN_REDIRECT_URL = "cms:protected:index"
+LOGOUT_REDIRECT_URL = "cms:protected:index"
 
 #########################
 # DJANGO WEBPACK LOADER #
