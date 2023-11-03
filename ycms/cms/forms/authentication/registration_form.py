@@ -55,7 +55,7 @@ class RegistrationForm(CustomModelForm):
 
     def __init__(self, *args, **kwargs):
         r"""
-        Initialize region form
+        Initialize user registration form
 
         :param \*args: The supplied arguments
         :type \*args: list
@@ -120,7 +120,7 @@ class RegistrationForm(CustomModelForm):
         :type commit: bool
 
         :return: The saved user
-        :rtype: ~ycms.cms.models.users.user.User
+        :rtype: ~ycms.cms.models.user.User
         """
         cleaned_data = self.cleaned_data
         new_user = User.objects.create_user(

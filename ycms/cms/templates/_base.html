@@ -31,6 +31,9 @@ limitations under the License.
             <a href="{% url 'cms:protected:index' %}"
                class="ml-6 mr-4 hover:text-primary {% if request.path == url %}border-primary border-b-4{% else %}border-b-4 border-transparent{% endif %} h-24 flex items-center">
             {% translate "Manage Patients" %}</a>
+            <a href="{% url 'cms:protected:intake' %}"
+               class="ml-6 mr-4 hover:text-primary {% if request.path == url %}border-primary border-b-4{% else %}border-b-4 border-transparent{% endif %} h-24 flex items-center">
+            {% translate "Patient Intake" %}</a>
             {% if user.is_authenticated %}
                 <div class="ml-auto flex-align-right font-bold hover:text-primary">
                     <span class="text-primary">{{ user.first_name }} {{ user.last_name }}</span>

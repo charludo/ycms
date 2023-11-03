@@ -1,0 +1,81 @@
+{% extends "_base.html" %}
+{% load i18n %}
+{% load static %}
+{% load widget_tweaks %}
+{% load render_bundle from webpack_loader %}
+{% block title %}
+    {% translate "Patient Intake" %}
+{% endblock title %}
+{% block content %}
+    <div class="max-w-6xl mx-auto mt-6">
+        <form enctype="multipart/form-data"
+              method="post"
+              id="patient_form"
+              class="mb-12"
+              data-unsaved-warning>
+            {% csrf_token %}
+            <div class="grid xl:grid-cols-2 gap-x-24">
+                {% with WIDGET_ERROR_CLASS="border-red-500" %}
+                    <div class="flex flex-col gap-8">
+                        <div class="p-12 bg-gray-200 rounded-xl">
+                            <h1 class="heading">{% translate "Select existing patient" %}</h1>
+                            <div class="mt-4">
+                                {% render_field record_form.patient %}
+                                <div class="help-text">{{ record_form.patient.help_text }}</div>
+                            </div>
+                        </div>
+                        <div id="patient-create" class="p-12 bg-gray-200 rounded-xl">
+                            <h1 class="heading">{% translate "Or create new patient" %}</h1>
+                            {% for field in patient_form %}
+                                <div>
+                                    <label for="{{ field.id_for_label }}"
+                                           {% if field.field.required %}class="field-required"{% endif %}>
+                                        {{ field.label }}
+                                    </label>
+                                    {% render_field field %}
+                                    <div class="help-text">{{ field.help_text }}</div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-8">
+                        <div>
+                            <div>
+                                <label for="{{ record_form.diagnosis_code.id_for_label }}"
+                                       class="field-required">{{ record_form.diagnosis_code.label }}&nbsp;</label>
+                                {% render_field record_form.diagnosis_code %}
+                                <div class="help-text">{{ record_form.diagnosis_code.help_text }}</div>
+                            </div>
+                            <div>
+                                <label for="{{ record_form.note.id_for_label }}">{{ record_form.note.label }}</label>
+                                {% render_field record_form.note %}
+                                <div class="help-text">{{ record_form.note.help_text }}</div>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <label for="{{ bed_form.admission_date.id_for_label }}"
+                                       class="field-required">{{ bed_form.admission_date.label }}&nbsp;</label>
+                                {% render_field bed_form.admission_date %}
+                                <div class="help-text">{{ bed_form.admission_date.help_text }}</div>
+                            </div>
+                            <div>
+                                <label for="{{ bed_form.recommended_ward.id_for_label }}">{{ bed_form.recommended_ward.label }}</label>
+                                {% render_field bed_form.recommended_ward %}
+                                <div class="help-text">{{ bed_form.recommended_ward.help_text }}</div>
+                            </div>
+                            <div>
+                                <label class="flex items-center"
+                                       for="{{ bed_form.accompanied.id_for_label }}">
+                                    {% render_field bed_form.accompanied %} {{ bed_form.accompanied.label }}
+                                </label>
+                                <div class="help-text">{{ bed_form.accompanied.help_text }}</div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn mt-4">{% translate "Complete patient intake" %}</button>
+                    </div>
+                {% endwith %}
+            </div>
+        </form>
+    </div>
+{% endblock content %}

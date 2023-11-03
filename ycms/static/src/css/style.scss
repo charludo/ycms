@@ -49,9 +49,10 @@ h2 {
 [type="time"],
 [type="week"],
 [multiple],
+.ts-control,
 textarea,
 select {
-    @apply scroll-mt-40 w-full rounded text-xl text-gray-800 border-gray-500 shadow-md;
+    @apply scroll-mt-40 w-full rounded text-xl text-gray-800 border-gray-500 shadow-md #{!important};
     &:focus {
         @apply bg-white border-blue-500 ring-blue-500 #{!important};
     }
@@ -63,7 +64,7 @@ select {
         border-bottom-right-radius: 0;
     }
     &:disabled {
-        @apply text-gray-500 pointer-events-none cursor-not-allowed;
+        @apply text-gray-500 bg-gray-100 pointer-events-none cursor-not-allowed;
     }
 }
 
@@ -133,7 +134,7 @@ label:not([for]) {
 .field-required {
     &:after {
         content: "*";
-        margin-left: 0.1em;
+        margin-left: -0.1em;
     }
 }
 
@@ -150,6 +151,16 @@ label:not([for]) {
 
 .errorlist {
     @apply bg-red-100 border-l-4 border-red-500 text-red-500 px-4 py-3 mb-5;
+}
+
+.ts-dropdown,
+.ts-control,
+.ts-control input {
+    font-family: inherit !important;
+    line-height: inherit !important;
+}
+.ts-dropdown {
+    font-size: inherit !important;
 }
 
 /***********
