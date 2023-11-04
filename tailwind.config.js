@@ -15,7 +15,11 @@
 const colors = require("tailwindcss/colors");
 
 module.exports = {
-  content: ["./ycms/cms/templates/**/*.html", "./ycms/static/src/js/**/*.{js,ts,tsx}"],
+  content: [
+    "./ycms/cms/templates/**/*.html",
+    "./ycms/static/src/js/**/*.{js,ts,tsx}",
+    "./node_modules/flowbite/**/*.js",
+  ],
   theme: {
     colors: {
       transparent: "transparent",
@@ -82,5 +86,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("@tailwindcss/forms")],
+  plugins: [require("@tailwindcss/forms"), require("flowbite/plugin")],
 };
