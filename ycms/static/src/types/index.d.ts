@@ -17,3 +17,5 @@ declare module "lucide/dist/esm/replaceElement" {
     const replaceElement: (element: Element, { nameAttr, icons, attrs }: ReplaceElementOptions) => void;
     export default replaceElement;
 }
+
+declare let FlowbiteInstances;

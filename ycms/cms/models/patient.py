@@ -107,6 +107,26 @@ class Patient(AbstractBaseModel):
         """
         return self.current_room.ward if self.current_room else None
 
+    @cached_property
+    def current_admission_date(self):
+        """
+        Helper property for accessing the patient's current admission date
+
+        :return: the current admission date
+        :rtype: ~ycms.cms.models.bed_assignment.BedAssignment
+        """
+        return self.current_stay.admission_date if self.current_stay else None
+
+    @cached_property
+    def current_discharge_date(self):
+        """
+        Helper property for accessing the patient's current discharge date
+
+        :return: the current discharge date
+        :rtype: ~ycms.cms.models.bed_assignment.BedAssignment
+        """
+        return self.current_stay.discharge_date if self.current_stay else None
+
     def __str__(self):
         """
         This overwrites the default Django :meth:`~django.db.models.Model.__str__` method which would return ``Patient object (id)``.

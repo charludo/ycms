@@ -339,7 +339,8 @@ msgstr "Vorname des Angestellten / der Angestellten"
 msgid "Last name of the employee"
 msgstr "Nachname des Angestellten / der Angestellten"
 
-#: cms/models/user.py
+#: cms/models/user.py cms/templates/ward/ward.html
+#: cms/templates/ward/ward_info.html
 msgid "Ward"
 msgstr "Station"
 
@@ -526,11 +527,11 @@ msgstr "Privatversichert"
 msgid "DOB"
 msgstr "Geb. Dat."
 
-#: cms/templates/index.html
+#: cms/templates/index.html cms/templates/ward/ward_drawer.html
 msgid "Age"
 msgstr "Alter"
 
-#: cms/templates/index.html
+#: cms/templates/index.html cms/templates/ward/ward_drawer.html
 msgid "Gender"
 msgstr "Geschlecht"
 
@@ -559,6 +560,86 @@ msgstr "Oder Patient*in hinzufügen"
 #: cms/templates/intake_form.html
 msgid "Complete patient intake"
 msgstr "Patientenaufnahme abschließen"
+
+#: cms/templates/ward/ward.html
+msgid "Corridor"
+msgstr "Gang"
+
+#: cms/templates/ward/ward_drawer.html cms/templates/ward/ward_room_card.html
+msgid "Room"
+msgstr "Zimmer"
+
+#: cms/templates/ward/ward_drawer.html
+msgid "Close menu"
+msgstr "Menü schließen"
+
+#: cms/templates/ward/ward_drawer.html cms/templates/ward/ward_room_card.html
+msgid "Beds"
+msgstr "Betten"
+
+#: cms/templates/ward/ward_drawer.html
+msgid "Patient name"
+msgstr "Patientenname"
+
+#: cms/templates/ward/ward_drawer.html
+msgid "Admission date"
+msgstr "Aufnahmedatum"
+
+#: cms/templates/ward/ward_drawer.html
+msgid "Discharge date"
+msgstr "Entlassungsdatum"
+
+#: cms/templates/ward/ward_drawer.html
+msgid "Action"
+msgstr "Aktion"
+
+#: cms/templates/ward/ward_drawer.html
+msgid "Discharge"
+msgstr "Entladung"
+
+#: cms/templates/ward/ward_info.html
+msgid "Patient Information"
+msgstr "Informationen zum Patienten"
+
+#: cms/templates/ward/ward_info.html cms/templates/ward/ward_room_card.html
+msgid "Female"
+msgstr "Weiblich"
+
+#: cms/templates/ward/ward_info.html cms/templates/ward/ward_room_card.html
+msgid "Male"
+msgstr "Männlich"
+
+#: cms/templates/ward/ward_info.html
+msgid "Total"
+msgstr "Gesamt"
+
+#: cms/templates/ward/ward_info.html
+msgid "Bed Availability"
+msgstr "Bettenverfügbarkeit"
+
+#: cms/templates/ward/ward_info.html
+msgid "Available Beds"
+msgstr "Verfügbare Betten"
+
+#: cms/templates/ward/ward_info.html
+msgid "Total Beds"
+msgstr "Gesamtzahl der Betten"
+
+#: cms/templates/ward/ward_modal.html
+msgid "Close modal"
+msgstr "Modal schließen"
+
+#: cms/templates/ward/ward_modal.html
+msgid "Are you sure you want to discharge this patient?"
+msgstr "Sind Sie sicher, dass Sie diesen Patienten entlassen möchten?"
+
+#: cms/templates/ward/ward_modal.html
+msgid "Yes"
+msgstr "Ja"
+
+#: cms/templates/ward/ward_modal.html
+msgid "No"
+msgstr "Nein"
 
 #: cms/utils/email_utils.py
 msgid "YCMS | Activate your account"

@@ -1,0 +1,52 @@
+{% load i18n %}
+{% load custom_filters %}
+<div class="col-span-1 sm:col-span-2 md:col-span-1 lg:col-span-1 xl:col-span-1 ">
+    <div class="rounded-lg border border-gray-300 bg-white p-4 shadow-md flex flex-col h-full">
+        <div class="mb-4 text-2xl font-semibold">{% translate "Ward" %}</div>
+        <div class="flex justify-between">
+            <form method="post" id="ward-selection-form">
+                {% csrf_token %}
+                <select name="ward" id="ward" onchange="this.form.submit()">
+                    {% for ward in wards %}
+                        <option value="{{ ward.id }}"
+                                {% if ward.id == selected_ward_id %}selected{% endif %}>{{ ward.name }}</option>
+                    {% endfor %}
+                </select>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-2 xl:col-span-2 ">
+    <div class="rounded-lg border border-gray-300 bg-white p-4 shadow-md flex flex-col h-full">
+        <div class="mb-4 text-2xl font-semibold">{% translate "Patient Information" %}</div>
+        <div class="flex justify-between">
+            <div>
+                <div class="text-lg font-semibold">{% translate "Female" %}</div>
+                <div class="text-3xl font-bold">{{ patient_info.female_patients }}</div>
+            </div>
+            <div>
+                <div class="text-lg font-semibold">{% translate "Male" %}</div>
+                <div class="text-3xl font-bold">{{ patient_info.male_patients }}</div>
+            </div>
+            <div>
+                <div class="text-lg font-semibold">{% translate "Total" %}</div>
+                <div class="text-3xl font-bold">{{ patient_info.total_patients }}</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-2 xl:col-span-2">
+    <div class="rounded-lg border border-gray-300 bg-white p-4 shadow-md flex flex-col h-full">
+        <div class="mb-4 text-2xl font-semibold">{% translate "Bed Availability" %}</div>
+        <div class="grid grid-cols-2">
+            <div class="col-span-2 sm:col-span-1">
+                <div class="text-lg font-semibold">{% translate "Available Beds" %}</div>
+                <div class="text-3xl font-bold">{{ ward.available_beds }}</div>
+            </div>
+            <div class="col-span-1 sm:col-span-1">
+                <div class="text-lg font-semibold">{% translate "Total Beds" %}</div>
+                <div class="text-3xl font-bold">{{ ward.total_beds }}</div>
+            </div>
+        </div>
+    </div>
+</div>

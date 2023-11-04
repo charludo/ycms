@@ -53,6 +53,16 @@ class Ward(AbstractBaseModel):
         return sum(room.available_beds for room in self.rooms.all())
 
     @cached_property
+    def occupied_beds(self):
+        """
+        Helper property for accessing the wards occupied bed count
+
+        :return: number of occupied beds in the ward
+        :rtype: int
+        """
+        return self.total_beds - self.available_beds
+
+    @cached_property
     def patients(self):
         """
         Helper property for accessing all patients currently stationed in the ward
@@ -60,7 +70,15 @@ class Ward(AbstractBaseModel):
         :return: patients in the ward
         :rtype: list [ ~ycms.cms.models.patient.Patient ]
         """
-        return Patient.objects.filter(bedassignment__bed__room__ward=self).distinct()
+        return Patient.objects.filter(
+            models.Q(medical_records__bed_assignment__bed__room__ward=self)
+            & (
+                models.Q(medical_records__bed_assignment__discharge_date__isnull=True)
+                | models.Q(
+                    medical_records__bed_assignment__discharge_date__gt=timezone.now()
+                )
+            )
+        ).distinct()
 
     def __str__(self):
         """
