@@ -19,7 +19,7 @@
 # This function waits for the docker database container
 function wait_for_docker_container {
     # Wait until container is ready and accepts database connections
-    until docker exec -it "${DOCKER_CONTAINER_NAME}" psql -U ycms -d "${YCMS}" -c "select 1" > /dev/null 2>&1; do
+    until docker exec "${DOCKER_CONTAINER_NAME}" psql -U ycms -d "${YCMS}" -c "select 1" > /dev/null 2>&1; do
         sleep 0.1
     done
 }
