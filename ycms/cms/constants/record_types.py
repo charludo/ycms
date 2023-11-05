@@ -3,7 +3,7 @@ This module contains all string representations of all valid medical record type
 """
 from django.utils.translation import gettext_lazy as _
 
-ADMISSION = "admission"
+INTAKE = "intake"
 NOTE = "note"
 
-CHOICES = ((ADMISSION, _("admission")), (NOTE, _("note")))
+CHOICES = ((INTAKE, _("patient intake form")), (NOTE, _("note")))

@@ -71,8 +71,8 @@ msgid "Nurse"
 msgstr "Krankenpfleger*in"
 
 #: cms/constants/record_types.py
-msgid "admission"
-msgstr "Aufnahme"
+msgid "patient intake form"
+msgstr "Patientenaufnahmeformular"
 
 #: cms/constants/record_types.py cms/models/medical_record.py
 msgid "note"
@@ -101,6 +101,14 @@ msgstr "Ein Account für die Email \"{}\" existiert bereits."
 #: cms/forms/custom_model_form.py
 msgid "Enter {} here"
 msgstr "{} hier eingeben"
+
+#: cms/forms/intake_record_form.py
+msgid "Search for existing patient"
+msgstr "Bestandspatient*innen durchsuchen"
+
+#: cms/forms/intake_record_form.py
+msgid "Search for diagnosis code"
+msgstr "Diagnosecodes durchsuchen"
 
 #: cms/models/bed.py
 msgid "bed type"
@@ -133,24 +141,6 @@ msgstr "Bett"
 #: cms/models/bed.py
 msgid "beds"
 msgstr "Betten"
-
-#: cms/models/bed_assignment.py cms/models/medical_record.py
-#: cms/models/patient.py
-msgid "patient"
-msgstr "Patient*in"
-
-#: cms/models/bed_assignment.py
-msgid "The patient assigned to the bed"
-msgstr "Diesem Bett zugewiesene*r Patient*in"
-
-#: cms/models/bed_assignment.py
-msgid "registration date"
-msgstr "Registrierung"
-
-#: cms/models/bed_assignment.py
-msgid "date the need for a hospital stay became known"
-msgstr ""
-"Datum zu dem die Notwendigkeit eines Krankenhausaufenthalts bekannt wurde"
 
 #: cms/models/bed_assignment.py
 msgid "admission date"
@@ -185,6 +175,14 @@ msgid "The medical record associated with this bed assignment"
 msgstr "Die mit dieser Bettzuweisung gehörende medizinische Unterlage"
 
 #: cms/models/bed_assignment.py
+msgid "recommended ward"
+msgstr "empfohlene Station"
+
+#: cms/models/bed_assignment.py
+msgid "Recommendation for stay at this ward"
+msgstr "Empfehlung zur Unterbringung auf dieser Station"
+
+#: cms/models/bed_assignment.py
 msgid "The bed assigned to the patient"
 msgstr "Diesem Patienten / dieser Patientin zugewiesenes Bett"
 
@@ -195,6 +193,34 @@ msgstr "Bettzuweisung"
 #: cms/models/bed_assignment.py
 msgid "bed assignments"
 msgstr "Bettzuweisungen"
+
+#: cms/models/icd10_entry.py
+msgid "code"
+msgstr "Code"
+
+#: cms/models/icd10_entry.py
+msgid "ICD-10-GM classification code"
+msgstr "ICD-10-GM Klassifizierungscode"
+
+#: cms/models/icd10_entry.py
+msgid "description"
+msgstr "Beschreibung"
+
+#: cms/models/icd10_entry.py
+msgid "ICD-10-GM classification description"
+msgstr "ICD-10-GM Klassifizierungsbeschreibung"
+
+#: cms/models/icd10_entry.py
+msgid "ICD-10 entry"
+msgstr "ICD-10 Eintrag"
+
+#: cms/models/icd10_entry.py
+msgid "ICD-10 entries"
+msgstr "ICD-10 Einträge"
+
+#: cms/models/medical_record.py cms/models/patient.py
+msgid "patient"
+msgstr "Patient*in"
 
 #: cms/models/medical_record.py
 msgid "The patient associated with this medical record"
@@ -373,6 +399,10 @@ msgstr " Logo"
 msgid "Manage Patients"
 msgstr "Patient*innen verwalten"
 
+#: cms/templates/_base.html cms/templates/intake_form.html
+msgid "Patient Intake"
+msgstr "Patientenaufnahme"
+
 #: cms/templates/_base.html
 msgid "Logout"
 msgstr "Abmelden"
@@ -518,6 +548,18 @@ msgstr ""
 "Sie haben keine Berechtigung zum Betrachten von Patientendaten. Um dies zu "
 "tun, loggen Sie sich bitte ein."
 
+#: cms/templates/intake_form.html
+msgid "Select existing patient"
+msgstr "Bestehende*n Patient*in auswählen"
+
+#: cms/templates/intake_form.html
+msgid "Or create new patient"
+msgstr "Oder Patient*in hinzufügen"
+
+#: cms/templates/intake_form.html
+msgid "Complete patient intake"
+msgstr "Patientenaufnahme abschließen"
+
 #: cms/utils/email_utils.py
 msgid "YCMS | Activate your account"
 msgstr "YCMS | Aktivieren Sie Ihren Account"
@@ -579,9 +621,13 @@ msgstr ""
 "Wir haben eine Bestätigungsmail an \"{}\" gesandt. Bitten nutzen Sie den "
 "Link in der E-Mail, um Ihren Account zu aktivieren."
 
-#: cms/views/index.py
+#: cms/views/index.py cms/views/intake_form_view.py
 msgid "Patient \"{} {}\" has been saved."
 msgstr "Patient*in \"{} {}\" wurde gespeichert."
+
+#: cms/views/intake_form_view.py
+msgid "Intake for patient \"{} {}\" with diagnosis \"{}\" has been saved."
+msgstr "Patient*in \"{} {}\" mit Diagnose \"{}\" wurde gespeichert."
 
 #: core/apps.py
 msgid "Core"
@@ -594,6 +640,19 @@ msgstr "Deutsch"
 #: core/settings.py
 msgid "English"
 msgstr "Englisch"
+
+#~ msgid "The patient assigned to the bed"
+#~ msgstr "Diesem Bett zugewiesene*r Patient*in"
+
+#~ msgid "registration date"
+#~ msgstr "Registrierung"
+
+#~ msgid "date the need for a hospital stay became known"
+#~ msgstr ""
+#~ "Datum zu dem die Notwendigkeit eines Krankenhausaufenthalts bekannt wurde"
+
+#~ msgid "admission"
+#~ msgstr "Aufnahme"
 
 #~ msgid "Fields with * are required."
 #~ msgstr "Felder mit * sind Pflichtfelder."

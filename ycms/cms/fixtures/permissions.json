@@ -26,6 +26,7 @@
     "fields": {
       "name": "MEDICAL_PERSONNEL",
       "permissions": [
+        ["add_patient", "cms", "patient"],
         ["view_patient", "cms", "patient"],
         ["change_patient", "cms", "patient"]
       ]

@@ -4,6 +4,7 @@ from django.utils.translation import gettext_lazy as _
 
 from ..constants import record_types
 from .abstract_base_model import AbstractBaseModel
+from .icd10_entry import ICD10Entry
 from .patient import Patient
 from .user import User
 
@@ -22,11 +23,13 @@ class MedicalRecord(AbstractBaseModel):
         verbose_name=_("patient"),
         help_text=_("The patient associated with this medical record"),
     )
-    diagnosis_code = models.CharField(
-        max_length=10,
+    diagnosis_code = models.ForeignKey(
+        ICD10Entry,
+        on_delete=models.PROTECT,
         verbose_name=_("diagnosis code"),
         help_text=_("Diagnosis code according to ICD-10"),
         blank=True,
+        null=True,
     )
     record_type = models.CharField(
         max_length=32,

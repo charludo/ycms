@@ -16,7 +16,7 @@
 This modules contains the config for the view tests
 """
 
-from ...conftest import ROLES, ROOT, STATION_MANAGEMENT
+from ...conftest import MEDICAL_PERSONNEL, ROLES, ROOT, STATION_MANAGEMENT
 
 #: This list contains the config for all views
 #: Each element is a tuple which consists of two elements: A list of view configs and the keyword arguments that are
@@ -29,13 +29,38 @@ VIEWS = [
             ("cms:protected:index", ROLES),
             (
                 "cms:protected:index",
-                [ROOT, STATION_MANAGEMENT],
+                [ROOT, STATION_MANAGEMENT, MEDICAL_PERSONNEL],
                 {
                     "first_name": "Firstname",
                     "last_name": "Lastname",
                     "insurance_type": True,
                     "date_of_birth": "2023-01-01",
                     "gender": "d",
+                },
+            ),
+            ("cms:protected:intake", [ROOT, STATION_MANAGEMENT, MEDICAL_PERSONNEL]),
+            (
+                "cms:protected:intake",
+                [ROOT, STATION_MANAGEMENT, MEDICAL_PERSONNEL],
+                {
+                    "patient": "1",
+                    "diagnosis_code": "161",
+                    "admission_date": "2023-01-01",
+                },
+            ),
+            (
+                "cms:protected:intake",
+                [ROOT, STATION_MANAGEMENT, MEDICAL_PERSONNEL],
+                {
+                    "first_name": "Firstname",
+                    "last_name": "Lastname",
+                    "insurance_type": True,
+                    "date_of_birth": "2023-01-01",
+                    "gender": "d",
+                    "diagnosis_code": "161",
+                    "admission_date": "2023-01-01",
+                    "accompanied": True,
+                    "note": "test note",
                 },
             ),
         ],
