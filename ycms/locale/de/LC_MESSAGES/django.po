@@ -535,6 +535,14 @@ msgid "DOB"
 msgstr "Geb. Dat."
 
 #: cms/templates/index.html
+msgid "Age"
+msgstr "Alter"
+
+#: cms/templates/index.html
+msgid "Gender"
+msgstr "Geschlecht"
+
+#: cms/templates/index.html
 msgid "Added by"
 msgstr "Hinzugefügt von"
 

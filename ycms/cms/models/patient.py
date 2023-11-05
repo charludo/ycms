@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.db import models
 from django.utils import timezone
 from django.utils.functional import cached_property
@@ -41,6 +43,25 @@ class Patient(AbstractBaseModel):
     date_of_birth = models.DateField(
         verbose_name=_("date of birth"), help_text=_("Date of birth of the patient")
     )
+    _first = models.CharField(max_length=32, blank=True)
+    _last = models.CharField(max_length=64, blank=True)
+
+    @cached_property
+    def age(self):
+        """
+        Helper property to get the patient's age in years
+
+        :return: the patient's age in years
+        :rtype: int
+        """
+        today = datetime.today().date()
+        years_ago = today.year - self.date_of_birth.year
+        if today.month < self.date_of_birth.month or (
+            today.month == self.date_of_birth.month
+            and today.day < self.date_of_birth.day
+        ):
+            return years_ago - 1
+        return years_ago
 
     @cached_property
     def current_stay(self):
