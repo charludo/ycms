@@ -48,6 +48,7 @@
                         <p class="text-gray-800 mb-4">{% translate "Gender" %}: {{ patient.gender }}</p>
                         <p class="text-gray-600">{% translate "Added by" %}: {{ patient.creator.personnel_id }}</p>
                         <p class="text-gray-600">{% translate "Added at" %}: {{ patient.created_at }}</p>
+                        {{ patient.current_stay }}
                     </div>
                 </div>
             {% endfor %}

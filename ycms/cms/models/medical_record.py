@@ -19,6 +19,7 @@ class MedicalRecord(AbstractBaseModel):
     updated_at = models.DateTimeField(auto_now=True, null=False)
     patient = models.ForeignKey(
         Patient,
+        related_name="medical_records",
         on_delete=models.CASCADE,
         verbose_name=_("patient"),
         help_text=_("The patient associated with this medical record"),
@@ -66,3 +67,4 @@ class MedicalRecord(AbstractBaseModel):
     class Meta:
         verbose_name = _("medical record")
         verbose_name_plural = _("medical records")
+        get_latest_by = "-created_at"

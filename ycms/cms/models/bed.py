@@ -29,6 +29,7 @@ class Bed(AbstractBaseModel):
     )
     room = models.ForeignKey(
         Room,
+        related_name="beds",
         on_delete=models.CASCADE,
         verbose_name=_("room"),
         help_text=_("The room this bed belongs to"),
