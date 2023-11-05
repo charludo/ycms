@@ -68,7 +68,13 @@ function listen_for_devserver {
 # This function makes sure a database is available
 function require_database {
     # Check if local postgres server is running
-    if nc -z localhost 5432; then
+    if [[ "$(env bash -c "command -v docker")" ]]; then
+         echo "✔ Docker detected" | print_success
+        # Set docker settings
+        export DJANGO_SETTINGS_MODULE="ycms.core.docker_settings"
+        # Make sure a docker container is up and running
+        ensure_docker_container_running
+    elif nc -z localhost 5432; then
         ensure_not_root
         echo "✔ Running PostgreSQL database detected" | print_success
         # Migrate database
@@ -77,10 +83,8 @@ function require_database {
         # Set default settings for other dev tools, e.g. testing
         export DJANGO_SETTINGS_MODULE="ycms.core.settings"
     else
-        # Set docker settings
-        export DJANGO_SETTINGS_MODULE="ycms.core.docker_settings"
-        # Make sure a docker container is up and running
-        ensure_docker_container_running
+        echo -e "Docker or PostgresQL are required for running this project."  | print_error
+        exit 1
     fi
 }
 
