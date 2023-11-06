@@ -25,6 +25,7 @@ class Room(AbstractBaseModel):
     )
     ward = models.ForeignKey(
         Ward,
+        related_name="rooms",
         on_delete=models.CASCADE,
         verbose_name=_("ward"),
         help_text=_("The ward this room belongs to"),

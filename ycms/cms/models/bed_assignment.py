@@ -36,6 +36,7 @@ class BedAssignment(AbstractBaseModel):
     )
     medical_record = models.ForeignKey(
         MedicalRecord,
+        related_name="bed_assignment",
         on_delete=models.CASCADE,
         verbose_name=_("medical record"),
         help_text=_("The medical record associated with this bed assignment"),

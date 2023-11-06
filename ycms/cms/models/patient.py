@@ -5,7 +5,7 @@ from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 
-from ..constants import gender, insurance_types
+from ..constants import gender, insurance_types, record_types
 from .abstract_base_model import AbstractBaseModel
 from .user import User
 
@@ -71,7 +71,11 @@ class Patient(AbstractBaseModel):
         :return: the current bed assignment
         :rtype: ~ycms.cms.models.bed_assignment.BedAssignment
         """
-        return self.bed_assignment.latest("created_at")
+        return (
+            self.medical_records.filter(record_type=record_types.INTAKE)
+            .latest()
+            .bed_assignment.get()
+        )
 
     @cached_property
     def current_bed(self):
