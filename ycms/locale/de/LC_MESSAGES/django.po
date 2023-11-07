@@ -118,14 +118,6 @@ msgstr "Betttyp"
 msgid "specialty bed types may be available"
 msgstr "spezielle Betttypen stehen möglicherweise zur Verfügung"
 
-#: cms/models/bed.py
-msgid "is available"
-msgstr "ist verfügbar"
-
-#: cms/models/bed.py
-msgid "current availability status of the bed"
-msgstr "aktueller Verfügbarkeitsstatus des Betts"
-
 #: cms/models/bed.py cms/models/room.py
 msgid "room"
 msgstr "Zimmer"
@@ -648,6 +640,12 @@ msgstr "Deutsch"
 #: core/settings.py
 msgid "English"
 msgstr "Englisch"
+
+#~ msgid "is available"
+#~ msgstr "ist verfügbar"
+
+#~ msgid "current availability status of the bed"
+#~ msgstr "aktueller Verfügbarkeitsstatus des Betts"
 
 #~ msgid "The patient assigned to the bed"
 #~ msgstr "Diesem Bett zugewiesene*r Patient*in"
