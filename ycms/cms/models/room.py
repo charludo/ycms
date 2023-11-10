@@ -49,7 +49,7 @@ class Room(AbstractBaseModel):
         :return: number of free beds in the room
         :rtype: int
         """
-        return self.beds.filter(is_available=True).count()
+        return sum(1 for bed in self.beds.all() if bed.is_available)
 
     @cached_property
     def patients(self):

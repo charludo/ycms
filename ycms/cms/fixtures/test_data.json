@@ -3323,7 +3323,6 @@
       "created_at": "2023-11-05T11:29:17.305Z",
       "updated_at": "2023-11-05T11:29:17.305Z",
       "bed_type": "normal",
-      "is_available": true,
       "room": 1
     }
   },
@@ -3335,7 +3334,6 @@
       "created_at": "2023-11-05T11:29:17.306Z",
       "updated_at": "2023-11-05T11:29:17.306Z",
       "bed_type": "normal",
-      "is_available": true,
       "room": 1
     }
   },
@@ -3347,7 +3345,6 @@
       "created_at": "2023-11-05T11:29:17.307Z",
       "updated_at": "2023-11-05T11:29:17.307Z",
       "bed_type": "normal",
-      "is_available": true,
       "room": 2
     }
   },
@@ -3359,7 +3356,6 @@
       "created_at": "2023-11-05T11:29:17.308Z",
       "updated_at": "2023-11-05T11:29:17.308Z",
       "bed_type": "normal",
-      "is_available": true,
       "room": 2
     }
   },
@@ -3371,7 +3367,6 @@
       "created_at": "2023-11-05T11:29:17.309Z",
       "updated_at": "2023-11-05T11:29:17.309Z",
       "bed_type": "normal",
-      "is_available": true,
       "room": 3
     }
   },
@@ -3383,7 +3378,6 @@
       "created_at": "2023-11-05T11:29:17.310Z",
       "updated_at": "2023-11-05T11:29:17.310Z",
       "bed_type": "normal",
-      "is_available": true,
       "room": 3
     }
   },
@@ -3395,7 +3389,6 @@
       "created_at": "2023-11-05T11:29:17.311Z",
       "updated_at": "2023-11-05T11:29:17.311Z",
       "bed_type": "normal",
-      "is_available": true,
       "room": 4
     }
   },
@@ -3407,7 +3400,6 @@
       "created_at": "2023-11-05T11:29:17.312Z",
       "updated_at": "2023-11-05T11:29:17.312Z",
       "bed_type": "normal",
-      "is_available": true,
       "room": 4
     }
   },
@@ -3419,7 +3411,6 @@
       "created_at": "2023-11-05T11:29:17.313Z",
       "updated_at": "2023-11-05T11:29:17.313Z",
       "bed_type": "normal",
-      "is_available": true,
       "room": 5
     }
   },
@@ -3431,7 +3422,6 @@
       "created_at": "2023-11-05T11:29:17.313Z",
       "updated_at": "2023-11-05T11:29:17.314Z",
       "bed_type": "normal",
-      "is_available": true,
       "room": 5
     }
   },
@@ -3443,7 +3433,6 @@
       "created_at": "2023-11-05T11:29:17.315Z",
       "updated_at": "2023-11-05T11:29:17.315Z",
       "bed_type": "normal",
-      "is_available": true,
       "room": 6
     }
   },
@@ -3455,7 +3444,6 @@
       "created_at": "2023-11-05T11:29:17.315Z",
       "updated_at": "2023-11-05T11:29:17.315Z",
       "bed_type": "normal",
-      "is_available": true,
       "room": 6
     }
   },
@@ -3467,7 +3455,6 @@
       "created_at": "2023-11-05T11:29:17.316Z",
       "updated_at": "2023-11-05T11:29:17.316Z",
       "bed_type": "normal",
-      "is_available": true,
       "room": 7
     }
   },
@@ -3479,7 +3466,6 @@
       "created_at": "2023-11-05T11:29:17.317Z",
       "updated_at": "2023-11-05T11:29:17.317Z",
       "bed_type": "normal",
-      "is_available": true,
       "room": 7
     }
   },
@@ -3491,7 +3477,6 @@
       "created_at": "2023-11-05T11:29:17.318Z",
       "updated_at": "2023-11-05T11:29:17.318Z",
       "bed_type": "normal",
-      "is_available": true,
       "room": 8
     }
   },
@@ -3503,7 +3488,6 @@
       "created_at": "2023-11-05T11:29:17.319Z",
       "updated_at": "2023-11-05T11:29:17.319Z",
       "bed_type": "normal",
-      "is_available": true,
       "room": 8
     }
   },
@@ -3515,7 +3499,6 @@
       "created_at": "2023-11-05T11:29:17.320Z",
       "updated_at": "2023-11-05T11:29:17.320Z",
       "bed_type": "normal",
-      "is_available": true,
       "room": 9
     }
   },
@@ -3527,7 +3510,6 @@
       "created_at": "2023-11-05T11:29:17.320Z",
       "updated_at": "2023-11-05T11:29:17.320Z",
       "bed_type": "normal",
-      "is_available": true,
       "room": 9
     }
   },
@@ -3539,7 +3521,6 @@
       "created_at": "2023-11-05T11:29:17.322Z",
       "updated_at": "2023-11-05T11:29:17.322Z",
       "bed_type": "normal",
-      "is_available": true,
       "room": 10
     }
   },
@@ -3551,7 +3532,6 @@
       "created_at": "2023-11-05T11:29:17.322Z",
       "updated_at": "2023-11-05T11:29:17.322Z",
       "bed_type": "normal",
-      "is_available": true,
       "room": 10
     }
   },
@@ -3563,7 +3543,6 @@
       "created_at": "2023-11-05T11:29:17.323Z",
       "updated_at": "2023-11-05T11:29:17.323Z",
       "bed_type": "normal",
-      "is_available": true,
       "room": 11
     }
   },
@@ -3575,7 +3554,6 @@
       "created_at": "2023-11-05T11:29:17.324Z",
       "updated_at": "2023-11-05T11:29:17.324Z",
       "bed_type": "normal",
-      "is_available": true,
       "room": 11
     }
   },
@@ -3587,7 +3565,6 @@
       "created_at": "2023-11-05T11:29:17.325Z",
       "updated_at": "2023-11-05T11:29:17.325Z",
       "bed_type": "normal",
-      "is_available": true,
       "room": 12
     }
   },
@@ -3599,7 +3576,6 @@
       "created_at": "2023-11-05T11:29:17.326Z",
       "updated_at": "2023-11-05T11:29:17.326Z",
       "bed_type": "normal",
-      "is_available": true,
       "room": 12
     }
   },
@@ -3611,7 +3587,6 @@
       "created_at": "2023-11-05T11:29:17.327Z",
       "updated_at": "2023-11-05T11:29:17.327Z",
       "bed_type": "normal",
-      "is_available": true,
       "room": 13
     }
   },
@@ -3623,7 +3598,6 @@
       "created_at": "2023-11-05T11:29:17.327Z",
       "updated_at": "2023-11-05T11:29:17.327Z",
       "bed_type": "normal",
-      "is_available": true,
       "room": 13
     }
   },
@@ -3635,7 +3609,6 @@
       "created_at": "2023-11-05T11:29:17.328Z",
       "updated_at": "2023-11-05T11:29:17.329Z",
       "bed_type": "normal",
-      "is_available": true,
       "room": 14
     }
   },
@@ -3647,7 +3620,6 @@
       "created_at": "2023-11-05T11:29:17.329Z",
       "updated_at": "2023-11-05T11:29:17.329Z",
       "bed_type": "normal",
-      "is_available": true,
       "room": 14
     }
   },
