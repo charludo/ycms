@@ -52,6 +52,16 @@ class Room(AbstractBaseModel):
         return sum(1 for bed in self.beds.all() if bed.is_available)
 
     @cached_property
+    def occupied_beds(self):
+        """
+        Helper property for accessing the rooms occupied bed count
+
+        :return: number of occupied beds in the room
+        :rtype: int
+        """
+        return self.total_beds - self.available_beds
+
+    @cached_property
     def patients(self):
         """
         Helper property for accessing all patients currently stationed in the room
@@ -59,7 +69,15 @@ class Room(AbstractBaseModel):
         :return: patients in the room
         :rtype: list [ ~ycms.cms.models.patient.Patient ]
         """
-        return Patient.objects.filter(bedassignment__bed__room=self).distinct()
+        return Patient.objects.filter(
+            models.Q(medical_records__bed_assignment__bed__room=self)
+            & (
+                models.Q(medical_records__bed_assignment__discharge_date__isnull=True)
+                | models.Q(
+                    medical_records__bed_assignment__discharge_date__gt=timezone.now()
+                )
+            )
+        ).distinct()
 
     @cached_property
     def is_private(self):
@@ -69,9 +87,17 @@ class Room(AbstractBaseModel):
         :return: whether this is a private room
         :rtype: boolean
         """
-        return self.patients.filter(
-            current_stay__patient__insurance_type=insurance_types.PRIVATE
-        ).exists()
+        return self.patients.filter(insurance_type=insurance_types.PRIVATE).exists()
+
+    @cached_property
+    def genders(self):
+        """
+        Helper property for accessing all genders of patients currently stationed in the room
+
+        :return: genders of patients in the room
+        :rtype: set
+        """
+        return set(patient.gender for patient in self.patients.all())
 
     def __str__(self):
         """
@@ -91,7 +117,7 @@ class Room(AbstractBaseModel):
         :return: The canonical string representation of the room
         :rtype: str
         """
-        return f"<Room (number: {self.ward_number}, ward: {self.ward.ward_number})>"
+        return f"<Room (number: {self.room_number}, ward: {self.ward.ward_number})>"
 
     class Meta:
         verbose_name = _("room")
