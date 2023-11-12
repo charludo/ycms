@@ -252,3 +252,19 @@ input[type="submit"] {
         @apply w-5 h-5 absolute top-3 right-3 cursor-pointer;
     }
 }
+
+/***********
+* SIDEBAR *
+***********/
+
+#sidebar li a {
+    @apply px-5 flex items-center h-11 tracking-wide text-gray-600 border-l-4 border-transparent hover:text-gray-800 hover:bg-gray-100 hover:border-blue-500 leading-4;
+}
+
+#sidebar li a.selected {
+    @apply pl-6 text-gray-800 bg-gray-200 border-blue-500;
+}
+
+#sidebar li a svg {
+    @apply w-[22px] mr-2;
+}

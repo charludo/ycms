@@ -339,7 +339,7 @@ msgstr "Vorname des Angestellten / der Angestellten"
 msgid "Last name of the employee"
 msgstr "Nachname des Angestellten / der Angestellten"
 
-#: cms/models/user.py cms/templates/ward/ward.html
+#: cms/models/user.py cms/templates/_base.html cms/templates/ward/ward.html
 #: cms/templates/ward/ward_info.html
 msgid "Ward"
 msgstr "Station"
@@ -388,25 +388,41 @@ msgstr "Stationen"
 msgid " Logo"
 msgstr " Logo"
 
+#: cms/templates/_base.html
+msgid "General"
+msgstr "Allgemein"
+
+#: cms/templates/_base.html
+msgid "ZBM View"
+msgstr "ZBM Ansicht"
+
 #: cms/templates/_base.html cms/templates/patients_list.html
 msgid "Manage Patients"
 msgstr "Patient*innen verwalten"
+
+#: cms/templates/_base.html
+msgid "Ward View"
+msgstr "Stationsansicht"
 
 #: cms/templates/_base.html cms/templates/intake_form.html
 msgid "Patient Intake"
 msgstr "Patientenaufnahme"
 
 #: cms/templates/_base.html
-msgid "Logout"
-msgstr "Abmelden"
+msgid "Settings"
+msgstr "Einstellungen"
 
 #: cms/templates/_base.html
 msgid "Create User"
 msgstr "Nutzer anlegen"
 
-#: cms/templates/_base.html cms/templates/authentication/login.html
-msgid "Login"
-msgstr "Login"
+#: cms/templates/_base.html
+msgid "Logout"
+msgstr "Abmelden"
+
+#: cms/templates/_base.html
+msgid "Logged in as"
+msgstr "Angemeldet als"
 
 #: cms/templates/authentication/create_user.html
 msgid "Registration"
@@ -419,6 +435,10 @@ msgstr "Neuen Benutzer anlegen"
 #: cms/templates/authentication/create_user.html
 msgid "Create"
 msgstr "Anlegen"
+
+#: cms/templates/authentication/login.html
+msgid "Login"
+msgstr "Login"
 
 #: cms/templates/authentication/login.html
 msgid "The username or the password is incorrect."
