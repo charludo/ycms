@@ -6105,7 +6105,7 @@
       "accompanied": false,
       "medical_record": 1,
       "recommended_ward": 1,
-      "bed": null
+      "bed": 9
     }
   },
   {
@@ -6375,7 +6375,7 @@
       "accompanied": false,
       "medical_record": 19,
       "recommended_ward": 1,
-      "bed": null
+      "bed": 2
     }
   },
   {
@@ -6480,7 +6480,7 @@
       "accompanied": false,
       "medical_record": 26,
       "recommended_ward": 1,
-      "bed": null
+      "bed": 19
     }
   },
   {
@@ -6630,7 +6630,7 @@
       "accompanied": false,
       "medical_record": 36,
       "recommended_ward": 1,
-      "bed": null
+      "bed": 6
     }
   },
   {
@@ -6915,7 +6915,7 @@
       "accompanied": false,
       "medical_record": 55,
       "recommended_ward": 1,
-      "bed": null
+      "bed": 7
     }
   },
   {
@@ -7350,7 +7350,7 @@
       "accompanied": false,
       "medical_record": 84,
       "recommended_ward": 1,
-      "bed": null
+      "bed": 5
     }
   },
   {
@@ -7395,7 +7395,7 @@
       "accompanied": false,
       "medical_record": 87,
       "recommended_ward": 1,
-      "bed": null
+      "bed": 15
     }
   },
   {
@@ -7770,7 +7770,7 @@
       "accompanied": true,
       "medical_record": 112,
       "recommended_ward": 1,
-      "bed": null
+      "bed": 1
     }
   },
   {
@@ -7830,7 +7830,7 @@
       "accompanied": false,
       "medical_record": 116,
       "recommended_ward": 1,
-      "bed": null
+      "bed": 17
     }
   },
   {
@@ -8700,7 +8700,7 @@
       "accompanied": false,
       "medical_record": 174,
       "recommended_ward": 1,
-      "bed": null
+      "bed": 3
     }
   },
   {
