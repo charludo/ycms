@@ -2,16 +2,20 @@ from django.shortcuts import redirect
 from django.views.generic import TemplateView
 
 from ...constants import gender
+from ...forms import BedAssignmentForm
 from ...models import Ward
 
 
 class WardView(TemplateView):
+# class WardView(CreateView):
     """
     View to see a ward
     """
 
     model = Ward
     template_name = "ward/ward.html"
+    context_object_name = "ward"
+    form_class = BedAssignmentForm
 
     def get_context_data(self, pk=None, **kwargs):
         """

@@ -445,6 +445,8 @@ msgid "Create a new user"
 msgstr "Neuen Benutzer anlegen"
 
 #: cms/templates/authentication/create_user.html
+#: cms/templates/bed_assignment/create_bed_assignment.html
+#: cms/templates/bed_assignment/create_bed_assignment_modal.html
 msgid "Create"
 msgstr "Anlegen"
 
@@ -491,6 +493,93 @@ msgstr "Passwortrücksetzung anfordern"
 #: cms/templates/authentication/password_reset_request.html
 msgid "Request reset"
 msgstr "Rücksetzung anfordern"
+
+#: cms/templates/bed_assignment/bed_assignment.html
+msgid "Bed Assignments"
+msgstr "Bettzuweisungen"
+
+#: cms/templates/bed_assignment/bed_assignment.html
+#: cms/templates/bed_assignment/create_bed_assignment_modal.html
+#: cms/templates/ward/ward.html
+msgid "New Bed Assignment"
+msgstr "Neue Bettenzuweisung"
+
+#: cms/templates/bed_assignment/bed_assignment.html
+#: cms/templates/ward/ward_drawer.html
+msgid "Patient name"
+msgstr "Patientenname"
+
+#: cms/templates/bed_assignment/bed_assignment.html cms/templates/index.html
+#: cms/templates/ward/ward_drawer.html
+msgid "Gender"
+msgstr "Geschlecht"
+
+#: cms/templates/bed_assignment/bed_assignment.html cms/templates/index.html
+#: cms/templates/ward/ward_drawer.html
+msgid "Age"
+msgstr "Alter"
+
+#: cms/templates/bed_assignment/bed_assignment.html
+#: cms/templates/ward/ward_drawer.html
+msgid "Diagnosis"
+msgstr "Diagnose"
+
+#: cms/templates/bed_assignment/bed_assignment.html
+#: cms/templates/ward/ward_drawer.html
+msgid "Admission date"
+msgstr "Aufnahmedatum"
+
+#: cms/templates/bed_assignment/bed_assignment.html
+#: cms/templates/ward/ward_drawer.html
+msgid "Discharge date"
+msgstr "Entlassungsdatum"
+
+#: cms/templates/bed_assignment/bed_assignment.html
+msgid "Bed"
+msgstr "Betten"
+
+#: cms/templates/bed_assignment/bed_assignment.html
+#: cms/templates/ward/ward_drawer.html
+msgid "Action"
+msgstr "Aktion"
+
+#: cms/templates/bed_assignment/bed_assignment.html
+#: cms/templates/ward/ward_info.html cms/templates/ward/ward_room_card.html
+msgid "Male"
+msgstr "Männlich"
+
+#: cms/templates/bed_assignment/bed_assignment.html
+#: cms/templates/ward/ward_info.html cms/templates/ward/ward_room_card.html
+msgid "Female"
+msgstr "Weiblich"
+
+#: cms/templates/bed_assignment/bed_assignment.html
+#: cms/templates/ward/ward_drawer.html
+msgid "Discharge"
+msgstr "Entladung"
+
+#: cms/templates/bed_assignment/bed_assignment.html cms/templates/index.html
+msgid "You do not have permission view patient data. To do so, please log in."
+msgstr ""
+"Sie haben keine Berechtigung zum Betrachten von Patientendaten. Um dies zu "
+"tun, loggen Sie sich bitte ein."
+
+#: cms/templates/bed_assignment/create_bed_assignment.html
+msgid "Create a new bed assignment"
+msgstr "Erstellen Sie eine neue Bettenzuweisung"
+
+#: cms/templates/bed_assignment/create_bed_assignment_modal.html
+#: cms/templates/ward/ward_modal.html
+msgid "Close modal"
+msgstr "Modal schließen"
+
+#: cms/templates/bed_assignment/update_bed_assignment.html
+msgid "Edit the bed assignment"
+msgstr "Bearbeiten Sie die Bettenzuweisung"
+
+#: cms/templates/bed_assignment/update_bed_assignment.html
+msgid "Save"
+msgstr "Speichern"
 
 #: cms/templates/emails/activation_email.html
 #: cms/templates/emails/activation_email.txt
@@ -607,37 +696,9 @@ msgstr "Menü schließen"
 msgid "Beds"
 msgstr "Betten"
 
-#: cms/templates/ward/ward_drawer.html
-msgid "Patient name"
-msgstr "Patientenname"
-
-#: cms/templates/ward/ward_drawer.html
-msgid "Admission date"
-msgstr "Aufnahmedatum"
-
-#: cms/templates/ward/ward_drawer.html
-msgid "Discharge date"
-msgstr "Entlassungsdatum"
-
-#: cms/templates/ward/ward_drawer.html
-msgid "Action"
-msgstr "Aktion"
-
-#: cms/templates/ward/ward_drawer.html
-msgid "Discharge"
-msgstr "Entladung"
-
 #: cms/templates/ward/ward_info.html
 msgid "Patient Information"
 msgstr "Informationen zum Patienten"
-
-#: cms/templates/ward/ward_info.html cms/templates/ward/ward_room_card.html
-msgid "Female"
-msgstr "Weiblich"
-
-#: cms/templates/ward/ward_info.html cms/templates/ward/ward_room_card.html
-msgid "Male"
-msgstr "Männlich"
 
 #: cms/templates/ward/ward_info.html
 msgid "Total"
@@ -654,10 +715,6 @@ msgstr "Verfügbare Betten"
 #: cms/templates/ward/ward_info.html
 msgid "Total Beds"
 msgstr "Gesamtzahl der Betten"
-
-#: cms/templates/ward/ward_modal.html
-msgid "Close modal"
-msgstr "Modal schließen"
 
 #: cms/templates/ward/ward_modal.html
 msgid "Are you sure you want to discharge this patient?"
@@ -828,9 +885,6 @@ msgstr "Englisch"
 
 #~ msgid "File too large. Size should not exceed {}."
 #~ msgstr "Datei zu groß. Größe darf {} nicht überschreiten."
-
-#~ msgid "Diagnosis"
-#~ msgstr "Diagnose"
 
 #~ msgid "Register"
 #~ msgstr "Registrieren"

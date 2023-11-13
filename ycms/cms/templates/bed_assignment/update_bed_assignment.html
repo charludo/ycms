@@ -1,0 +1,21 @@
+{% extends "_base.html" %}
+{% load i18n %}
+{% load widget_tweaks %}
+{% block title %}
+    {% translate "Edit the bed assignment" %}
+{% endblock title %}
+{% block content %}
+    <div class="flex justify-center items-center">
+        <div class="w-1/3 bg-white shadow p-8">
+            <h2>{% translate "Edit the bed assignment" %}</h2>
+            <form action="{% url 'cms:protected:update_bed_assignment' pk=form.instance.pk %}"
+                  method="post">
+                {% csrf_token %}
+                {{ form }}
+                <div class="mt-6 flex items-center justify-between">
+                    <button class="btn" type="submit">{% translate "Save" %}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

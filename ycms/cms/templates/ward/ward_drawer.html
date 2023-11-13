@@ -29,6 +29,7 @@
                     <th scope="col" class="px-6 py-3">{% translate "Patient name" %}</th>
                     <th scope="col" class="px-6 py-3">{% translate "Gender" %}</th>
                     <th scope="col" class="px-6 py-3">{% translate "Age" %}</th>
+                    <th scope="col" class="px-6 py-3">{% translate "Diagnosis" %}</th>
                     <th scope="col" class="px-6 py-3">{% translate "Admission date" %}</th>
                     <th scope="col" class="px-6 py-3">{% translate "Discharge date" %}</th>
                     <th scope="col" class="px-6 py-3">{% translate "Action" %}</th>
@@ -43,6 +44,7 @@
                         </th>
                         <td class="px-6 py-4 uppercase">{{ patient.gender }}</td>
                         <td class="px-6 py-4">{{ patient.age }}</td>
+                        <td class="px-6 py-4">{{ patient.current_stay.medical_record.diagnosis_code }}</td>
                         <td class="px-6 py-4">
                             {% if patient.current_admission_date %}{{ patient.current_admission_date }}{% endif %}
                         </td>
@@ -53,8 +55,6 @@
                             <button id="dischargeButton-{{ ward.id }}"
                                     data-modal-toggle="modalEl"
                                     type="button"
-                                    data-ward-id="{{ ward.id }}"
-                                    data-bed-id="{{ patient.current_bed.id }}"
                                     data-bedassignment-id="{{ patient.current_stay.id }}"
                                     class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
                                 {% translate "Discharge" %}
