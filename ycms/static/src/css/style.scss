@@ -139,7 +139,7 @@ label:not([for]) {
 .field-required {
     &:after {
         content: "*";
-        margin-left: -0.1em;
+        margin-left: 0.1em;
     }
 }
 
@@ -316,4 +316,13 @@ input[type="submit"] {
     &:hover {
         color: #4a90e2;
     }
+}
+
+/***********
+* WARD *
+***********/
+$ward-section-height: 98px;
+
+.ward-empty-section {
+    height: $ward-section-height;
 }

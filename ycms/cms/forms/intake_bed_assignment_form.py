@@ -22,11 +22,14 @@ class IntakeBedAssignmentForm(CustomModelForm):
         """
 
         model = BedAssignment
-        fields = ["admission_date", "recommended_ward", "accompanied"]
+        fields = ["admission_date", "discharge_date", "recommended_ward", "accompanied"]
         widgets = {
             "admission_date": forms.NumberInput(
                 attrs={"type": "date", "value": current_or_travelled_time().date}
-            )
+            ),
+            "discharge_date": forms.NumberInput(
+                attrs={"type": "date", "value": current_or_travelled_time().date}
+            ),
         }
 
     def save(self, commit=True):
@@ -40,6 +43,8 @@ class IntakeBedAssignmentForm(CustomModelForm):
         :return: The saved medical record
         :rtype: ~ycms.cms.models.medical_record.MedicalRecord
         """
+        if hasattr(self.instance, "is_update") and self.instance.is_update:
+            return super().save(commit)
         cleaned_data = self.cleaned_data
         new_record = BedAssignment.objects.create(
             creator=self.instance.creator,
