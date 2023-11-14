@@ -30,3 +30,17 @@ class BedAssignmentUpdateView(UpdateView):
         kwargs = super().get_form_kwargs()
         kwargs["is_update"] = True
         return kwargs
+
+    def get_success_url(self):
+        """
+        Determine the URL to redirect to after a successful form submission
+
+        :return: The success URL
+        :rtype: str
+        """
+        # Check the referer to determine where the request is coming from
+        referer = self.request.META.get("HTTP_REFERER", "")
+        if "ward" in referer:
+            ward_id = int(referer.split("/ward/")[1].split("/")[0])
+            return reverse_lazy("cms:protected:ward_detail", kwargs={"pk": ward_id})
+        return reverse_lazy("cms:protected:manage_bed_assignment")

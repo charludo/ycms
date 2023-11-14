@@ -1,6 +1,6 @@
 {% load i18n %}
 <!-- Main modal -->
-<div id="crud-modal"
+<div id="create-modal"
      tabindex="-1"
      aria-hidden="true"
      class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -12,7 +12,7 @@
                 <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{% translate "New Bed Assignment" %}</h3>
                 <button type="button"
                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                        data-modal-toggle="crud-modal">
+                        data-modal-toggle="create-modal">
                     <i icon-name="x"></i>
                     <span class="sr-only">{% translate "Close modal" %}</span>
                 </button>

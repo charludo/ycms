@@ -505,31 +505,37 @@ msgid "New Bed Assignment"
 msgstr "Neue Bettenzuweisung"
 
 #: cms/templates/bed_assignment/bed_assignment.html
+#: cms/templates/bed_assignment/bed_assignment_drawer.html
 #: cms/templates/ward/ward_drawer.html
 msgid "Patient name"
 msgstr "Patientenname"
 
-#: cms/templates/bed_assignment/bed_assignment.html cms/templates/index.html
-#: cms/templates/ward/ward_drawer.html
+#: cms/templates/bed_assignment/bed_assignment.html
+#: cms/templates/bed_assignment/bed_assignment_drawer.html
+#: cms/templates/index.html cms/templates/ward/ward_drawer.html
 msgid "Gender"
 msgstr "Geschlecht"
 
-#: cms/templates/bed_assignment/bed_assignment.html cms/templates/index.html
-#: cms/templates/ward/ward_drawer.html
+#: cms/templates/bed_assignment/bed_assignment.html
+#: cms/templates/bed_assignment/bed_assignment_drawer.html
+#: cms/templates/index.html cms/templates/ward/ward_drawer.html
 msgid "Age"
 msgstr "Alter"
 
 #: cms/templates/bed_assignment/bed_assignment.html
+#: cms/templates/bed_assignment/bed_assignment_drawer.html
 #: cms/templates/ward/ward_drawer.html
 msgid "Diagnosis"
 msgstr "Diagnose"
 
 #: cms/templates/bed_assignment/bed_assignment.html
+#: cms/templates/bed_assignment/bed_assignment_drawer.html
 #: cms/templates/ward/ward_drawer.html
 msgid "Admission date"
 msgstr "Aufnahmedatum"
 
 #: cms/templates/bed_assignment/bed_assignment.html
+#: cms/templates/bed_assignment/bed_assignment_drawer.html
 #: cms/templates/ward/ward_drawer.html
 msgid "Discharge date"
 msgstr "Entlassungsdatum"
@@ -539,6 +545,7 @@ msgid "Bed"
 msgstr "Betten"
 
 #: cms/templates/bed_assignment/bed_assignment.html
+#: cms/templates/bed_assignment/bed_assignment_drawer.html
 #: cms/templates/ward/ward_drawer.html
 msgid "Action"
 msgstr "Aktion"
@@ -558,11 +565,30 @@ msgstr "Weiblich"
 msgid "Discharge"
 msgstr "Entladung"
 
+#: cms/templates/bed_assignment/bed_assignment.html
+#: cms/templates/bed_assignment/bed_assignment_drawer.html
+msgid "Edit"
+msgstr "Bearbeiten"
+
 #: cms/templates/bed_assignment/bed_assignment.html cms/templates/index.html
 msgid "You do not have permission view patient data. To do so, please log in."
 msgstr ""
 "Sie haben keine Berechtigung zum Betrachten von Patientendaten. Um dies zu "
 "tun, loggen Sie sich bitte ein."
+
+#: cms/templates/bed_assignment/bed_assignment_drawer.html
+#: cms/templates/ward/ward.html
+msgid "Unassigned Patients"
+msgstr "Nicht zugewiesene Patienten"
+
+#: cms/templates/bed_assignment/bed_assignment_drawer.html
+#: cms/templates/ward/ward_drawer.html
+msgid "Close menu"
+msgstr "Menü schließen"
+
+#: cms/templates/bed_assignment/bed_assignment_drawer.html
+msgid "Assign"
+msgstr "Zuordnen"
 
 #: cms/templates/bed_assignment/create_bed_assignment.html
 msgid "Create a new bed assignment"
@@ -574,10 +600,12 @@ msgid "Close modal"
 msgstr "Modal schließen"
 
 #: cms/templates/bed_assignment/update_bed_assignment.html
+#: cms/templates/bed_assignment/update_bed_assignment_modal.html
 msgid "Edit the bed assignment"
 msgstr "Bearbeiten Sie die Bettenzuweisung"
 
 #: cms/templates/bed_assignment/update_bed_assignment.html
+#: cms/templates/bed_assignment/update_bed_assignment_modal.html
 msgid "Save"
 msgstr "Speichern"
 
@@ -681,16 +709,20 @@ msgid "minute"
 msgstr "Minute"
 
 #: cms/templates/ward/ward.html
+msgid "Manually Assign"
+msgstr "Manuell zuweisen"
+
+#: cms/templates/ward/ward.html
+msgid "Suggest Assignment"
+msgstr "Aufgabe vorschlagen"
+
+#: cms/templates/ward/ward.html
 msgid "Corridor"
 msgstr "Gang"
 
 #: cms/templates/ward/ward_drawer.html cms/templates/ward/ward_room_card.html
 msgid "Room"
 msgstr "Zimmer"
-
-#: cms/templates/ward/ward_drawer.html
-msgid "Close menu"
-msgstr "Menü schließen"
 
 #: cms/templates/ward/ward_drawer.html cms/templates/ward/ward_room_card.html
 msgid "Beds"
@@ -727,6 +759,18 @@ msgstr "Ja"
 #: cms/templates/ward/ward_modal.html
 msgid "No"
 msgstr "Nein"
+
+#: cms/templates/ward/ward_room_card.html
+msgid "Age gap is large (> 20)"
+msgstr "Der Altersunterschied ist groß (> 20)"
+
+#: cms/templates/ward/ward_room_card.html
+msgid "Mixed insurance"
+msgstr "Gemischte Versicherung"
+
+#: cms/templates/ward/ward_room_card.html
+msgid "Mixed Gender"
+msgstr "Gemischtes Geschlecht"
 
 #: cms/utils/email_utils.py
 msgid "YCMS | Activate your account"

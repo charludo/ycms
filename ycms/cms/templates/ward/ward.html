@@ -8,14 +8,35 @@
 {% block content %}
     <div class="flex justify-center items-center">
         <div class="container mx-auto">
-            <div class="mb-2 flex justify-end">
-                <button data-modal-target="crud-modal"
-                        data-modal-toggle="crud-modal"
-                        class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                        type="button">
-                    <i icon-name="plus" class="mr-2"></i>
-                    {% translate "New Bed Assignment" %}
-                </button>
+            <div class="mb-4 flex flex-col md:flex-row items-stretch justify-end">
+                <div class="bg-gray-200 p-2 rounded-lg shadow mb-4 md:mb-0 md:mr-4 md:flex-auto">
+                    <i icon-name="info" class="mr-2 text-red-700"></i>
+                    <span class="text-gray-700">{% translate "Unassigned Patients" %}: {{ unassigned_bed_assignments.count }}</span>
+                </div>
+                <div class="flex flex-col md:flex-row items-stretch md:items-center justify-end md:space-x-4">
+                    <!-- drawer init and toggle -->
+                    <button class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mb-4 md:mb-0"
+                            type="button"
+                            data-drawer-target="drawer-right-unassigned"
+                            data-drawer-show="drawer-right-unassigned"
+                            data-drawer-placement="right"
+                            aria-controls="drawer-right-unassigned">
+                        <i icon-name="hand" class="mr-2"></i>
+                        {% translate "Manually Assign" %}
+                    </button>
+                    <button type="button"
+                            class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mb-4 md:mb-0">
+                        <i icon-name="bot" class="mr-2"></i>
+                        {% translate "Suggest Assignment" %}
+                    </button>
+                    <button data-modal-target="create-modal"
+                            data-modal-toggle="create-modal"
+                            class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            type="button">
+                        <i icon-name="plus" class="mr-2"></i>
+                        {% translate "New Bed Assignment" %}
+                    </button>
+                </div>
             </div>
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7">
                 {% with ward=ward patient_info=patient_info wards=wards selected_ward_id=selected_ward_id %}
@@ -49,10 +70,19 @@
             </div>
         </div>
     </div>
+    <div id="update-modal"
+         tabindex="-1"
+         aria-hidden="true"
+         data-modal-target="update-modal"
+         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    </div>
     {% if ward.patients %}
         {% include "ward/ward_modal.html" %}
     {% endif %}
-    {% with form=form %}
+    {% with form=bed_assignment_create_form %}
         {% include "bed_assignment/create_bed_assignment_modal.html" %}
+    {% endwith %}
+    {% with unassigned_bed_assignments=unassigned_bed_assignments %}
+        {% include "bed_assignment/bed_assignment_drawer.html" %}
     {% endwith %}
 {% endblock content %}

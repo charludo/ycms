@@ -101,6 +101,38 @@ class Room(AbstractBaseModel):
         """
         return set(patient.gender for patient in self.patients.all())
 
+    @cached_property
+    def insurance_types(self):
+        """
+        Helper property for accessing all insurance_types of patients currently stationed in the room
+
+        :return: insurance_types of patients in the room
+        :rtype: set
+        """
+        return set(patient.insurance_type for patient in self.patients.all())
+
+    @cached_property
+    def patient_ages(self):
+        """
+        Helper property for accessing ages of patients currently stationed in the room
+
+        :return: ages of patients in the room
+        :rtype: list
+        """
+        return [patient.age for patient in self.patients.all()]
+
+    @cached_property
+    def age_difference_between_patients(self):
+        """
+        Helper property for accessing age difference between patients currently stationed in the room
+
+        :return: age difference between patients in the room
+        :rtype: int
+        """
+        if patient_ages := self.patient_ages:
+            return max(patient_ages) - min(patient_ages)
+        return None
+
     def __str__(self):
         """
         This overwrites the default Django :meth:`~django.db.models.Model.__str__` method which would return ``Room object (id)``.

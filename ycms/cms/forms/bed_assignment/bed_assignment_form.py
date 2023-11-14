@@ -45,13 +45,13 @@ class BedAssignmentForm(CustomModelForm):
     def __init__(self, *args, is_update=False, **kwargs):
         """
         Initialize the form with additional filters.
-        1. Only show medical records that are not already assigned to a bed.
+        1. Only show medical records that are not already assigned to a bed assignment.
         2. Only show beds that are available.
         """
         super().__init__(*args, **kwargs)
         self.is_update = is_update
         available_beds = [x for x in Bed.objects.all() if x.is_available]
-        if is_update:
+        if self.is_update:
             self.fields["medical_record"].queryset = MedicalRecord.objects.filter(
                 bed_assignment__isnull=True
             ) | MedicalRecord.objects.filter(pk=self.instance.medical_record.id)

@@ -7,6 +7,7 @@ import "./js/utils/timetravel";
 import "./js/utils/menu";
 import { initFlowbite } from "flowbite";
 import { handleConfirmDischarge, handleButtonDischarge, handleModalClose } from "./js/ward/discharge";
+import { handleButtonAssign } from "./js/ward/assign";
 import { createIconsAt } from "./js/utils/create-icons";
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -14,6 +15,7 @@ window.addEventListener("DOMContentLoaded", () => {
     handleButtonDischarge();
     handleConfirmDischarge();
     handleModalClose();
+    handleButtonAssign();
     const event = new Event("icon-load");
     window.dispatchEvent(event);
     initFlowbite();

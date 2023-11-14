@@ -1,0 +1,24 @@
+{% load i18n %}
+<div class="relative p-4 w-full max-w-md max-h-full">
+    <!-- Modal content -->
+    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+        <!-- Modal header -->
+        <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{% translate "Edit the bed assignment" %}</h3>
+        </div>
+        <!-- Modal body -->
+        <div class="flex justify-center items-center">
+            <div class="bg-white shadow p-8">
+                <form id="updateForm"
+                      action="{% url 'cms:protected:update_bed_assignment' pk=form.instance.pk %}"
+                      method="post">
+                    {% csrf_token %}
+                    {{ form }}
+                    <div class="mt-6 flex items-center justify-between">
+                        <button class="btn" type="submit">{% translate "Save" %}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

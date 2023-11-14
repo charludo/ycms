@@ -69,6 +69,11 @@ urlpatterns = [
                     bed_assignment.BedAssignmentUpdateView.as_view(),
                     name="update_bed_assignment",
                 ),
+                path(
+                    "update-modal/<int:pk>/",
+                    bed_assignment.BedAssignmentUpdateModalView.as_view(),
+                    name="update_bed_assignment_modal",
+                ),
             ]
         ),
     ),

@@ -3,11 +3,10 @@ from django.views.generic import TemplateView
 
 from ...constants import gender
 from ...forms import BedAssignmentForm
-from ...models import Ward
+from ...models import BedAssignment, Ward
 
 
 class WardView(TemplateView):
-# class WardView(CreateView):
     """
     View to see a ward
     """
@@ -15,7 +14,7 @@ class WardView(TemplateView):
     model = Ward
     template_name = "ward/ward.html"
     context_object_name = "ward"
-    form_class = BedAssignmentForm
+    # form_class = BedAssignmentForm
 
     def get_context_data(self, pk=None, **kwargs):
         """
@@ -37,13 +36,17 @@ class WardView(TemplateView):
         ward = Ward.objects.get(id=pk)
         rooms = ward.rooms.all()
         wards = Ward.objects.all()
+        unassigned_bed_assignments = BedAssignment.objects.filter(bed__isnull=True)
+
         return {
             "rooms": rooms,
             "corridor_index": str(len(rooms) // 2),
             "ward": ward,
             "patient_info": self._get_patient_info(ward.patients),
             "wards": wards,
-            "selected_ward_id": pk,
+            "selected_ward_id": pk,            
+            "unassigned_bed_assignments": unassigned_bed_assignments,
+            "bed_assignment_create_form": BedAssignmentForm(),
             **super().get_context_data(**kwargs),
         }
 
