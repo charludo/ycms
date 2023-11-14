@@ -1,94 +1,30 @@
 import logging
 
-from django.contrib import messages
-from django.core.exceptions import PermissionDenied
-from django.db import transaction
-from django.shortcuts import redirect, render
-from django.utils.translation import gettext as _
-from django.views.generic import TemplateView
+from django.urls import reverse_lazy
+from django.views.generic.base import RedirectView
 
-from ..forms import PatientForm
-from ..models import Patient
+from ..constants import group_names
 
 logger = logging.getLogger(__name__)
 
 
-class IndexView(TemplateView):
+class UserBasedRedirectView(RedirectView):
     """
-    View to see all patients and add a new one
+    Utility view for redirecting users to their most sensible "home" view
     """
 
-    template_name = "index.html"
+    permanent = False
+    query_string = False
 
-    def get(self, request, *args, **kwargs):
+    def get_redirect_url(self, *args, **kwargs):
         """
-        This function returns a list of all patients,
-        as well as a form for creating a new one
+        Overwrites :meth:`~django.views.generic.base.RedirectView.get_redirect_url`
+        to return a redirect based on the user's primary group.
 
-        :param request: The current request
-        :type request: ~django.http.HttpRequest
-
-        :param args: The supplied arguments
-        :type args: list
-
-        :param kwargs: The supplied keyword arguments
-        :type kwargs: dict
-
-        :return: Response for filtered offers
-        :rtype: ~django.template.response.TemplateResponse
-        """
-        return render(
-            request,
-            self.template_name,
-            {
-                "form": PatientForm(),
-                "patients": Patient.objects.all(),
-                **self.get_context_data(**kwargs),
-            },
-        )
-
-    @transaction.atomic
-    def post(self, request, *args, **kwargs):
-        r"""
-        Submit :class:`~ycms.cms.forms.patients.patient_form.PatientForm`
-
-        :param request: The current request
-        :type request: ~django.http.HttpRequest
-
-        :param \*args: The supplied arguments
-        :type \*args: list
-
-        :param \**kwargs: The supplied keyword arguments
-        :type \**kwargs: dict
-
-        :raises ~django.core.exceptions.PermissionDenied: If user does not have the permission to edit the specific page
-
-        :return: Redirect to list of patients
+        :return: Redirect to the user's default view
         :rtype: ~django.http.HttpResponseRedirect
         """
-        if not request.user.has_perm("cms.add_patient"):
-            raise PermissionDenied()
-
-        form = PatientForm(
-            data=request.POST, additional_instance_attributes={"creator": request.user}
+        default_url = group_names.DEFAULT_VIEWS.get(
+            str(self.request.user.group), "cms:protected:ward_detail_default"
         )
-        if not form.is_valid():
-            form.add_error_messages(request)
-            return render(
-                request,
-                self.template_name,
-                {
-                    "form": form,
-                    "patients": Patient.objects.all(),
-                    **self.get_context_data(**kwargs),
-                },
-            )
-
-        patient = form.save()
-        messages.success(
-            request,
-            _('Patient "{} {}" has been saved.').format(
-                patient.first_name, patient.last_name
-            ),
-        )
-        return redirect("cms:protected:index")
+        return reverse_lazy(default_url)

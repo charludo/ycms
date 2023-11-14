@@ -4,27 +4,10 @@
 {% load widget_tweaks %}
 {% load render_bundle from webpack_loader %}
 {% block title %}
-    {% translate "Home" %}
+    {% translate "Manage Patients" %}
 {% endblock title %}
 {% block content %}
     <div class="max-w-6xl mx-auto">
-        {% if perms.cms.add_patient %}
-            <form enctype="multipart/form-data"
-                  method="post"
-                  id="patient_form"
-                  class="mb-12"
-                  data-unsaved-warning>
-                {% csrf_token %}
-                <div class="w-full flex flex-col flex-wrap mb-6">
-                    <h1 class="heading">{% translate "Add new patient" %}</h1>
-                </div>
-                {% with WIDGET_ERROR_CLASS="border-red-500" %}
-                    {{ form }}
-                    <br />
-                    <button type="submit" class="btn mt-4">{% translate "Add new patient" %}</button>
-                {% endwith %}
-            </form>
-        {% endif %}
         {% if perms.cms.view_patient %}
             <div class="w-full flex flex-col flex-wrap mb-6">
                 <h1 class="heading">{% translate "Patients list" %}</h1>
@@ -52,8 +35,6 @@
                     </div>
                 </div>
             {% endfor %}
-        {% else %}
-            <h2 class="text-center">{% translate "You do not have permission view patient data. To do so, please log in." %}</h2>
         {% endif %}
     </div>
 {% endblock content %}
