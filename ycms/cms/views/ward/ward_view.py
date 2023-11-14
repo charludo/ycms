@@ -14,7 +14,6 @@ class WardView(TemplateView):
     model = Ward
     template_name = "ward/ward.html"
     context_object_name = "ward"
-    # form_class = BedAssignmentForm
 
     def get_context_data(self, pk=None, **kwargs):
         """
@@ -31,7 +30,7 @@ class WardView(TemplateView):
         """
         if not pk and self.request.user.assigned_ward:
             pk = self.request.user.assigned_ward.id
-        if not pk:
+        elif not pk:
             pk = 1
         ward = Ward.objects.get(id=pk)
         rooms = ward.rooms.all()
@@ -44,7 +43,7 @@ class WardView(TemplateView):
             "ward": ward,
             "patient_info": self._get_patient_info(ward.patients),
             "wards": wards,
-            "selected_ward_id": pk,            
+            "selected_ward_id": pk,
             "unassigned_bed_assignments": unassigned_bed_assignments,
             "bed_assignment_create_form": BedAssignmentForm(),
             **super().get_context_data(**kwargs),

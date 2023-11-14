@@ -41,6 +41,9 @@ class BedAssignmentUpdateView(UpdateView):
         # Check the referer to determine where the request is coming from
         referer = self.request.META.get("HTTP_REFERER", "")
         if "ward" in referer:
-            ward_id = int(referer.split("/ward/")[1].split("/")[0])
-            return reverse_lazy("cms:protected:ward_detail", kwargs={"pk": ward_id})
+            ward_id = referer.split("/ward/")[1].split("/")[0]
+            return reverse_lazy(
+                "cms:protected:ward_detail",
+                kwargs={"pk": 1 if not ward_id else int(ward_id)},
+            )
         return reverse_lazy("cms:protected:manage_bed_assignment")
