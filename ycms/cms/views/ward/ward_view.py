@@ -1,22 +1,24 @@
 from django.shortcuts import redirect
-from django.views.generic.detail import DetailView
+from django.views.generic import TemplateView
 
 from ...constants import gender
 from ...models import Ward
 
 
-class WardView(DetailView):
+class WardView(TemplateView):
     """
     View to see a ward
     """
 
     model = Ward
     template_name = "ward/ward.html"
-    context_object_name = "ward"
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, pk=None, **kwargs):
         """
         This function returns a list of all rooms in the ward
+
+        :param pk: The ID of the ward that should be shown
+        :type pk: int or None
 
         :param kwargs: The supplied keyword arguments
         :type kwargs: dict
@@ -24,8 +26,11 @@ class WardView(DetailView):
         :return: Response for filtered offers
         :rtype: ~django.template.response.TemplateResponse
         """
-        ward_id = self.kwargs.get("pk")
-        ward = Ward.objects.get(id=ward_id)
+        if not pk and self.request.user.assigned_ward:
+            pk = self.request.user.assigned_ward.id
+        if not pk:
+            pk = 1
+        ward = Ward.objects.get(id=pk)
         rooms = ward.rooms.all()
         wards = Ward.objects.all()
         return {
@@ -34,7 +39,7 @@ class WardView(DetailView):
             "ward": ward,
             "patient_info": self._get_patient_info(ward.patients),
             "wards": wards,
-            "selected_ward_id": ward_id,
+            "selected_ward_id": pk,
             **super().get_context_data(**kwargs),
         }
 

@@ -31,7 +31,7 @@ export const handleConfirmDischarge = (): void => {
             return cookieValue;
         };
 
-        fetch(`/discharge-patient/${selectedBedAssignmentId}/`, {
+        fetch(`/patients/discharge/${selectedBedAssignmentId}/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

@@ -7,9 +7,9 @@ from django.utils.decorators import method_decorator
 from django.utils.translation import gettext as _
 from django.views.generic import TemplateView
 
-from ..decorators import permission_required
-from ..forms import IntakeBedAssignmentForm, IntakeRecordForm, PatientForm
-from ..models import Patient
+from ...decorators import permission_required
+from ...forms import IntakeBedAssignmentForm, IntakeRecordForm, PatientForm
+from ...models import Patient
 
 logger = logging.getLogger(__name__)
 

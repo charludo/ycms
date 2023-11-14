@@ -40,7 +40,6 @@ def test_login_success(load_test_data, client, settings, personnel_id):
         data={"username": personnel_id, "password": "changeme"},
     )
     assert response.status_code == 302
-    response = client.get(reverse(settings.LOGIN_REDIRECT_URL))
     user = auth.get_user(client)
     assert user.is_authenticated
 

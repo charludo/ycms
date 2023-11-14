@@ -388,7 +388,7 @@ msgstr "Stationen"
 msgid " Logo"
 msgstr " Logo"
 
-#: cms/templates/_base.html
+#: cms/templates/_base.html cms/templates/patients_list.html
 msgid "Manage Patients"
 msgstr "Patient*innen verwalten"
 
@@ -507,48 +507,6 @@ msgstr ""
 msgid "Use the link below to set a new password."
 msgstr "Nutzen Sie den folgenden Link um ein neues Passwort festzulegen."
 
-#: cms/templates/index.html
-msgid "Home"
-msgstr "Start"
-
-#: cms/templates/index.html
-msgid "Add new patient"
-msgstr "Patient*in hinzufügen"
-
-#: cms/templates/index.html
-msgid "Patients list"
-msgstr "Patientenliste"
-
-#: cms/templates/index.html
-msgid "Privately insured"
-msgstr "Privatversichert"
-
-#: cms/templates/index.html
-msgid "DOB"
-msgstr "Geb. Dat."
-
-#: cms/templates/index.html cms/templates/ward/ward_drawer.html
-msgid "Age"
-msgstr "Alter"
-
-#: cms/templates/index.html cms/templates/ward/ward_drawer.html
-msgid "Gender"
-msgstr "Geschlecht"
-
-#: cms/templates/index.html
-msgid "Added by"
-msgstr "Hinzugefügt von"
-
-#: cms/templates/index.html
-msgid "Added at"
-msgstr "Hinzugefügt am"
-
-#: cms/templates/index.html
-msgid "You do not have permission view patient data. To do so, please log in."
-msgstr ""
-"Sie haben keine Berechtigung zum Betrachten von Patientendaten. Um dies zu "
-"tun, loggen Sie sich bitte ein."
-
 #: cms/templates/intake_form.html
 msgid "Select existing patient"
 msgstr "Bestehende*n Patient*in auswählen"
@@ -560,6 +518,34 @@ msgstr "Oder Patient*in hinzufügen"
 #: cms/templates/intake_form.html
 msgid "Complete patient intake"
 msgstr "Patientenaufnahme abschließen"
+
+#: cms/templates/patients_list.html
+msgid "Patients list"
+msgstr "Patientenliste"
+
+#: cms/templates/patients_list.html
+msgid "Privately insured"
+msgstr "Privatversichert"
+
+#: cms/templates/patients_list.html
+msgid "DOB"
+msgstr "Geb. Dat."
+
+#: cms/templates/patients_list.html cms/templates/ward/ward_drawer.html
+msgid "Age"
+msgstr "Alter"
+
+#: cms/templates/patients_list.html cms/templates/ward/ward_drawer.html
+msgid "Gender"
+msgstr "Geschlecht"
+
+#: cms/templates/patients_list.html
+msgid "Added by"
+msgstr "Hinzugefügt von"
+
+#: cms/templates/patients_list.html
+msgid "Added at"
+msgstr "Hinzugefügt am"
 
 #: cms/templates/ward/ward.html
 msgid "Corridor"
@@ -702,11 +688,11 @@ msgstr ""
 "Wir haben eine Bestätigungsmail an \"{}\" gesandt. Bitten nutzen Sie den "
 "Link in der E-Mail, um Ihren Account zu aktivieren."
 
-#: cms/views/index.py cms/views/intake_form_view.py
+#: cms/views/patients/intake_form_view.py
 msgid "Patient \"{} {}\" has been saved."
 msgstr "Patient*in \"{} {}\" wurde gespeichert."
 
-#: cms/views/intake_form_view.py
+#: cms/views/patients/intake_form_view.py
 msgid "Intake for patient \"{} {}\" with diagnosis \"{}\" has been saved."
 msgstr "Patient*in \"{} {}\" mit Diagnose \"{}\" wurde gespeichert."
 
@@ -721,6 +707,18 @@ msgstr "Deutsch"
 #: core/settings.py
 msgid "English"
 msgstr "Englisch"
+
+#~ msgid "Home"
+#~ msgstr "Start"
+
+#~ msgid "Add new patient"
+#~ msgstr "Patient*in hinzufügen"
+
+#~ msgid ""
+#~ "You do not have permission view patient data. To do so, please log in."
+#~ msgstr ""
+#~ "Sie haben keine Berechtigung zum Betrachten von Patientendaten. Um dies "
+#~ "zu tun, loggen Sie sich bitte ein."
 
 #~ msgid "is available"
 #~ msgstr "ist verfügbar"
