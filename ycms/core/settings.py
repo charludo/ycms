@@ -78,6 +78,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "ycms.core.middleware.AccessControlMiddleware",
+    "ycms.core.middleware.TimetravelMiddleware",
 ]
 
 ROOT_URLCONF = "ycms.core.urls"

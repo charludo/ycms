@@ -120,7 +120,13 @@ limitations under the License.
                 </a>
             </li>
         </ul>
-        <div class="absolute bottom-0 w-full text-center text-gray-600 px-2">
+        <div class="absolute bottom-0 w-full text-center text-gray-600">
+            <li class="mb-4" id="timetravel-start">
+                <a href="?time=2024-01-01T00%3A00%3A00.000Z" class="justify-center"><i icon-name="timer-reset"></i> {% translate "Start Timetravel" %}</a>
+            </li>
+            <li class="hidden mb-4" id="timetravel-stop">
+                <a href="?" class="justify-center"><i icon-name="timer-off"></i> {% translate "Stop Timetravel" %}</a>
+            </li>
             <p class="text-sm">
                 {% translate "Logged in as" %} <span class="text-blue-500">{{ user.first_name }} {{ user.last_name }}</span>
             </p>
@@ -130,5 +136,6 @@ limitations under the License.
     <div class="p-6 ml-64 h-full overflow-y-auto">
         {% block content %}
         {% endblock content %}
+        {% include "timetravel_controls.html" %}
     </div>
 {% endblock raw_content %}

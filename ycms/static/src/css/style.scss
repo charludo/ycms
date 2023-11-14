@@ -182,6 +182,12 @@ input[type="submit"] {
                 @apply bg-primary text-white;
             }
         }
+        &.btn-outline-plain {
+            @apply border border-gray-500 text-gray-800 bg-white flex-shrink-0 font-normal py-1 px-2;
+            &:hover {
+                @apply border-blue-500 text-blue-500;
+            }
+        }
         // Pseudo-classes
         &:hover {
             @apply bg-white text-gray-700;
@@ -256,6 +262,10 @@ input[type="submit"] {
 /***********
 * SIDEBAR *
 ***********/
+
+#sidebar li {
+    @apply list-none;
+}
 
 #sidebar li a {
     @apply px-5 flex items-center h-11 tracking-wide text-gray-600 border-l-4 border-transparent hover:text-gray-800 hover:bg-gray-100 hover:border-blue-500 leading-4;

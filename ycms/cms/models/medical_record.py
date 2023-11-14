@@ -6,6 +6,7 @@ from ..constants import record_types
 from .abstract_base_model import AbstractBaseModel
 from .icd10_entry import ICD10Entry
 from .patient import Patient
+from .timetravel_manager import TimetravelManager
 from .user import User
 
 
@@ -43,6 +44,8 @@ class MedicalRecord(AbstractBaseModel):
         verbose_name=_("note"),
         help_text=_("Additional notes for this medical record"),
     )
+
+    objects = TimetravelManager()
 
     def __str__(self):
         """
