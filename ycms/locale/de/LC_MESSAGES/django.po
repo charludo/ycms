@@ -562,13 +562,19 @@ msgstr "Weiblich"
 
 #: cms/templates/bed_assignment/bed_assignment.html
 #: cms/templates/ward/ward_drawer.html
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: cms/templates/bed_assignment/bed_assignment.html
+#: cms/templates/ward/ward_drawer.html
 msgid "Discharge"
 msgstr "Entladung"
 
 #: cms/templates/bed_assignment/bed_assignment.html
-#: cms/templates/bed_assignment/bed_assignment_drawer.html
-msgid "Edit"
-msgstr "Bearbeiten"
+msgid "You do not have permission view patient data. To do so, please log in."
+msgstr ""
+"Sie haben keine Berechtigung zum Betrachten von Patientendaten. Um dies zu "
+"tun, loggen Sie sich bitte ein."
 
 #: cms/templates/bed_assignment/bed_assignment_drawer.html
 #: cms/templates/ward/ward.html
@@ -844,12 +850,6 @@ msgstr "Englisch"
 
 #~ msgid "Add new patient"
 #~ msgstr "Patient*in hinzufügen"
-
-#~ msgid ""
-#~ "You do not have permission view patient data. To do so, please log in."
-#~ msgstr ""
-#~ "Sie haben keine Berechtigung zum Betrachten von Patientendaten. Um dies "
-#~ "zu tun, loggen Sie sich bitte ein."
 
 #~ msgid "is available"
 #~ msgstr "ist verfügbar"
