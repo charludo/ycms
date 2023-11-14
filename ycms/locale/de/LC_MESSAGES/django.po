@@ -571,6 +571,11 @@ msgid "Discharge"
 msgstr "Entladung"
 
 #: cms/templates/bed_assignment/bed_assignment.html
+#: cms/templates/bed_assignment/bed_assignment_drawer.html
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: cms/templates/bed_assignment/bed_assignment.html cms/templates/index.html
 msgid "You do not have permission view patient data. To do so, please log in."
 msgstr ""
 "Sie haben keine Berechtigung zum Betrachten von Patientendaten. Um dies zu "
