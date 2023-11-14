@@ -512,13 +512,13 @@ msgstr "Patientenname"
 
 #: cms/templates/bed_assignment/bed_assignment.html
 #: cms/templates/bed_assignment/bed_assignment_drawer.html
-#: cms/templates/index.html cms/templates/ward/ward_drawer.html
+#: cms/templates/patients_list.html cms/templates/ward/ward_drawer.html
 msgid "Gender"
 msgstr "Geschlecht"
 
 #: cms/templates/bed_assignment/bed_assignment.html
 #: cms/templates/bed_assignment/bed_assignment_drawer.html
-#: cms/templates/index.html cms/templates/ward/ward_drawer.html
+#: cms/templates/patients_list.html cms/templates/ward/ward_drawer.html
 msgid "Age"
 msgstr "Alter"
 
@@ -569,12 +569,6 @@ msgstr "Entladung"
 #: cms/templates/bed_assignment/bed_assignment_drawer.html
 msgid "Edit"
 msgstr "Bearbeiten"
-
-#: cms/templates/bed_assignment/bed_assignment.html cms/templates/index.html
-msgid "You do not have permission view patient data. To do so, please log in."
-msgstr ""
-"Sie haben keine Berechtigung zum Betrachten von Patientendaten. Um dies zu "
-"tun, loggen Sie sich bitte ein."
 
 #: cms/templates/bed_assignment/bed_assignment_drawer.html
 #: cms/templates/ward/ward.html
@@ -679,14 +673,6 @@ msgstr "Privatversichert"
 #: cms/templates/patients_list.html
 msgid "DOB"
 msgstr "Geb. Dat."
-
-#: cms/templates/patients_list.html cms/templates/ward/ward_drawer.html
-msgid "Age"
-msgstr "Alter"
-
-#: cms/templates/patients_list.html cms/templates/ward/ward_drawer.html
-msgid "Gender"
-msgstr "Geschlecht"
 
 #: cms/templates/patients_list.html
 msgid "Added by"
