@@ -9,13 +9,10 @@
     <div class="flex justify-center items-center">
         <div class="container mx-auto">
             <div class="mb-4 flex flex-col md:flex-row items-stretch justify-end">
-                <div class="bg-gray-200 p-2 rounded-lg shadow mb-4 md:mb-0 md:mr-4 md:flex-auto">
-                    <i icon-name="info" class="mr-2 text-red-700"></i>
-                    <span class="text-gray-700">{% translate "Unassigned Patients" %}: {{ unassigned_bed_assignments.count }}</span>
-                </div>
                 <div class="flex flex-col md:flex-row items-stretch md:items-center justify-end md:space-x-4">
                     <!-- drawer init and toggle -->
-                    <button class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mb-4 md:mb-0"
+                    <button id="manuallyAssignButton"
+                            class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mb-4 md:mb-0"
                             type="button"
                             data-drawer-target="drawer-right-unassigned"
                             data-drawer-show="drawer-right-unassigned"
@@ -29,19 +26,10 @@
                         <i icon-name="bot" class="mr-2"></i>
                         {% translate "Suggest Assignment" %}
                     </button>
-                    <button data-modal-target="create-modal"
-                            data-modal-toggle="create-modal"
-                            class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                            type="button">
-                        <i icon-name="plus" class="mr-2"></i>
-                        {% translate "New Bed Assignment" %}
-                    </button>
                 </div>
             </div>
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7">
-                {% with ward=ward patient_info=patient_info wards=wards selected_ward_id=selected_ward_id %}
-                    {% include "ward/ward_info.html" %}
-                {% endwith %}
+                {% include "ward/ward_info.html" %}
             </div>
             <div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7">
                 {% if perms.cms.view_patient %}
@@ -51,9 +39,7 @@
                              data-drawer-show="drawer-right-{{ room.room_number }}"
                              data-drawer-placement="right"
                              aria-controls="drawer-right-{{ room.room_number }}">
-                            {% with room=room %}
-                                {% include "ward/ward_room_card.html" %}
-                            {% endwith %}
+                            {% include "ward/ward_room_card.html" %}
                         </div>
                         {% if room.room_number == corridor_index %}
                             <div class="col-span-full">
@@ -62,9 +48,7 @@
                                 </div>
                             </div>
                         {% endif %}
-                        {% with room=room %}
-                            {% include "ward/ward_drawer.html" %}
-                        {% endwith %}
+                        {% include "ward/ward_drawer.html" %}
                     {% endfor %}
                 {% endif %}
             </div>
@@ -79,10 +63,5 @@
     {% if ward.patients %}
         {% include "ward/ward_modal.html" %}
     {% endif %}
-    {% with form=bed_assignment_create_form %}
-        {% include "bed_assignment/create_bed_assignment_modal.html" %}
-    {% endwith %}
-    {% with unassigned_bed_assignments=unassigned_bed_assignments %}
-        {% include "bed_assignment/bed_assignment_drawer.html" %}
-    {% endwith %}
+    {% include "bed_assignment/bed_assignment_drawer.html" %}
 {% endblock content %}

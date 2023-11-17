@@ -26,6 +26,7 @@
                     <th scope="col" class="px-6 py-3">{% translate "Diagnosis" %}</th>
                     <th scope="col" class="px-6 py-3">{% translate "Admission date" %}</th>
                     <th scope="col" class="px-6 py-3">{% translate "Discharge date" %}</th>
+                    <th scope="col" class="px-6 py-3">{% translate "Privately insured" %}</th>
                     <th scope="col" class="px-6 py-3">{% translate "Action" %}</th>
                 </tr>
             </thead>
@@ -47,12 +48,18 @@
                                 {% if patient.current_discharge_date %}{{ patient.current_discharge_date }}{% endif %}
                             </td>
                             <td class="px-6 py-4">
-                                <button id="assignButton-{{ bed_assignment.id }}"
-                                        data-modal-target="update-modal"
-                                        data-modal-toggle="update-modal"
-                                        data-bedassignment-id="{{ bed_assignment.id }}"
-                                        class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                        type="button">{% translate "Assign" %}</button>
+                                {% if patient.insurance_type %}
+                                    <i icon-name="check" class="w-4 h-4 text-green-700"></i>
+                                {% else %}
+                                    <i icon-name="x" class="w-4 h-4 text-red-700"></i>
+                                {% endif %}
+                            </td>
+                            <td class="px-6 py-4">
+                                <a href="{% url 'cms:protected:assign_patient' ward_id=ward.id assignment_id=bed_assignment.id %}">
+                                    <button class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                        {% translate "Assign" %}
+                                    </button>
+                                </a>
                             </td>
                         </tr>
                     {% endwith %}

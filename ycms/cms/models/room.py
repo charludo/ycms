@@ -122,6 +122,18 @@ class Room(AbstractBaseModel):
         return [patient.age for patient in self.patients.all()]
 
     @cached_property
+    def minus_max_age(self):
+        """
+        Helper property for accessing minus maximum age of patients currently stationed in the room
+
+        :return: maximum age of patients in the room
+        :rtype: int
+        """
+        if patient_ages := self.patient_ages:
+            return -max(patient_ages)
+        return None
+
+    @cached_property
     def age_difference_between_patients(self):
         """
         Helper property for accessing age difference between patients currently stationed in the room
@@ -132,6 +144,16 @@ class Room(AbstractBaseModel):
         if patient_ages := self.patient_ages:
             return max(patient_ages) - min(patient_ages)
         return None
+
+    @cached_property
+    def assignable_beds(self):
+        """
+        Helper property for accessing the free bed
+
+        :return: free beds in the room
+        :rtype: list
+        """
+        return [bed for bed in self.beds.all() if bed.is_available]
 
     def __str__(self):
         """

@@ -18,6 +18,11 @@ urlpatterns = [
                     patients.DischargePatientView.as_view(),
                     name="discharge_patient",
                 ),
+                path(
+                    "assign/<int:ward_id>/<int:assignment_id>/",
+                    patients.AssignPatientView.as_view(),
+                    name="assign_patient",
+                ),
             ]
         ),
     ),

@@ -2,7 +2,6 @@ from django.shortcuts import redirect
 from django.views.generic import TemplateView
 
 from ...constants import gender
-from ...forms import BedAssignmentForm
 from ...models import BedAssignment, Ward
 
 
@@ -45,7 +44,6 @@ class WardView(TemplateView):
             "wards": wards,
             "selected_ward_id": pk,
             "unassigned_bed_assignments": unassigned_bed_assignments,
-            "bed_assignment_create_form": BedAssignmentForm(),
             **super().get_context_data(**kwargs),
         }
 
