@@ -421,6 +421,14 @@ msgid "Logout"
 msgstr "Abmelden"
 
 #: cms/templates/_base.html
+msgid "Start Timetravel"
+msgstr "Zeitreise Starten"
+
+#: cms/templates/_base.html
+msgid "Stop Timetravel"
+msgstr "Zeitreise Beenden"
+
+#: cms/templates/_base.html
 msgid "Logged in as"
 msgstr "Angemeldet als"
 
@@ -566,6 +574,18 @@ msgstr "Hinzugefügt von"
 #: cms/templates/patients_list.html
 msgid "Added at"
 msgstr "Hinzugefügt am"
+
+#: cms/templates/timetravel_controls.html
+msgid "day"
+msgstr "Tag"
+
+#: cms/templates/timetravel_controls.html
+msgid "hour"
+msgstr "Stunde"
+
+#: cms/templates/timetravel_controls.html
+msgid "minute"
+msgstr "Minute"
 
 #: cms/templates/ward/ward.html
 msgid "Corridor"

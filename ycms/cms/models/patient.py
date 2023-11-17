@@ -7,6 +7,7 @@ from django.utils.translation import gettext_lazy as _
 
 from ..constants import gender, insurance_types, record_types
 from .abstract_base_model import AbstractBaseModel
+from .timetravel_manager import TimetravelManager
 from .user import User
 
 
@@ -45,6 +46,8 @@ class Patient(AbstractBaseModel):
     )
     _first = models.CharField(max_length=32, blank=True)
     _last = models.CharField(max_length=64, blank=True)
+
+    objects = TimetravelManager()
 
     @cached_property
     def age(self):

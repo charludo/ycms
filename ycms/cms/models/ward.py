@@ -1,3 +1,4 @@
+from django.apps import apps
 from django.db import models
 from django.utils import timezone
 from django.utils.functional import cached_property
@@ -70,15 +71,17 @@ class Ward(AbstractBaseModel):
         :return: patients in the ward
         :rtype: list [ ~ycms.cms.models.patient.Patient ]
         """
-        return Patient.objects.filter(
-            models.Q(medical_records__bed_assignment__bed__room__ward=self)
+        BedAssignment = apps.get_model(app_label="cms", model_name="BedAssignment")
+
+        patient_ids = BedAssignment.objects.filter(
+            models.Q(bed__room__ward=self)
             & (
-                models.Q(medical_records__bed_assignment__discharge_date__isnull=True)
-                | models.Q(
-                    medical_records__bed_assignment__discharge_date__gt=timezone.now()
-                )
+                models.Q(discharge_date__isnull=True)
+                | models.Q(discharge_date__gt=timezone.now())
             )
-        ).distinct()
+        ).values_list("medical_record__patient", flat=True)
+        patients = Patient.objects.filter(pk__in=patient_ids)
+        return patients
 
     def __str__(self):
         """

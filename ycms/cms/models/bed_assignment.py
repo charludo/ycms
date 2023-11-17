@@ -5,6 +5,7 @@ from django.utils.translation import gettext_lazy as _
 from .abstract_base_model import AbstractBaseModel
 from .bed import Bed
 from .medical_record import MedicalRecord
+from .timetravel_manager import TimetravelManager
 from .user import User
 from .ward import Ward
 
@@ -58,6 +59,8 @@ class BedAssignment(AbstractBaseModel):
         verbose_name=_("bed"),
         help_text=_("The bed assigned to the patient"),
     )
+
+    objects = TimetravelManager()
 
     def __str__(self):
         """
