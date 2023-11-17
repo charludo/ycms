@@ -99,7 +99,7 @@ class Room(AbstractBaseModel):
         :return: genders of patients in the room
         :rtype: set
         """
-        return set(patient.gender for patient in self.patients.all())
+        return set(patient.gender for patient in self.patients())
 
     @cached_property
     def insurance_types(self):
@@ -109,7 +109,7 @@ class Room(AbstractBaseModel):
         :return: insurance_types of patients in the room
         :rtype: set
         """
-        return set(patient.insurance_type for patient in self.patients.all())
+        return set(patient.insurance_type for patient in self.patients())
 
     @cached_property
     def patient_ages(self):
@@ -119,7 +119,7 @@ class Room(AbstractBaseModel):
         :return: ages of patients in the room
         :rtype: list
         """
-        return [patient.age for patient in self.patients.all()]
+        return [patient.age for patient in self.patients()]
 
     @cached_property
     def minus_max_age(self):
