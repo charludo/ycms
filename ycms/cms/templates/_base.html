@@ -71,10 +71,10 @@ limitations under the License.
                 <span class="block mt-5 px-5 text-gray-500 tracking-wide">{% translate "General" %}</span>
                 {% if perms.cms.add_ward %}
                     <li>
-                        {% url 'cms:protected:zbm' as url %}
+                        {% url 'cms:protected:ward_management' as url %}
                         <a href="{{ url }}"
                            class="{% if request.path == url %}selected{% endif %}">
-                            <i icon-name="activity"></i> {% translate "ZBM View" %}
+                            <i icon-name="activity"></i> {% translate "Ward Management" %}
                         </a>
                     </li>
                 {% endif %}
