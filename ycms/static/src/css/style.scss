@@ -53,16 +53,20 @@ h2 {
 textarea,
 select {
     @apply scroll-mt-40 w-full rounded text-xl text-gray-800 border-gray-500 shadow-md #{!important};
+
     &:focus {
         @apply bg-white border-blue-500 ring-blue-500 #{!important};
     }
+
     &.border-red-500 {
         border-color: rgb(239, 68, 68);
     }
+
     &.rounded-r-none {
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
     }
+
     &:disabled {
         @apply text-gray-500 bg-gray-100 pointer-events-none cursor-not-allowed;
     }
@@ -94,6 +98,7 @@ textarea {
     &:disabled,
     &.fake-disable {
         @apply bg-gray-200 border-gray-200 pointer-events-none;
+
         &:checked {
             @apply bg-gray-400 border-gray-400;
         }
@@ -144,6 +149,7 @@ label:not([for]) {
         @apply font-medium text-gray-500 text-lg;
         cursor: auto;
     }
+
     input {
         @apply hidden;
     }
@@ -159,6 +165,7 @@ label:not([for]) {
     font-family: inherit !important;
     line-height: inherit !important;
 }
+
 .ts-dropdown {
     font-size: inherit !important;
 }
@@ -173,54 +180,69 @@ input[type="submit"] {
     // Normal buttons
     &.btn {
         @apply font-bold rounded inline-block bg-primary text-gray-700 py-3 px-4 border-2 border-primary;
+
         svg {
             @apply pr-1;
         }
+
         &.btn-outline {
             @apply border-2 border-primary text-primary bg-white;
+
             &:hover {
                 @apply bg-primary text-white;
             }
         }
+
         &.btn-outline-plain {
             @apply border border-gray-500 text-gray-800 bg-white flex-shrink-0 font-normal py-1 px-2;
+
             &:hover {
                 @apply border-blue-500 text-blue-500;
             }
         }
+
         // Pseudo-classes
         &:hover {
             @apply bg-white text-gray-700;
         }
+
         &:focus {
             @apply outline-none;
         }
+
         &:disabled,
         &[disabled] {
             @apply bg-gray-400 cursor-not-allowed;
         }
+
         // Different types of buttons
         &.btn-small {
             @apply py-2 px-3;
         }
+
         &.btn-red {
             @apply bg-red-500;
+
             &:hover {
                 @apply bg-red-600;
             }
         }
+
         // Override base styles
         &.hidden {
             display: none;
         }
     }
+
     // Icon buttons
     &.btn-icon {
         @apply text-gray-800;
+
         // Pseudo-classes
         &:hover {
             @apply text-blue-500;
         }
+
         &:disabled,
         &[disabled] {
             @apply text-gray-400 cursor-not-allowed;
@@ -241,6 +263,7 @@ input[type="submit"] {
         .darken {
             @apply opacity-60;
         }
+
         svg {
             @apply opacity-100;
         }
@@ -277,4 +300,20 @@ input[type="submit"] {
 
 #sidebar li a svg {
     @apply w-[22px] mr-2;
+}
+
+#sidebar {
+    transition: all 0.3s ease;
+
+    &:hover {
+        color: #4a90e2;
+    }
+}
+
+#sidebarToggle {
+    transition: all 0.3s ease;
+
+    &:hover {
+        color: #4a90e2;
+    }
 }
