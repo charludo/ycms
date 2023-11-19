@@ -33,7 +33,7 @@
                     {% if perms.cms.view_patient %}
                         {% for room in rooms %}
                             <!-- room card -->
-                            <div {% if bed_assignment.accompanied and room.available_beds > 1 %}id="assignRoomCard-room-{{ room.room_number }}" {% elif room.available_beds > 0 and not bed_assignment.accompanied %}id="assignRoomCard-room-{{ room.room_number }}" {% endif %}
+                            <div {% if bed_assignment.accompanied and room.available_beds > 1 %}id="assignRoomCard-room-{{ room.room_number }}" data-modal-target="assign-modal" data-modal-toggle="assign-modal" {% elif room.available_beds > 0 and not bed_assignment.accompanied %}id="assignRoomCard-room-{{ room.room_number }}" data-modal-target="assign-modal" data-modal-toggle="assign-modal"{% endif %}
                                  data-bedassignment-id="{{ bed_assignment.id }}"
                                  data-room-id="{{ room.id }}"
                                  data-ward-id="{{ ward.id }}"
@@ -42,8 +42,6 @@
                                  data-room-gender-warning="{% if patient.gender not in room.genders and room.occupied_beds > 0 %}{% translate "Mixed Gender" %}{% endif %}"
                                  data-room-age-warning="{% if patient.age|add:room.minus_max_age > 20 and room.occupied_beds > 0 %}{% translate "Age gap is large" %}{% endif %}"
                                  data-room-insurance-warning="{% if patient.insurance_type not in room.insurance_types and room.occupied_beds > 0 %}{% translate "Mixed insurance" %}{% endif %}"
-                                 {% if bed_assignment.accompanied and room.available_beds > 1 %}data-modal-target="assign-modal" {% elif room.available_beds > 0 and not bed_assignment.accompanied %}data-modal-target="assign-modal" {% endif %}
-                                 {% if bed_assignment.accompanied and room.available_beds > 1 %}data-modal-toggle="assign-modal" {% elif room.available_beds > 0 and not bed_assignment.accompanied %}data-modal-toggle="assign-modal" {% endif %}
                                  class="col-span-1 sm:col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1 flex">
                                 {% with room=room %}
                                     {% include "bed_assignment/assign_room_card.html" %}
@@ -80,8 +78,6 @@
                                aria-hidden="true"></i>
                         </div>
                         <div id="assign-modal-content"></div>
-                        <!-- <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400"
-     id="assign-modal-content"></h3> -->
                         <button data-modal-hide="assign-modal"
                                 type="button"
                                 id="confirmAssignButton"

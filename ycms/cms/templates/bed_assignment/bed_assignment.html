@@ -11,15 +11,6 @@
             <div class="flex flex-col">
                 <h1 class="heading">{% translate "Bed Assignments" %}</h1>
             </div>
-            <div class="flex justify-end">
-                <a href="{% url 'cms:protected:create_bed_assignment' %}">
-                    <button type="button"
-                            class="px-5 py-2.5 mb-2 text-sm font-medium text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        <i icon-name="plus" class="mr-2"></i>
-                        {% translate "New Bed Assignment" %}
-                    </button>
-                </a>
-            </div>
         </div>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

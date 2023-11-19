@@ -65,11 +65,6 @@ urlpatterns = [
                     name="manage_bed_assignment",
                 ),
                 path(
-                    "create/",
-                    bed_assignment.BedAssignmentCreateView.as_view(),
-                    name="create_bed_assignment",
-                ),
-                path(
                     "update/<int:pk>/",
                     bed_assignment.BedAssignmentUpdateView.as_view(),
                     name="update_bed_assignment",

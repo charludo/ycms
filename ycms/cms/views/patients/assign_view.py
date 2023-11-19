@@ -2,6 +2,7 @@ import json
 import logging
 
 from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
 from django.utils.translation import gettext as _
 from django.views.generic import TemplateView
 
@@ -26,7 +27,8 @@ class AssignPatientView(TemplateView):
         ward = Ward.objects.get(id=ward_id)
         rooms = ward.rooms.all()
         wards = Ward.objects.all()
-        bed_assignment = BedAssignment.objects.get(id=assignment_id)
+        # bed_assignment = BedAssignment.objects.get(id=assignment_id)
+        bed_assignment = get_object_or_404(BedAssignment, id=assignment_id)
 
         return {
             "bed_assignment": bed_assignment,
@@ -43,8 +45,9 @@ class AssignPatientView(TemplateView):
         """
         data = json.loads(request.body)
         bed_id = data.get("bed_id")
-        bed_assignment = BedAssignment.objects.get(pk=kwargs["assignment_id"])
-        bed = Bed.objects.get(pk=bed_id)
+        assignment_id = kwargs["assignment_id"]
+        bed_assignment = get_object_or_404(BedAssignment, pk=assignment_id)
+        bed = get_object_or_404(Bed, pk=bed_id)
 
         bed_assignment.bed = bed
         bed_assignment.save()

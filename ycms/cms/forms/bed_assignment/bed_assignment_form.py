@@ -22,14 +22,7 @@ class BedAssignmentForm(CustomModelForm):
         """
 
         model = BedAssignment
-        fields = [
-            # "medical_record",
-            # "admission_date",
-            "discharge_date",
-            # "accompanied",
-            # "recommended_ward",
-            # "bed",
-        ]
+        fields = ["medical_record", "admission_date", "discharge_date"]
         widgets = {
             "admission_date": forms.NumberInput(
                 attrs={"type": "date", "value": timezone.now().date}
@@ -50,21 +43,4 @@ class BedAssignmentForm(CustomModelForm):
         """
         super().__init__(*args, **kwargs)
         self.is_update = is_update
-        # available_beds = [x for x in Bed.objects.all() if x.is_available]
-        # if self.is_update:
-        #     self.fields["medical_record"].queryset = MedicalRecord.objects.filter(
-        #         bed_assignment__isnull=True
-        #     ) | MedicalRecord.objects.filter(pk=self.instance.medical_record.id)
-        #     if self.instance.bed:
-        #         available_beds.insert(0, self.instance.bed)
-        #     self.fields["bed"].queryset = Bed.objects.filter(
-        #         id__in=[bed.id for bed in available_beds]
-        #     )
-        # else:
-        #     self.fields["medical_record"].queryset = MedicalRecord.objects.exclude(
-        #         bed_assignment__isnull=False
-        #     )
-
-        #     self.fields["bed"].queryset = Bed.objects.filter(
-        #         id__in=[bed.id for bed in available_beds]
-        #     )
+        self.fields["medical_record"].disabled = True

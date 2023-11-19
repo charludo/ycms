@@ -445,8 +445,6 @@ msgid "Create a new user"
 msgstr "Neuen Benutzer anlegen"
 
 #: cms/templates/authentication/create_user.html
-#: cms/templates/bed_assignment/create_bed_assignment.html
-#: cms/templates/bed_assignment/create_bed_assignment_modal.html
 msgid "Create"
 msgstr "Anlegen"
 
@@ -534,7 +532,6 @@ msgid "Corridor"
 msgstr "Gang"
 
 #: cms/templates/bed_assignment/assign_bed_assignment.html
-#: cms/templates/bed_assignment/create_bed_assignment_modal.html
 #: cms/templates/ward/ward_modal.html
 msgid "Close modal"
 msgstr "Modal schließen"
@@ -574,11 +571,6 @@ msgstr "Weiblich"
 #: cms/templates/bed_assignment/bed_assignment.html
 msgid "Bed Assignments"
 msgstr "Bettzuweisungen"
-
-#: cms/templates/bed_assignment/bed_assignment.html
-#: cms/templates/bed_assignment/create_bed_assignment_modal.html
-msgid "New Bed Assignment"
-msgstr "Neue Bettenzuweisung"
 
 #: cms/templates/bed_assignment/bed_assignment.html
 #: cms/templates/bed_assignment/bed_assignment_drawer.html
@@ -660,10 +652,6 @@ msgstr "Privatversichert"
 #: cms/templates/bed_assignment/bed_assignment_drawer.html
 msgid "Assign"
 msgstr "Zuordnen"
-
-#: cms/templates/bed_assignment/create_bed_assignment.html
-msgid "Create a new bed assignment"
-msgstr "Erstellen Sie eine neue Bettenzuweisung"
 
 #: cms/templates/bed_assignment/update_bed_assignment.html
 #: cms/templates/bed_assignment/update_bed_assignment_modal.html
@@ -903,6 +891,12 @@ msgstr "Deutsch"
 #: core/settings.py
 msgid "English"
 msgstr "Englisch"
+
+#~ msgid "New Bed Assignment"
+#~ msgstr "Neue Bettenzuweisung"
+
+#~ msgid "Create a new bed assignment"
+#~ msgstr "Erstellen Sie eine neue Bettenzuweisung"
 
 #~ msgid "Home"
 #~ msgstr "Start"
