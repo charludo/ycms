@@ -1,10 +1,10 @@
 import logging
 
 from django import forms
-from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 from ..models import BedAssignment
+from ..models.timetravel_manager import current_or_travelled_time
 from .custom_model_form import CustomModelForm
 
 logger = logging.getLogger(__name__)
@@ -25,7 +25,7 @@ class IntakeBedAssignmentForm(CustomModelForm):
         fields = ["admission_date", "recommended_ward", "accompanied"]
         widgets = {
             "admission_date": forms.NumberInput(
-                attrs={"type": "date", "value": timezone.now().date}
+                attrs={"type": "date", "value": current_or_travelled_time().date}
             )
         }
 

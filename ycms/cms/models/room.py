@@ -1,12 +1,12 @@
 from django.apps import apps
 from django.db import models
-from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 
 from ..constants import insurance_types
 from .abstract_base_model import AbstractBaseModel
 from .patient import Patient
+from .timetravel_manager import current_or_travelled_time
 from .user import User
 from .ward import Ward
 
@@ -17,7 +17,7 @@ class Room(AbstractBaseModel):
     """
 
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(default=timezone.now, null=False)
+    created_at = models.DateTimeField(default=current_or_travelled_time, null=False)
     updated_at = models.DateTimeField(auto_now=True, null=False)
     room_number = models.CharField(
         max_length=32,
@@ -75,7 +75,7 @@ class Room(AbstractBaseModel):
             models.Q(bed__room=self)
             & (
                 models.Q(discharge_date__isnull=True)
-                | models.Q(discharge_date__gt=timezone.now())
+                | models.Q(discharge_date__gt=current_or_travelled_time())
             )
         ).values_list("medical_record__patient", flat=True)
         patients = Patient.objects.filter(pk__in=patient_ids)
