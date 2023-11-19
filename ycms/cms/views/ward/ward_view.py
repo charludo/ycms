@@ -1,4 +1,6 @@
+from django.db import models
 from django.shortcuts import redirect
+from django.utils import timezone
 from django.views.generic import TemplateView
 
 from ...constants import gender
@@ -34,7 +36,14 @@ class WardView(TemplateView):
         ward = Ward.objects.get(id=pk)
         rooms = ward.rooms.all()
         wards = Ward.objects.all()
-        unassigned_bed_assignments = BedAssignment.objects.filter(bed__isnull=True)
+        unassigned_bed_assignments = BedAssignment.objects.filter(
+            models.Q(admission_date__lte=timezone.now())
+            & models.Q(bed__isnull=True)
+            & (
+                models.Q(discharge_date__gt=timezone.now())
+                | models.Q(discharge_date__isnull=True)
+            )
+        )
 
         return {
             "rooms": rooms,
