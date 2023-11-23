@@ -2,7 +2,6 @@
 {% load i18n %}
 {% load static %}
 {% load widget_tweaks %}
-{% load render_bundle from webpack_loader %}
 {% block title %}
     {% translate "Patient Intake" %}
 {% endblock title %}
@@ -42,7 +41,7 @@
                         <div>
                             <div>
                                 <label for="{{ record_form.diagnosis_code.id_for_label }}"
-                                       class="field-required">{{ record_form.diagnosis_code.label }}&nbsp;</label>
+                                       class="field-required">{{ record_form.diagnosis_code.label }}</label>
                                 {% render_field record_form.diagnosis_code %}
                                 <div class="help-text">{{ record_form.diagnosis_code.help_text }}</div>
                             </div>
@@ -55,7 +54,7 @@
                         <div>
                             <div>
                                 <label for="{{ bed_form.admission_date.id_for_label }}"
-                                       class="field-required">{{ bed_form.admission_date.label }}&nbsp;</label>
+                                       class="field-required">{{ bed_form.admission_date.label }}</label>
                                 {% render_field bed_form.admission_date %}
                                 <div class="help-text">{{ bed_form.admission_date.help_text }}</div>
                             </div>

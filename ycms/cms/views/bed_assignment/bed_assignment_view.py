@@ -15,7 +15,7 @@ class BedAssignmentView(TemplateView):
     View to manage bed assignments
     """
 
-    template_name = "bed_assignment/bed_assignment.html"
+    template_name = "bed_assignment/bed_assignment_list.html"
 
     def get(self, request, *args, **kwargs):
         """

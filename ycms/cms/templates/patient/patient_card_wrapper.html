@@ -1,0 +1,11 @@
+{% extends "_base.html" %}
+{% load i18n %}
+{% load widget_tweaks %}
+{% block title %}
+    {% translate "Edit Patient Stay" %}
+{% endblock title %}
+{% block content %}
+    {% with standalone_mode=True %}
+        {% include "patient/patient_card.html" %}
+    {% endwith %}
+{% endblock content %}

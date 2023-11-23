@@ -23,6 +23,11 @@ urlpatterns = [
                     patients.AssignPatientView.as_view(),
                     name="assign_patient",
                 ),
+                path(
+                    "update/<int:patient>/<int:bed_assignment>/",
+                    patients.UpdatePatientStayView.as_view(),
+                    name="update_patient_stay",
+                ),
             ]
         ),
     ),
@@ -58,17 +63,7 @@ urlpatterns = [
                     "",
                     bed_assignment.BedAssignmentView.as_view(),
                     name="manage_bed_assignment",
-                ),
-                path(
-                    "update/<int:pk>/",
-                    bed_assignment.BedAssignmentUpdateView.as_view(),
-                    name="update_bed_assignment",
-                ),
-                path(
-                    "update-modal/<int:pk>/",
-                    bed_assignment.BedAssignmentUpdateModalView.as_view(),
-                    name="update_bed_assignment_modal",
-                ),
+                )
             ]
         ),
     ),

@@ -24,9 +24,9 @@
                                 </button>
                             </a>
                         </div>
-                        <div class="bg-white border border-gray-300  rounded-lg shadow-lg p-4 w-full">
+                        {% with assignment_mode=True %}
                             {% include "patient/patient_card.html" %}
-                        </div>
+                        {% endwith %}
                     </div>
                 </div>
                 <div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7">

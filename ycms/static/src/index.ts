@@ -8,6 +8,7 @@ import "./js/utils/menu";
 import "./js/ward/discharge";
 import "./js/ward/assign";
 import { initFlowbite } from "flowbite";
+import "./js/ward/toggle-edit-mode";
 import { createIconsAt } from "./js/utils/create-icons";
 
 window.addEventListener("DOMContentLoaded", () => {

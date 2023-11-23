@@ -51,7 +51,7 @@
                                 {% if bed_assignment.bed %}{{ bed_assignment.bed }}{% endif %}
                             </td>
                             <td class="px-6 py-4">
-                                <a href="{% url 'cms:protected:update_bed_assignment' pk=bed_assignment.id %}">
+                                <a href="{% url 'cms:protected:update_patient_stay' patient=bed_assignment.medical_record.patient.id bed_assignment=bed_assignment.id %}">
                                     <button type="button"
                                             class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                         {% translate "Edit" %}

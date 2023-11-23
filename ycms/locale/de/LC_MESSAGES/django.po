@@ -534,71 +534,6 @@ msgstr "Ja"
 msgid "No"
 msgstr "Nein"
 
-#: cms/templates/bed_assignment/bed_assignment.html
-msgid "Bed Assignments"
-msgstr "Bettzuweisungen"
-
-#: cms/templates/bed_assignment/bed_assignment.html
-msgid "Patient name"
-msgstr "Patientenname"
-
-#: cms/templates/bed_assignment/bed_assignment.html
-#: cms/templates/patient/patient_card.html cms/templates/patients_list.html
-msgid "Gender"
-msgstr "Geschlecht"
-
-#: cms/templates/bed_assignment/bed_assignment.html
-#: cms/templates/patient/patient_card.html cms/templates/patients_list.html
-msgid "Age"
-msgstr "Alter"
-
-#: cms/templates/bed_assignment/bed_assignment.html
-msgid "Diagnosis"
-msgstr "Diagnose"
-
-#: cms/templates/bed_assignment/bed_assignment.html
-#: cms/templates/patient/patient_card.html
-msgid "Admission date"
-msgstr "Aufnahmedatum"
-
-#: cms/templates/bed_assignment/bed_assignment.html
-#: cms/templates/patient/patient_card.html
-msgid "Discharge date"
-msgstr "Entlassungsdatum"
-
-#: cms/templates/bed_assignment/bed_assignment.html
-msgid "Bed"
-msgstr "Betten"
-
-#: cms/templates/bed_assignment/bed_assignment.html
-msgid "Action"
-msgstr "Aktion"
-
-#: cms/templates/bed_assignment/bed_assignment.html
-#: cms/templates/ward/ward_info.html cms/templates/ward/ward_room_card.html
-msgid "Male"
-msgstr "Männlich"
-
-#: cms/templates/bed_assignment/bed_assignment.html
-#: cms/templates/ward/ward_info.html cms/templates/ward/ward_room_card.html
-msgid "Female"
-msgstr "Weiblich"
-
-#: cms/templates/bed_assignment/bed_assignment.html
-msgid "Edit"
-msgstr "Bearbeiten"
-
-#: cms/templates/bed_assignment/bed_assignment.html
-#: cms/templates/ward/ward_drawer.html
-msgid "Discharge"
-msgstr "Entladung"
-
-#: cms/templates/bed_assignment/bed_assignment.html
-msgid "You do not have permission view patient data. To do so, please log in."
-msgstr ""
-"Sie haben keine Berechtigung zum Betrachten von Patientendaten. Um dies zu "
-"tun, loggen Sie sich bitte ein."
-
 #: cms/templates/bed_assignment/bed_assignment_drawer.html
 #: cms/templates/ward/ward_info.html
 msgid "Unassigned Patients"
@@ -609,19 +544,71 @@ msgstr "Nicht zugewiesene Patienten"
 msgid "Close menu"
 msgstr "Menü schließen"
 
-#: cms/templates/bed_assignment/bed_assignment_drawer.html
-msgid "Assign"
-msgstr "Zuordnen"
+#: cms/templates/bed_assignment/bed_assignment_list.html
+msgid "Bed Assignments"
+msgstr "Bettzuweisungen"
 
-#: cms/templates/bed_assignment/update_bed_assignment.html
-#: cms/templates/bed_assignment/update_bed_assignment_modal.html
-msgid "Edit the bed assignment"
-msgstr "Bearbeiten Sie die Bettenzuweisung"
+#: cms/templates/bed_assignment/bed_assignment_list.html
+msgid "Patient name"
+msgstr "Patientenname"
 
-#: cms/templates/bed_assignment/update_bed_assignment.html
-#: cms/templates/bed_assignment/update_bed_assignment_modal.html
-msgid "Save"
-msgstr "Speichern"
+#: cms/templates/bed_assignment/bed_assignment_list.html
+#: cms/templates/patient/patient_card.html cms/templates/patients_list.html
+msgid "Gender"
+msgstr "Geschlecht"
+
+#: cms/templates/bed_assignment/bed_assignment_list.html
+#: cms/templates/patient/patient_card.html cms/templates/patients_list.html
+msgid "Age"
+msgstr "Alter"
+
+#: cms/templates/bed_assignment/bed_assignment_list.html
+msgid "Diagnosis"
+msgstr "Diagnose"
+
+#: cms/templates/bed_assignment/bed_assignment_list.html
+#: cms/templates/patient/patient_card.html
+msgid "Admission date"
+msgstr "Aufnahmedatum"
+
+#: cms/templates/bed_assignment/bed_assignment_list.html
+#: cms/templates/patient/patient_card.html
+msgid "Discharge date"
+msgstr "Entlassungsdatum"
+
+#: cms/templates/bed_assignment/bed_assignment_list.html
+msgid "Bed"
+msgstr "Betten"
+
+#: cms/templates/bed_assignment/bed_assignment_list.html
+msgid "Action"
+msgstr "Aktion"
+
+#: cms/templates/bed_assignment/bed_assignment_list.html
+#: cms/templates/ward/ward_info.html cms/templates/ward/ward_room_card.html
+msgid "Male"
+msgstr "Männlich"
+
+#: cms/templates/bed_assignment/bed_assignment_list.html
+#: cms/templates/ward/ward_info.html cms/templates/ward/ward_room_card.html
+msgid "Female"
+msgstr "Weiblich"
+
+#: cms/templates/bed_assignment/bed_assignment_list.html
+#: cms/templates/patient/patient_card.html
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: cms/templates/bed_assignment/bed_assignment_list.html
+#: cms/templates/patient/patient_card.html
+msgid "Discharge"
+msgstr "Entladung"
+
+#: cms/templates/bed_assignment/bed_assignment_list.html
+msgid "You do not have permission view patient data. To do so, please log in."
+msgstr ""
+"Sie haben keine Berechtigung zum Betrachten von Patientendaten. Um dies zu "
+"tun, loggen Sie sich bitte ein."
 
 #: cms/templates/emails/activation_email.html
 #: cms/templates/emails/activation_email.txt
@@ -703,8 +690,8 @@ msgid "Privately insured"
 msgstr "Privatversichert"
 
 #: cms/templates/patient/patient_card.html
-msgid "Medical Details"
-msgstr "Medizinische Details"
+msgid "Hostpital Stay Details"
+msgstr "Details zum Krankenhausaufenthalt"
 
 #: cms/templates/patient/patient_card.html
 msgid "Diagnosis code"
@@ -713,6 +700,38 @@ msgstr "Diagnosecode"
 #: cms/templates/patient/patient_card.html
 msgid "Note"
 msgstr "Notiz"
+
+#: cms/templates/patient/patient_card.html
+msgid "Assign"
+msgstr "Zuordnen"
+
+#: cms/templates/patient/patient_card.html
+msgid "Transfer"
+msgstr "Überweisen"
+
+#: cms/templates/patient/patient_card.html
+msgid "Edit Patient Information"
+msgstr "Patienteninformationen bearbeiten"
+
+#: cms/templates/patient/patient_card.html
+msgid "Edit Personal Details"
+msgstr "Persönliche Daten bearbeiten"
+
+#: cms/templates/patient/patient_card.html
+msgid "Edit Hospital Stay Details"
+msgstr "Details zum Krankenhausaufenthalt bearbeiten"
+
+#: cms/templates/patient/patient_card.html
+msgid "Save"
+msgstr "Speichern"
+
+#: cms/templates/patient/patient_card.html
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: cms/templates/patient/patient_card_wrapper.html
+msgid "Edit Patient Stay"
+msgstr "Patientenaufenthalt bearbeiten"
 
 #: cms/templates/patients_list.html
 msgid "Patients list"
@@ -749,10 +768,6 @@ msgstr "Zimmer"
 #: cms/templates/ward/ward_drawer.html cms/templates/ward/ward_room_card.html
 msgid "Beds"
 msgstr "Betten"
-
-#: cms/templates/ward/ward_drawer.html
-msgid "Transfer"
-msgstr "Überweisen"
 
 #: cms/templates/ward/ward_info.html
 msgid "Total"
@@ -855,6 +870,12 @@ msgstr "Patient*in \"{} {}\" wurde gespeichert."
 msgid "Intake for patient \"{} {}\" with diagnosis \"{}\" has been saved."
 msgstr "Patient*in \"{} {}\" mit Diagnose \"{}\" wurde gespeichert."
 
+#: cms/views/patients/update_patient_stay_view.py
+msgid ""
+"Patient \"{} {}\"  and their current stay from {} to {} have been saved."
+msgstr ""
+"Patient*in \"{} {}\"  und aktueller Krankenhausaufenthalt von {} bis {} wurden gespeichert."
+
 #: core/apps.py
 msgid "Core"
 msgstr "Core"
@@ -866,6 +887,12 @@ msgstr "Deutsch"
 #: core/settings.py
 msgid "English"
 msgstr "Englisch"
+
+#~ msgid "Edit the bed assignment"
+#~ msgstr "Bearbeiten Sie die Bettenzuweisung"
+
+#~ msgid "Medical Details"
+#~ msgstr "Medizinische Details"
 
 #~ msgid "Assigning to red rooms may cause"
 #~ msgstr "Die Zuordnung zu roten Räumen kann zu Problemen führen"

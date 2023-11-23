@@ -16,7 +16,11 @@ class DischargePatientView(View):
         This function discharges a patient
         """
         bed_assignment = BedAssignment.objects.get(pk=kwargs["assignment_id"])
-        bed_assignment.discharge_date = datetime.datetime.now()
+        bed_assignment.discharge_date = (
+            datetime.datetime.now()
+            if not (date := request.POST.get("new_date"))
+            else date
+        )
         bed_assignment.save()
 
         return JsonResponse({"success": True})
