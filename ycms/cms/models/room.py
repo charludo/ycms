@@ -122,7 +122,7 @@ class Room(AbstractBaseModel):
         :return: ages of patients in the room
         :rtype: list
         """
-        return [patient.age for patient in self.patients()]
+        return [patient.age for patient in self.patients()] if self.patients() else [0]
 
     @cached_property
     def minus_max_age(self):
