@@ -51,11 +51,6 @@ urlpatterns = [
     path("ward/", ward.WardView.as_view(), name="ward_detail_default"),
     path("ward/<int:pk>/", ward.WardView.as_view(), name="ward_detail"),
     path(
-        "discharge-patient/<int:assignment_id>/",
-        patients.DischargePatientView.as_view(),
-        name="discharge_patient",
-    ),
-    path(
         "bed-assignments/",
         include(
             [
