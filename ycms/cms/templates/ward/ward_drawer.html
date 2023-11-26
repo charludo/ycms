@@ -23,63 +23,8 @@
     <div class="flex flex-col gap-4">
         {% for patient in room.patients.all %}
             {% with bed_assignment=patient.current_stay %}
-                <div class="border bg-white rounded-lg shadow-lg p-4 w-full">
-                    <!-- Patient Information Header -->
-                    <div class="text-center mb-6">
-                        <h2 class="text-2xl font-semibold">{% translate "Patient Information" %}</h2>
-                    </div>
-                    <!-- Patient Details -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <!-- Personal Information -->
-                        <div class="mb-2">
-                            <h3 class="text-lg font-semibold mb-2">{% translate "Personal Details" %}</h3>
-                            <p>
-                                <span class="font-semibold">{% translate "Name" %}:</span> {{ patient.first_name }}
-                                {{ patient.last_name }}
-                            </p>
-                            <p>
-                                <span class="font-semibold">{% translate "Age" %}:</span> {{ patient.age }}
-                            </p>
-                            <p>
-                                <span class="font-semibold">{% translate "Gender" %}:</span> {{ patient.gender | title }}
-                            </p>
-                            <p>
-                                <span class="font-semibold">{% translate "Accompanied" %}:</span>
-                                {% if bed_assignment.accompanied %}
-                                    <i icon-name="check" class="w-4 h-4 text-green-700"></i>
-                                {% else %}
-                                    <i icon-name="x" class="w-4 h-4 text-red-700"></i>
-                                {% endif %}
-                                <p>
-                                    <span class="font-semibold">{% translate "Privately insured" %}:</span>
-                                    {% if patient.insurance_type %}
-                                        <i icon-name="check" class="w-4 h-4 text-green-700"></i>
-                                    {% else %}
-                                        <i icon-name="x" class="w-4 h-4 text-red-700"></i>
-                                    {% endif %}
-                                </p>
-                            </p>
-                        </div>
-                        <!-- Medical Information -->
-                        <div class="mb-2">
-                            <h3 class="text-lg font-semibold mb-2">{% translate "Medical Details" %}</h3>
-                            <p>
-                                <span class="font-semibold">{% translate "Diagnosis code" %}:</span>
-                                {{ bed_assignment.medical_record.diagnosis_code }}
-                            </p>
-                            <p>
-                                <span class="font-semibold">{% translate "Note" %}:</span> {{ bed_assignment.medical_record.note }}
-                            </p>
-                            <p>
-                                <span class="font-semibold">{% translate "Admission date" %}:</span>
-                                {% if patient.current_admission_date %}{{ patient.current_admission_date }}{% endif %}
-                            </p>
-                            <p>
-                                <span class="font-semibold">{% translate "Discharge date" %}:</span>
-                                {% if patient.current_discharge_date %}{{ patient.current_discharge_date }}{% endif %}
-                            </p>
-                        </div>
-                    </div>
+                <div class="bg-white rounded-lg shadow-lg p-4 w-full">
+                    {% include "patient/patient_card.html" %}
                     <!-- Buttons -->
                     <div class="flex justify-end border-t pt-2 border-gray-200 rounded-b dark:border-gray-600">
                         <div class="flex gap-2">

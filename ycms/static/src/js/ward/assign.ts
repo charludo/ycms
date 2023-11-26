@@ -4,7 +4,7 @@ let selectedBedAssignmentId: string | null = "";
 let selectedBedId: string | null = "";
 let selectedWardId: string | null = "";
 
-export const handleAssignModalClose = (): void => {
+const handleAssignModalClose = (): void => {
     document.getElementById("cancelAssignButton")?.addEventListener("click", () => {
         const modal = FlowbiteInstances.getInstance("Modal", "assign-modal");
         modal.hide();
@@ -15,7 +15,7 @@ export const handleAssignModalClose = (): void => {
     });
 };
 
-export const handleAssignModalConfirm = (): void => {
+const handleAssignModalConfirm = (): void => {
     document.getElementById("confirmAssignButton")?.addEventListener("click", () => {
         const modal = FlowbiteInstances.getInstance("Modal", "assign-modal");
 
@@ -57,7 +57,7 @@ export const handleAssignModalConfirm = (): void => {
     });
 };
 
-export const handleAssign = (card: HTMLElement): void => {
+const handleAssign = (card: HTMLElement): void => {
     selectedBedId = card.getAttribute("data-bed-id");
     selectedWardId = card.getAttribute("data-ward-id");
     selectedBedAssignmentId = card.getAttribute("data-bedassignment-id");
@@ -116,7 +116,7 @@ export const handleAssign = (card: HTMLElement): void => {
     modal.show();
 };
 
-export const handleRoomCardAssign = (): void => {
+const handleRoomCardAssign = (): void => {
     const cards = document.querySelectorAll('div[id*="assignRoomCard"]');
 
     cards.forEach((element) => {
@@ -127,7 +127,7 @@ export const handleRoomCardAssign = (): void => {
     });
 };
 
-export const handleEdit = (button: HTMLElement): void => {
+const handleEdit = (button: HTMLElement): void => {
     selectedBedAssignmentId = button.getAttribute("data-bedassignment-id");
     const targetEl = document.getElementById("update-modal");
     if (!targetEl) {
@@ -153,7 +153,7 @@ export const handleEdit = (button: HTMLElement): void => {
     modal.show();
 };
 
-export const handleButtonEdit = (): void => {
+const handleButtonEdit = (): void => {
     const buttons = document.querySelectorAll('button[id*="editButton"]');
 
     buttons.forEach((element) => {
@@ -163,3 +163,10 @@ export const handleButtonEdit = (): void => {
         });
     });
 };
+
+window.addEventListener("load", () => {
+    handleRoomCardAssign();
+    handleAssignModalClose();
+    handleAssignModalConfirm();
+    handleButtonEdit();
+});
