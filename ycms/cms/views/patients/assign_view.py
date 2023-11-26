@@ -27,7 +27,6 @@ class AssignPatientView(TemplateView):
         ward = Ward.objects.get(id=ward_id)
         rooms = ward.rooms.all()
         wards = Ward.objects.all()
-        # bed_assignment = BedAssignment.objects.get(id=assignment_id)
         bed_assignment = get_object_or_404(BedAssignment, id=assignment_id)
 
         return {
