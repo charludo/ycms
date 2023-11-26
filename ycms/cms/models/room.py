@@ -142,9 +142,7 @@ class Room(AbstractBaseModel):
         :return: age difference between patients in the room
         :rtype: int
         """
-        if patient_ages := self.patient_ages:
-            return max(patient_ages) - min(patient_ages)
-        return None
+        return max(self.patient_ages) - min(self.patient_ages)
 
     @cached_property
     def assignable_beds(self):
