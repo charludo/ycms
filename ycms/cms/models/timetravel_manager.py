@@ -3,6 +3,7 @@ import threading
 
 from django.core.exceptions import FieldError
 from django.db import models
+from django.utils import timezone
 from django.utils.dateparse import parse_datetime
 
 _thread_locals = threading.local()
@@ -39,6 +40,17 @@ class TimetravelManager(models.Manager):
             except FieldError:
                 pass
         return queryset
+
+
+def current_or_travelled_time():
+    """
+    Helper function to return a mocked current time
+    whenever we are timetravelling
+    """
+    try:
+        return parse_datetime(_thread_locals.request.GET["time"])
+    except AttributeError:
+        return timezone.now()
 
 
 def set_request(**kwargs):

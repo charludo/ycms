@@ -1,11 +1,10 @@
 from django.db import models
-from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 from .abstract_base_model import AbstractBaseModel
 from .bed import Bed
 from .medical_record import MedicalRecord
-from .timetravel_manager import TimetravelManager
+from .timetravel_manager import current_or_travelled_time, TimetravelManager
 from .user import User
 from .ward import Ward
 
@@ -16,7 +15,7 @@ class BedAssignment(AbstractBaseModel):
     """
 
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(default=timezone.now, null=False)
+    created_at = models.DateTimeField(default=current_or_travelled_time, null=False)
     updated_at = models.DateTimeField(auto_now=True, null=False)
     admission_date = models.DateField(
         blank=True,

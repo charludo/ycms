@@ -1,12 +1,11 @@
 from django.db import models
-from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 from ..constants import record_types
 from .abstract_base_model import AbstractBaseModel
 from .icd10_entry import ICD10Entry
 from .patient import Patient
-from .timetravel_manager import TimetravelManager
+from .timetravel_manager import current_or_travelled_time, TimetravelManager
 from .user import User
 
 
@@ -16,7 +15,7 @@ class MedicalRecord(AbstractBaseModel):
     """
 
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(default=timezone.now, null=False)
+    created_at = models.DateTimeField(default=current_or_travelled_time, null=False)
     updated_at = models.DateTimeField(auto_now=True, null=False)
     patient = models.ForeignKey(
         Patient,

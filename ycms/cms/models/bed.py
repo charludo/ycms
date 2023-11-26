@@ -1,11 +1,11 @@
 from django.db import models
-from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 
 from ..constants import bed_types
 from .abstract_base_model import AbstractBaseModel
 from .room import Room
+from .timetravel_manager import current_or_travelled_time
 from .user import User
 
 
@@ -15,7 +15,7 @@ class Bed(AbstractBaseModel):
     """
 
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(default=timezone.now, null=False)
+    created_at = models.DateTimeField(default=current_or_travelled_time, null=False)
     updated_at = models.DateTimeField(auto_now=True, null=False)
     bed_type = models.CharField(
         max_length=10,
@@ -42,7 +42,7 @@ class Bed(AbstractBaseModel):
         """
         return not self.assignments.filter(
             models.Q(discharge_date__isnull=True)
-            | models.Q(discharge_date__gt=timezone.now())
+            | models.Q(discharge_date__gt=current_or_travelled_time())
         ).exists()
 
     def __str__(self):
