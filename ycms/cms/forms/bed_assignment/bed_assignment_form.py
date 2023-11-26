@@ -2,9 +2,8 @@ import logging
 
 from django import forms
 from django.utils import timezone
-from django.utils.translation import gettext_lazy as _
 
-from ...models import Bed, BedAssignment, MedicalRecord
+from ...models import BedAssignment
 from ..custom_model_form import CustomModelForm
 
 logger = logging.getLogger(__name__)
