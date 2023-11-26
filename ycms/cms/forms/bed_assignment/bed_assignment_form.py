@@ -35,3 +35,17 @@ class BedAssignmentForm(CustomModelForm):
             ),
         }
 
+    def save(self, commit=True):
+        """
+        This method extends the default ``save()``-method of the base :class:`~django.forms.ModelForm`
+        to create a new bed assignment.
+
+        :param commit: Whether or not the changes should be written to the database
+        :type commit: bool
+
+        :return: The saved bed assignment
+        :rtype: ~ycms.cms.models.bed_assignment.BedAssignment
+        """
+        if self.instance:
+            self.cleaned_data["medical_record"] = self.instance.medical_record
+        return super().save(commit)
