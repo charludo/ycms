@@ -34,12 +34,3 @@ class BedAssignmentForm(CustomModelForm):
             ),
         }
 
-    def __init__(self, *args, is_update=False, **kwargs):
-        """
-        Initialize the form with additional filters.
-        1. Only show medical records that are not already assigned to a bed assignment.
-        2. Only show beds that are available.
-        """
-        super().__init__(*args, **kwargs)
-        self.is_update = is_update
-        self.fields["medical_record"].disabled = True
