@@ -40,7 +40,7 @@ class Bed(AbstractBaseModel):
         :return: if the bed is available
         :rtype: bool
         """                
-        if self.assignments.exists():            
+        if self.assignments.exists():
             active_assignments = self.assignments.filter(
                 models.Q(admission_date__lte=current_or_travelled_time())
                 & (
@@ -48,7 +48,7 @@ class Bed(AbstractBaseModel):
                     | models.Q(discharge_date__isnull=True)
                 )
             )
-            return not active_assignments.exists()        
+            return not active_assignments.exists()                    
         return True
 
     def __str__(self):

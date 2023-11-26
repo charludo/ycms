@@ -1,7 +1,6 @@
 {% extends "_base.html" %}
 {% load i18n %}
 {% load widget_tweaks %}
-{% load custom_filters %}
 {% block title %}
     {% translate "Assign the patient" %}
 {% endblock title %}
@@ -44,7 +43,7 @@
                                  data-room-insurance-warning="{% if patient.insurance_type not in room.insurance_types and room.occupied_beds > 0 %}{% translate "Mixed insurance" %}{% endif %}"
                                  class="col-span-1 sm:col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1 flex">
                                 {% with room=room %}
-                                    {% include "bed_assignment/assign_room_card.html" %}
+                                    {% include "ward/ward_room_card.html" %}
                                 {% endwith %}
                             </div>
                             {% if room.room_number == corridor_index %}
