@@ -23,6 +23,7 @@ class BedAssignmentForm(CustomModelForm):
         model = BedAssignment
         fields = ["medical_record", "admission_date", "discharge_date"]
         widgets = {
+            "medical_record": forms.HiddenInput(),
             "admission_date": forms.NumberInput(
                 attrs={"type": "date", "value": timezone.now().date}
             ),
