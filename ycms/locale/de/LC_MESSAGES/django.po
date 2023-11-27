@@ -501,27 +501,18 @@ msgid "Assigning patient"
 msgstr "Patienten zuordnen"
 
 #: cms/templates/bed_assignment/assign_bed_assignment.html
-msgid "Assigning to red rooms may cause"
-msgstr "Die Zuordnung zu roten Räumen kann zu Problemen führen"
-
-#: cms/templates/bed_assignment/assign_bed_assignment.html
 #: cms/templates/ward/ward_room_card.html
 msgid "Mixed Gender"
 msgstr "Gemischtes Geschlecht"
 
 #: cms/templates/bed_assignment/assign_bed_assignment.html
-#: cms/templates/ward/ward_room_card.html
-msgid "Age gap is large (> 20)"
-msgstr "Der Altersunterschied ist groß (> 20)"
+msgid "Age gap is large"
+msgstr "Der Altersunterschied ist groß"
 
 #: cms/templates/bed_assignment/assign_bed_assignment.html
 #: cms/templates/ward/ward_room_card.html
 msgid "Mixed insurance"
 msgstr "Gemischte Versicherung"
-
-#: cms/templates/bed_assignment/assign_bed_assignment.html
-msgid "Age gap is large"
-msgstr "Der Altersunterschied ist groß"
 
 #: cms/templates/bed_assignment/assign_bed_assignment.html
 #: cms/templates/ward/ward.html
@@ -793,6 +784,10 @@ msgstr "Gesamtzahl der Betten"
 msgid "Are you sure you want to discharge this patient?"
 msgstr "Sind Sie sicher, dass Sie diesen Patienten entlassen möchten?"
 
+#: cms/templates/ward/ward_room_card.html
+msgid "Age gap is large (> 20)"
+msgstr "Der Altersunterschied ist groß (> 20)"
+
 #: cms/utils/email_utils.py
 msgid "YCMS | Activate your account"
 msgstr "YCMS | Aktivieren Sie Ihren Account"
@@ -873,6 +868,9 @@ msgstr "Deutsch"
 #: core/settings.py
 msgid "English"
 msgstr "Englisch"
+
+#~ msgid "Assigning to red rooms may cause"
+#~ msgstr "Die Zuordnung zu roten Räumen kann zu Problemen führen"
 
 #~ msgid "New Bed Assignment"
 #~ msgstr "Neue Bettenzuweisung"
