@@ -9,28 +9,18 @@
         <div class="flex justify-center items-center">
             <div class="container mx-auto">
                 <!-- Assigning Patient Section -->
-                <div class="md:flex md:flex-row md:space-x-4">
-                    <div class="md:w-1/2 mb-4">
-                        <div class="bg-gray-200 p-4 rounded-lg shadow flex flex-col justify-between h-full">
-                            <div>
-                                <h2 class="text-2xl font-semibold">
-                                    {% translate "Assigning patient" %} {{ patient.first_name }}
-                                    {{ patient.last_name }}
-                                </h2>
-                                <p class="mt-1 text-gray-700 dark:text-white">{% translate "Assigning to red rooms may cause" %}:</p>
-                                <ul class="text-md text-red-700 mt-1 list-disc list-inside dark:text-gray-400">
-                                    <li>{% translate "Mixed Gender" %}</li>
-                                    <li>{% translate "Age gap is large (> 20)" %}</li>
-                                    <li>{% translate "Mixed insurance" %}</li>
-                                </ul>
-                            </div>
+                <div id="assign-info" class="flex flex-col">
+                    <div class="md:flex md:flex-row md:space-x-4">
+                        <div class="bg-white rounded-lg shadow-lg p-4 w-full">
+                            <h2 class="text-2xl font-semibold">
+                                {% translate "Assigning patient" %} {{ patient.first_name }}
+                                {{ patient.last_name }}
+                            </h2>
+                            {% include "patient/patient_card.html" %}
                         </div>
                     </div>
-                    <div class="md:w-1/2 mb-4">
-                        <div class="bg-white rounded-lg shadow-lg p-4 w-full">{% include "patient/patient_card.html" %}</div>
-                    </div>
                 </div>
-                <div class="mt-2 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7">
+                <div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7">
                     {% if perms.cms.view_patient %}
                         {% for room in rooms %}
                             <!-- room card -->
