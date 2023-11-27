@@ -73,7 +73,7 @@ class Room(AbstractBaseModel):
 
         patient_ids = BedAssignment.objects.filter(
             models.Q(bed__room=self)
-            & (                
+            & (
                 models.Q(admission_date__lte=current_or_travelled_time())
                 & (
                     models.Q(discharge_date__gt=current_or_travelled_time())

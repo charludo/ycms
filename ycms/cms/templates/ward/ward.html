@@ -38,7 +38,7 @@
                              data-drawer-show="drawer-right-{{ room.room_number }}"
                              data-drawer-placement="right"
                              aria-controls="drawer-right-{{ room.room_number }}">
-                            <div class="w-full max-w-sm p-6 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 {% if room.available_beds > 0 %}bg-green-300{% else %}bg-red-500{% endif %} {% if room.available_beds > 0 %}hover:bg-green-400{% else %}hover:bg-red-600{% endif %} hover:text-gray-900 cursor-pointer">
+                            <div class="w-full p-6 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 cursor-pointer hover:bg-gray-100">
                                 {% include "ward/ward_room_card.html" %}
                             </div>
                         </div>
