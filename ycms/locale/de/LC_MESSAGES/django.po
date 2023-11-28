@@ -26,6 +26,10 @@ msgstr "CMS"
 msgid "normal"
 msgstr "normales"
 
+#: cms/constants/bed_types.py
+msgid "small"
+msgstr "kleines"
+
 #: cms/constants/gender.py
 msgid "male"
 msgstr "männlich"

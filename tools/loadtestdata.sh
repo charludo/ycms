@@ -25,4 +25,5 @@ require_database
 
 deescalate_privileges ycms-cli loaddata "${PACKAGE_DIR}/cms/fixtures/icd10_test_data.json" --verbosity "${SCRIPT_VERBOSITY}"
 deescalate_privileges ycms-cli loaddata "${PACKAGE_DIR}/cms/fixtures/test_data.json" --verbosity "${SCRIPT_VERBOSITY}"
+deescalate_privileges ycms-cli loaddata "${PACKAGE_DIR}/cms/fixtures/test_data_extended.json" --verbosity "${SCRIPT_VERBOSITY}"
 echo "✔ Imported test data" | print_success

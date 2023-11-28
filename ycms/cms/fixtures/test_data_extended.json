@@ -1,0 +1,268 @@
+[
+  {
+    "model": "cms.patient",
+    "pk": 193,
+    "fields": {
+      "creator": 4,
+      "created_at": "2023-11-05T11:42:11.331Z",
+      "updated_at": "2023-11-05T11:42:11.331Z",
+      "insurance_type": false,
+      "first_name": "Guntram",
+      "last_name": "Björn",
+      "gender": "m",
+      "date_of_birth": "1992-06-25"
+    }
+  },
+  {
+    "model": "cms.medicalrecord",
+    "pk": 191,
+    "fields": {
+      "creator": 4,
+      "created_at": "2023-11-05T10:56:00Z",
+      "updated_at": "2023-11-05T11:42:11.448Z",
+      "patient": 193,
+      "diagnosis_code": 42192,
+      "record_type": "intake",
+      "note": ""
+    }
+  },
+  {
+    "model": "cms.bedassignment",
+    "pk": 191,
+    "fields": {
+      "creator": 4,
+      "created_at": "2023-11-05T10:48:00Z",
+      "updated_at": "2023-11-05T11:42:11.895Z",
+      "admission_date": "2023-11-20",
+      "discharge_date": "2024-01-14",
+      "accompanied": false,
+      "medical_record": 191,
+      "recommended_ward": 1,
+      "bed": 1
+    }
+  },
+  {
+    "model": "cms.patient",
+    "pk": 194,
+    "fields": {
+      "creator": 4,
+      "created_at": "2023-11-05T11:42:11.331Z",
+      "updated_at": "2023-11-05T11:42:11.331Z",
+      "insurance_type": false,
+      "first_name": "Inga",
+      "last_name": "Hildegunde",
+      "gender": "f",
+      "date_of_birth": "1987-02-21"
+    }
+  },
+  {
+    "model": "cms.medicalrecord",
+    "pk": 192,
+    "fields": {
+      "creator": 4,
+      "created_at": "2023-11-05T10:56:00Z",
+      "updated_at": "2023-11-05T11:42:11.448Z",
+      "patient": 194,
+      "diagnosis_code": 80164,
+      "record_type": "intake",
+      "note": ""
+    }
+  },
+  {
+    "model": "cms.bedassignment",
+    "pk": 192,
+    "fields": {
+      "creator": 4,
+      "created_at": "2023-11-05T10:48:00Z",
+      "updated_at": "2023-11-05T11:42:11.895Z",
+      "admission_date": "2023-11-28",
+      "discharge_date": "2024-01-14",
+      "accompanied": false,
+      "medical_record": 192,
+      "recommended_ward": 1,
+      "bed": 3
+    }
+  },
+  {
+    "model": "cms.patient",
+    "pk": 195,
+    "fields": {
+      "creator": 4,
+      "created_at": "2023-11-05T11:42:11.331Z",
+      "updated_at": "2023-11-05T11:42:11.331Z",
+      "insurance_type": false,
+      "first_name": "Raphaela",
+      "last_name": "Elena",
+      "gender": "f",
+      "date_of_birth": "1952-09-13"
+    }
+  },
+  {
+    "model": "cms.medicalrecord",
+    "pk": 193,
+    "fields": {
+      "creator": 4,
+      "created_at": "2023-11-05T10:56:00Z",
+      "updated_at": "2023-11-05T11:42:11.448Z",
+      "patient": 195,
+      "diagnosis_code": 78373,
+      "record_type": "intake",
+      "note": ""
+    }
+  },
+  {
+    "model": "cms.bedassignment",
+    "pk": 193,
+    "fields": {
+      "creator": 4,
+      "created_at": "2023-11-05T10:48:00Z",
+      "updated_at": "2023-11-05T11:42:11.895Z",
+      "admission_date": "2023-10-24",
+      "discharge_date": "2024-12-14",
+      "accompanied": false,
+      "medical_record": 193,
+      "recommended_ward": 1,
+      "bed": 5
+    }
+  },
+  {
+    "model": "cms.patient",
+    "pk": 196,
+    "fields": {
+      "creator": 4,
+      "created_at": "2023-11-05T11:42:11.331Z",
+      "updated_at": "2023-11-05T11:42:11.331Z",
+      "insurance_type": true,
+      "first_name": "Conrad",
+      "last_name": "Ignaz",
+      "gender": "m",
+      "date_of_birth": "1967-01-25"
+    }
+  },
+  {
+    "model": "cms.medicalrecord",
+    "pk": 194,
+    "fields": {
+      "creator": 4,
+      "created_at": "2023-11-05T10:56:00Z",
+      "updated_at": "2023-11-05T11:42:11.448Z",
+      "patient": 196,
+      "diagnosis_code": 73182,
+      "record_type": "intake",
+      "note": ""
+    }
+  },
+  {
+    "model": "cms.bedassignment",
+    "pk": 194,
+    "fields": {
+      "creator": 4,
+      "created_at": "2023-11-05T10:48:00Z",
+      "updated_at": "2023-11-05T11:42:11.895Z",
+      "admission_date": "2023-11-27",
+      "discharge_date": "2024-12-14",
+      "accompanied": false,
+      "medical_record": 194,
+      "recommended_ward": 1,
+      "bed": 15
+    }
+  },
+  {
+    "model": "cms.patient",
+    "pk": 197,
+    "fields": {
+      "creator": 4,
+      "created_at": "2023-11-05T11:42:11.331Z",
+      "updated_at": "2023-11-05T11:42:11.331Z",
+      "insurance_type": false,
+      "first_name": "Mattis",
+      "last_name": "Ella",
+      "gender": "m",
+      "date_of_birth": "1983-10-25"
+    }
+  },
+  {
+    "model": "cms.medicalrecord",
+    "pk": 195,
+    "fields": {
+      "creator": 4,
+      "created_at": "2023-11-05T10:56:00Z",
+      "updated_at": "2023-11-05T11:42:11.448Z",
+      "patient": 197,
+      "diagnosis_code": 68068,
+      "record_type": "intake",
+      "note": "This patient has three hospital stays: one in the past, one currently, one in the future. This is the PAST stay."
+    }
+  },
+  {
+    "model": "cms.bedassignment",
+    "pk": 195,
+    "fields": {
+      "creator": 4,
+      "created_at": "2023-11-05T10:48:00Z",
+      "updated_at": "2023-11-05T11:42:11.895Z",
+      "admission_date": "2023-10-13",
+      "discharge_date": "2023-11-13",
+      "accompanied": false,
+      "medical_record": 195,
+      "recommended_ward": 1,
+      "bed": 2
+    }
+  },
+  {
+    "model": "cms.medicalrecord",
+    "pk": 196,
+    "fields": {
+      "creator": 4,
+      "created_at": "2023-11-05T10:56:00Z",
+      "updated_at": "2023-11-05T11:42:11.448Z",
+      "patient": 197,
+      "diagnosis_code": 68068,
+      "record_type": "intake",
+      "note": "This patient has three hospital stays: one in the past, one currently, one in the future. This is the CURRENT stay."
+    }
+  },
+  {
+    "model": "cms.bedassignment",
+    "pk": 196,
+    "fields": {
+      "creator": 4,
+      "created_at": "2023-11-05T10:48:00Z",
+      "updated_at": "2023-11-05T11:42:11.895Z",
+      "admission_date": "2023-11-25",
+      "discharge_date": "2023-12-25",
+      "accompanied": false,
+      "medical_record": 196,
+      "recommended_ward": 1,
+      "bed": 2
+    }
+  },
+  {
+    "model": "cms.medicalrecord",
+    "pk": 197,
+    "fields": {
+      "creator": 4,
+      "created_at": "2023-11-05T10:56:00Z",
+      "updated_at": "2023-11-05T11:42:11.448Z",
+      "patient": 197,
+      "diagnosis_code": 68068,
+      "record_type": "intake",
+      "note": "This patient has three hospital stays: one in the past, one currently, one in the future. This is the FUTURE stay."
+    }
+  },
+  {
+    "model": "cms.bedassignment",
+    "pk": 197,
+    "fields": {
+      "creator": 4,
+      "created_at": "2023-11-05T10:48:00Z",
+      "updated_at": "2023-11-05T11:42:11.895Z",
+      "admission_date": "2023-12-26",
+      "discharge_date": "2024-01-26",
+      "accompanied": false,
+      "medical_record": 197,
+      "recommended_ward": 1,
+      "bed": 4
+    }
+  }
+]

@@ -3162,6 +3162,18 @@
     }
   },
   {
+    "model": "cms.ward",
+    "pk": 2,
+    "fields": {
+      "creator": 2,
+      "created_at": "2023-11-05T11:25:08Z",
+      "updated_at": "2023-11-05T11:25:26.692Z",
+      "ward_number": "2",
+      "floor": 1,
+      "name": "Pädiatrie"
+    }
+  },
+  {
     "model": "cms.room",
     "pk": 1,
     "fields": {
@@ -3313,6 +3325,50 @@
       "updated_at": "2023-11-05T11:29:17.328Z",
       "room_number": "14",
       "ward": 1
+    }
+  },
+  {
+    "model": "cms.room",
+    "pk": 15,
+    "fields": {
+      "creator": 2,
+      "created_at": "2023-11-05T11:29:17.328Z",
+      "updated_at": "2023-11-05T11:29:17.328Z",
+      "room_number": "15",
+      "ward": 2
+    }
+  },
+  {
+    "model": "cms.room",
+    "pk": 16,
+    "fields": {
+      "creator": 2,
+      "created_at": "2023-11-05T11:29:17.328Z",
+      "updated_at": "2023-11-05T11:29:17.328Z",
+      "room_number": "16",
+      "ward": 2
+    }
+  },
+  {
+    "model": "cms.room",
+    "pk": 17,
+    "fields": {
+      "creator": 2,
+      "created_at": "2023-11-05T11:29:17.328Z",
+      "updated_at": "2023-11-05T11:29:17.328Z",
+      "room_number": "17",
+      "ward": 2
+    }
+  },
+  {
+    "model": "cms.room",
+    "pk": 18,
+    "fields": {
+      "creator": 2,
+      "created_at": "2023-11-05T11:29:17.328Z",
+      "updated_at": "2023-11-05T11:29:17.328Z",
+      "room_number": "18",
+      "ward": 2
     }
   },
   {
@@ -3621,6 +3677,94 @@
       "updated_at": "2023-11-05T11:29:17.329Z",
       "bed_type": "normal",
       "room": 14
+    }
+  },
+  {
+    "model": "cms.bed",
+    "pk": 29,
+    "fields": {
+      "creator": 2,
+      "created_at": "2023-11-05T11:29:17.329Z",
+      "updated_at": "2023-11-05T11:29:17.329Z",
+      "bed_type": "small",
+      "room": 15
+    }
+  },
+  {
+    "model": "cms.bed",
+    "pk": 30,
+    "fields": {
+      "creator": 2,
+      "created_at": "2023-11-05T11:29:17.329Z",
+      "updated_at": "2023-11-05T11:29:17.329Z",
+      "bed_type": "small",
+      "room": 15
+    }
+  },
+  {
+    "model": "cms.bed",
+    "pk": 31,
+    "fields": {
+      "creator": 2,
+      "created_at": "2023-11-05T11:29:17.329Z",
+      "updated_at": "2023-11-05T11:29:17.329Z",
+      "bed_type": "small",
+      "room": 16
+    }
+  },
+  {
+    "model": "cms.bed",
+    "pk": 32,
+    "fields": {
+      "creator": 2,
+      "created_at": "2023-11-05T11:29:17.329Z",
+      "updated_at": "2023-11-05T11:29:17.329Z",
+      "bed_type": "small",
+      "room": 16
+    }
+  },
+  {
+    "model": "cms.bed",
+    "pk": 33,
+    "fields": {
+      "creator": 2,
+      "created_at": "2023-11-05T11:29:17.329Z",
+      "updated_at": "2023-11-05T11:29:17.329Z",
+      "bed_type": "small",
+      "room": 17
+    }
+  },
+  {
+    "model": "cms.bed",
+    "pk": 34,
+    "fields": {
+      "creator": 2,
+      "created_at": "2023-11-05T11:29:17.329Z",
+      "updated_at": "2023-11-05T11:29:17.329Z",
+      "bed_type": "small",
+      "room": 18
+    }
+  },
+  {
+    "model": "cms.bed",
+    "pk": 35,
+    "fields": {
+      "creator": 2,
+      "created_at": "2023-11-05T11:29:17.329Z",
+      "updated_at": "2023-11-05T11:29:17.329Z",
+      "bed_type": "small",
+      "room": 18
+    }
+  },
+  {
+    "model": "cms.bed",
+    "pk": 36,
+    "fields": {
+      "creator": 2,
+      "created_at": "2023-11-05T11:29:17.329Z",
+      "updated_at": "2023-11-05T11:29:17.329Z",
+      "bed_type": "small",
+      "room": 18
     }
   },
   {
