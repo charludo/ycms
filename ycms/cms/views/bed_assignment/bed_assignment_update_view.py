@@ -20,16 +20,6 @@ class BedAssignmentUpdateView(UpdateView):
     form_class = BedAssignmentForm
     success_url = reverse_lazy("cms:protected:manage_bed_assignment")
 
-    def get_form_kwargs(self):
-        """
-        Return the keyword arguments for instantiating the form
-
-        :return: The form kwargs
-        :rtype: dict
-        """
-        kwargs = super().get_form_kwargs()
-        kwargs["is_update"] = True
-        return kwargs
 
     def get_success_url(self):
         """
