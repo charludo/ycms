@@ -20,7 +20,6 @@ class BedAssignmentUpdateView(UpdateView):
     form_class = BedAssignmentForm
     success_url = reverse_lazy("cms:protected:manage_bed_assignment")
 
-
     def get_success_url(self):
         """
         Determine the URL to redirect to after a successful form submission
