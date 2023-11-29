@@ -73,11 +73,17 @@ class Patient(AbstractBaseModel):
         :return: the current bed assignment
         :rtype: ~ycms.cms.models.bed_assignment.BedAssignment
         """
-        return (
-            self.medical_records.filter(record_type=record_types.INTAKE)
-            .latest()
-            .bed_assignment.get()
-        )
+        hospital_stay = self.medical_records.filter(
+            models.Q(record_type=record_types.INTAKE)
+            & models.Q(bed_assignment__admission_date__lte=current_or_travelled_time())
+            & (
+                models.Q(bed_assignment__discharge_date__isnull=True)
+                | models.Q(
+                    bed_assignment__discharge_date__gt=current_or_travelled_time()
+                )
+            )
+        ).first()
+        return hospital_stay.bed_assignment.get() if hospital_stay else None
 
     @cached_property
     def current_bed(self):
