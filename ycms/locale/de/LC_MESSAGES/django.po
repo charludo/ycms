@@ -585,8 +585,6 @@ msgid "Female"
 msgstr "Weiblich"
 
 #: cms/templates/bed_assignment/bed_assignment.html
-#: cms/templates/bed_assignment/bed_assignment_drawer.html
-#: cms/templates/ward/ward_drawer.html
 msgid "Edit"
 msgstr "Bearbeiten"
 
@@ -744,14 +742,6 @@ msgstr "Stunde"
 msgid "minute"
 msgstr "Minute"
 
-#: cms/templates/ward/ward.html
-msgid "Manually Assign"
-msgstr "Manuell zuweisen"
-
-#: cms/templates/ward/ward.html
-msgid "Suggest Assignment"
-msgstr "Aufgabe vorschlagen"
-
 #: cms/templates/ward/ward_drawer.html cms/templates/ward/ward_room_card.html
 msgid "Room"
 msgstr "Zimmer"
@@ -779,6 +769,14 @@ msgstr "Verfügbare Betten"
 #: cms/templates/ward/ward_info.html
 msgid "Total Beds"
 msgstr "Gesamtzahl der Betten"
+
+#: cms/templates/ward/ward_info.html
+msgid "Manually Assign"
+msgstr "Manuell zuweisen"
+
+#: cms/templates/ward/ward_info.html
+msgid "Suggest Assignment"
+msgstr "Aufgabe vorschlagen"
 
 #: cms/templates/ward/ward_modal.html
 msgid "Are you sure you want to discharge this patient?"
