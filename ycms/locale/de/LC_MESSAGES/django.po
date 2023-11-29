@@ -549,6 +549,7 @@ msgid "Bed Assignments"
 msgstr "Bettzuweisungen"
 
 #: cms/templates/bed_assignment/bed_assignment_list.html
+#: cms/templates/patients_list.html
 msgid "Patient name"
 msgstr "Patientenname"
 
@@ -581,21 +582,24 @@ msgid "Bed"
 msgstr "Betten"
 
 #: cms/templates/bed_assignment/bed_assignment_list.html
+#: cms/templates/patients_list.html
 msgid "Action"
 msgstr "Aktion"
 
 #: cms/templates/bed_assignment/bed_assignment_list.html
-#: cms/templates/ward/ward_info.html cms/templates/ward/ward_room_card.html
+#: cms/templates/patients_list.html cms/templates/ward/ward_info.html
+#: cms/templates/ward/ward_room_card.html
 msgid "Male"
 msgstr "Männlich"
 
 #: cms/templates/bed_assignment/bed_assignment_list.html
-#: cms/templates/ward/ward_info.html cms/templates/ward/ward_room_card.html
+#: cms/templates/patients_list.html cms/templates/ward/ward_info.html
+#: cms/templates/ward/ward_room_card.html
 msgid "Female"
 msgstr "Weiblich"
 
 #: cms/templates/bed_assignment/bed_assignment_list.html
-#: cms/templates/patient/patient_card.html
+#: cms/templates/patient/patient_card.html cms/templates/patients_list.html
 msgid "Edit"
 msgstr "Bearbeiten"
 
@@ -721,11 +725,11 @@ msgstr "Persönliche Daten bearbeiten"
 msgid "Edit Hospital Stay Details"
 msgstr "Details zum Krankenhausaufenthalt bearbeiten"
 
-#: cms/templates/patient/patient_card.html
+#: cms/templates/patient/patient_card.html cms/templates/patients_list.html
 msgid "Save"
 msgstr "Speichern"
 
-#: cms/templates/patient/patient_card.html
+#: cms/templates/patient/patient_card.html cms/templates/patients_list.html
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -738,16 +742,20 @@ msgid "Patients list"
 msgstr "Patientenliste"
 
 #: cms/templates/patients_list.html
-msgid "DOB"
-msgstr "Geb. Dat."
+msgid "Status"
+msgstr "Status"
 
 #: cms/templates/patients_list.html
-msgid "Added by"
-msgstr "Hinzugefügt von"
+msgid "Diverse"
+msgstr "Divers"
 
 #: cms/templates/patients_list.html
-msgid "Added at"
-msgstr "Hinzugefügt am"
+msgid "Add"
+msgstr "Hinzufügen"
+
+#: cms/templates/patients_list.html
+msgid "Delete"
+msgstr "Löschen"
 
 #: cms/templates/timetravel_controls.html
 msgid "day"
@@ -926,6 +934,22 @@ msgstr "Patient*in \"{} {}\" wurde gespeichert."
 msgid "Intake for patient \"{} {}\" with diagnosis \"{}\" has been saved."
 msgstr "Patient*in \"{} {}\" mit Diagnose \"{}\" wurde gespeichert."
 
+#: cms/views/patients/patients_list_view.py
+msgid "Patient \"{} {}\" has been deleted."
+msgstr "Patient*in \"{} {}\" wurde gelöscht."
+
+#: cms/views/patients/patients_list_view.py
+msgid "Name: Wrong syntax. Use \"Lastname, Firstname\"."
+msgstr "Name: Falsche Syntax. Benutze \"Nachname, Vorname\"."
+
+#: cms/views/patients/patients_list_view.py
+msgid "Patient \"{} {}\" has been created."
+msgstr "Patient*in \"{} {}\" wurde hinzugefügt."
+
+#: cms/views/patients/patients_list_view.py
+msgid "Patient \"{} {}\" has been edited."
+msgstr "Patient*in \"{} {}\" wurde bearbeitet."
+
 #: cms/views/patients/update_patient_stay_view.py
 msgid ""
 "Patient \"{} {}\"  and their current stay from {} to {} have been saved."
@@ -948,6 +972,15 @@ msgstr "Deutsch"
 #: core/settings.py
 msgid "English"
 msgstr "Englisch"
+
+#~ msgid "DOB"
+#~ msgstr "Geb. Dat."
+
+#~ msgid "Added by"
+#~ msgstr "Hinzugefügt von"
+
+#~ msgid "Added at"
+#~ msgstr "Hinzugefügt am"
 
 #~ msgid "Edit the bed assignment"
 #~ msgstr "Bearbeiten Sie die Bettenzuweisung"
