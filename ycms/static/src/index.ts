@@ -11,6 +11,7 @@ import { initFlowbite } from "flowbite";
 import "./js/ward/toggle-edit-mode";
 import "./js/ward/progress";
 import { createIconsAt } from "./js/utils/create-icons";
+import "./js/patients_list";
 
 window.addEventListener("DOMContentLoaded", () => {
     createIconsAt(document.documentElement);

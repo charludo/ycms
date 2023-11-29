@@ -7,34 +7,142 @@
     {% translate "Manage Patients" %}
 {% endblock title %}
 {% block content %}
-    <div class="max-w-6xl mx-auto">
-        {% if perms.cms.view_patient %}
-            <div class="w-full flex flex-col flex-wrap mb-6">
-                <h1 class="heading">{% translate "Patients list" %}</h1>
-            </div>
-            {% for patient in patients %}
-                <div class="bg-white border-2 justify-between border-gray-200 rounded-lg shadow-md shadow-inner mb-8 gap-6 overflow-hidden">
-                    <div class="px-8 py-6 grow">
-                        <p class="text-xl font-bold">
-                            <span class="font-bold">{{ patient.last_name }}</span>, {{ patient.first_name }}
-                        </p>
-                        <p>
-                            {% translate "Privately insured" %}:
-                            {% if patient.insurance_type %}
-                                <i icon-name="check" class="w-4 h-4 text-green-700"></i>
-                            {% else %}
-                                <i icon-name="x" class="w-4 h-4 text-red-700"></i>
-                            {% endif %}
-                        </p>
-                        <p class="text-gray-800 mt-4">{% translate "DOB" %}: {{ patient.date_of_birth }}</p>
-                        <p class="text-gray-800">{% translate "Age" %}: {{ patient.age }}</p>
-                        <p class="text-gray-800 mb-4">{% translate "Gender" %}: {{ patient.gender }}</p>
-                        <p class="text-gray-600">{% translate "Added by" %}: {{ patient.creator.personnel_id }}</p>
-                        <p class="text-gray-600">{% translate "Added at" %}: {{ patient.created_at }}</p>
-                        {{ patient.current_stay }}
-                    </div>
-                </div>
-            {% endfor %}
-        {% endif %}
-    </div>
+    {% if perms.cms.view_patient %}
+        <div class="w-full flex flex-col flex-wrap mb-6">
+            <h1 class="heading">{% translate "Patients list" %}</h1>
+        </div>
+        <div class="shadow-md">
+            <input id="search-patient-input"
+                   type="text"
+                   placeholder="Search for name..." />
+            <table id="patients" class="w-full text-sm text-gray-500">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+                    <tr>
+                        <th class="px-6 py-3">{% translate "Patient name" %}</th>
+                        <th class="px-6 py-3">{% translate "Gender" %}</th>
+                        <th class="px-6 py-3">{% translate "Date of Birth" %}</th>
+                        <th class="px-6 py-3">{% translate "Privately insured" %}?</th>
+                        <th class="px-6 py-3 w-60">{% translate "Status" %}</th>
+                        <th class="px-6 py-3 w-[400px]">{% translate "Action" %}</th>
+                    </tr>
+                </thead>
+                <tbody class="overflow-y-auto">
+                    <tr class="odd:bg-white even:bg-gray-100 border-b">
+                        <td class="px-6 py-4">
+                            <div class="flex flex-nowrap gap-4">
+                                {% render_field new_patient_form.last_name form="add-patient" %}
+                                {% render_field new_patient_form.first_name form="add-patient" %}
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">{% render_field new_patient_form.gender form="add-patient" %}</td>
+                        <td class="px-6 py-4">{% render_field new_patient_form.date_of_birth form="add-patient" %}</td>
+                        <td class="px-6 py-4 text-center">{% render_field new_patient_form.insurance_type form="add-patient" %}</td>
+                        <td class="px-6 py-4"></td>
+                        <td class="p-4 text-center">
+                            <button class="px-2 text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-700 rounded px-5 py-2.5 text-center"
+                                    form="add-patient">
+                                <form hidden
+                                      id="add-patient"
+                                      method="post"
+                                      action="{% url "cms:protected:create_patient" %}">
+                                    {% csrf_token %}
+                                </form>
+                                {% translate "Add" %}
+                            </button>
+                        </td>
+                    </tr>
+                    <tr class="h-3 w-full"></tr>
+                    {% for patient, patient_form in patients %}
+                        <tr data-patient-id="{{ patient.id }}"
+                            class="odd:bg-white even:bg-gray-100 border-b">
+                            <td class="px-6 py-4">
+                                <p class="py-2 px-3 text-xl border border-transparent ">{{ patient.last_name }}, {{ patient.first_name }}</p>
+                                <div class="hidden flex flex-nowrap gap-4">
+                                    {% render_field patient_form.last_name form=patient.id %}
+                                    {% render_field patient_form.first_name form=patient.id %}
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                {% if patient.gender == 'm' %}
+                                    <p class="py-2 px-3 text-xl border border-transparent w-full bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
+                                        {% translate "Male" %}
+                                    </p>
+                                {% elif patient.gender == 'f' %}
+                                    <p class="py-2 px-3 text-xl border border-transparent w-full bg-pink-100 text-pink-800 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-pink-900 dark:text-pink-300">
+                                        {% translate "Female" %}
+                                    </p>
+                                {% elif patient.gender == 'd' %}
+                                    <p class="py-2 px-3 text-xl border border-transparent w-full bg-green-100 text-green-800 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-pink-900 dark:text-pink-300">
+                                        {% translate "Diverse" %}
+                                    </p>
+                                {% endif %}
+                                {% render_field patient_form.gender form=patient.id class+="hidden" %}
+                            </td>
+                            <td class="px-6 py-4">
+                                <p class="py-2 px-3 text-xl">{{ patient.date_of_birth|date:'d.m.Y' }}</p>
+                                {% render_field patient_form.date_of_birth form=patient.id class+="hidden" %}
+                            </td>
+                            <td class="px-6 py-4 text-center">
+                                {% if patient.insurance_type %}
+                                    <i icon-name="check" class="w-4 h-4 text-green-700"></i>
+                                {% else %}
+                                    <i icon-name="x" class="w-4 h-4 text-red-700"></i>
+                                {% endif %}
+                                {% render_field patient_form.insurance_type form=patient.id class+="hidden" %}
+                            </td>
+                            <td class="px-6 py-4 text-center">
+                                <span>
+                                    {% if patient.current_room %}
+                                        {% url 'cms:protected:ward_detail' pk=patient.current_ward.ward_number as url %}
+                                        Stays in: <a class="text-blue-500" href="{{ url }}">{{ patient.current_ward.name }}, Room {{ patient.current_room.room_number }}</a>
+                                    {% elif patient.current_stay %}
+                                        {% url 'cms:protected:ward_detail' pk=patient.current_stay.recommended_ward.ward_number as url %}
+                                        <b class="text-red-500">Waits for assignment
+                                            {% if patient.current_stay.recommended_ward %}
+                                                in Ward <a class="text-blue-500" href="{{ url }}">{{ patient.current_stay.recommended_ward.name }}</a>
+                                            {% endif %}
+                                        </b>
+                                    {% else %}
+                                        -
+                                    {% endif %}
+                                </span>
+                            </td>
+                            <td class="p-4">
+                                <div class="text-center">
+                                    <button class="edit-patient-button text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-700 rounded px-5 py-2.5">
+                                        {% translate "Edit" %}
+                                    </button>
+                                </div>
+                                <div class="hidden flex flex-wrap gap-1">
+                                    <button class="grow edit-patient-button text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-700 rounded px-5 py-2.5">
+                                        {% translate "Cancel" %}
+                                    </button>
+                                    <button class="grow text-white bg-green-500 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-700 rounded px-5 py-2.5"
+                                            form="{{ patient.id }}">
+                                        <form hidden
+                                              id="{{ patient.id }}"
+                                              method="post"
+                                              action="{% url "cms:protected:update_patient" patient.id %}">
+                                            {% csrf_token %}
+                                        </form>
+                                        {% translate "Save" %}
+                                    </button>
+                                    <button class="grow text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 rounded px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                                            form="delete-patient-{{ patient.id }}">
+                                        <form hidden
+                                              id="delete-patient-{{ patient.id }}"
+                                              method="post"
+                                              action="{% url "cms:protected:delete_patient" patient.id %}">
+                                            {% csrf_token %}
+                                        </form>
+                                        {% translate "Delete" %}
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
 {% endblock content %}
