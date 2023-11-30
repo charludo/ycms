@@ -74,8 +74,11 @@ class Room(AbstractBaseModel):
         patient_ids = BedAssignment.objects.filter(
             models.Q(bed__room=self)
             & (
-                models.Q(discharge_date__isnull=True)
-                | models.Q(discharge_date__gt=current_or_travelled_time())
+                models.Q(admission_date__lte=current_or_travelled_time())
+                & (
+                    models.Q(discharge_date__gt=current_or_travelled_time())
+                    | models.Q(discharge_date__isnull=True)
+                )
             )
         ).values_list("medical_record__patient", flat=True)
         patients = Patient.objects.filter(pk__in=patient_ids)
@@ -99,7 +102,57 @@ class Room(AbstractBaseModel):
         :return: genders of patients in the room
         :rtype: set
         """
-        return set(patient.gender for patient in self.patients.all())
+        return set(patient.gender for patient in self.patients())
+
+    @cached_property
+    def insurance_types(self):
+        """
+        Helper property for accessing all insurance_types of patients currently stationed in the room
+
+        :return: insurance_types of patients in the room
+        :rtype: set
+        """
+        return set(patient.insurance_type for patient in self.patients())
+
+    @cached_property
+    def patient_ages(self):
+        """
+        Helper property for accessing ages of patients currently stationed in the room
+
+        :return: ages of patients in the room
+        :rtype: list
+        """
+        return [patient.age for patient in self.patients()] if self.patients() else [0]
+
+    @cached_property
+    def minus_max_age(self):
+        """
+        Helper property for accessing minus maximum age of patients currently stationed in the room
+
+        :return: maximum age of patients in the room
+        :rtype: int
+        """
+        return -max(self.patient_ages)
+
+    @cached_property
+    def age_difference_between_patients(self):
+        """
+        Helper property for accessing age difference between patients currently stationed in the room
+
+        :return: age difference between patients in the room
+        :rtype: int
+        """
+        return max(self.patient_ages) - min(self.patient_ages)
+
+    @cached_property
+    def assignable_beds(self):
+        """
+        Helper property for accessing the free bed
+
+        :return: free beds in the room
+        :rtype: list
+        """
+        return [bed for bed in self.beds.all() if bed.is_available]
 
     def __str__(self):
         """

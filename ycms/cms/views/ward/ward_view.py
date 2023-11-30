@@ -1,8 +1,11 @@
+from django.db import models
 from django.shortcuts import redirect
 from django.views.generic import TemplateView
 
 from ...constants import gender
-from ...models import Ward
+from ...forms import IntakeBedAssignmentForm, PatientForm
+from ...models import BedAssignment, Ward
+from ...models.timetravel_manager import current_or_travelled_time
 
 
 class WardView(TemplateView):
@@ -12,6 +15,7 @@ class WardView(TemplateView):
 
     model = Ward
     template_name = "ward/ward.html"
+    context_object_name = "ward"
 
     def get_context_data(self, pk=None, **kwargs):
         """
@@ -28,11 +32,37 @@ class WardView(TemplateView):
         """
         if not pk and self.request.user.assigned_ward:
             pk = self.request.user.assigned_ward.id
-        if not pk:
+        elif not pk:
             pk = 1
         ward = Ward.objects.get(id=pk)
-        rooms = ward.rooms.all()
+        rooms = [
+            (
+                room,
+                [
+                    (
+                        patient,
+                        PatientForm(instance=patient),
+                        IntakeBedAssignmentForm(instance=patient.current_stay),
+                    )
+                    for patient in room.patients()
+                ],
+            )
+            for room in ward.rooms.all()
+        ]
         wards = Ward.objects.all()
+        unassigned_bed_assignments = BedAssignment.objects.filter(
+            models.Q(admission_date__lte=current_or_travelled_time())
+            & models.Q(bed__isnull=True)
+            & (
+                models.Q(discharge_date__gt=current_or_travelled_time())
+                | models.Q(discharge_date__isnull=True)
+            )
+            & (
+                models.Q(recommended_ward__isnull=True)
+                | models.Q(recommended_ward=ward)
+            )
+        )
+
         return {
             "rooms": rooms,
             "corridor_index": str(len(rooms) // 2),
@@ -40,6 +70,7 @@ class WardView(TemplateView):
             "patient_info": self._get_patient_info(ward.patients),
             "wards": wards,
             "selected_ward_id": pk,
+            "unassigned_bed_assignments": unassigned_bed_assignments,
             **super().get_context_data(**kwargs),
         }
 

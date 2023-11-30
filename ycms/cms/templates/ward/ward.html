@@ -1,29 +1,29 @@
 {% extends "_base.html" %}
 {% load i18n %}
 {% load widget_tweaks %}
-{% load custom_filters %}
 {% block title %}
     {% translate "Ward" %}
 {% endblock title %}
 {% block content %}
     <div class="flex justify-center items-center">
         <div class="container mx-auto">
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7">
-                {% with ward=ward patient_info=patient_info wards=wards selected_ward_id=selected_ward_id %}
+            <div id="normal-info" class="flex flex-col">
+                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
                     {% include "ward/ward_info.html" %}
-                {% endwith %}
+                </div>
+                <div class="ward-empty-section"></div>
             </div>
             <div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7">
                 {% if perms.cms.view_patient %}
-                    {% for room in rooms %}
+                    {% for room, patients in rooms %}
                         <div class="col-span-1 sm:col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1 flex"
                              data-drawer-target="drawer-right-{{ room.room_number }}"
                              data-drawer-show="drawer-right-{{ room.room_number }}"
                              data-drawer-placement="right"
                              aria-controls="drawer-right-{{ room.room_number }}">
-                            {% with room=room %}
+                            <div class="w-full p-6 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 cursor-pointer hover:bg-gray-200">
                                 {% include "ward/ward_room_card.html" %}
-                            {% endwith %}
+                            </div>
                         </div>
                         {% if room.room_number == corridor_index %}
                             <div class="col-span-full">
@@ -32,15 +32,20 @@
                                 </div>
                             </div>
                         {% endif %}
-                        {% with room=room %}
-                            {% include "ward/ward_drawer.html" %}
-                        {% endwith %}
+                        {% include "ward/ward_drawer.html" %}
                     {% endfor %}
                 {% endif %}
             </div>
         </div>
     </div>
+    <div id="update-modal"
+         tabindex="-1"
+         aria-hidden="true"
+         data-modal-target="update-modal"
+         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    </div>
     {% if ward.patients %}
         {% include "ward/ward_modal.html" %}
     {% endif %}
+    {% include "bed_assignment/bed_assignment_drawer.html" %}
 {% endblock content %}

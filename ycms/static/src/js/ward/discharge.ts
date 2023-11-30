@@ -2,7 +2,7 @@ import { Modal, ModalOptions } from "flowbite";
 
 let selectedBedAssignmentId: string | null = "";
 
-export const handleModalClose = (): void => {
+const handleModalClose = (): void => {
     document.getElementById("cancelDischargeButton")?.addEventListener("click", () => {
         const modal = FlowbiteInstances.getInstance("Modal", "modalEl");
         modal.hide();
@@ -13,7 +13,7 @@ export const handleModalClose = (): void => {
     });
 };
 
-export const handleConfirmDischarge = (): void => {
+const handleConfirmDischarge = (): void => {
     document.getElementById("confirmDischargeButton")?.addEventListener("click", () => {
         const getCookie = (name: string): string | null => {
             let cookieValue = null;
@@ -52,7 +52,7 @@ export const handleConfirmDischarge = (): void => {
     });
 };
 
-export const handleDischarge = (button: HTMLElement): void => {
+const handleDischarge = (button: HTMLElement): void => {
     selectedBedAssignmentId = button.getAttribute("data-bedassignment-id");
 
     const targetEl = document.getElementById("modalEl");
@@ -67,7 +67,7 @@ export const handleDischarge = (button: HTMLElement): void => {
     modal.show();
 };
 
-export const handleButtonDischarge = (): void => {
+const handleButtonDischarge = (): void => {
     const buttons = document.querySelectorAll('button[id*="dischargeButton"]');
 
     buttons.forEach((element) => {
@@ -77,3 +77,9 @@ export const handleButtonDischarge = (): void => {
         });
     });
 };
+
+window.addEventListener("load", () => {
+    handleButtonDischarge();
+    handleConfirmDischarge();
+    handleModalClose();
+});
