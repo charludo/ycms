@@ -34,7 +34,7 @@ VIEWS = [
                 {
                     "patient": "185",
                     "diagnosis_code": "80173",
-                    "admission_date": "2023-01-01",
+                    "admission_date": "2023-01-01T11:42:11.331Z",
                 },
             ),
             (
@@ -47,7 +47,7 @@ VIEWS = [
                     "date_of_birth": "2023-01-01",
                     "gender": "d",
                     "diagnosis_code": "80173",
-                    "admission_date": "2023-01-01",
+                    "admission_date": "2023-01-01T11:42:11.331Z",
                     "accompanied": True,
                     "note": "test note",
                 },
