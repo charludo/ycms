@@ -115,15 +115,41 @@ class Patient(AbstractBaseModel):
         """
         return self.current_room.ward if self.current_room else None
 
+    @staticmethod
+    def _get_date_status(date_to_check):
+        """
+        Helper function to get the date status of a given date
+
+        :param date_to_check: the date to check
+        :type date_to_check: datetime.date
+        :return: the date status
+        :rtype: str
+        """
+        if not date_to_check:
+            return None
+
+        if not (
+            days_since := (
+                current_or_travelled_time().date() - date_to_check.date()
+            ).days
+        ):
+            return f"{date_to_check.strftime('%b. %d, %Y')} ({_('today')})"
+
+        if days_since > 0:
+            return f"{date_to_check.strftime('%b. %d, %Y')} ({days_since} {_('day') if days_since == 1 else _('days')} ago)"
+
+        days_until = abs(days_since)
+        return f"{date_to_check.strftime('%b. %d, %Y')} ({_('in')} {days_until} {_('day') if days_until == 1 else _('days')})"
+
     @cached_property
     def current_admission_date(self):
         """
         Helper property for accessing the patient's current admission date
 
         :return: the current admission date
-        :rtype: ~ycms.cms.models.bed_assignment.BedAssignment
+        :rtype: str
         """
-        return self.current_stay.admission_date if self.current_stay else None
+        return self._get_date_status(self.current_stay.admission_date)
 
     @cached_property
     def current_discharge_date(self):
@@ -131,9 +157,9 @@ class Patient(AbstractBaseModel):
         Helper property for accessing the patient's current discharge date
 
         :return: the current discharge date
-        :rtype: ~ycms.cms.models.bed_assignment.BedAssignment
+        :rtype: str
         """
-        return self.current_stay.discharge_date if self.current_stay else None
+        return self._get_date_status(self.current_stay.discharge_date)
 
     def __str__(self):
         """

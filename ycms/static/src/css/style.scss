@@ -318,11 +318,6 @@ input[type="submit"] {
     }
 }
 
-/***********
-* WARD *
-***********/
-$ward-section-height: 98px;
-
-.ward-empty-section {
-    height: $ward-section-height;
+.progress-bar {
+    width: var(--progress-width, 0%);
 }

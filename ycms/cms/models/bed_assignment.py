@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 
 from .abstract_base_model import AbstractBaseModel
@@ -60,6 +61,59 @@ class BedAssignment(AbstractBaseModel):
     )
 
     objects = TimetravelManager()
+
+    @cached_property
+    def duration(self):
+        """
+        Helper property for accessing the patient's current hospital stay duration
+
+        :return: the current bed assignment duration
+        :rtype: str
+        """
+        if not self:
+            return None
+
+        duration = int(
+            (current_or_travelled_time().date() - self.admission_date.date()).days
+        )
+        return f"{duration} {_('days')}" if duration > 1 else f"{duration} {_('day')}"
+
+    @cached_property
+    def until_discharge(self):
+        """
+        Helper property for accessing the patient's current hospital stay until discharge
+
+        :return: the current bed assignment until discharge
+        :rtype: str
+        """
+        if self.duration is None or self.discharge_date is None:
+            return None
+
+        until_discharge = int(
+            ((self.discharge_date.date() - current_or_travelled_time().date()).days)
+        )
+
+        return (
+            f"{_('in')} {until_discharge} {_('days')}"
+            if until_discharge > 1
+            else f"{_('in')} {until_discharge} {_('day')}"
+        )
+
+    @cached_property
+    def progress(self):
+        """
+        Helper property for accessing the patient's current hospital stay progress
+
+        :return: the current bed assignment progress
+        :rtype: int
+        """
+        if self.duration is None or self.discharge_date is None:
+            return None
+
+        duration = int(
+            (current_or_travelled_time().date() - self.admission_date.date()).days
+        )
+        return int((duration / (self.discharge_date - self.admission_date).days) * 100)
 
     def __str__(self):
         """

@@ -9,6 +9,7 @@ import "./js/ward/discharge";
 import "./js/ward/assign";
 import { initFlowbite } from "flowbite";
 import "./js/ward/toggle-edit-mode";
+import "./js/ward/progress";
 import { createIconsAt } from "./js/utils/create-icons";
 
 window.addEventListener("DOMContentLoaded", () => {

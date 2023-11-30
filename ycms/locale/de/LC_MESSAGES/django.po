@@ -585,12 +585,12 @@ msgid "Action"
 msgstr "Aktion"
 
 #: cms/templates/bed_assignment/bed_assignment_list.html
-#: cms/templates/ward/ward_info.html cms/templates/ward/ward_room_card.html
+#: cms/templates/ward/ward_info.html
 msgid "Male"
 msgstr "Männlich"
 
 #: cms/templates/bed_assignment/bed_assignment_list.html
-#: cms/templates/ward/ward_info.html cms/templates/ward/ward_room_card.html
+#: cms/templates/ward/ward_info.html
 msgid "Female"
 msgstr "Weiblich"
 
@@ -600,9 +600,9 @@ msgid "Edit"
 msgstr "Bearbeiten"
 
 #: cms/templates/bed_assignment/bed_assignment_list.html
-#: cms/templates/patient/patient_card.html
+#: cms/templates/patient/patient_card.html cms/templates/ward/ward_beds.html
 msgid "Discharge"
-msgstr "Entladung"
+msgstr "Entlassen"
 
 #: cms/templates/bed_assignment/bed_assignment_list.html
 msgid "You do not have permission view patient data. To do so, please log in."
@@ -761,13 +761,13 @@ msgstr "Stunde"
 msgid "minute"
 msgstr "Minute"
 
+#: cms/templates/ward/ward_beds.html
+msgid "Stay"
+msgstr "Aufenthalt"
+
 #: cms/templates/ward/ward_drawer.html cms/templates/ward/ward_room_card.html
 msgid "Room"
 msgstr "Zimmer"
-
-#: cms/templates/ward/ward_drawer.html cms/templates/ward/ward_room_card.html
-msgid "Beds"
-msgstr "Betten"
 
 #: cms/templates/ward/ward_info.html
 msgid "Total"
@@ -948,6 +948,12 @@ msgstr "Deutsch"
 #: core/settings.py
 msgid "English"
 msgstr "Englisch"
+
+#~ msgid "days"
+#~ msgstr "Tage"
+
+#~ msgid "Beds"
+#~ msgstr "Betten"
 
 #~ msgid "Edit the bed assignment"
 #~ msgstr "Bearbeiten Sie die Bettenzuweisung"
