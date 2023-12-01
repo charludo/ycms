@@ -8,3 +8,4 @@ from .bed_assignment.bed_assignment_form import BedAssignmentForm
 from .intake_bed_assignment_form import IntakeBedAssignmentForm
 from .intake_record_form import IntakeRecordForm
 from .patient_form import PatientForm
+from .ward_form import WardForm

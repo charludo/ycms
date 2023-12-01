@@ -53,8 +53,18 @@ urlpatterns = [
             ]
         ),
     ),
-    path("ward/", ward.WardView.as_view(), name="ward_detail_default"),
-    path("ward/<int:pk>/", ward.WardView.as_view(), name="ward_detail"),
+    path(
+        "ward/",
+        include(
+            [
+                path("", ward.WardView.as_view(), name="ward_detail_default"),
+                path("<int:pk>/", ward.WardView.as_view(), name="ward_detail"),
+                path(
+                    "manage/", ward.WardManagementView.as_view(), name="ward_management"
+                ),
+            ]
+        ),
+    ),
     path(
         "bed-assignments/",
         include(

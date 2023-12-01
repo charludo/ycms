@@ -396,9 +396,9 @@ msgstr " Logo"
 msgid "General"
 msgstr "Allgemein"
 
-#: cms/templates/_base.html
-msgid "ZBM View"
-msgstr "ZBM Ansicht"
+#: cms/templates/_base.html cms/templates/ward/ward_management.html
+msgid "Ward Management"
+msgstr "Stationsverwaltung"
 
 #: cms/templates/_base.html cms/templates/patients_list.html
 msgid "Manage Patients"
@@ -781,7 +781,7 @@ msgstr "Bettenverfügbarkeit"
 msgid "Available Beds"
 msgstr "Verfügbare Betten"
 
-#: cms/templates/ward/ward_info.html
+#: cms/templates/ward/ward_info.html cms/templates/ward/ward_management.html
 msgid "Total Beds"
 msgstr "Gesamtzahl der Betten"
 
@@ -792,6 +792,62 @@ msgstr "Manuell zuweisen"
 #: cms/templates/ward/ward_info.html
 msgid "Suggest Assignment"
 msgstr "Aufgabe vorschlagen"
+
+#: cms/templates/ward/ward_management.html
+msgid "YCMS at a glance"
+msgstr "YCMS im Überblick"
+
+#: cms/templates/ward/ward_management.html
+msgid "Total Wards"
+msgstr "Gesamtzahl der Stationen"
+
+#: cms/templates/ward/ward_management.html
+msgid "Total Doctors"
+msgstr "Gesamtzahl der Ärzte"
+
+#: cms/templates/ward/ward_management.html
+msgid "Total Nurses"
+msgstr "Gesamtzahl der Krankenpflegenden"
+
+#: cms/templates/ward/ward_management.html
+msgid "Total Available Beds"
+msgstr "Gesamtzahl der verfügbaren Betten"
+
+#: cms/templates/ward/ward_management.html
+msgid "Total Occupied Beds"
+msgstr "Gesamtzahl der belegten Betten"
+
+#: cms/templates/ward/ward_management.html
+msgid "Add a New Ward"
+msgstr "Eine Neue Station Hinzufügen"
+
+#: cms/templates/ward/ward_management.html
+msgid "Add New Ward"
+msgstr "Neue Station Hinzufügen"
+
+#: cms/templates/ward/ward_management.html
+msgid "Details about Wards"
+msgstr "Details über Stationen"
+
+#: cms/templates/ward/ward_management.html
+msgid "Ward Number"
+msgstr "Stationsnummer"
+
+#: cms/templates/ward/ward_management.html
+msgid "Ward Name"
+msgstr "Stationsname"
+
+#: cms/templates/ward/ward_management.html
+msgid "Number of Beds"
+msgstr "Betten"
+
+#: cms/templates/ward/ward_management.html
+msgid "Available"
+msgstr "Verfügbare Betten"
+
+#: cms/templates/ward/ward_management.html
+msgid "Occupied"
+msgstr "Belegten Betten"
 
 #: cms/templates/ward/ward_modal.html
 msgid "Are you sure you want to discharge this patient?"
@@ -874,7 +930,12 @@ msgstr "Patient*in \"{} {}\" mit Diagnose \"{}\" wurde gespeichert."
 msgid ""
 "Patient \"{} {}\"  and their current stay from {} to {} have been saved."
 msgstr ""
-"Patient*in \"{} {}\"  und aktueller Krankenhausaufenthalt von {} bis {} wurden gespeichert."
+"Patient*in \"{} {}\"  und aktueller Krankenhausaufenthalt von {} bis {} "
+"wurden gespeichert."
+
+#: cms/views/ward/ward_management_view.py
+msgid "Addition of new ward \"{}\" successful!"
+msgstr "Hinzufügung der neuen Station \"{}\" erfolgreich!"
 
 #: core/apps.py
 msgid "Core"
@@ -902,6 +963,9 @@ msgstr "Englisch"
 
 #~ msgid "Create a new bed assignment"
 #~ msgstr "Erstellen Sie eine neue Bettenzuweisung"
+
+#~ msgid "Ward Details"
+#~ msgstr "Stationsdetails"
 
 #~ msgid "Home"
 #~ msgstr "Start"
@@ -933,9 +997,6 @@ msgstr "Englisch"
 
 #~ msgid "Manager"
 #~ msgstr "Manager"
-
-#~ msgid "Doctor"
-#~ msgstr "Arzt"
 
 #~ msgid "Confirm password"
 #~ msgstr "Passwort bestätigen"
