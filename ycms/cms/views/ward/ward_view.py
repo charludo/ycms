@@ -65,7 +65,7 @@ class WardView(TemplateView):
 
         return {
             "rooms": rooms,
-            "corridor_index": str(len(rooms) // 2),
+            "corridor_index": len(rooms) // 2,
             "ward": ward,
             "patient_info": self._get_patient_info(ward.patients),
             "wards": wards,
