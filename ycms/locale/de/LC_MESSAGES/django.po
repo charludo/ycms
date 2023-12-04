@@ -311,6 +311,14 @@ msgid "Date of birth of the patient"
 msgstr "Geburtsdatum des Patienten / der Patientin"
 
 #: cms/models/patient.py
+msgid "age"
+msgstr "Alter"
+
+#: cms/models/patient.py
+msgid "insurance"
+msgstr "Versicherung"
+
+#: cms/models/patient.py
 msgid "today"
 msgstr "Heute"
 
@@ -387,8 +395,8 @@ msgstr "Vorname des Angestellten / der Angestellten"
 msgid "Last name of the employee"
 msgstr "Nachname des Angestellten / der Angestellten"
 
-#: cms/models/user.py cms/templates/_base.html cms/templates/ward/ward.html
-#: cms/templates/ward/ward_info.html
+#: cms/models/user.py cms/templates/_base.html
+#: cms/templates/ward/ward_selection_form.html
 msgid "Ward"
 msgstr "Station"
 
@@ -546,11 +554,11 @@ msgstr "Rücksetzung anfordern"
 
 #: cms/templates/bed_assignment/assign_bed_assignment.html
 msgid "Assign the patient"
-msgstr "Ordnen Sie den Patienten zu"
+msgstr "Patienten zuordnen"
 
 #: cms/templates/bed_assignment/assign_bed_assignment.html
 msgid "Assigning patient"
-msgstr "Patienten zuordnen"
+msgstr "Patient*in zuordnen:"
 
 #: cms/templates/bed_assignment/assign_bed_assignment.html
 msgid "More reassignment options"
@@ -566,6 +574,7 @@ msgstr "Zuweisung aufheben"
 
 #: cms/templates/bed_assignment/assign_bed_assignment.html
 #: cms/templates/patient/patient_card.html cms/templates/patients_list.html
+#: cms/templates/timeline/timeline.html
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -759,7 +768,7 @@ msgstr "Patientenaufnahme abschließen"
 
 #: cms/templates/patient/patient_card.html cms/templates/ward/ward_info.html
 msgid "Patient Information"
-msgstr "Informationen zum Patienten"
+msgstr "Patienteninformationen"
 
 #: cms/templates/patient/patient_card.html
 msgid "Personal Details"
@@ -810,6 +819,7 @@ msgid "Edit Hospital Stay Details"
 msgstr "Details zum Krankenhausaufenthalt bearbeiten"
 
 #: cms/templates/patient/patient_card.html cms/templates/patients_list.html
+#: cms/templates/timeline/timeline.html
 msgid "Save"
 msgstr "Speichern"
 
@@ -848,6 +858,10 @@ msgstr "Divers"
 #: cms/templates/patients_list.html
 msgid "Delete"
 msgstr "Löschen"
+
+#: cms/templates/timeline/timeline.html
+msgid "unsaved bed assignment changes"
+msgstr "ungespeicherte Bettzuweisungsänderungen"
 
 #: cms/templates/timetravel_controls.html
 msgid "hour"
@@ -953,6 +967,14 @@ msgstr "Belegten Betten"
 msgid "Are you sure you want to discharge this patient?"
 msgstr "Sind Sie sicher, dass Sie diesen Patienten entlassen möchten?"
 
+#: cms/templates/ward/ward_mode_switch.html
+msgid "Ward mode"
+msgstr "Stationsmodus"
+
+#: cms/templates/ward/ward_mode_switch.html
+msgid "Timeline mode"
+msgstr "Timelinemodus"
+
 #: cms/templates/ward/ward_room_card.html
 msgid "Age gap is large (> 20)"
 msgstr "Der Altersunterschied ist groß (> 20)"
@@ -1044,6 +1066,20 @@ msgid ""
 msgstr ""
 "Patient*in \"{} {}\"  und aktueller Krankenhausaufenthalt von {} bis {} "
 "wurden gespeichert."
+
+#: cms/views/timeline/timeline_view.py
+msgid "unassigned"
+msgstr "nicht zugewiesen"
+
+#: cms/views/timeline/timeline_view.py
+msgid "{} of {} assignments have successfully been saved."
+msgstr "{} von {} Zuweisungen wurden erfolgreich gespeichert."
+
+#: cms/views/timeline/timeline_view.py
+msgid "{} assignments failed. The patients have been unassigned."
+msgstr ""
+"{} Zuweisungen sind fehlgeschlagen. Die Zuweisungen der Patient*innen wurden "
+"aufgehoben."
 
 #: cms/views/ward/ward_management_view.py
 msgid "Addition of new ward \"{}\" successful!"

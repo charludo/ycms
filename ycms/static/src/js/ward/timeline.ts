@@ -1,0 +1,136 @@
+import { Timeline, TimelineOptions } from "vis-timeline";
+import { DataSet } from "vis-data";
+
+type Id = number | string;
+
+type TimelineItem = {
+    id: number;
+    content: string;
+    start: string;
+    end: string;
+    requiredBeds: number;
+    group: Id;
+};
+
+type GroupItem = {
+    id: Id;
+    content: string;
+    beds: number;
+};
+
+type Change = {
+    assignmentId: number;
+    roomId: number;
+};
+
+const maxConcurrentBeds = (unsortedObjects: TimelineItem[]) => {
+    const objects = unsortedObjects.sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime());
+    let maxConcurrentBeds = 0;
+    for (let i = 0; i < objects.length; i++) {
+        let concurrentBeds: number = objects[i].requiredBeds;
+        for (let j = i + 1; i < objects.length; j++) {
+            if (j >= objects.length || objects[i].end < objects[j].start) {
+                break;
+            }
+            concurrentBeds += objects[j].requiredBeds;
+        }
+        maxConcurrentBeds = Math.max(maxConcurrentBeds, concurrentBeds);
+    }
+    return maxConcurrentBeds;
+};
+
+class ChangeTracker {
+    changeList: Change[] = [];
+    trackChange = (assignmentId: number, roomId: number) => {
+        const existingAssignment = this.changeList.find((a) => a.assignmentId === assignmentId);
+        if (existingAssignment) {
+            existingAssignment.roomId = roomId;
+        } else {
+            this.changeList.push({ assignmentId, roomId });
+        }
+        return this.changeList.length;
+    };
+    serialize = () => JSON.stringify(this.changeList);
+}
+
+window.addEventListener("load", () => {
+    const timelineContainer = document.querySelector("#timeline-container") as HTMLElement;
+    const changeCounterContainer = document.querySelector("#change-counter") as HTMLElement;
+    const changeCounter = document.querySelector("#change-counter span") as HTMLElement;
+    const changesForm = document.querySelector("#timeline-changes-form") as HTMLFormElement;
+    const changesInput = document.querySelector("#timeline-changes") as HTMLInputElement;
+    const changesButton = document.querySelector("#timeline-changes-form button") as HTMLButtonElement;
+    if (
+        !timelineContainer ||
+        !changeCounterContainer ||
+        !changeCounter ||
+        !changesForm ||
+        !changesInput ||
+        !changesButton
+    ) {
+        return;
+    }
+
+    const changeTracker = new ChangeTracker();
+
+    changesButton.addEventListener("click", (event) => {
+        event.preventDefault();
+        changesInput.value = changeTracker.serialize();
+        changesForm.submit();
+    });
+
+    /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+    const items = new DataSet<TimelineItem>(JSON.parse((globalThis as any).timeline_items as string));
+    /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+    const groups = new DataSet<GroupItem>(JSON.parse((globalThis as any).timeline_groups as string));
+
+    const options: TimelineOptions = {
+        groupHeightMode: "auto",
+        autoResize: false,
+        editable: { updateGroup: true, overrideItems: true },
+        margin: { axis: 5, item: { horizontal: 0 } },
+        rollingMode: { follow: true, offset: 0.1 },
+        orientation: { axis: "top", item: "top" },
+        // Called every time we move an item, regardless of if we drop it into a group
+        onMoving: (item, callback) => {
+            // Always allow unassigning
+            if ((item.group as string) === "unassigned") {
+                return callback(item);
+            }
+
+            // This produces an array containing all bed assignments which overlap with the item we are moving
+            const concurrentStays = items.get({
+                filter: (testItem) => {
+                    if (testItem.id === item.id || testItem.group !== item.group) {
+                        return false;
+                    }
+                    return !((item.end as Date) < new Date(testItem.start) || item.start > new Date(testItem.end));
+                },
+            });
+
+            const maxOccupants = groups.get(item.group as Id)?.beds || Infinity;
+            const requiredBeds = (item as TimelineItem).requiredBeds;
+            if (maxConcurrentBeds(concurrentStays) + requiredBeds <= maxOccupants) {
+                callback(item);
+            }
+
+            // This is just vis-timelines way of not executing the move
+            return callback(null);
+        },
+        // Only called once we drop the item into a group
+        onMove: (item, callback) => {
+            const totalChanges = changeTracker.trackChange(item.id as number, item.group as number);
+            changeCounter.innerHTML = String(totalChanges);
+            if (totalChanges > 0) {
+                changeCounterContainer.classList.remove("hidden");
+            } else {
+                changeCounterContainer.classList.add("hidden");
+            }
+            // eslint-disable-next-line no-param-reassign
+            item.className += " changed";
+            callback(item);
+        },
+    };
+
+    const _ = new Timeline(timelineContainer, items, groups, options);
+});

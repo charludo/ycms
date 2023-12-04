@@ -1,0 +1,16 @@
+{% load i18n %}
+<div class="flex space-x-4 p-4 items-center">
+    <div class="text-2xl font-semibold dark:text-white">{% translate "Ward" %}</div>
+    <form method="post"
+          id="ward-selection-form"
+          action="{% url "cms:protected:ward_detail_default" %}">
+        {% csrf_token %}
+        <select name="ward" id="ward-select" onchange="this.form.submit()">
+            {% for ward in wards %}
+                <option value="{{ ward.id }}"
+                        id="ward-option-{{ ward.id }}"
+                        {% if ward.id == selected_ward_id %}selected{% endif %}>{{ ward.name }}</option>
+            {% endfor %}
+        </select>
+    </form>
+</div>

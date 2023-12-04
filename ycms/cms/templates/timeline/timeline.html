@@ -1,0 +1,43 @@
+{% extends "_base.html" %}
+{% load i18n %}
+{% load widget_tweaks %}
+{% block title %}
+    {{ ward.name }}
+{% endblock title %}
+{% block content %}
+    <div class="flex justify-center items-center">
+        <div class="container mx-auto">
+            <div class="col-span-full rounded-lg border border-gray-300 bg-white shadow-md flex flex-nowrap h-full items-center justify-between p-4 mb-4 hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                {% include "ward/ward_selection_form.html" %}
+                <div id="change-counter"
+                     class="hidden flex items-center gap-2 dark:text-white">
+                    <span>0</span> {% translate "unsaved bed assignment changes" %}
+                    <form enctype="multipart/form-data"
+                          method="post"
+                          id="timeline-changes-form"
+                          class="flex items-center">
+                        {% csrf_token %}
+                        <input type="hidden" name="timeline_changes" id="timeline-changes" />
+                        <button class="text-white bg-green-500 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 rounded inline-flex items-center px-5 py-2.5 text-center">
+                            {% translate "Save" %}
+                        </button>
+                    </form>
+                    <button onclick="location.reload()"
+                            class="text-red-700 border-red-700 border-2 hover:border-red-800 dark:text-red-100 hover:text-white hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 rounded px-5 py-2 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                        {% translate "Cancel" %}
+                    </button>
+                </div>
+                {% with checked=True %}
+                    {% include "ward/ward_mode_switch.html" %}
+                {% endwith %}
+            </div>
+            <div>
+                <script>
+                    window.timeline_items = '{{ timeline_data.items|safe }}';
+                    window.timeline_groups = '{{ timeline_data.groups|safe }}';
+                </script>
+                <div id="timeline-container"></div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,4 +1,5 @@
 import "tom-select/dist/css/tom-select.css";
+import "vis-timeline/styles/vis-timeline-graph2d.css";
 import "./css/style.scss";
 import "./js/messages";
 import "./js/patient_select_or_create";
@@ -8,6 +9,7 @@ import "./js/utils/timetravel";
 import "./js/utils/menu";
 import "./js/ward/discharge";
 import "./js/ward/assign";
+import "./js/ward/timeline";
 import "./js/ward/toggle-edit-mode";
 import "./js/ward/progress";
 import { createIconsAt } from "./js/utils/create-icons";

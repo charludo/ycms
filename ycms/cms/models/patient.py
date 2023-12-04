@@ -67,6 +67,26 @@ class Patient(AbstractBaseModel):
         return years_ago
 
     @cached_property
+    def insurance_name(self):
+        """
+        Helper property to get the human-readable representation of the patient's
+        insurance type
+        """
+        return dict(insurance_types.CHOICES)[self.insurance_type]
+
+    @cached_property
+    def short_info(self):
+        """
+        Helper property to get a short info string about the patient
+
+        :return: the patient's info as a short string
+        :rtype: str
+        """
+        age = _("age")
+        insurance = _("insurance")
+        return f"{self.first_name[0]}. {self.last_name} ({age}: {self.age}, {insurance}: {self.insurance_name})"
+
+    @cached_property
     def current_stay(self):
         """
         Helper property for accessing the patient's current hospital stay
