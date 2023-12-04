@@ -17,7 +17,7 @@
         <span class="sr-only">{% translate "Close menu" %}</span>
     </button>
     <div class="flex flex-col gap-4">
-        {% for bed_assignment in unassigned_bed_assignments %}
+        {% for bed_assignment, patient_form, bed_assignment_form in unassigned_bed_assignments %}
             {% with patient=bed_assignment.medical_record.patient unassigned=True %}
                 {% include "patient/patient_card.html" %}
             {% endwith %}
