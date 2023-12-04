@@ -1,3 +1,4 @@
+import datetime
 import logging
 
 from django import forms
@@ -24,13 +25,29 @@ class IntakeBedAssignmentForm(CustomModelForm):
         model = BedAssignment
         fields = ["admission_date", "discharge_date", "recommended_ward", "accompanied"]
         widgets = {
-            "admission_date": forms.NumberInput(
-                attrs={"type": "date", "value": current_or_travelled_time().date}
+            "admission_date": forms.DateTimeInput(
+                format=("%Y-%m-%dT%H:%M"), attrs={"type": "datetime-local"}
             ),
-            "discharge_date": forms.NumberInput(
-                attrs={"type": "date", "value": current_or_travelled_time().date}
+            "discharge_date": forms.DateTimeInput(
+                format=("%Y-%m-%dT%H:%M"), attrs={"type": "datetime-local"}
             ),
         }
+
+    def __init__(self, *args, **kwargs):
+        r"""
+        Initialize medical record form
+
+        :param \*args: The supplied arguments
+        :type \*args: list
+
+        :param \**kwargs: The supplied keyword arguments
+        :type \**kwargs: dict
+        """
+        super().__init__(*args, **kwargs)
+        self.fields["admission_date"].initial = current_or_travelled_time()
+        self.fields[
+            "discharge_date"
+        ].initial = current_or_travelled_time() + datetime.timedelta(days=1)
 
     def save(self, commit=True):
         """

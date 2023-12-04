@@ -59,6 +59,12 @@
                                 <div class="help-text">{{ bed_form.admission_date.help_text }}</div>
                             </div>
                             <div>
+                                <label for="{{ bed_form.discharge_date.id_for_label }}"
+                                       class="field-required">{{ bed_form.discharge_date.label }}</label>
+                                {% render_field bed_form.discharge_date %}
+                                <div class="help-text">{{ bed_form.discharge_date.help_text }}</div>
+                            </div>
+                            <div>
                                 <label for="{{ bed_form.recommended_ward.id_for_label }}">{{ bed_form.recommended_ward.label }}</label>
                                 {% render_field bed_form.recommended_ward %}
                                 <div class="help-text">{{ bed_form.recommended_ward.help_text }}</div>

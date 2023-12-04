@@ -17,12 +17,12 @@ class BedAssignment(AbstractBaseModel):
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(default=current_or_travelled_time, null=False)
     updated_at = models.DateTimeField(auto_now=True, null=False)
-    admission_date = models.DateField(
+    admission_date = models.DateTimeField(
         blank=True,
         verbose_name=_("admission date"),
         help_text=_("date the hostpital stay begins"),
     )
-    discharge_date = models.DateField(
+    discharge_date = models.DateTimeField(
         blank=True,
         null=True,
         verbose_name=_("discharge date"),
