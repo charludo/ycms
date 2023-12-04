@@ -16,7 +16,7 @@
 This modules contains the config for the view tests
 """
 
-from ...conftest import MEDICAL_PERSONNEL, ROLES, ROOT, STATION_MANAGEMENT
+from ...conftest import MEDICAL_PERSONNEL, ROOT, STATION_MANAGEMENT
 
 #: This list contains the config for all views
 #: Each element is a tuple which consists of two elements: A list of view configs and the keyword arguments that are
@@ -57,8 +57,15 @@ VIEWS = [
     ),
     (
         [
-            ("cms:protected:ward_detail", ROLES),
-            ("cms:protected:ward_detail", ROLES, {"ward": 1}),
+            (
+                "cms:protected:ward_detail",
+                [ROOT, STATION_MANAGEMENT, MEDICAL_PERSONNEL],
+            ),
+            (
+                "cms:protected:ward_detail",
+                [ROOT, STATION_MANAGEMENT, MEDICAL_PERSONNEL],
+                {"ward": 1},
+            ),
         ],
         {"pk": 1},
     ),
