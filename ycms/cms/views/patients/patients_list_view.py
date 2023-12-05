@@ -1,10 +1,12 @@
 import logging
 
 from django.contrib import messages
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import redirect
+from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.utils.translation import gettext as _
 from django.views.generic import TemplateView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 from ...decorators import permission_required
 from ...forms import PatientForm
@@ -32,95 +34,77 @@ class PatientsListView(TemplateView):
         :rtype: ~django.template.response.TemplateResponse
         """
         return {
-            "patients": Patient.objects.all().order_by("-created_at"),
+            "patients": [
+                (patient, PatientForm(instance=patient))
+                for patient in Patient.objects.all().order_by("-created_at")
+            ],
+            "new_patient_form": PatientForm(),
             **super().get_context_data(**kwargs),
         }
 
-    def post(self, request, *args, **kwargs):
-        r"""
-        :param request: The current request
-        :type request: ~django.http.HttpRequest
 
-        :param \*args: The supplied arguments
-        :type \*args: list
+@method_decorator(permission_required("cms.add_patient"), name="dispatch")
+class PatientCreateView(CreateView):
+    """
+    View to create a patient
+    """
 
-        :param \**kwargs: The supplied keyword arguments
-        :type \**kwargs: dict
+    model = Patient
+    success_url = reverse_lazy("cms:protected:patients")
+    form_class = PatientForm
 
-        :return: Redirect to list of patients
-        :rtype: ~django.http.HttpResponseRedirect
-        """
+    def form_valid(self, form):
+        form.instance.creator = self.request.user
+        messages.success(
+            self.request,
+            _("Patient {}, {} has been created.").format(
+                form.instance.last_name, form.instance.first_name
+            ),
+        )
+        return super().form_valid(form)
 
-        if (method := request.POST["_method"]) == "DELETE":
-            patient = get_object_or_404(Patient, id=request.POST["id"])
+    def form_invalid(self, form):
+        form.add_error_messages(self.request)
+        return redirect("cms:protected:patients")
 
-            patient.delete()
 
-            messages.success(
-                request,
-                _('Patient "{} {}" has been deleted.').format(
-                    patient.first_name, patient.last_name
-                ),
-            )
+@method_decorator(permission_required("cms.add_patient"), name="dispatch")
+class PatientUpdateView(UpdateView):
+    """
+    View to update a patient
+    """
 
-        else:
-            data = request.POST.copy()
-            name = data["name"].split(", ")
+    model = Patient
+    success_url = reverse_lazy("cms:protected:patients")
+    form_class = PatientForm
 
-            if len(name) != 2:
-                messages.error(
-                    request, _('Name: Wrong syntax. Use "Lastname, Firstname".')
-                )
-                return redirect("cms:protected:patients")
+    def form_valid(self, form):
+        messages.success(
+            self.request,
+            _("Patient {}, {} has been updated.").format(
+                form.instance.last_name, form.instance.first_name
+            ),
+        )
+        return super().form_valid(form)
 
-            data["first_name"] = name[1]
-            data["last_name"] = name[0]
-            data.pop("name")
-            data["insurance_type"] = "insurance_type" in data
+    def form_invalid(self, form):
+        form.add_error_messages(self.request)
+        return redirect("cms:protected:patients")
 
-            if method == "PUT":
-                patient_form = PatientForm(
-                    data=data, additional_instance_attributes={"creator": request.user}
-                )
 
-                if not patient_form.is_valid():
-                    patient_form.add_error_messages(request)
-                    return render(
-                        request,
-                        self.template_name,
-                        self.get_context_data(**kwargs)
-                        | {"patient_form": patient_form},
-                    )
+@method_decorator(permission_required("cms.add_patient"), name="dispatch")
+class PatientDeleteView(DeleteView):
+    """
+    View to delete a patient
+    """
 
-                patient = patient_form.save()
+    model = Patient
+    success_url = reverse_lazy("cms:protected:patients")
 
-                messages.success(
-                    request,
-                    _('Patient "{} {}" has been created.').format(
-                        patient.first_name, patient.last_name
-                    ),
-                )
+    def form_valid(self, form):
+        messages.success(self.request, _("Patient has been deleted."))
+        return super().form_valid(form)
 
-            elif method == "POST":
-                patient = Patient.objects.get(id=data["id"])
-                patient_form = PatientForm(instance=patient, data=data)
-
-                if not patient_form.is_valid():
-                    patient_form.add_error_messages(request)
-                    return render(
-                        request,
-                        self.template_name,
-                        self.get_context_data(**kwargs)
-                        | {"patient_form": patient_form},
-                    )
-
-                patient = patient_form.save()
-
-                messages.success(
-                    request,
-                    _('Patient "{} {}" has been edited.').format(
-                        patient.first_name, patient.last_name
-                    ),
-                )
-
+    def form_invalid(self, form):
+        form.add_error_messages(self.request)
         return redirect("cms:protected:patients")

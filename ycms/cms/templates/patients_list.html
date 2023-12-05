@@ -20,7 +20,7 @@
                     <tr>
                         <th class="px-6 py-3">{% translate "Patient name" %}</th>
                         <th class="px-6 py-3">{% translate "Gender" %}</th>
-                        <th class="px-6 py-3">{% translate "Age" %}</th>
+                        <th class="px-6 py-3">{% translate "Date of Birth" %}</th>
                         <th class="px-6 py-3">{% translate "Privately insured" %}?</th>
                         <th class="px-6 py-3 w-60">{% translate "Status" %}</th>
                         <th class="px-6 py-3 w-[400px]">{% translate "Action" %}</th>
@@ -29,55 +29,38 @@
                 <tbody class="overflow-y-auto">
                     <tr class="odd:bg-white even:bg-gray-100 border-b">
                         <td class="px-6 py-4">
-                            <input type="text"
-                                   name="name"
-                                   form="add-patient"
-                                   value="Lastname, Firstname"
-                                   required />
+                            <div class="flex flex-nowrap gap-4">
+                                {% render_field new_patient_form.last_name form="add-patient" %}
+                                {% render_field new_patient_form.first_name form="add-patient" %}
+                            </div>
                         </td>
-                        <td class="px-6 py-4">
-                            <select name="gender" form="add-patient">
-                                <option value="m" {% if patient.gender == 'm' %}selected{% endif %}>{% translate "Male" %}</option>
-                                <option value="f" {% if patient.gender == 'f' %}selected{% endif %}>{% translate "Female" %}</option>
-                                <option value="d" {% if patient.gender == 'd' %}selected{% endif %}>{% translate "Diverse" %}</option>
-                            </select>
-                        </td>
-                        <td class="px-6 py-4">
-                            <input name="date_of_birth"
-                                   form="add-patient"
-                                   type="date"
-                                   value="{{ patient.date_of_birth|date:'Y-m-d' }}"
-                                   required />
-                        </td>
-                        <td class="px-6 py-4 text-center">
-                            <input name="insurance_type"
-                                   form="add-patient"
-                                   type="checkbox"
-                                   {% if patient.insurance_type %}checked{% endif %} />
-                        </td>
+                        <td class="px-6 py-4">{% render_field new_patient_form.gender form="add-patient" %}</td>
+                        <td class="px-6 py-4">{% render_field new_patient_form.date_of_birth form="add-patient" %}</td>
+                        <td class="px-6 py-4 text-center">{% render_field new_patient_form.insurance_type form="add-patient" %}</td>
                         <td class="px-6 py-4"></td>
                         <td class="p-4 text-center">
                             <button class="px-2 text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-700 rounded px-5 py-2.5 text-center"
                                     form="add-patient">
-                                <form hidden id="add-patient" method="post">
+                                <form hidden
+                                      id="add-patient"
+                                      method="post"
+                                      action="{% url "cms:protected:create_patient" %}">
                                     {% csrf_token %}
-                                    <input type="text" name="_method" value="PUT" />
                                 </form>
                                 {% translate "Add" %}
                             </button>
                         </td>
                     </tr>
                     <tr class="h-3 w-full"></tr>
-                    {% for patient in patients %}
+                    {% for patient, patient_form in patients %}
                         <tr data-patient-id="{{ patient.id }}"
                             class="odd:bg-white even:bg-gray-100 border-b">
                             <td class="px-6 py-4">
                                 <p class="py-2 px-3 text-xl border border-transparent ">{{ patient.last_name }}, {{ patient.first_name }}</p>
-                                <input class="hidden"
-                                       type="text"
-                                       name="name"
-                                       form="edit-patient-{{ patient.id }}"
-                                       value="{{ patient.last_name }}, {{ patient.first_name }}" />
+                                <div class="hidden flex flex-nowrap gap-4">
+                                    {% render_field patient_form.last_name form=patient.id %}
+                                    {% render_field patient_form.first_name form=patient.id %}
+                                </div>
                             </td>
                             <td class="px-6 py-4">
                                 {% if patient.gender == 'm' %}
@@ -93,20 +76,11 @@
                                         {% translate "Diverse" %}
                                     </p>
                                 {% endif %}
-                                <select class="hidden" name="gender" form="edit-patient-{{ patient.id }}">
-                                    <option value="m" {% if patient.gender == 'm' %}selected{% endif %}>{% translate "Male" %}</option>
-                                    <option value="f" {% if patient.gender == 'f' %}selected{% endif %}>{% translate "Female" %}</option>
-                                    <option value="d" {% if patient.gender == 'd' %}selected{% endif %}>{% translate "Diverse" %}</option>
-                                </select>
+                                {% render_field patient_form.gender form=patient.id class+="hidden" %}
                             </td>
                             <td class="px-6 py-4">
                                 <p class="py-2 px-3 text-xl">{{ patient.date_of_birth|date:'d.m.Y' }}</p>
-                                <input class="hidden"
-                                       name="date_of_birth"
-                                       form="edit-patient-{{ patient.id }}"
-                                       type="date"
-                                       name="name"
-                                       value="{{ patient.date_of_birth|date:'Y-m-d' }}" />
+                                {% render_field patient_form.date_of_birth form=patient.id class+="hidden" %}
                             </td>
                             <td class="px-6 py-4 text-center">
                                 {% if patient.insurance_type %}
@@ -114,11 +88,7 @@
                                 {% else %}
                                     <i icon-name="x" class="w-4 h-4 text-red-700"></i>
                                 {% endif %}
-                                <input class="hidden"
-                                       name="insurance_type"
-                                       form="edit-patient-{{ patient.id }}"
-                                       type="checkbox"
-                                       {% if patient.insurance_type %}checked{% endif %} />
+                                {% render_field patient_form.insurance_type form=patient.id class+="hidden" %}
                             </td>
                             <td class="px-6 py-4 text-center">
                                 <span>
@@ -148,20 +118,22 @@
                                         {% translate "Cancel" %}
                                     </button>
                                     <button class="grow text-white bg-green-500 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-700 rounded px-5 py-2.5"
-                                            form="edit-patient-{{ patient.id }}">
-                                        <form hidden id="edit-patient-{{ patient.id }}" method="post">
+                                            form="{{ patient.id }}">
+                                        <form hidden
+                                              id="{{ patient.id }}"
+                                              method="post"
+                                              action="{% url "cms:protected:update_patient" patient.id %}">
                                             {% csrf_token %}
-                                            <input type="text" name="_method" value="POST" />
-                                            <input type="text" name="id" value="{{ patient.id }}" />
                                         </form>
                                         {% translate "Save" %}
                                     </button>
                                     <button class="grow text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 rounded px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
                                             form="delete-patient-{{ patient.id }}">
-                                        <form hidden id="delete-patient-{{ patient.id }}" method="post">
+                                        <form hidden
+                                              id="delete-patient-{{ patient.id }}"
+                                              method="post"
+                                              action="{% url "cms:protected:delete_patient" patient.id %}">
                                             {% csrf_token %}
-                                            <input type="text" name="_method" value="DELETE" />
-                                            <input type="text" name="id" value="{{ patient.id }}" />
                                         </form>
                                         {% translate "Delete" %}
                                     </button>

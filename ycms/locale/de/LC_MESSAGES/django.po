@@ -559,7 +559,7 @@ msgid "Gender"
 msgstr "Geschlecht"
 
 #: cms/templates/bed_assignment/bed_assignment_list.html
-#: cms/templates/patient/patient_card.html cms/templates/patients_list.html
+#: cms/templates/patient/patient_card.html
 msgid "Age"
 msgstr "Alter"
 
@@ -742,16 +742,20 @@ msgid "Patients list"
 msgstr "Patientenliste"
 
 #: cms/templates/patients_list.html
+msgid "Date of Birth"
+msgstr "Geburtsdatum"
+
+#: cms/templates/patients_list.html
 msgid "Status"
 msgstr "Status"
 
 #: cms/templates/patients_list.html
-msgid "Diverse"
-msgstr "Divers"
-
-#: cms/templates/patients_list.html
 msgid "Add"
 msgstr "Hinzufügen"
+
+#: cms/templates/patients_list.html
+msgid "Diverse"
+msgstr "Divers"
 
 #: cms/templates/patients_list.html
 msgid "Delete"
@@ -935,20 +939,16 @@ msgid "Intake for patient \"{} {}\" with diagnosis \"{}\" has been saved."
 msgstr "Patient*in \"{} {}\" mit Diagnose \"{}\" wurde gespeichert."
 
 #: cms/views/patients/patients_list_view.py
-msgid "Patient \"{} {}\" has been deleted."
-msgstr "Patient*in \"{} {}\" wurde gelöscht."
+msgid "Patient {}, {} has been created."
+msgstr "Patient*in {}, {} wurde hinzugefügt."
 
 #: cms/views/patients/patients_list_view.py
-msgid "Name: Wrong syntax. Use \"Lastname, Firstname\"."
-msgstr "Name: Falsche Syntax. Benutze \"Nachname, Vorname\"."
+msgid "Patient {}, {} has been updated."
+msgstr "Patient*in {}, {} wurde bearbeitet."
 
 #: cms/views/patients/patients_list_view.py
-msgid "Patient \"{} {}\" has been created."
-msgstr "Patient*in \"{} {}\" wurde hinzugefügt."
-
-#: cms/views/patients/patients_list_view.py
-msgid "Patient \"{} {}\" has been edited."
-msgstr "Patient*in \"{} {}\" wurde bearbeitet."
+msgid "Patient has been deleted."
+msgstr "Patient*in {}, {} wurde gelöscht."
 
 #: cms/views/patients/update_patient_stay_view.py
 msgid ""
@@ -972,6 +972,9 @@ msgstr "Deutsch"
 #: core/settings.py
 msgid "English"
 msgstr "Englisch"
+
+#~ msgid "Name: Wrong syntax. Use \"Lastname, Firstname\"."
+#~ msgstr "Name: Falsche Syntax. Benutze \"Nachname, Vorname\"."
 
 #~ msgid "DOB"
 #~ msgstr "Geb. Dat."
