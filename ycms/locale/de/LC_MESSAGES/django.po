@@ -681,7 +681,7 @@ msgstr "Persönliche Daten"
 msgid "Name"
 msgstr "Name"
 
-#: cms/templates/patient/patient_card.html
+#: cms/templates/patient/patient_card.html cms/templates/ward/ward_beds.html
 msgid "Accompanied"
 msgstr "Begleitet"
 
