@@ -50,7 +50,10 @@ class Room(AbstractBaseModel):
         :return: number of free beds in the room
         :rtype: int
         """
-        return sum(1 for bed in self.beds.all() if bed.is_available)
+        accompanied_count = sum(
+            1 for patient in self.patients() if patient.current_stay.accompanied
+        )
+        return sum(1 for bed in self.beds.all() if bed.is_available) - accompanied_count
 
     @cached_property
     def occupied_beds(self):

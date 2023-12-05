@@ -161,7 +161,7 @@
       "updated_at": "2023-11-05T11:42:11.895Z",
       "admission_date": "2023-11-27T11:42:11.331Z",
       "discharge_date": "2023-12-29T14:42:11.331Z",
-      "accompanied": false,
+      "accompanied": true,
       "medical_record": 194,
       "recommended_ward": 1,
       "bed": 15
