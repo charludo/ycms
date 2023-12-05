@@ -14,6 +14,26 @@ urlpatterns = [
             [
                 path("", patients.PatientsListView.as_view(), name="patients"),
                 path(
+                    "create/",
+                    patients.PatientCreateView.as_view(),
+                    name="create_patient",
+                ),
+                path(
+                    "update/<int:patient>/<int:bed_assignment>/",
+                    patients.UpdatePatientStayView.as_view(),
+                    name="update_patient_stay",
+                ),
+                path(
+                    "update/<int:pk>/",
+                    patients.PatientUpdateView.as_view(),
+                    name="update_patient",
+                ),
+                path(
+                    "delete/<int:pk>",
+                    patients.PatientDeleteView.as_view(),
+                    name="delete_patient",
+                ),
+                path(
                     "discharge/<int:assignment_id>/",
                     patients.DischargePatientView.as_view(),
                     name="discharge_patient",
@@ -22,11 +42,6 @@ urlpatterns = [
                     "assign/<int:ward_id>/<int:assignment_id>/",
                     patients.AssignPatientView.as_view(),
                     name="assign_patient",
-                ),
-                path(
-                    "update/<int:patient>/<int:bed_assignment>/",
-                    patients.UpdatePatientStayView.as_view(),
-                    name="update_patient_stay",
                 ),
             ]
         ),
