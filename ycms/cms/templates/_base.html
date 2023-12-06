@@ -18,41 +18,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 {% endcomment %}
 {% block raw_content %}
-    {% if messages and not messages_suppressed %}
-        <div id="messages"
-             class="absolute top-32 right-8 flex flex-col max-w-screen-sm z-50">
-            {% for msg in messages %}
-                {% if msg.level_tag == 'info' %}
-                    <div class="message bg-blue-100 border-l-4 border-blue-500 text-blue-500"
-                         role="alert">
-                        <p>{{ msg.message }}</p>
-                        <i icon-name="x" class="message-close"></i>
-                    </div>
-                {% endif %}
-                {% if msg.level_tag == 'success' %}
-                    <div class="message bg-green-100 border-l-4 border-green-500 text-green-500"
-                         role="alert">
-                        <p>{{ msg.message }}</p>
-                        <i icon-name="x" class="message-close"></i>
-                    </div>
-                {% endif %}
-                {% if msg.level_tag == 'warning' %}
-                    <div class="message bg-yellow-100 border-l-4 border-yellow-500 text-yellow-600"
-                         role="alert">
-                        <p>{{ msg.message }}</p>
-                        <i icon-name="x" class="message-close"></i>
-                    </div>
-                {% endif %}
-                {% if msg.level_tag == 'error' %}
-                    <div class="message bg-red-100 border-l-4 border-red-500 text-red-500"
-                         role="alert">
-                        <p>{{ msg.message }}</p>
-                        <i icon-name="x" class="message-close"></i>
-                    </div>
-                {% endif %}
-            {% endfor %}
-        </div>
-    {% endif %}
     <div class="lg:flex">
         <button id="sidebarToggle" class="block lg:hidden text-gray-600 px-4 py-3">
             <i id="menuIcon" icon-name="menu"></i>
