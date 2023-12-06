@@ -50,18 +50,25 @@ class WardView(TemplateView):
             for room in ward.rooms.all()
         ]
         wards = Ward.objects.all()
-        unassigned_bed_assignments = BedAssignment.objects.filter(
-            models.Q(admission_date__lte=current_or_travelled_time())
-            & models.Q(bed__isnull=True)
-            & (
-                models.Q(discharge_date__gt=current_or_travelled_time())
-                | models.Q(discharge_date__isnull=True)
+        unassigned_bed_assignments = [
+            (
+                unassigned,
+                PatientForm(instance=unassigned.medical_record.patient),
+                IntakeBedAssignmentForm(instance=unassigned),
             )
-            & (
-                models.Q(recommended_ward__isnull=True)
-                | models.Q(recommended_ward=ward)
+            for unassigned in BedAssignment.objects.filter(
+                models.Q(admission_date__lte=current_or_travelled_time())
+                & models.Q(bed__isnull=True)
+                & (
+                    models.Q(discharge_date__gt=current_or_travelled_time())
+                    | models.Q(discharge_date__isnull=True)
+                )
+                & (
+                    models.Q(recommended_ward__isnull=True)
+                    | models.Q(recommended_ward=ward)
+                )
             )
-        )
+        ]
 
         return {
             "rooms": rooms,
