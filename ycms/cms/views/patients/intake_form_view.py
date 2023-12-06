@@ -128,7 +128,7 @@ class IntakeFormView(TemplateView):
                 },
             )
 
-        bed_form.save()
+        bed_assignment = bed_form.save()
 
         messages.success(
             request,
@@ -137,4 +137,8 @@ class IntakeFormView(TemplateView):
             ),
         )
 
-        return redirect("cms:protected:index")
+        if bed_assignment.recommended_ward:
+            return redirect(
+                "cms:protected:ward_detail", pk=bed_assignment.recommended_ward.id
+            )
+        return redirect("cms:protected:intake")

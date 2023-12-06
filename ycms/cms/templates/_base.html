@@ -43,22 +43,24 @@ limitations under the License.
                         </a>
                     </li>
                 {% endif %}
-                <li>
-                    {% url 'cms:protected:patients' as url %}
-                    <a href="{{ url }}"
-                       class="{% if request.path == url %}selected{% endif %}">
-                        <i icon-name="folder-search"></i> {% translate "Manage Patients" %}
-                    </a>
-                </li>
-                <span class="block mt-5 px-5 text-gray-500 tracking-wide">{% translate "Ward" %}</span>
-                <li>
-                    {% url 'cms:protected:ward_detail_default' as url %}
-                    <a href="{{ url }}"
-                       class="{% if request.path == url %}selected{% endif %}">
-                        <i icon-name="bed"></i> {% translate "Ward View" %}
-                    </a>
-                </li>
                 {% if perms.cms.add_patient %}
+                    <li>
+                        {% url 'cms:protected:patients' as url %}
+                        <a href="{{ url }}"
+                           class="{% if request.path == url %}selected{% endif %}">
+                            <i icon-name="folder-search"></i> {% translate "Manage Patients" %}
+                        </a>
+                    </li>
+                {% endif %}
+                {% if perms.cms.add_patient %}
+                    <span class="block mt-5 px-5 text-gray-500 tracking-wide">{% translate "Ward" %}</span>
+                    <li>
+                        {% url 'cms:protected:ward_detail_default' as url %}
+                        <a href="{{ url }}"
+                           class="{% if request.path == url %}selected{% endif %}">
+                            <i icon-name="bed"></i> {% translate "Ward View" %}
+                        </a>
+                    </li>
                     <li>
                         {% url 'cms:protected:intake' as url %}
                         <a href="{{ url }}"

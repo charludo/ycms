@@ -24,7 +24,7 @@ IS_CREATABLE_BY = {
 }
 
 DEFAULT_VIEWS = {
-    ZBM: "cms:protected:ward_detail_default",  # change this after #18 is completed
+    ZBM: "cms:protected:ward_management",
     STATION_MANAGEMENT: "cms:protected:ward_detail_default",
     MEDICAL_PERSONNEL: "cms:protected:patients",
 }
