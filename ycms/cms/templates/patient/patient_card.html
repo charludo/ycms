@@ -43,8 +43,8 @@
                 <div class="mb-2">
                     <h3 class="text-lg font-semibold mb-2">{% translate "Hostpital Stay Details" %}</h3>
                     <p>
-                        <span class="font-semibold">{% translate "Diagnosis code" %}:</span>
-                        {{ bed_assignment.medical_record.diagnosis_code }}
+                        <span class="font-semibold">{% translate "Diagnosis" %}:</span>
+                        {{ bed_assignment.medical_record.diagnosis_code }} ({{ bed_assignment.medical_record.diagnosis_code.description }})
                     </p>
                     <p>
                         <span class="font-semibold">{% translate "Note" %}:</span> {{ bed_assignment.medical_record.note }}

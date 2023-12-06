@@ -17,7 +17,7 @@ repos:
     rev: v4.4.0
     hooks:
       - id: check-added-large-files
-        exclude: icd10_*
+        exclude: icd10_* lastnames.txt firstnames.json
       - id: check-merge-conflict
       - id: check-shebang-scripts-are-executable
       - id: check-symlinks

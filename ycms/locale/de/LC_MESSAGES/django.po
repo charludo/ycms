@@ -564,6 +564,7 @@ msgid "Age"
 msgstr "Alter"
 
 #: cms/templates/bed_assignment/bed_assignment_list.html
+#: cms/templates/patient/patient_card.html
 msgid "Diagnosis"
 msgstr "Diagnose"
 
@@ -694,10 +695,6 @@ msgstr "Privatversichert"
 #: cms/templates/patient/patient_card.html
 msgid "Hostpital Stay Details"
 msgstr "Details zum Krankenhausaufenthalt"
-
-#: cms/templates/patient/patient_card.html
-msgid "Diagnosis code"
-msgstr "Diagnosecode"
 
 #: cms/templates/patient/patient_card.html
 msgid "Note"
@@ -970,6 +967,9 @@ msgstr "Deutsch"
 #: core/settings.py
 msgid "English"
 msgstr "Englisch"
+
+#~ msgid "Diagnosis code"
+#~ msgstr "Diagnosecode"
 
 #~ msgid "days"
 #~ msgstr "Tage"
