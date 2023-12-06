@@ -65,6 +65,12 @@ const handleAssign = (card: HTMLElement): void => {
     const genderWarning = card.getAttribute("data-room-gender-warning");
     const ageWarning = card.getAttribute("data-room-age-warning");
     const insuranceWarning = card.getAttribute("data-room-insurance-warning");
+    const assignModalTextAttr = card.getAttribute("assign-modal-text");
+    const warningModalTextAttr = card.getAttribute("warning-modal-text");
+
+    const assignModalText = `
+        <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">${assignModalTextAttr}</h3>
+    `.replace("{}", roomNumber?.toString() || "");
 
     let warningList = "";
 
@@ -95,21 +101,19 @@ const handleAssign = (card: HTMLElement): void => {
         return;
     }
     if (!genderWarning && !ageWarning && !insuranceWarning) {
-        assignContent.innerHTML = `
-        <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to assign the patient to Room ${roomNumber}?</h3>
-    `;
+        assignContent.innerHTML = assignModalText;
     } else {
         assignContent.innerHTML = `
     <div
     class="mb-5 bg-yellow-50 text-yellow-800 p-4 rounded-lg shadow dark:bg-gray-800 dark:text-yellow-300 flex flex-col justify-between h-full">
-    <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Assigning to Room ${roomNumber} may cause:</h2>
+    <h2 class="text-xl font-semibold text-gray-900 dark:text-white">${warningModalTextAttr}</h2>
     <ul class="max-w-md space-y-2 mt-2 list-disc list-inside dark:text-gray-400">
     ${warningList}
     </ul>
 </div>
 
-    <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to assign the patient to Room ${roomNumber}?</h3>
-        `;
+    ${assignModalText}
+        `.replace("{}", roomNumber?.toString() || "");
     }
 
     const modal = new Modal(targetEl, options);

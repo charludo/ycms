@@ -128,18 +128,24 @@ class Patient(AbstractBaseModel):
         if not date_to_check:
             return None
 
+        today = _("today")
+        days_ago = _("{} days ago")
+        day_ago = _("{} day ago")
+        in_days = _("in {} days")
+        in_day = _("in {} day")
+
         if not (
             days_since := (
                 current_or_travelled_time().date() - date_to_check.date()
             ).days
         ):
-            return f"{date_to_check.strftime('%b. %d, %Y')} ({_('today')})"
+            return f'{date_to_check.strftime("%b. %d, %Y")} ({today})'
 
         if days_since > 0:
-            return f"{date_to_check.strftime('%b. %d, %Y')} ({days_since} {_('day') if days_since == 1 else _('days')} ago)"
+            return f"{date_to_check.strftime('%b. %d, %Y')} ({ day_ago.format(days_since) if days_since == 1 else days_ago.format(days_since)})"
 
         days_until = abs(days_since)
-        return f"{date_to_check.strftime('%b. %d, %Y')} ({_('in')} {days_until} {_('day') if days_until == 1 else _('days')})"
+        return f"{date_to_check.strftime('%b. %d, %Y')} ({in_day.format(days_until) if days_until == 1 else in_days.format(days_until)})"
 
     @cached_property
     def current_admission_date(self):
