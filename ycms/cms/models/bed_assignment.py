@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.functional import cached_property
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext as _
 
 from .abstract_base_model import AbstractBaseModel
 from .bed import Bed
@@ -76,7 +76,9 @@ class BedAssignment(AbstractBaseModel):
         duration = int(
             (current_or_travelled_time().date() - self.admission_date.date()).days
         )
-        return f"{duration} {_('days')}" if duration > 1 else f"{duration} {_('day')}"
+        days = _("days")
+        day = _("day")
+        return f"{duration} {day}" if duration == 1 else f"{duration} {days}"
 
     @cached_property
     def until_discharge(self):
@@ -86,6 +88,7 @@ class BedAssignment(AbstractBaseModel):
         :return: the current bed assignment until discharge
         :rtype: str
         """
+
         if self.duration is None or self.discharge_date is None:
             return None
 
@@ -93,10 +96,11 @@ class BedAssignment(AbstractBaseModel):
             ((self.discharge_date.date() - current_or_travelled_time().date()).days)
         )
 
+        in_until_discharge_days = _("in {} days").format(until_discharge)
+        in_until_discharge_day = _("in {} day").format(until_discharge)
+
         return (
-            f"{_('in')} {until_discharge} {_('days')}"
-            if until_discharge > 1
-            else f"{_('in')} {until_discharge} {_('day')}"
+            in_until_discharge_day if until_discharge == 1 else in_until_discharge_days
         )
 
     @cached_property

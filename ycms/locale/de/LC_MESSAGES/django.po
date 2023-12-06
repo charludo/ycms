@@ -183,6 +183,22 @@ msgid "The bed assigned to the patient"
 msgstr "Diesem Patienten / dieser Patientin zugewiesenes Bett"
 
 #: cms/models/bed_assignment.py
+msgid "days"
+msgstr "Tagen"
+
+#: cms/models/bed_assignment.py cms/templates/timetravel_controls.html
+msgid "day"
+msgstr "Tag"
+
+#: cms/models/bed_assignment.py cms/models/patient.py
+msgid "in {} days"
+msgstr "in {} Tagen"
+
+#: cms/models/bed_assignment.py cms/models/patient.py
+msgid "in {} day"
+msgstr "in {} Tag"
+
+#: cms/models/bed_assignment.py
 msgid "bed assignment"
 msgstr "Bettzuweisung"
 
@@ -285,6 +301,18 @@ msgstr "Geburtsdatum"
 #: cms/models/patient.py
 msgid "Date of birth of the patient"
 msgstr "Geburtsdatum des Patienten / der Patientin"
+
+#: cms/models/patient.py
+msgid "today"
+msgstr "Heute"
+
+#: cms/models/patient.py
+msgid "{} days ago"
+msgstr "vor {} Tagen"
+
+#: cms/models/patient.py
+msgid "{} day ago"
+msgstr "vor {} Tag"
 
 #: cms/models/patient.py
 msgid "patients"
@@ -501,6 +529,11 @@ msgid "Assigning patient"
 msgstr "Patienten zuordnen"
 
 #: cms/templates/bed_assignment/assign_bed_assignment.html
+#: cms/templates/patient/patient_card.html cms/templates/patients_list.html
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: cms/templates/bed_assignment/assign_bed_assignment.html
 #: cms/templates/ward/ward_room_card.html
 msgid "Mixed Gender"
 msgstr "Gemischtes Geschlecht"
@@ -513,6 +546,14 @@ msgstr "Der Altersunterschied ist groß"
 #: cms/templates/ward/ward_room_card.html
 msgid "Mixed insurance"
 msgstr "Gemischte Versicherung"
+
+#: cms/templates/bed_assignment/assign_bed_assignment.html
+msgid "Are you sure you want to assign the patient to Room {}?"
+msgstr "Sind Sie sicher, dass Sie den Patienten Zimmer {} zuweisen möchten?"
+
+#: cms/templates/bed_assignment/assign_bed_assignment.html
+msgid "Assign to Room {} may cause:"
+msgstr "Zu Zimmer {} zuweisen kann führen:"
 
 #: cms/templates/bed_assignment/assign_bed_assignment.html
 #: cms/templates/ward/ward.html
@@ -724,10 +765,6 @@ msgstr "Details zum Krankenhausaufenthalt bearbeiten"
 msgid "Save"
 msgstr "Speichern"
 
-#: cms/templates/patient/patient_card.html cms/templates/patients_list.html
-msgid "Cancel"
-msgstr "Abbrechen"
-
 #: cms/templates/patient/patient_card_wrapper.html
 msgid "Edit Patient Stay"
 msgstr "Patientenaufenthalt bearbeiten"
@@ -755,10 +792,6 @@ msgstr "Divers"
 #: cms/templates/patients_list.html
 msgid "Delete"
 msgstr "Löschen"
-
-#: cms/templates/timetravel_controls.html
-msgid "day"
-msgstr "Tag"
 
 #: cms/templates/timetravel_controls.html
 msgid "hour"
@@ -971,9 +1004,6 @@ msgstr "Englisch"
 #~ msgid "Diagnosis code"
 #~ msgstr "Diagnosecode"
 
-#~ msgid "days"
-#~ msgstr "Tage"
-
 #~ msgid "Beds"
 #~ msgstr "Betten"
 
@@ -994,9 +1024,6 @@ msgstr "Englisch"
 
 #~ msgid "Medical Details"
 #~ msgstr "Medizinische Details"
-
-#~ msgid "Assigning to red rooms may cause"
-#~ msgstr "Die Zuordnung zu roten Räumen kann zu Problemen führen"
 
 #~ msgid "New Bed Assignment"
 #~ msgstr "Neue Bettenzuweisung"
