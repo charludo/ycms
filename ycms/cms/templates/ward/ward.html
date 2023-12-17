@@ -21,13 +21,13 @@
                              data-drawer-show="drawer-right-{{ room.room_number }}"
                              data-drawer-placement="right"
                              aria-controls="drawer-right-{{ room.room_number }}">
-                            <div class="w-full p-6 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 cursor-pointer hover:bg-gray-200">
+                            <div class="w-full p-6 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-600 cursor-pointer hover:bg-gray-200">
                                 {% include "ward/ward_room_card.html" %}
                             </div>
                         </div>
                         {% if forloop.counter == corridor_index %}
                             <div class="col-span-full">
-                                <div class="bg-gray-300 p-2 text-center font-semibold border border-gray-200 rounded-lg shadow">
+                                <div class="bg-gray-300 p-2 text-center font-semibold border border-gray-200 rounded-lg shadow dark:bg-gray-900 dark:border-gray-800 dark:text-white">
                                     {% translate "Corridor" %}
                                 </div>
                             </div>

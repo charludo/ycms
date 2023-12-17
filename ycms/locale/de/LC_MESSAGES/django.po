@@ -461,6 +461,14 @@ msgid "Stop Timetravel"
 msgstr "Zeitreise Beenden"
 
 #: cms/templates/_base.html
+msgid "Turn on the light"
+msgstr "Mach das Licht an"
+
+#: cms/templates/_base.html
+msgid "Turn off the light"
+msgstr "Mach das Licht aus"
+
+#: cms/templates/_base.html
 msgid "Logged in as"
 msgstr "Angemeldet als"
 

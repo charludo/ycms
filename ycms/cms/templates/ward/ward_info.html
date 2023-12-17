@@ -1,8 +1,8 @@
 {% load i18n %}
 <div class="col-span-full">
-    <div class="rounded-lg border border-gray-300 bg-white shadow-md flex flex-col h-full">
+    <div class="rounded-lg border border-gray-300 bg-white shadow-md flex flex-col h-full dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
         <div class="flex space-x-4 p-4 items-center">
-            <div class="text-2xl font-semibold">{% translate "Ward" %}</div>
+            <div class="text-2xl font-semibold dark:text-white">{% translate "Ward" %}</div>
             <form method="post" id="ward-selection-form">
                 {% csrf_token %}
                 <select name="ward" id="ward" onchange="this.form.submit()">
@@ -16,45 +16,45 @@
     </div>
 </div>
 <div class="col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-2 xl:col-span-2 ">
-    <div class="hover:bg-gray-100 rounded-lg border border-gray-300 bg-white p-4 shadow-md flex flex-col h-full">
-        <div class="mb-4 text-2xl font-semibold">{% translate "Patient Information" %}</div>
+    <div class="rounded-lg bg-white border border-gray-200 p-4 shadow-md flex flex-col h-full hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <div class="mb-4 text-2xl font-semibold dark:text-white">{% translate "Patient Information" %}</div>
         <div class="flex justify-between">
             <div>
-                <div class="text-lg font-semibold">{% translate "Female" %}</div>
-                <div class="text-3xl font-bold">{{ patient_info.female_patients }}</div>
+                <div class="text-lg font-semibold dark:text-white">{% translate "Female" %}</div>
+                <div class="text-3xl font-bold dark:text-white">{{ patient_info.female_patients }}</div>
             </div>
             <div>
-                <div class="text-lg font-semibold">{% translate "Male" %}</div>
-                <div class="text-3xl font-bold">{{ patient_info.male_patients }}</div>
+                <div class="text-lg font-semibold dark:text-white">{% translate "Male" %}</div>
+                <div class="text-3xl font-bold dark:text-white">{{ patient_info.male_patients }}</div>
             </div>
             <div>
-                <div class="text-lg font-semibold">{% translate "Total" %}</div>
-                <div class="text-3xl font-bold">{{ patient_info.total_patients }}</div>
+                <div class="text-lg font-semibold dark:text-white">{% translate "Total" %}</div>
+                <div class="text-3xl font-bold dark:text-white">{{ patient_info.total_patients }}</div>
             </div>
         </div>
     </div>
 </div>
 <div class="col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-2 xl:col-span-2">
-    <div class="hover:bg-gray-100 rounded-lg border border-gray-300 bg-white p-4 shadow-md flex flex-col h-full">
-        <div class="mb-4 text-2xl font-semibold">{% translate "Bed Availability" %}</div>
+    <div class="rounded-lg bg-white border border-gray-200 p-4 shadow-md flex flex-col h-full hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <div class="mb-4 text-2xl font-semibold dark:text-white">{% translate "Bed Availability" %}</div>
         <div class="grid grid-cols-2">
             <div class="col-span-2 sm:col-span-1">
-                <div class="text-lg font-semibold">{% translate "Available Beds" %}</div>
-                <div class="text-3xl font-bold">{{ ward.available_beds }}</div>
+                <div class="text-lg font-semibold dark:text-white">{% translate "Available Beds" %}</div>
+                <div class="text-3xl font-bold dark:text-white">{{ ward.available_beds }}</div>
             </div>
             <div class="col-span-1 sm:col-span-1">
-                <div class="text-lg font-semibold">{% translate "Total Beds" %}</div>
-                <div class="text-3xl font-bold">{{ ward.total_beds }}</div>
+                <div class="text-lg font-semibold dark:text-white">{% translate "Total Beds" %}</div>
+                <div class="text-3xl font-bold dark:text-white">{{ ward.total_beds }}</div>
             </div>
         </div>
     </div>
 </div>
 <div class="col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-2 xl:col-span-2">
-    <div class="hover:bg-gray-100 rounded-lg border border-gray-300 bg-white p-4 shadow-md flex h-full justify-between">
+    <div class="rounded-lg bg-white border border-gray-200 p-4 shadow-md flex h-full justify-between  hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
         <div>
-            <div class="mt-2 mb-4 text-2xl font-semibold">{% translate "Unassigned Patients" %}</div>
+            <div class="mt-2 mb-4 text-2xl font-semibold  dark:text-white">{% translate "Unassigned Patients" %}</div>
             <div class="grid grid-cols-1">
-                <div class="text-3xl font-bold">{{ unassigned_bed_assignments|length }}</div>
+                <div class="text-3xl font-bold dark:text-white">{{ unassigned_bed_assignments|length }}</div>
             </div>
         </div>
         <div class="flex flex-col items-stretch gap-4 self-end">

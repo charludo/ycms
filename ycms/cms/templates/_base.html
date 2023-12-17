@@ -18,22 +18,32 @@ See the License for the specific language governing permissions and
 limitations under the License.
 {% endcomment %}
 {% block raw_content %}
-    <div class="lg:flex">
+    <div class="lg:flex dark:bg-gray-900 min-h-full">
         <button id="sidebarToggle" class="block lg:hidden text-gray-600 px-4 py-3">
             <i id="menuIcon" icon-name="menu"></i>
             <i id="closeIcon" class="hidden" icon-name="x"></i>
         </button>
         <div id="sidebar"
-             class="fixed h-full w-64 bg-white border-r shadow-md transform -translate-x-full lg:transform-none lg:block">
-            <a href="{% url 'cms:protected:index' %}" class="block border-b">
-                <img src="{% static 'images/logo-ycms.png' %}"
-                     width="200px"
-                     height="auto"
-                     alt="{% translate " Logo" %}"
-                     class="my-3 mx-auto">
+             class="fixed h-full w-64 bg-white border-r shadow-md transform -translate-x-full lg:transform-none lg:block dark:border-gray-600">
+            <a href="{% url 'cms:protected:index' %}"
+               class="block border-b dark:border-gray-600 flex items-center text-gray-600 dark:text-white">
+                {% if is_dark_theme %}
+                    <img src="{% static 'images/logo-bed.svg' %}"
+                         width="80px"
+                         height="auto"
+                         alt="{% translate " Logo" %}"
+                         class="my-3 mx-3 ml-6 filter-white">
+                {% else %}
+                    <img src="{% static 'images/logo-bed.svg' %}"
+                         width="80px"
+                         height="auto"
+                         alt="{% translate " Logo" %}"
+                         class="my-3 mx-3 ml-6">
+                {% endif %}
+                <div class="mt-8 text-gray-800 font-semibold text-4xl dark:text-gray-50">YCMS</div>
             </a>
             <ul>
-                <span class="block mt-5 px-5 text-gray-500 tracking-wide">{% translate "General" %}</span>
+                <span class="block mt-2 px-5 text-gray-500 tracking-wide dark:text-gray-300">{% translate "General" %}</span>
                 {% if perms.cms.add_ward %}
                     <li>
                         {% url 'cms:protected:ward_management' as url %}
@@ -53,7 +63,7 @@ limitations under the License.
                     </li>
                 {% endif %}
                 {% if perms.cms.add_patient %}
-                    <span class="block mt-5 px-5 text-gray-500 tracking-wide">{% translate "Ward" %}</span>
+                    <span class="block mt-5 px-5 text-gray-500 tracking-wide dark:text-gray-300">{% translate "Ward" %}</span>
                     <li>
                         {% url 'cms:protected:ward_detail_default' as url %}
                         <a href="{{ url }}"
@@ -69,7 +79,7 @@ limitations under the License.
                         </a>
                     </li>
                 {% endif %}
-                <span class="block mt-5 px-5 text-gray-500">{% translate "Settings" %}</span>
+                <span class="block mt-5 px-5 text-gray-500 dark:text-gray-300">{% translate "Settings" %}</span>
                 {% if user.group.name != "MEDICAL_PERSONNEL" %}
                     <li>
                         {% url 'cms:protected:create_user' as url %}
@@ -95,21 +105,43 @@ limitations under the License.
             </ul>
             <div class="absolute bottom-0 w-full text-center text-gray-600">
                 <li class="mb-4" id="timetravel-start">
-                    <a href="?time=2024-01-01T00%3A00%3A00.000Z" class="justify-center"><i icon-name="timer-reset"></i> {% translate "Start Timetravel" %}</a>
-                </li>
-                <li class="hidden mb-4" id="timetravel-stop">
-                    <a href="?" class="justify-center"><i icon-name="timer-off"></i> {% translate "Stop Timetravel" %}</a>
-                </li>
-                <p class="text-sm">
-                    {% translate "Logged in as" %} <span class="text-blue-500">{{ user.first_name }} {{ user.last_name }}</span>
-                </p>
-                <p class="tracking-wide">© YCMS 2023</p>
-            </div>
+                <a href="?time=2024-01-01T00%3A00%3A00.000Z" class="justify-center"><i icon-name="timer-reset"></i>
+            {% translate "Start Timetravel" %}</a>
+        </li>
+        <li class="hidden mb-4" id="timetravel-stop">
+            <a href="?" class="justify-center"><i icon-name="timer-off"></i> {% translate "Stop Timetravel" %}</a>
+        </li>
+        <button id="theme-toggle"
+                data-tooltip-target="tooltip-right"
+                data-tooltip-placement="right"
+                type="button"
+                class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-600 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 rounded-lg text-sm p-2.5 mb-4">
+            {% if is_dark_theme %}
+                <i icon-name="sun"></i>
+            {% else %}
+                <i icon-name="moon"></i>
+            {% endif %}
+        </button>
+        <div id="tooltip-right"
+             role="tooltip"
+             class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-800 rounded-lg shadow-sm opacity-0 tooltip">
+            {% if is_dark_theme %}
+                {% translate "Turn on the light" %}
+            {% else %}
+                {% translate "Turn off the light" %}
+            {% endif %}
+            <div class="tooltip-arrow" data-popper-arrow></div>
         </div>
-        <div class="flex-1 p-6 ml-0 lg:ml-64 h-full overflow-y-auto">
-            {% block content %}
-            {% endblock content %}
-            {% include "timetravel_controls.html" %}
-        </div>
+        <p class="text-sm dark:text-gray-50">
+            {% translate "Logged in as" %} <span class="text-blue-500">{{ user.first_name }} {{ user.last_name }}</span>
+        </p>
+        <p class="tracking-wide dark:text-gray-50">© YCMS 2023</p>
     </div>
+</div>
+<div class="flex-1 p-6 ml-0 lg:ml-64 h-full overflow-y-auto">
+    {% block content %}
+    {% endblock content %}
+    {% include "timetravel_controls.html" %}
+</div>
+</div>
 {% endblock raw_content %}

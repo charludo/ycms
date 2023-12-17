@@ -19,7 +19,8 @@ limitations under the License.
 {% endcomment %}
 <!DOCTYPE html>
 {% get_current_language as LANGUAGE_CODE %}
-<html lang="{{ LANGUAGE_CODE }}">
+<html lang="{{ LANGUAGE_CODE }}"
+      class="{% if is_dark_theme %}dark{% endif %}">
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -45,30 +46,27 @@ limitations under the License.
                  class="absolute top-32 right-8 flex flex-col max-w-screen-sm z-50">
                 {% for msg in messages %}
                     {% if msg.level_tag == 'info' %}
-                        <div class="message bg-blue-100 border-l-4 border-blue-500 text-blue-500"
-                             role="alert">
-                            <p>{{ msg.message }}</p>
+                        <div class="message bg-blue-100 border-l-4 border-blue-500" role="alert">
+                            <p class="text-blue-500">{{ msg.message }}</p>
                             <i icon-name="x" class="message-close"></i>
                         </div>
                     {% endif %}
                     {% if msg.level_tag == 'success' %}
-                        <div class="message bg-green-100 border-l-4 border-green-500 text-green-500"
-                             role="alert">
-                            <p>{{ msg.message }}</p>
+                        <div class="message bg-green-100 border-l-4 border-green-500" role="alert">
+                            <p class="text-green-500">{{ msg.message }}</p>
                             <i icon-name="x" class="message-close"></i>
                         </div>
                     {% endif %}
                     {% if msg.level_tag == 'warning' %}
-                        <div class="message bg-yellow-100 border-l-4 border-yellow-500 text-yellow-600"
+                        <div class="message bg-yellow-100 border-l-4 border-yellow-500"
                              role="alert">
-                            <p>{{ msg.message }}</p>
+                            <p class="text-yellow-600">{{ msg.message }}</p>
                             <i icon-name="x" class="message-close"></i>
                         </div>
                     {% endif %}
                     {% if msg.level_tag == 'error' %}
-                        <div class="message bg-red-100 border-l-4 border-red-500 text-red-500"
-                             role="alert">
-                            <p>{{ msg.message }}</p>
+                        <div class="message bg-red-100 border-l-4 border-red-500" role="alert">
+                            <p class="text-red-500">{{ msg.message }}</p>
                             <i icon-name="x" class="message-close"></i>
                         </div>
                     {% endif %}

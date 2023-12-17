@@ -16,14 +16,15 @@
             <div class="grid xl:grid-cols-2 gap-x-24">
                 {% with WIDGET_ERROR_CLASS="border-red-500" %}
                     <div class="flex flex-col gap-8">
-                        <div class="p-12 bg-gray-200 rounded-xl">
+                        <div class="p-12 bg-gray-200 rounded-xl dark:bg-gray-800">
                             <h1 class="heading">{% translate "Select existing patient" %}</h1>
                             <div class="mt-4">
                                 {% render_field record_form.patient %}
                                 <div class="help-text">{{ record_form.patient.help_text }}</div>
                             </div>
                         </div>
-                        <div id="patient-create" class="p-12 bg-gray-200 rounded-xl">
+                        <div id="patient-create"
+                             class="p-12 bg-gray-200 rounded-xl dark:bg-gray-800">
                             <h1 class="heading">{% translate "Or create new patient" %}</h1>
                             {% for field in patient_form %}
                                 <div>

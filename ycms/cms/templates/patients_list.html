@@ -16,7 +16,7 @@
                    type="text"
                    placeholder="Search for name..." />
             <table id="patients" class="w-full text-sm text-gray-500">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-100">
                     <tr>
                         <th class="px-6 py-3">{% translate "Patient name" %}</th>
                         <th class="px-6 py-3">{% translate "Gender" %}</th>
@@ -27,7 +27,7 @@
                     </tr>
                 </thead>
                 <tbody class="overflow-y-auto">
-                    <tr class="odd:bg-white even:bg-gray-100 border-b">
+                    <tr class="odd:bg-white even:bg-gray-100 border-b dark:odd:bg-gray-800 dark:even:bg-gray-700 dark:border-gray-700">
                         <td class="px-6 py-4">
                             <div class="flex flex-nowrap gap-4">
                                 {% render_field new_patient_form.last_name form="add-patient" %}
@@ -54,7 +54,7 @@
                     <tr class="h-3 w-full"></tr>
                     {% for patient, patient_form in patients %}
                         <tr data-patient-id="{{ patient.id }}"
-                            class="odd:bg-white even:bg-gray-100 border-b">
+                            class="odd:bg-white even:bg-gray-100 border-b dark:odd:bg-gray-800 dark:even:bg-gray-700 dark:border-gray-700">
                             <td class="px-6 py-4">
                                 <p class="py-2 px-3 text-xl border border-transparent ">{{ patient.last_name }}, {{ patient.first_name }}</p>
                                 <div class="hidden flex flex-nowrap gap-4">
@@ -84,9 +84,9 @@
                             </td>
                             <td class="px-6 py-4 text-center">
                                 {% if patient.insurance_type %}
-                                    <i icon-name="check" class="w-4 h-4 text-green-700"></i>
+                                    <i icon-name="check" class="w-4 h-4 text-green-700 dark:text-green-400"></i>
                                 {% else %}
-                                    <i icon-name="x" class="w-4 h-4 text-red-700"></i>
+                                    <i icon-name="x" class="w-4 h-4 text-red-700 dark:text-red-400"></i>
                                 {% endif %}
                                 {% render_field patient_form.insurance_type form=patient.id class+="hidden" %}
                             </td>
