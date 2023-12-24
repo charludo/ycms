@@ -105,7 +105,7 @@ textarea {
 
 [type="checkbox"],
 [type="radio"] {
-    @apply rounded text-blue-500 mr-2 align-text-top;
+    @apply rounded text-blue-500 mr-2 align-text-top bg-white dark:bg-gray-700;
 
     &:disabled,
     &.fake-disable {
@@ -122,7 +122,10 @@ textarea {
 }
 
 label {
-    @apply block mt-4 mb-2 text-xl font-bold text-gray-500 cursor-pointer dark:text-gray-200;
+    @apply block mt-4 mb-2 text-xl font-bold text-gray-500 cursor-pointer align-middle dark:text-gray-200;
+    [type="radio"] {
+        @apply align-baseline;
+    }
 }
 
 label.secondary,
@@ -216,7 +219,7 @@ input[type="submit"] {
 
         // Pseudo-classes
         &:hover {
-            @apply bg-white text-gray-700;
+            @apply bg-white text-gray-700 dark:hover:bg-primary dark:hover:text-gray-800;
         }
 
         &:focus {
@@ -343,4 +346,11 @@ input[type="submit"] {
 
 .progress-bar {
     width: var(--progress-width, 0%);
+}
+
+#id_unknown-gender,
+#id_gender,
+#id_insurance_type,
+.radio-row div {
+    @apply flex justify-start gap-4;
 }

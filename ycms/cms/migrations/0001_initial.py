@@ -311,6 +311,7 @@ class Migration(migrations.Migration):
                         help_text="Gender of the patient",
                         max_length=1,
                         verbose_name="gender",
+                        default=None,
                     ),
                 ),
                 (

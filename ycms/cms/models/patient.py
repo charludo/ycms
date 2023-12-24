@@ -39,6 +39,7 @@ class Patient(AbstractBaseModel):
         choices=gender.CHOICES,
         verbose_name=_("gender"),
         help_text=_("Gender of the patient"),
+        default=None,
     )
     date_of_birth = models.DateField(
         verbose_name=_("date of birth"), help_text=_("Date of birth of the patient")

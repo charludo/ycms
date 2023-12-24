@@ -27,4 +27,8 @@ class PatientForm(CustomModelForm):
             "date_of_birth",
             "insurance_type",
         ]
-        widgets = {"date_of_birth": forms.NumberInput(attrs={"type": "date"})}
+        widgets = {
+            "date_of_birth": forms.NumberInput(attrs={"type": "date"}),
+            "gender": forms.RadioSelect(),
+            "insurance_type": forms.RadioSelect(),
+        }

@@ -8,7 +8,12 @@ from django.utils.translation import gettext as _
 from django.views.generic import TemplateView
 
 from ...decorators import permission_required
-from ...forms import IntakeBedAssignmentForm, IntakeRecordForm, PatientForm
+from ...forms import (
+    IntakeBedAssignmentForm,
+    IntakeRecordForm,
+    PatientForm,
+    UnknownPatientForm,
+)
 from ...models import Patient
 
 logger = logging.getLogger(__name__)
@@ -37,6 +42,7 @@ class IntakeFormView(TemplateView):
         context.update(
             {
                 "patient_form": PatientForm(),
+                "unknown_patient_form": UnknownPatientForm(),
                 "record_form": IntakeRecordForm(),
                 "bed_form": IntakeBedAssignmentForm(),
             }
@@ -61,11 +67,17 @@ class IntakeFormView(TemplateView):
         :rtype: ~django.http.HttpResponseRedirect
         """
         # Get the existing patient or create a new one
+        logger.warning(request.POST)
         if patient_id := request.POST.get("patient"):
             patient = Patient.objects.get(id=patient_id)
             patient_form = PatientForm()
         else:
-            patient_form = PatientForm(
+            form_type = (
+                UnknownPatientForm
+                if "unknown-approximate_age" in request.POST
+                else PatientForm
+            )
+            patient_form = form_type(
                 data=request.POST,
                 additional_instance_attributes={"creator": request.user},
             )

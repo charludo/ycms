@@ -114,6 +114,14 @@ msgstr "Bestandspatient*innen durchsuchen"
 msgid "Search for diagnosis code"
 msgstr "Diagnosecodes durchsuchen"
 
+#: cms/forms/unknown_patient_form.py
+msgid "Approximate age"
+msgstr "Ungefähres Alter"
+
+#: cms/forms/unknown_patient_form.py
+msgid "Best guess for the patient's approximate age"
+msgstr "Schätzung des ungefähren Alters des Patienten/der Patientin"
+
 #: cms/models/bed.py
 msgid "bed type"
 msgstr "Betttyp"
@@ -428,9 +436,9 @@ msgstr "Allgemein"
 msgid "Ward Management"
 msgstr "Stationsverwaltung"
 
-#: cms/templates/_base.html cms/templates/patients_list.html
-msgid "Manage Patients"
-msgstr "Patient*innen verwalten"
+#: cms/templates/_base.html
+msgid "Patient Data"
+msgstr "Patientendaten"
 
 #: cms/templates/_base.html
 msgid "Ward View"
@@ -714,6 +722,14 @@ msgid "Select existing patient"
 msgstr "Bestehende*n Patient*in auswählen"
 
 #: cms/templates/intake_form.html
+msgid "reset form"
+msgstr "zurücksetzen"
+
+#: cms/templates/intake_form.html
+msgid "Or perform emergency intake"
+msgstr "Oder Notaufnahme durchführen"
+
+#: cms/templates/intake_form.html
 msgid "Or create new patient"
 msgstr "Oder Patient*in hinzufügen"
 
@@ -778,8 +794,16 @@ msgid "Edit Patient Stay"
 msgstr "Patientenaufenthalt bearbeiten"
 
 #: cms/templates/patients_list.html
+msgid "Manage Patients"
+msgstr "Patient*innen verwalten"
+
+#: cms/templates/patients_list.html
 msgid "Patients list"
 msgstr "Patientenliste"
+
+#: cms/templates/patients_list.html
+msgid "Search for name..."
+msgstr "Nach Name suchen..."
 
 #: cms/templates/patients_list.html
 msgid "Date of Birth"
@@ -984,7 +1008,7 @@ msgstr "Patient*in {}, {} wurde bearbeitet."
 
 #: cms/views/patients/patients_list_view.py
 msgid "Patient has been deleted."
-msgstr "Patient*in {}, {} wurde gelöscht."
+msgstr "Patient*in wurde gelöscht."
 
 #: cms/views/patients/update_patient_stay_view.py
 msgid ""

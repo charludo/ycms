@@ -16,15 +16,42 @@
             <div class="grid xl:grid-cols-2 gap-x-24">
                 {% with WIDGET_ERROR_CLASS="border-red-500" %}
                     <div class="flex flex-col gap-8">
-                        <div class="p-12 bg-gray-200 rounded-xl dark:bg-gray-800">
+                        <div class="p-12 bg-gray-200 dark:bg-gray-800 rounded-xl relative patient-option">
                             <h1 class="heading">{% translate "Select existing patient" %}</h1>
                             <div class="mt-4">
                                 {% render_field record_form.patient %}
                                 <div class="help-text">{{ record_form.patient.help_text }}</div>
                             </div>
+                            <div class="absolute top-0 right-0 p-2 text-sm underline cursor-pointer hidden form-reset dark:text-gray-200">
+                                {% translate "reset form" %}
+                            </div>
                         </div>
-                        <div id="patient-create"
-                             class="p-12 bg-gray-200 rounded-xl dark:bg-gray-800">
+                        <div class="p-12 bg-gray-200 dark:bg-gray-800 rounded-xl relative patient-option">
+                            <h1 class="heading">{% translate "Or perform emergency intake" %}</h1>
+                            <div class="mt-4">
+                                <div>
+                                    <label for="{{ unknown_patient_form.gender.id_for_label }}"
+                                           class="field-required">{{ unknown_patient_form.gender.label }}</label>
+                                    {% render_field unknown_patient_form.gender %}
+                                    <div class="help-text">{{ unknown_patient_form.gender.help_text }}</div>
+                                </div>
+                                <div>
+                                    <label for="{{ unknown_patient_form.approximate_age.id_for_label }}"
+                                           class="field-required">
+                                        {{ unknown_patient_form.approximate_age.label }}
+                                    </label>
+                                    <div class="flex">
+                                        {% render_field unknown_patient_form.approximate_age class+="bg-gray-200 dark:bg-gray-800 w-full" %}<span id="approximate-age-display"
+      class="ml-2 align-text-bottom dark:text-gray-200"></span>
+                                    </div>
+                                    <div class="help-text">{{ unknown_patient_form.approximate_age.help_text }}</div>
+                                </div>
+                            </div>
+                            <div class="absolute top-0 right-0 p-2 text-sm underline cursor-pointer hidden form-reset dark:text-gray-200">
+                                {% translate "reset form" %}
+                            </div>
+                        </div>
+                        <div class="p-12 bg-gray-200 dark:bg-gray-800 rounded-xl relative patient-option">
                             <h1 class="heading">{% translate "Or create new patient" %}</h1>
                             {% for field in patient_form %}
                                 <div>
@@ -36,6 +63,9 @@
                                     <div class="help-text">{{ field.help_text }}</div>
                                 </div>
                             {% endfor %}
+                            <div class="absolute top-0 right-0 p-2 text-sm underline cursor-pointer hidden form-reset dark:text-gray-200">
+                                {% translate "reset form" %}
+                            </div>
                         </div>
                     </div>
                     <div class="flex flex-col gap-8">

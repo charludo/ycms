@@ -14,7 +14,7 @@
         <div class="shadow-md">
             <input id="search-patient-input"
                    type="text"
-                   placeholder="Search for name..." />
+                   placeholder="{% translate "Search for name..." %}" />
             <table id="patients" class="w-full text-sm text-gray-500">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-100">
                     <tr>
@@ -76,7 +76,7 @@
                                         {% translate "Diverse" %}
                                     </p>
                                 {% endif %}
-                                {% render_field patient_form.gender form=patient.id class+="hidden" %}
+                                <div class="radio-row hidden">{% render_field patient_form.gender form=patient.id %}</div>
                             </td>
                             <td class="px-6 py-4">
                                 <p class="py-2 px-3 text-xl">{{ patient.date_of_birth|date:'d.m.Y' }}</p>
@@ -88,7 +88,7 @@
                                 {% else %}
                                     <i icon-name="x" class="w-4 h-4 text-red-700 dark:text-red-400"></i>
                                 {% endif %}
-                                {% render_field patient_form.insurance_type form=patient.id class+="hidden" %}
+                                <div class="radio-row hidden">{% render_field patient_form.insurance_type form=patient.id %}</div>
                             </td>
                             <td class="px-6 py-4 text-center">
                                 <span>
