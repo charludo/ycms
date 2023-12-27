@@ -192,6 +192,16 @@ class User(AbstractBaseUser, PermissionsMixin, AbstractBaseModel):
         """
         return self.groups.first()
 
+    @cached_property
+    def title(self):
+        """
+        Return the title of this user
+
+        :return: The title of this user
+        :rtype: str
+        """
+        return dict(job_types.CHOICES)[self.job_type]
+
     def __str__(self):
         """
         This overwrites the default Django :meth:`~django.db.models.Model.__str__` method which would return ``User object (id)``.
@@ -200,7 +210,7 @@ class User(AbstractBaseUser, PermissionsMixin, AbstractBaseModel):
         :return: A readable string representation of the user
         :rtype: str
         """
-        return f"{self.job_type} {self.last_name} ({self.personnel_id})"
+        return f"{self.job_type} {self.first_name} {self.last_name}"
 
     def get_repr(self):
         """

@@ -28,6 +28,7 @@
                                             {% if new_ward.id != ward.id %}<option value="{{ new_ward.id }}">{{ new_ward.name }}</option>{% endif %}
                                         {% endfor %}
                                     </select>
+                                    <input type="hidden" name="next" value="{{ request.META.HTTP_REFERER }}">
                                 </form>
                                 {% if bed_assignment.bed %}
                                     <button class="text-red-700 border-red-700 border-2 hover:border-red-800 dark:text-red-100 hover:text-white hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 rounded px-5 py-2 dark:hover:bg-red-700 dark:focus:ring-red-800"
@@ -38,11 +39,12 @@
                                               method="post"
                                               action="{% url "cms:protected:assign_patient" ward.id bed_assignment.id %}">
                                             {% csrf_token %}
+                                            <input type="hidden" name="next" value="{{ request.META.HTTP_REFERER }}">
                                         </form>
                                         {% translate "Unassign" %}
                                     </button>
                                 {% endif %}
-                                <a href="{% url 'cms:protected:ward_detail' pk=ward.id %}">
+                                <a href="{{ request.META.HTTP_REFERER }}">
                                     <button type="button"
                                             class="text-white bg-red-700 hover:bg-red-800 border-2 border-red-700 hover:border-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 px-5 py-2 text-center inline-flex rounded items-center me-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
                                         <i icon-name="x" class="mr-2"></i>
@@ -52,7 +54,7 @@
                             </div>
                         </div>
                         {% with assignment_mode=True %}
-                            {% include "patient/patient_card.html" %}
+                            {% include "patients/patient_card.html" %}
                         {% endwith %}
                     </div>
                 </div>
@@ -79,6 +81,7 @@
                                         {% include "ward/ward_room_card.html" %}
                                     </div>
                                 </div>
+                                <input type="hidden" name="next" value="{{ request.META.HTTP_REFERER }}">
                             </form>
                             {% if forloop.counter == corridor_index %}
                                 <div class="col-span-full">

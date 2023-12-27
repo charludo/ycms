@@ -11,6 +11,9 @@ const setLanguageCookie = (language: string): void => {
 };
 
 const addClassesToElement = (elementId: string, classes: string): void => {
+    if (!elementId.length) {
+        return;
+    }
     const element = document.getElementById(elementId);
     if (element) {
         element.classList.add(...classes.split(" "));

@@ -214,7 +214,7 @@ LANGUAGES = [
 #: (see :setting:`django:LOCALE_PATHS` and :doc:`django:topics/i18n/index`)
 LOCALE_PATHS = [os.path.join(BASE_DIR, "locale")]
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Europe/Berlin"
 
 USE_I18N = True
 

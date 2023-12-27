@@ -1,0 +1,71 @@
+{% load i18n %}
+{% load static %}
+{% load widget_tweaks %}
+{% load render_bundle from webpack_loader %}
+<div class="mb-4">
+    <div class="rounded-lg border border-gray-300 bg-white p-4 shadow-md md:columns-3 h-full justify-between gap-4 dark:bg-gray-800 dark:border-gray-700">
+        <form enctype="multipart/form-data"
+              method="post"
+              data-unsaved-warning
+              action="{% url 'cms:protected:update_intake' stay.medical_record.id %}">
+            {% csrf_token %}
+            <div class="w-full break-inside-avoid">
+                <h2 class="mb-4">{% translate "Medical details" %}</h2>
+                {% for field in forms.0.visible_fields %}
+                    <div class="break-inside-avoid">
+                        <label class="mt-0" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {% render_field field %}
+                        <div class="help-text">{{ field.help_text }}</div>
+                    </div>
+                {% endfor %}
+                {% for hidden in forms.0.hidden_fields %}{{ hidden }}{% endfor %}
+            </div>
+            <div class="w-full break-inside-avoid">
+                <h2 class="mb-4">{% translate "Organizational details" %}</h2>
+                {% for field in forms.1 %}
+                    <div class="break-inside-avoid">
+                        <label class="mt-0" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {% render_field field %}
+                        <div class="help-text">{{ field.help_text }}</div>
+                    </div>
+                {% endfor %}
+            </div>
+            <button type="submit" class="btn mt-4 w-full">{% translate "Save" %}</button>
+        </form>
+        {% if current %}
+            <button type="submit"
+                    form="discharge-{{ patient.current_stay.id }}"
+                    class="w-full focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 rounded px-4 py-3 mt-4 dark:bg-red-600 dark:hover:bg-red-800 dark:focus:ring-red-900">
+                <form hidden
+                      id="discharge-{{ patient.current_stay.id }}"
+                      method="post"
+                      action="{% url "cms:protected:discharge_patient" patient.current_stay.id %}">
+                    {% csrf_token %}
+                </form>
+                {% translate "Discharge now" %}
+            </button>
+            {% if stay.recommended_ward %}
+                <a href="{% url 'cms:protected:assign_patient' ward_id=stay.recommended_ward.id assignment_id=stay.id %}"
+                   class="w-full block mt-4 text-white bg-green-500 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-700 rounded px-4 py-3 text-center">
+                    {% if stay.bed %}
+                        {% translate "Transfer" %}
+                    {% else %}
+                        {% translate "Assign bed" %}
+                    {% endif %}
+                </a>
+            {% endif %}
+        {% else %}
+            <button type="submit"
+                    form="cancel-{{ stay.id }}"
+                    class="w-full focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 rounded px-4 py-3 mt-4 dark:bg-red-600 dark:hover:bg-red-800 dark:focus:ring-red-900">
+                {% translate "Cancel planned stay" %}
+                <form hidden
+                      id="cancel-{{ stay.id }}"
+                      method="post"
+                      action="{% url "cms:protected:cancel_stay" stay.id %}">
+                    {% csrf_token %}
+                </form>
+            </button>
+        {% endif %}
+    </div>
+</div>

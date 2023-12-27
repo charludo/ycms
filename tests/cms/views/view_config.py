@@ -30,7 +30,7 @@ VIEWS = [
             ("cms:protected:patients", [ROOT, STATION_MANAGEMENT, MEDICAL_PERSONNEL]),
             (
                 "cms:protected:create_patient",
-                [ROOT, STATION_MANAGEMENT, MEDICAL_PERSONNEL],
+                [ROOT, MEDICAL_PERSONNEL],
                 {
                     "first_name": "Firstname",
                     "last_name": "Lastname",
@@ -39,10 +39,10 @@ VIEWS = [
                     "gender": "d",
                 },
             ),
-            ("cms:protected:intake", [ROOT, STATION_MANAGEMENT, MEDICAL_PERSONNEL]),
+            ("cms:protected:intake", [ROOT, MEDICAL_PERSONNEL]),
             (
                 "cms:protected:intake",
-                [ROOT, STATION_MANAGEMENT, MEDICAL_PERSONNEL],
+                [ROOT, MEDICAL_PERSONNEL],
                 {
                     "patient": "185",
                     "diagnosis_code": "80173",
@@ -51,7 +51,7 @@ VIEWS = [
             ),
             (
                 "cms:protected:intake",
-                [ROOT, STATION_MANAGEMENT, MEDICAL_PERSONNEL],
+                [ROOT, MEDICAL_PERSONNEL],
                 {
                     "first_name": "Firstname",
                     "last_name": "Lastname",
@@ -62,6 +62,17 @@ VIEWS = [
                     "admission_date": "2023-01-01T11:42:11.331Z",
                     "accompanied": True,
                     "note": "test note",
+                },
+            ),
+            (
+                "cms:protected:intake",
+                [ROOT, MEDICAL_PERSONNEL],
+                {
+                    "unknown-gender": "d",
+                    "unknown-approximate_age": "30",
+                    "diagnosis_code": "80173",
+                    "admission_date": "2023-01-01T11:42:11.331Z",
+                    "accompanied": False,
                 },
             ),
         ],
@@ -81,6 +92,20 @@ VIEWS = [
             ),
         ],
         {"pk": 191},
+    ),
+    (
+        [
+            (
+                "cms:protected:patient_details",
+                [ROOT, STATION_MANAGEMENT, MEDICAL_PERSONNEL],
+            ),
+            (
+                "cms:protected:create_record",
+                [ROOT, MEDICAL_PERSONNEL],
+                {"record_type": "lab", "note": "test note"},
+            ),
+        ],
+        {"pk": 192},
     ),
     (
         [
@@ -117,9 +142,30 @@ VIEWS = [
     (
         [
             (
-                "cms:protected:discharge_patient",
+                "cms:protected:update_intake",
+                [ROOT, STATION_MANAGEMENT, MEDICAL_PERSONNEL],
+                {
+                    "record_type": "intake",
+                    "note": "test note",
+                    "diagnosis_code": "80173",
+                    "admission_date": "2023-01-01T11:42:11.331Z",
+                    "accompanied": True,
+                },
+            ),
+            (
+                "cms:protected:cancel_stay",
                 [ROOT, STATION_MANAGEMENT, MEDICAL_PERSONNEL],
                 {"post": ""},
+            ),
+        ],
+        {"pk": 189},
+    ),
+    (
+        [
+            (
+                "cms:protected:discharge_patient",
+                [ROOT, STATION_MANAGEMENT, MEDICAL_PERSONNEL],
+                {"next": ""},
             )
         ],
         {"assignment_id": 19},
@@ -129,10 +175,24 @@ VIEWS = [
             (
                 "cms:protected:assign_patient",
                 [ROOT, STATION_MANAGEMENT, MEDICAL_PERSONNEL],
-                {"post": ""},
+            ),
+            (
+                "cms:protected:assign_patient",
+                [ROOT, STATION_MANAGEMENT, MEDICAL_PERSONNEL],
+                {"next": ""},
+            ),
+        ],
+        {"ward_id": 1, "assignment_id": 155},
+    ),
+    (
+        [
+            (
+                "cms:protected:assign_patient",
+                [ROOT, STATION_MANAGEMENT, MEDICAL_PERSONNEL],
+                {"next": "", "new_ward": 2},
             )
         ],
-        {"ward_id": 1, "assignment_id": 19},
+        {"ward_id": 1, "assignment_id": 155},
     ),
     (
         [

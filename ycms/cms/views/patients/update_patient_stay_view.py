@@ -21,7 +21,7 @@ class UpdatePatientStayView(TemplateView):
     View to update a patient's detail and their most recent hospital stay
     """
 
-    template_name = "patient/patient_card_wrapper.html"
+    template_name = "patients/patient_card_wrapper.html"
 
     def get(self, request, *args, **kwargs):
         """

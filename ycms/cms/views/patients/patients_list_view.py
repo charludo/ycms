@@ -1,6 +1,7 @@
 import logging
 
 from django.contrib import messages
+from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
@@ -21,7 +22,7 @@ class PatientsListView(TemplateView):
     View to see all patients and add a new one
     """
 
-    template_name = "patients_list.html"
+    template_name = "patients/patients_list.html"
 
     def get_context_data(self, **kwargs):
         """
@@ -68,14 +69,13 @@ class PatientCreateView(CreateView):
         return redirect("cms:protected:patients")
 
 
-@method_decorator(permission_required("cms.add_patient"), name="dispatch")
+@method_decorator(permission_required("cms.change_patient"), name="dispatch")
 class PatientUpdateView(UpdateView):
     """
     View to update a patient
     """
 
     model = Patient
-    success_url = reverse_lazy("cms:protected:patients")
     form_class = PatientForm
 
     def get_form_kwargs(self):
@@ -90,14 +90,15 @@ class PatientUpdateView(UpdateView):
                 form.instance.last_name, form.instance.first_name
             ),
         )
-        return super().form_valid(form)
+        form.save()
+        return HttpResponseRedirect(self.request.META.get("HTTP_REFERER"))
 
     def form_invalid(self, form):
         form.add_error_messages(self.request)
-        return redirect("cms:protected:patients")
+        return HttpResponseRedirect(self.request.META.get("HTTP_REFERER"))
 
 
-@method_decorator(permission_required("cms.add_patient"), name="dispatch")
+@method_decorator(permission_required("cms.change_patient"), name="dispatch")
 class PatientDeleteView(DeleteView):
     """
     View to delete a patient

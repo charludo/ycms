@@ -2,7 +2,8 @@ import logging
 
 from django.contrib import messages
 from django.db import transaction
-from django.shortcuts import redirect, render
+from django.http import HttpResponseRedirect
+from django.shortcuts import redirect, render, reverse
 from django.utils.decorators import method_decorator
 from django.utils.translation import gettext as _
 from django.views.generic import TemplateView
@@ -15,6 +16,7 @@ from ...forms import (
     UnknownPatientForm,
 )
 from ...models import Patient
+from ...models.timetravel_manager import current_or_travelled_time
 
 logger = logging.getLogger(__name__)
 
@@ -25,7 +27,7 @@ class IntakeFormView(TemplateView):
     View to perform intake on new or existing patients
     """
 
-    template_name = "intake_form.html"
+    template_name = "patients/patient_intake_form.html"
 
     def get_context_data(self, **kwargs):
         """
@@ -39,11 +41,18 @@ class IntakeFormView(TemplateView):
         :rtype: ~django.template.response.TemplateResponse
         """
         context = super().get_context_data(**kwargs)
+
+        initial_patient = None
+        if (patient_id := self.request.GET.get("patient")) and (
+            patient := Patient.objects.get(pk=patient_id)
+        ):
+            initial_patient = patient
+
         context.update(
             {
                 "patient_form": PatientForm(),
                 "unknown_patient_form": UnknownPatientForm(),
-                "record_form": IntakeRecordForm(),
+                "record_form": IntakeRecordForm(initial_patient=initial_patient),
                 "bed_form": IntakeBedAssignmentForm(),
             }
         )
@@ -67,7 +76,6 @@ class IntakeFormView(TemplateView):
         :rtype: ~django.http.HttpResponseRedirect
         """
         # Get the existing patient or create a new one
-        logger.warning(request.POST)
         if patient_id := request.POST.get("patient"):
             patient = Patient.objects.get(id=patient_id)
             patient_form = PatientForm()
@@ -149,8 +157,12 @@ class IntakeFormView(TemplateView):
             ),
         )
 
-        if bed_assignment.recommended_ward:
-            return redirect(
-                "cms:protected:ward_detail", pk=bed_assignment.recommended_ward.id
+        if (
+            bed_assignment.recommended_ward
+            and bed_assignment.admission_date <= current_or_travelled_time()
+        ):
+            kwargs = {"pk": bed_assignment.recommended_ward.id}
+            return HttpResponseRedirect(
+                f"{reverse('cms:protected:ward_detail', kwargs=kwargs)}?drawer=drawer-right-unassigned"
             )
-        return redirect("cms:protected:intake")
+        return redirect("cms:protected:patient_details", pk=patient.id)

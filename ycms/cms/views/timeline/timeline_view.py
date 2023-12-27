@@ -16,7 +16,7 @@ from ...models.timetravel_manager import current_or_travelled_time
 logger = logging.getLogger(__name__)
 
 
-@method_decorator(permission_required("cms.add_patient"), name="dispatch")
+@method_decorator(permission_required("cms.change_patient"), name="dispatch")
 class TimelineView(TemplateView):
     """
     View to see a ward as a timeline
