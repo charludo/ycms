@@ -16,7 +16,7 @@
                                 {% translate "Assigning patient" %} {{ patient.first_name }}
                                 {{ patient.last_name }}
                             </h2>
-                            <a href="{% url 'cms:protected:ward_detail' pk=ward.id %}">
+                            <a href="{{ request.META.HTTP_REFERER }}">
                                 <button type="button"
                                         class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 text-center inline-flex items-center me-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
                                     <i icon-name="x" class="mr-2"></i>
@@ -25,7 +25,7 @@
                             </a>
                         </div>
                         {% with assignment_mode=True %}
-                            {% include "patient/patient_card.html" %}
+                            {% include "patients/patient_card.html" %}
                         {% endwith %}
                     </div>
                 </div>

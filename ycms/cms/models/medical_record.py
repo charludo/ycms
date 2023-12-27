@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 
 from ..constants import record_types
@@ -45,6 +46,13 @@ class MedicalRecord(AbstractBaseModel):
     )
 
     objects = TimetravelManager()
+
+    @cached_property
+    def record_name(self):
+        """
+        Helper property to get the human-readable representation of the record's type
+        """
+        return dict(record_types.CHOICES)[self.record_type]
 
     def __str__(self):
         """
