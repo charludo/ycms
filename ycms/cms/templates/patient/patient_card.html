@@ -1,60 +1,60 @@
 {% load i18n %}
 {% load widget_tweaks %}
-<div class="bg-white rounded-lg shadow-lg p-4 w-full">
+<div class="bg-white rounded-lg shadow-lg p-4 w-full dark:bg-gray-800">
     <!-- Display Mode -->
     {% if not standalone_mode %}
         <div>
             <!-- Patient Information Header -->
             <div class="text-center mb-6">
-                <h2 class="text-2xl font-semibold">{% translate "Patient Information" %}</h2>
+                <h2 class="text-2xl font-semibold dark:text-white">{% translate "Patient Information" %}</h2>
             </div>
             <!-- Patient Details -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <!-- Personal Information -->
                 <div class="mb-2">
-                    <h3 class="text-lg font-semibold mb-2">{% translate "Personal Details" %}</h3>
+                    <h3 class="text-lg font-semibold dark:text-white mb-2">{% translate "Personal Details" %}</h3>
                     <p>
-                        <span class="font-semibold">{% translate "Name" %}:</span> {{ patient.first_name }} {{ patient.last_name }}
+                        <span class="font-semibold dark:text-white">{% translate "Name" %}:</span> {{ patient.first_name }} {{ patient.last_name }}
                     </p>
                     <p>
-                        <span class="font-semibold">{% translate "Age" %}:</span> {{ patient.age }}
+                        <span class="font-semibold dark:text-white">{% translate "Age" %}:</span> {{ patient.age }}
                     </p>
                     <p>
-                        <span class="font-semibold">{% translate "Gender" %}:</span> {{ patient.gender | title }}
+                        <span class="font-semibold dark:text-white">{% translate "Gender" %}:</span> {{ patient.gender | title }}
                     </p>
                     <p>
-                        <span class="font-semibold">{% translate "Accompanied" %}:</span>
+                        <span class="font-semibold dark:text-white">{% translate "Accompanied" %}:</span>
                         {% if bed_assignment.accompanied %}
-                            <i icon-name="check" class="w-4 h-4 text-green-700"></i>
+                            <i icon-name="check" class="w-4 h-4 text-green-700 dark:text-green-400"></i>
                         {% else %}
-                            <i icon-name="x" class="w-4 h-4 text-red-700"></i>
+                            <i icon-name="x" class="w-4 h-4 text-red-700 dark:text-red-400"></i>
                         {% endif %}
                     </p>
                     <p>
-                        <span class="font-semibold">{% translate "Privately insured" %}:</span>
+                        <span class="font-semibold dark:text-white">{% translate "Privately insured" %}:</span>
                         {% if patient.insurance_type %}
-                            <i icon-name="check" class="w-4 h-4 text-green-700"></i>
+                            <i icon-name="check" class="w-4 h-4 text-green-700 dark:text-green-400"></i>
                         {% else %}
-                            <i icon-name="x" class="w-4 h-4 text-red-700"></i>
+                            <i icon-name="x" class="w-4 h-4 text-red-700 dark:text-red-400"></i>
                         {% endif %}
                     </p>
                 </div>
                 <!-- Medical Information -->
                 <div class="mb-2">
-                    <h3 class="text-lg font-semibold mb-2">{% translate "Hostpital Stay Details" %}</h3>
+                    <h3 class="text-lg font-semibold dark:text-white mb-2">{% translate "Hostpital Stay Details" %}</h3>
                     <p>
-                        <span class="font-semibold">{% translate "Diagnosis" %}:</span>
+                        <span class="font-semibold dark:text-white">{% translate "Diagnosis" %}:</span>
                         {{ bed_assignment.medical_record.diagnosis_code }} ({{ bed_assignment.medical_record.diagnosis_code.description }})
                     </p>
                     <p>
-                        <span class="font-semibold">{% translate "Note" %}:</span> {{ bed_assignment.medical_record.note }}
+                        <span class="font-semibold dark:text-white">{% translate "Note" %}:</span> {{ bed_assignment.medical_record.note }}
                     </p>
                     <p>
-                        <span class="font-semibold">{% translate "Admission date" %}:</span>
+                        <span class="font-semibold dark:text-white">{% translate "Admission date" %}:</span>
                         {{ patient.current_admission_date|default_if_none:'' }}
                     </p>
                     <p>
-                        <span class="font-semibold">{% translate "Discharge date" %}:</span>
+                        <span class="font-semibold dark:text-white">{% translate "Discharge date" %}:</span>
                         {{ patient.current_discharge_date|default_if_none:'' }}
                     </p>
                 </div>
@@ -98,13 +98,13 @@
         {% csrf_token %}
         <!-- Patient Information Header -->
         <div class="text-center mb-6">
-            <h2 class="text-2xl font-semibold">{% translate "Edit Patient Information" %}</h2>
+            <h2 class="text-2xl font-semibold dark:text-white">{% translate "Edit Patient Information" %}</h2>
         </div>
         <!-- Patient Details -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <!-- Personal Information -->
             <div class="mb-2">
-                <h3 class="text-lg font-semibold mb-2">{% translate "Edit Personal Details" %}</h3>
+                <h3 class="text-lg font-semibold dark:text-white mb-2">{% translate "Edit Personal Details" %}</h3>
                 {% for field in patient_form %}
                     <div>
                         <label for="{{ field.id_for_label }}"
@@ -116,7 +116,7 @@
             </div>
             <!-- Medical Information -->
             <div class="mb-2">
-                <h3 class="text-lg font-semibold mb-2">{% translate "Edit Hospital Stay Details" %}</h3>
+                <h3 class="text-lg font-semibold dark:text-white mb-2">{% translate "Edit Hospital Stay Details" %}</h3>
                 {% for field in bed_assignment_form %}
                     <div>
                         <label for="{{ field.id_for_label }}"
