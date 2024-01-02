@@ -111,17 +111,16 @@ limitations under the License.
         <li class="hidden mb-4" id="timetravel-stop">
             <a href="?" class="justify-center"><i icon-name="timer-off"></i> {% translate "Stop Timetravel" %}</a>
         </li>
-        <button id="theme-toggle"
-                data-tooltip-target="tooltip-right"
-                data-tooltip-placement="right"
-                type="button"
-                class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-600 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 rounded-lg text-sm p-2.5 mb-4">
+        <a href="{% url 'change-theme' %}"
+           data-tooltip-target="tooltip-right"
+           data-tooltip-placement="right"
+           class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-600 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 rounded-lg text-sm p-2.5 mb-4">
             {% if is_dark_theme %}
                 <i icon-name="sun"></i>
             {% else %}
                 <i icon-name="moon"></i>
             {% endif %}
-        </button>
+        </a>
         <div id="tooltip-right"
              role="tooltip"
              class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-800 rounded-lg shadow-sm opacity-0 tooltip">

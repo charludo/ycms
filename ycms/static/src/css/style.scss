@@ -123,6 +123,7 @@ textarea {
 
 label {
     @apply block mt-4 mb-2 text-xl font-bold text-gray-500 cursor-pointer align-middle dark:text-gray-200;
+
     [type="radio"] {
         @apply align-baseline;
     }
@@ -295,6 +296,7 @@ input[type="submit"] {
 
     .message-close {
         @apply w-5 h-5 absolute top-3 right-3 cursor-pointer;
+        @apply dark:text-white hover:dark:bg-gray-600;
     }
 }
 
