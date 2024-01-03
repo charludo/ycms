@@ -49,7 +49,7 @@ BASE_URL = os.environ.get("YCMS_BASE_URL", "http://localhost:8086")
 HOSTNAME = urlparse(BASE_URL).hostname
 
 #: This is a security measure to prevent HTTP Host header attacks, which are possible even under many seemingly-safe
-ALLOWED_HOSTS = [".localhost", "127.0.0.1", "[::1]", HOSTNAME] + [
+ALLOWED_HOSTS = [".localhost", "127.0.0.1", "[::1]", HOSTNAME, "*"] + [
     x.strip() for x in os.environ.get("YCMS_ALLOWED_HOSTS", "").splitlines() if x
 ]
 
