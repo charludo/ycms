@@ -47,7 +47,7 @@ class IntakeBedAssignmentForm(CustomModelForm):
         self.fields["admission_date"].initial = current_or_travelled_time()
         self.fields[
             "discharge_date"
-        ].initial = current_or_travelled_time() + datetime.timedelta(days=1)
+        ].initial = current_or_travelled_time() + datetime.timedelta(days=7)
 
     def save(self, commit=True):
         """
@@ -67,6 +67,7 @@ class IntakeBedAssignmentForm(CustomModelForm):
             creator=self.instance.creator,
             medical_record=self.instance.medical_record,
             admission_date=cleaned_data["admission_date"],
+            discharge_date=cleaned_data["discharge_date"],
             recommended_ward=cleaned_data["recommended_ward"],
             accompanied=cleaned_data["accompanied"],
         )

@@ -35,7 +35,7 @@ class PatientsListView(TemplateView):
         """
         return {
             "patients": [
-                (patient, PatientForm(instance=patient))
+                (patient, PatientForm(instance=patient, prefix=patient.id))
                 for patient in Patient.objects.all().order_by("-created_at")
             ],
             "new_patient_form": PatientForm(),
@@ -77,6 +77,11 @@ class PatientUpdateView(UpdateView):
     model = Patient
     success_url = reverse_lazy("cms:protected:patients")
     form_class = PatientForm
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs.update({"prefix": self.kwargs["pk"]})
+        return kwargs
 
     def form_valid(self, form):
         messages.success(

@@ -58,7 +58,7 @@ limitations under the License.
                         {% url 'cms:protected:patients' as url %}
                         <a href="{{ url }}"
                            class="{% if request.path == url %}selected{% endif %}">
-                            <i icon-name="folder-search"></i> {% translate "Manage Patients" %}
+                            <i icon-name="folder-search"></i> {% translate "Patient Data" %}
                         </a>
                     </li>
                 {% endif %}
