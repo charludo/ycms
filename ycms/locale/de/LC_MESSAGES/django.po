@@ -192,19 +192,19 @@ msgstr "Diesem Patienten / dieser Patientin zugewiesenes Bett"
 
 #: cms/models/bed_assignment.py
 msgid "days"
-msgstr "Tagen"
+msgstr "Tage"
 
 #: cms/models/bed_assignment.py cms/templates/timetravel_controls.html
 msgid "day"
 msgstr "Tag"
 
-#: cms/models/bed_assignment.py cms/models/patient.py
-msgid "in {} days"
-msgstr "in {} Tagen"
+#: cms/models/bed_assignment.py
+msgid "{} days"
+msgstr "{} Tagen"
 
-#: cms/models/bed_assignment.py cms/models/patient.py
-msgid "in {} day"
-msgstr "in {} Tag"
+#: cms/models/bed_assignment.py
+msgid "{} day"
+msgstr "{} Tag"
 
 #: cms/models/bed_assignment.py
 msgid "bed assignment"
@@ -321,6 +321,14 @@ msgstr "vor {} Tagen"
 #: cms/models/patient.py
 msgid "{} day ago"
 msgstr "vor {} Tag"
+
+#: cms/models/patient.py
+msgid "in {} days"
+msgstr "in {} Tagen"
+
+#: cms/models/patient.py
+msgid "in {} day"
+msgstr "in {} Tag"
 
 #: cms/models/patient.py
 msgid "patients"
@@ -660,7 +668,7 @@ msgid "Edit"
 msgstr "Bearbeiten"
 
 #: cms/templates/bed_assignment/bed_assignment_list.html
-#: cms/templates/patient/patient_card.html cms/templates/ward/ward_beds.html
+#: cms/templates/patient/patient_card.html
 msgid "Discharge"
 msgstr "Entlassen"
 
@@ -832,6 +840,10 @@ msgstr "Stunde"
 #: cms/templates/timetravel_controls.html
 msgid "minute"
 msgstr "Minute"
+
+#: cms/templates/ward/ward_beds.html
+msgid "Discharge in"
+msgstr "Entlassung in"
 
 #: cms/templates/ward/ward_beds.html
 msgid "Stay"
