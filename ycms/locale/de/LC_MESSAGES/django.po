@@ -545,6 +545,18 @@ msgid "Assigning patient"
 msgstr "Patienten zuordnen"
 
 #: cms/templates/bed_assignment/assign_bed_assignment.html
+msgid "More reassignment options"
+msgstr "Weitere Bettzuweisungsoptionen"
+
+#: cms/templates/bed_assignment/assign_bed_assignment.html
+msgid "Move patient to different ward"
+msgstr "Patient*in auf andere Station verschieben"
+
+#: cms/templates/bed_assignment/assign_bed_assignment.html
+msgid "Unassign"
+msgstr "Zuweisung aufheben"
+
+#: cms/templates/bed_assignment/assign_bed_assignment.html
 #: cms/templates/patient/patient_card.html cms/templates/patients_list.html
 msgid "Cancel"
 msgstr "Abbrechen"
@@ -766,12 +778,16 @@ msgid "Note"
 msgstr "Notiz"
 
 #: cms/templates/patient/patient_card.html
+msgid "Details"
+msgstr "Details"
+
+#: cms/templates/patient/patient_card.html
 msgid "Assign"
-msgstr "Zuordnen"
+msgstr "Zuweisen"
 
 #: cms/templates/patient/patient_card.html
 msgid "Transfer"
-msgstr "Überweisen"
+msgstr "Verschieben"
 
 #: cms/templates/patient/patient_card.html
 msgid "Edit Patient Information"
@@ -1062,9 +1078,6 @@ msgstr "Englisch"
 
 #~ msgid "Create a new bed assignment"
 #~ msgstr "Erstellen Sie eine neue Bettenzuweisung"
-
-#~ msgid "Ward Details"
-#~ msgstr "Stationsdetails"
 
 #~ msgid "Home"
 #~ msgstr "Start"
