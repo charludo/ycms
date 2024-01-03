@@ -96,8 +96,8 @@ class BedAssignment(AbstractBaseModel):
             ((self.discharge_date.date() - current_or_travelled_time().date()).days)
         )
 
-        in_until_discharge_days = _("in {} days").format(until_discharge)
-        in_until_discharge_day = _("in {} day").format(until_discharge)
+        in_until_discharge_days = _("{} days").format(until_discharge)
+        in_until_discharge_day = _("{} day").format(until_discharge)
 
         return (
             in_until_discharge_day if until_discharge == 1 else in_until_discharge_days
@@ -114,10 +114,17 @@ class BedAssignment(AbstractBaseModel):
         if self.duration is None or self.discharge_date is None:
             return None
 
-        duration = int(
-            (current_or_travelled_time().date() - self.admission_date.date()).days
-        )
-        return int((duration / (self.discharge_date - self.admission_date).days) * 100)
+        if (
+            duration := int(
+                (current_or_travelled_time().date() - self.admission_date.date()).days
+            )
+        ) < 0:
+            return None
+
+        if (total := int((self.discharge_date - self.admission_date).days)) <= 0:
+            return 100
+
+        return int((duration / total) * 100)
 
     def __str__(self):
         """
