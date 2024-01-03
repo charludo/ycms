@@ -15,40 +15,8 @@ const handleModalClose = (): void => {
 
 const handleConfirmDischarge = (): void => {
     document.getElementById("confirmDischargeButton")?.addEventListener("click", () => {
-        const getCookie = (name: string): string | null => {
-            let cookieValue = null;
-            if (document.cookie && document.cookie !== "") {
-                const cookies = document.cookie.split(";");
-                for (let i = 0; i < cookies.length; i++) {
-                    const cookie = cookies[i].trim();
-                    // Check if the cookie name matches the provided name
-                    if (cookie.substring(0, name.length + 1) === `${name}=`) {
-                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                        break;
-                    }
-                }
-            }
-            return cookieValue;
-        };
-
-        fetch(`/patients/discharge/${selectedBedAssignmentId}/`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRFToken": getCookie("csrftoken") || "",
-            },
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.success) {
-                    handleModalClose();
-                    window.location.reload();
-                } else {
-                    console.error("POST request failed");
-                }
-            });
-
-        handleModalClose();
+        const form = document.querySelector(`#discharge-${selectedBedAssignmentId}`) as HTMLFormElement;
+        form?.submit();
     });
 };
 
@@ -68,12 +36,11 @@ const handleDischarge = (button: HTMLElement): void => {
 };
 
 const handleButtonDischarge = (): void => {
-    const buttons = document.querySelectorAll('button[id*="dischargeButton"]');
+    const buttons = document.querySelectorAll<HTMLElement>(".discharge-button");
 
     buttons.forEach((element) => {
-        const button = element as HTMLElement;
-        button.addEventListener("click", () => {
-            handleDischarge(button);
+        element.addEventListener("click", () => {
+            handleDischarge(element);
         });
     });
 };
