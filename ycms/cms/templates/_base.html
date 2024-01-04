@@ -111,6 +111,7 @@ limitations under the License.
         <li class="hidden mb-4" id="timetravel-stop">
             <a href="?" class="justify-center"><i icon-name="timer-off"></i> {% translate "Stop Timetravel" %}</a>
         </li>
+        <div class="flex justify-center items-center">
         <a href="{% url 'change-theme' %}"
            data-tooltip-target="tooltip-right"
            data-tooltip-placement="right"
@@ -131,6 +132,24 @@ limitations under the License.
             {% endif %}
             <div class="tooltip-arrow" data-popper-arrow></div>
         </div>
+        <div class="flex items-center ml-4 mb-2">
+            <form class="mr-2" action="{% url 'switch-language' 'en' %}" method="post">
+                {% csrf_token %}
+                <button type="submit"
+                        class="{% if request.COOKIES.django_language == 'en' %} underline pointer-events-none text-gray-200 {% endif %} text-gray-600 hover:text-blue-500 focus:outline-none dark:text-gray-50 dark:hover:text-gray-300">
+                    EN
+                </button>
+            </form>
+            <div class="border-l h-6"></div>
+            <form class="ml-2" action="{% url 'switch-language' 'de' %}" method="post">
+                {% csrf_token %}
+                <button type="submit"
+                        class="{% if request.COOKIES.django_language == 'de' %} underline pointer-events-none text-gray-200 {% endif %} text-gray-600 hover:text-blue-500 focus:outline-none dark:text-gray-50 dark:hover:text-gray-300">
+                    DE
+                </button>
+            </form>
+        </div>
+    </div>
         <p class="text-sm dark:text-gray-50">
             {% translate "Logged in as" %} <span class="text-blue-500">{{ user.first_name }} {{ user.last_name }}</span>
         </p>

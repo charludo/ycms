@@ -37,11 +37,15 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
+from ycms.cms.views.utility.switch_language import switch_language
 from ycms.core.theme.theme_view import change_theme
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("switch-theme/", change_theme, name="change-theme"),
+    path(
+        "switch-language/<str:language_code>/", switch_language, name="switch-language"
+    ),
     path("", include("ycms.cms.urls")),
 ]
 if settings.DEBUG:
