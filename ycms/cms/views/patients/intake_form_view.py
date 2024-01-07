@@ -25,7 +25,7 @@ class IntakeFormView(TemplateView):
     View to perform intake on new or existing patients
     """
 
-    template_name = "intake_form.html"
+    template_name = "patients/patient_intake_form.html"
 
     def get_context_data(self, **kwargs):
         """

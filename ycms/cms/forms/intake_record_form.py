@@ -38,6 +38,7 @@ class IntakeRecordForm(CustomModelForm):
         self.fields["patient"].required = False
         self.fields["patient"].choices = [("", _("Search for existing patient"))]
         self.fields["diagnosis_code"].choices = [("", _("Search for diagnosis code"))]
+        self.fields["diagnosis_code"].widget.attrs["class"] = "async_diagnosis_code"
 
     def save(self, commit=True):
         """
