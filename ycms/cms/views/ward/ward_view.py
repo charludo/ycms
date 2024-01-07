@@ -1,13 +1,16 @@
 from django.db import models
 from django.shortcuts import redirect
+from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView
 
 from ...constants import gender
+from ...decorators import permission_required
 from ...forms import IntakeBedAssignmentForm, PatientForm
 from ...models import BedAssignment, Ward
 from ...models.timetravel_manager import current_or_travelled_time
 
 
+@method_decorator(permission_required("cms.add_patient"), name="dispatch")
 class WardView(TemplateView):
     """
     View to see a ward
@@ -17,12 +20,22 @@ class WardView(TemplateView):
     template_name = "ward/ward.html"
     context_object_name = "ward"
 
-    def get_context_data(self, pk=None, **kwargs):
+    def get(self, request, *args, pk=None, **kwargs):
+        """
+        Helper function for redirecting in case the user requested the ward timeline
+        """
+        if not pk and self.request.user.assigned_ward:
+            pk = self.request.user.assigned_ward.id
+        elif not pk:
+            pk = 1
+
+        if self.request.user.ward_as_timeline:
+            return redirect("cms:protected:timeline", pk=pk)
+        return super().get(request, *args, pk=pk, **kwargs)
+
+    def get_context_data(self, **kwargs):
         """
         This function returns a list of all rooms in the ward
-
-        :param pk: The ID of the ward that should be shown
-        :type pk: int or None
 
         :param kwargs: The supplied keyword arguments
         :type kwargs: dict
@@ -30,10 +43,7 @@ class WardView(TemplateView):
         :return: Response for filtered offers
         :rtype: ~django.template.response.TemplateResponse
         """
-        if not pk and self.request.user.assigned_ward:
-            pk = self.request.user.assigned_ward.id
-        elif not pk:
-            pk = 1
+        pk = kwargs.get("pk")
         ward = Ward.objects.get(id=pk)
         rooms = [
             (
