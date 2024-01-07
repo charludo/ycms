@@ -196,17 +196,17 @@ a,
 input[type="submit"] {
     // Normal buttons
     &.btn {
-        @apply font-bold rounded inline-block bg-primary text-gray-700 py-3 px-4 border-2 border-primary dark:bg-gray-800 dark:text-primary;
+        @apply inline-block text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 rounded px-5 py-2.5;
 
         svg {
             @apply pr-1;
         }
 
         &.btn-outline {
-            @apply border-2 border-primary text-primary bg-white;
+            @apply border-2 border-blue-600 text-blue-600 bg-white;
 
             &:hover {
-                @apply bg-primary text-white;
+                @apply bg-blue-800 border-blue-800 text-white;
             }
         }
 
@@ -216,11 +216,6 @@ input[type="submit"] {
             &:hover {
                 @apply border-blue-500 text-blue-500 dark:border-blue-300 dark:text-blue-300;
             }
-        }
-
-        // Pseudo-classes
-        &:hover {
-            @apply bg-white text-gray-700 dark:hover:bg-primary dark:hover:text-gray-800;
         }
 
         &:focus {
