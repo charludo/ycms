@@ -1,8 +1,6 @@
 import { Modal, ModalOptions } from "flowbite";
 
-let selectedBedAssignmentId: string | null = "";
-let selectedBedId: string | null = "";
-let selectedWardId: string | null = "";
+let selectedRoomId: string | null;
 
 const handleAssignModalClose = (): void => {
     document.getElementById("cancelAssignButton")?.addEventListener("click", () => {
@@ -17,50 +15,13 @@ const handleAssignModalClose = (): void => {
 
 const handleAssignModalConfirm = (): void => {
     document.getElementById("confirmAssignButton")?.addEventListener("click", () => {
-        const modal = FlowbiteInstances.getInstance("Modal", "assign-modal");
-
-        const getCookie = (name: string): string | null => {
-            let cookieValue = null;
-            if (document.cookie && document.cookie !== "") {
-                const cookies = document.cookie.split(";");
-                for (let i = 0; i < cookies.length; i++) {
-                    const cookie = cookies[i].trim();
-                    // Check if the cookie name matches the provided name
-                    if (cookie.substring(0, name.length + 1) === `${name}=`) {
-                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                        break;
-                    }
-                }
-            }
-            return cookieValue;
-        };
-
-        fetch(`/patients/assign/${selectedWardId}/${selectedBedAssignmentId}/`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRFToken": getCookie("csrftoken") || "",
-            },
-            body: JSON.stringify({ bed_id: selectedBedId }),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.success) {
-                    modal.hide();
-                    window.location.href = `/ward/${selectedWardId}/`;
-                } else {
-                    console.error("POST request failed");
-                }
-            });
-
-        modal.hide();
+        const form = document.querySelector(`#assign-room-${selectedRoomId}`) as HTMLFormElement;
+        form?.submit();
     });
 };
 
-const handleAssign = (card: HTMLElement): void => {
-    selectedBedId = card.getAttribute("data-bed-id");
-    selectedWardId = card.getAttribute("data-ward-id");
-    selectedBedAssignmentId = card.getAttribute("data-bedassignment-id");
+const handleAssign = (card: HTMLFormElement): void => {
+    selectedRoomId = card.getAttribute("data-room-id");
     const roomNumber = card.getAttribute("data-room-number");
     const genderWarning = card.getAttribute("data-room-gender-warning");
     const ageWarning = card.getAttribute("data-room-age-warning");
@@ -121,50 +82,23 @@ const handleAssign = (card: HTMLElement): void => {
 };
 
 const handleRoomCardAssign = (): void => {
-    const cards = document.querySelectorAll('div[id*="assignRoomCard"]');
+    const cards = document.querySelectorAll<HTMLFormElement>('div[id*="assignRoomCard"]');
 
     cards.forEach((element) => {
-        const button = element as HTMLElement;
-        button.addEventListener("click", () => {
-            handleAssign(button);
+        element.addEventListener("click", () => {
+            handleAssign(element);
         });
     });
 };
 
-const handleEdit = (button: HTMLElement): void => {
-    selectedBedAssignmentId = button.getAttribute("data-bedassignment-id");
-    const targetEl = document.getElementById("update-modal");
-    if (!targetEl) {
+const handleWardTransfer = () => {
+    const wardSelect = document.querySelector("#new_ward_select") as HTMLInputElement;
+    if (!wardSelect) {
         return;
     }
-    const options: ModalOptions = {
-        placement: "center-center" as ModalOptions["placement"],
-        backdrop: "dynamic",
-        backdropClasses: "bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-40",
-        closable: true,
-    };
 
-    fetch(`/bed-assignments/update-modal/${selectedBedAssignmentId}/`)
-        .then((response) => response.text())
-        .then((data) => {
-            if (!targetEl) {
-                return;
-            }
-            targetEl.innerHTML = data;
-        })
-        .catch((error) => console.error("Error:", error));
-    const modal = new Modal(targetEl, options);
-    modal.show();
-};
-
-const handleButtonEdit = (): void => {
-    const buttons = document.querySelectorAll('button[id*="editButton"]');
-
-    buttons.forEach((element) => {
-        const button = element as HTMLElement;
-        button.addEventListener("click", () => {
-            handleEdit(button);
-        });
+    wardSelect.addEventListener("change", () => {
+        wardSelect.form?.submit();
     });
 };
 
@@ -172,5 +106,5 @@ window.addEventListener("load", () => {
     handleRoomCardAssign();
     handleAssignModalClose();
     handleAssignModalConfirm();
-    handleButtonEdit();
+    handleWardTransfer();
 });
