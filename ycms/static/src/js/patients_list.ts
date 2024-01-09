@@ -37,6 +37,9 @@ window.addEventListener("load", () => {
     });
 
     const searchPatientInput = document.querySelector("#search-patient-input") as HTMLInputElement;
+    if (!searchPatientInput) {
+        return;
+    }
     searchPatientInput.addEventListener("keyup", () => {
         const name = searchPatientInput.value;
         searchPatients(name);

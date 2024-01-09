@@ -1,6 +1,7 @@
 import datetime
 
-from django.http import JsonResponse
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404
 from django.utils.decorators import method_decorator
 from django.views.generic import View
 
@@ -18,12 +19,11 @@ class DischargePatientView(View):
         """
         This function discharges a patient
         """
-        bed_assignment = BedAssignment.objects.get(pk=kwargs["assignment_id"])
+        bed_assignment = get_object_or_404(BedAssignment, pk=kwargs["assignment_id"])
         bed_assignment.discharge_date = (
             datetime.datetime.now()
             if not (date := request.POST.get("new_date"))
             else date
         )
         bed_assignment.save()
-
-        return JsonResponse({"success": True})
+        return HttpResponseRedirect(request.META.get("HTTP_REFERER"))

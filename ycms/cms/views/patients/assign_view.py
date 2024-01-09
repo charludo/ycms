@@ -1,8 +1,6 @@
-import json
 import logging
 
-from django.http import JsonResponse
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.utils.translation import gettext as _
 from django.views.generic import TemplateView
 
@@ -32,7 +30,7 @@ class AssignPatientView(TemplateView):
         return {
             "bed_assignment": bed_assignment,
             "rooms": rooms,
-            "corridor_index": str(len(rooms) // 2),
+            "corridor_index": len(rooms) // 2,
             "ward": ward,
             "wards": wards,
             **super().get_context_data(**kwargs),
@@ -40,15 +38,19 @@ class AssignPatientView(TemplateView):
 
     def post(self, request, *args, **kwargs):
         """
-        This function assign a patient to a room
+        This function assigns a patient to a room
         """
-        data = json.loads(request.body)
-        bed_id = data.get("bed_id")
         assignment_id = kwargs["assignment_id"]
         bed_assignment = get_object_or_404(BedAssignment, pk=assignment_id)
-        bed = get_object_or_404(Bed, pk=bed_id)
 
-        bed_assignment.bed = bed
+        bed_id = request.POST.get("bed_id")
+        try:
+            bed_assignment.bed = Bed.objects.get(pk=bed_id)
+        except Bed.DoesNotExist:
+            bed_assignment.bed = None
+
+        if new_ward_id := request.POST.get("new_ward"):
+            bed_assignment.recommended_ward = get_object_or_404(Ward, pk=new_ward_id)
+
         bed_assignment.save()
-
-        return JsonResponse({"success": True})
+        return redirect("cms:protected:ward_detail", pk=kwargs["ward_id"])
