@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
             name="admission_date",
             field=models.DateTimeField(
                 blank=True,
-                help_text="date the hostpital stay begins",
+                help_text="date the hospital stay begins",
                 verbose_name="admission date",
             ),
         ),

@@ -21,7 +21,7 @@ class BedAssignment(AbstractBaseModel):
     admission_date = models.DateTimeField(
         blank=True,
         verbose_name=_("admission date"),
-        help_text=_("date the hostpital stay begins"),
+        help_text=_("date the hospital stay begins"),
     )
     discharge_date = models.DateTimeField(
         blank=True,

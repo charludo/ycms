@@ -151,7 +151,7 @@ msgid "admission date"
 msgstr "Aufnahmedatum"
 
 #: cms/models/bed_assignment.py
-msgid "date the hostpital stay begins"
+msgid "date the hospital stay begins"
 msgstr "Datum zu dem der Krankenhausaufenthalt beginnt"
 
 #: cms/models/bed_assignment.py
@@ -464,7 +464,7 @@ msgstr "Stationsansicht"
 msgid "Patient Intake"
 msgstr "Patientenaufnahme"
 
-#: cms/templates/_base.html
+#: cms/templates/_base.html cms/templates/user_settings.html
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -730,7 +730,7 @@ msgid "Privately insured"
 msgstr "Privatversichert"
 
 #: cms/templates/patient/patient_card.html
-msgid "Hostpital Stay Details"
+msgid "Hospital Stay Details"
 msgstr "Details zum Krankenhausaufenthalt"
 
 #: cms/templates/patient/patient_card.html
@@ -782,7 +782,7 @@ msgid "Edit Hospital Stay Details"
 msgstr "Details zum Krankenhausaufenthalt bearbeiten"
 
 #: cms/templates/patient/patient_card.html cms/templates/patients_list.html
-#: cms/templates/timeline/timeline.html
+#: cms/templates/timeline/timeline.html cms/templates/user_settings.html
 msgid "Save"
 msgstr "Speichern"
 
@@ -849,6 +849,10 @@ msgstr "Stunde"
 #: cms/templates/timetravel_controls.html
 msgid "minute"
 msgstr "Minute"
+
+#: cms/templates/user_settings.html
+msgid "Change password"
+msgstr "Passwort ändern"
 
 #: cms/templates/ward/ward_beds.html
 msgid "Discharge in"
@@ -1060,6 +1064,14 @@ msgstr ""
 "{} Zuweisungen sind fehlgeschlagen. Die Zuweisungen der Patient*innen wurden "
 "aufgehoben."
 
+#: cms/views/user_settings_view.py
+msgid "Your settings were successfully updated!"
+msgstr "Deine Einstellungen wurden erfolgreich geändert!"
+
+#: cms/views/user_settings_view.py
+msgid "Your password was successfully updated!"
+msgstr "Dein Passwort wurde erfolgreich geändert!"
+
 #: cms/views/ward/ward_management_view.py
 msgid "Addition of new ward \"{}\" successful!"
 msgstr "Hinzufügung der neuen Station \"{}\" erfolgreich!"
@@ -1169,9 +1181,6 @@ msgstr "Englisch"
 
 #~ msgid "Sign Up"
 #~ msgstr "Registrieren"
-
-#~ msgid "Your account has been successfully activated."
-#~ msgstr "Ihr Account wurde erfolgreich freigeschalten."
 
 #~ msgid "This account activation link is invalid."
 #~ msgstr "Der Accountaktivierungslink ist ungültig."
