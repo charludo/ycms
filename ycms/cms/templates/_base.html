@@ -111,25 +111,46 @@ limitations under the License.
         <li class="hidden mb-4" id="timetravel-stop">
             <a href="?" class="justify-center"><i icon-name="timer-off"></i> {% translate "Stop Timetravel" %}</a>
         </li>
-        <a href="{% url 'change-theme' %}"
-           data-tooltip-target="tooltip-right"
-           data-tooltip-placement="right"
-           class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-600 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 rounded-lg text-sm p-2.5 mb-4">
-            {% if is_dark_theme %}
-                <i icon-name="sun"></i>
-            {% else %}
-                <i icon-name="moon"></i>
-            {% endif %}
-        </a>
-        <div id="tooltip-right"
-             role="tooltip"
-             class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-800 rounded-lg shadow-sm opacity-0 tooltip">
-            {% if is_dark_theme %}
-                {% translate "Turn on the light" %}
-            {% else %}
-                {% translate "Turn off the light" %}
-            {% endif %}
-            <div class="tooltip-arrow" data-popper-arrow></div>
+        <div class="flex justify-center items-center mb-4 gap-4">
+            <a href="{% url 'change-theme' %}"
+               data-tooltip-target="tooltip-right"
+               data-tooltip-placement="right"
+               class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-600 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 rounded-lg text-sm p-2.5">
+                {% if is_dark_theme %}
+                    <i icon-name="sun"></i>
+                {% else %}
+                    <i icon-name="moon"></i>
+                {% endif %}
+            </a>
+            <div id="tooltip-right"
+                 role="tooltip"
+                 class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-800 rounded-lg shadow-sm opacity-0 tooltip">
+                {% if is_dark_theme %}
+                    {% translate "Turn on the light" %}
+                {% else %}
+                    {% translate "Turn off the light" %}
+                {% endif %}
+                <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
+            <div class="flex items-center">
+                <form class="mr-2" action="{% url 'switch-language' 'en' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit"
+                            id="lang-switch-en"
+                            class="{% if request.COOKIES.django_language == 'en' %} underline pointer-events-none text-gray-300 dark:text-gray-500 {% endif %} text-gray-600 hover:text-blue-500 focus:outline-none dark:text-gray-50 dark:hover:text-gray-300">
+                        EN
+                    </button>
+                </form>
+                <div class="border-l h-6"></div>
+                <form class="ml-2" action="{% url 'switch-language' 'de' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit"
+                            id="lang-switch-de"
+                            class="{% if request.COOKIES.django_language == 'de' %} underline pointer-events-none text-gray-300 dark:text-gray-500 {% endif %} text-gray-600 hover:text-blue-500 focus:outline-none dark:text-gray-50 dark:hover:text-gray-300">
+                        DE
+                    </button>
+                </form>
+            </div>
         </div>
         <p class="text-sm dark:text-gray-50">
             {% translate "Logged in as" %} <span class="text-blue-500">{{ user.first_name }} {{ user.last_name }}</span>

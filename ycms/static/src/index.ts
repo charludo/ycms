@@ -13,6 +13,7 @@ import "./js/ward/progress";
 import { createIconsAt } from "./js/utils/create-icons";
 import "./js/patients_list";
 import "./js/utils/loader";
+import "./js/utils/set-language";
 
 window.addEventListener("DOMContentLoaded", () => {
     createIconsAt(document.documentElement);
