@@ -355,3 +355,16 @@ EMAIL_USE_TLS = bool(strtobool(os.environ.get("YCMS_EMAIL_USE_TLS", "True")))
 #: In most email documentation this type of TLS connection is referred to as SSL. It is generally used on port 465.
 #: (see :setting:`django:EMAIL_USE_SSL`)
 EMAIL_USE_SSL = bool(strtobool(os.environ.get("YCMS_EMAIL_USE_SSL", "False")))
+
+##############
+# PRA Solver #
+##############
+
+#: Base path of the PRA solver. Assumes it is located in a sibling directory to this project.
+PRA_BASE = os.path.join(BASE_DIR.parent.parent, "patient-to-room_assignment")
+
+#: Where to put the input for the PRA solver. Assumes it is located in a sibling directory to this project.
+PRA_INPUT_PATH = os.path.join(PRA_BASE, "instances", "generated.json")
+
+#: Where the PRA solver puts its output. Assumes it is located in a sibling directory to this project.
+PRA_OUTPUT_PATH = os.path.join(PRA_BASE, "Results", "instances", "generated_out.json")

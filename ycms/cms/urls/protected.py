@@ -84,6 +84,11 @@ urlpatterns = [
         "timeline/",
         include(
             [
+                path(
+                    "<int:pk>/suggest/",
+                    timeline.TimelineView.as_view(),
+                    name="timeline_suggest",
+                ),
                 path("<int:pk>/", timeline.TimelineView.as_view(), name="timeline"),
                 path(
                     "mode-switch/<int:pk>/",

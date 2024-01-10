@@ -1,8 +1,9 @@
-import datetime
 import json
 import logging
+from io import StringIO
 
 from django.contrib import messages
+from django.core.management import call_command
 from django.db.models import Q
 from django.shortcuts import redirect
 from django.utils.decorators import method_decorator
@@ -39,16 +40,34 @@ class TimelineView(TemplateView):
         ward = Ward.objects.get(id=pk)
         wards = Ward.objects.all()
 
+        suggestions = {}
+        if "/suggest/" in self.request.path:
+            out = StringIO()
+            call_command("call_solver_api", pk, stdout=out)
+            suggestions = json.loads(out.getvalue())
+
         return {
             "ward": ward,
             "wards": wards,
             "selected_ward_id": pk,
-            "timeline_data": self._get_timeline_data(ward),
+            "timeline_data": self._get_timeline_data(ward, suggestions),
+            "suggestions": json.dumps(suggestions),
             **super().get_context_data(**kwargs),
         }
 
     @staticmethod
-    def _get_timeline_data(ward):
+    def _get_timeline_data(ward, suggestions):
+        def _get_room(assignment):
+            if suggestion := next(
+                (s for s in suggestions if s.get("assignmentId") == assignment.id), None
+            ):
+                return suggestion["roomId"]
+
+            if assignment.bed:
+                return assignment.bed.room.id
+
+            return "unassigned"
+
         hospital_stays = [
             {
                 "id": assignment.id,
@@ -61,16 +80,13 @@ class TimelineView(TemplateView):
                 "start": str(assignment.admission_date),
                 "end": str(assignment.discharge_date),
                 "requiredBeds": 2 if assignment.accompanied else 1,
-                "group": assignment.bed.room.id if assignment.bed else "unassigned",
+                "group": _get_room(assignment),
                 "className": assignment.medical_record.patient.gender,
                 "dataAttributes": "all",
                 "style": f"height: {'73px' if assignment.accompanied else '32px'};",
             }
             for assignment in BedAssignment.objects.filter(
-                Q(
-                    discharge_date__gt=current_or_travelled_time()
-                    - datetime.timedelta(days=30)  # for midterm demonstration
-                )
+                Q(discharge_date__gt=current_or_travelled_time())
                 & (Q(recommended_ward=ward) | Q(recommended_ward__isnull=True))
             )
         ]
@@ -153,4 +169,4 @@ class TimelineView(TemplateView):
                 ),
             )
 
-        return redirect(request.path)
+        return redirect("cms:protected:timeline", pk=kwargs.get("pk"))

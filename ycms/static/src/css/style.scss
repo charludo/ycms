@@ -210,7 +210,7 @@ input[type="submit"] {
         }
 
         &.btn-outline {
-            @apply border-2 border-blue-600 text-blue-600 bg-white;
+            @apply border-2 border-blue-600 text-white bg-transparent;
 
             &:hover {
                 @apply bg-blue-800 border-blue-800 text-white;

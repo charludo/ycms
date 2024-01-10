@@ -867,6 +867,10 @@ msgstr "Löschen"
 msgid "unsaved bed assignment changes"
 msgstr "ungespeicherte Bettzuweisungsänderungen"
 
+#: cms/templates/timeline/timeline.html cms/templates/ward/ward_info.html
+msgid "Suggest Assignment"
+msgstr "Zuweisung vorschlagen"
+
 #: cms/templates/timetravel_controls.html
 msgid "hour"
 msgstr "Stunde"
@@ -906,10 +910,6 @@ msgstr "Gesamtzahl der Betten"
 #: cms/templates/ward/ward_info.html
 msgid "Manually Assign"
 msgstr "Manuell zuweisen"
-
-#: cms/templates/ward/ward_info.html
-msgid "Suggest Assignment"
-msgstr "Aufgabe vorschlagen"
 
 #: cms/templates/ward/ward_management.html
 msgid "YCMS at a glance"
