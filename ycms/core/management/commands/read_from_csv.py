@@ -1,15 +1,26 @@
 import csv
 import json
 import logging
+import os
 import random
 from datetime import datetime
 
+from django.conf import settings
 from django.core import serializers
 from django.core.management import call_command
 from django.core.management.base import BaseCommand, CommandParser
 from django.utils.dateparse import parse_date, parse_datetime
 
-from ....cms.models import BedAssignment, ICD10Entry, MedicalRecord, Patient, User, Ward
+from ....cms.models import (
+    Bed,
+    BedAssignment,
+    ICD10Entry,
+    MedicalRecord,
+    Patient,
+    Room,
+    User,
+    Ward,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -80,20 +91,46 @@ class Command(BaseCommand):
         parser.add_argument("source", help="The source CSV file location", nargs=1)
         parser.add_argument("target", help="The target JSON file location", nargs=1)
         parser.add_argument(
+            "ward_name",
+            help="Name of the ward to create (optional)",
+            nargs="?",
+            default="",
+        )
+        parser.add_argument(
+            "rooms",
+            help="The source JSON file for the rooms (optional)",
+            nargs="?",
+            default=None,
+        )
+        parser.add_argument(
             "--pseudonymized",
             help="Set flag if names are pseudonymized in the source file",
         )
 
     # pylint: disable=arguments-differ,too-many-locals
-    def handle(self, source, target, *args, pseudonymized=False, **options) -> None:
+    def handle(
+        self, source, target, ward_name, rooms, *args, pseudonymized=False, **options
+    ) -> None:
         r"""
         Command to read from the given CSV, turn the data into database objects,
-        and store those objects in a fixture for reuse
+        and store those objects in a fixture for reuse.
+
+        Usage instructions:
+        - use ./tools/prune_database.sh
+        - comment out all data loading in ./tools/loadtestdata.sh expect for hospital_data.json
+        - use this script as shown below
+
+        Example usage:
+        ./tools/ycms-cli read_from_csv raw_data.csv test_data.json Intensivmedizin rooms.json --pseudonymized True
 
         :param source: The source file
         :type source: str
         :param target: The target file
         :type target: str
+        :param ward_name: The name of the ward to create
+        :type ward_name: str
+        :param rooms: The rooms file
+        :type rooms: str or None
         :param \*args: The supplied arguments
         :param pseudonymized: If names are pseudonymized in source file
         :type pseudonymized: bool
@@ -101,6 +138,32 @@ class Command(BaseCommand):
         """
         source = source[0]
         target = target[0]
+
+        objects = []
+
+        # Attempt to load the rooms. Fallback to ward 1 otherwise.
+        if ward_name and rooms:
+            creator = User.objects.get(id=2)
+            ward = Ward.objects.create(
+                creator=creator, ward_number=ward_name.lower(), floor=1, name=ward_name
+            )
+            objects.append(ward)
+
+            with open(rooms, "r", encoding="utf-8") as file:
+                rooms_data = json.loads(file.read())["rooms"]
+
+            for room_data in rooms_data:
+                room = Room.objects.create(
+                    ward=ward, creator=creator, room_number=room_data["name"]
+                )
+                objects.append(room)
+                for _ in range(room_data["capacity"]):
+                    bed = Bed.objects.create(
+                        room=room, creator=creator, bed_type="normal"
+                    )
+                    objects.append(bed)
+        else:
+            ward = Ward.objects.get(id=1)
 
         # Get all patients and codes
         codes = []
@@ -114,26 +177,18 @@ class Command(BaseCommand):
 
         logger.info("%s new patients to create", len(patients))
 
-        objects = []
-
         # If the code is new, create it
-        missing_codes = []
-        for code in codes:
-            if not ICD10Entry.objects.filter(code=code).first():
-                missing_codes.append(code)
-
+        code_objects = []
         call_command("loaddata", "ycms/cms/fixtures/icd10_data.json")
-        for code in missing_codes:
-            if not (existing := ICD10Entry.objects.filter(code=code).first()):
-                entry = ICD10Entry.objects.create(code=code, description="TODO")
-                objects.append(entry)
-            else:
-                objects.append(existing)
+        for code in codes:
+            if not (entry := ICD10Entry.objects.filter(code=code).first()):
+                description = input(f'Add missing description for "{code}": ')
+                entry = ICD10Entry.objects.create(code=code, description=description)
+            code_objects.append(entry)
 
-        logger.info("%s new codes created", len(objects))
+        logger.info("%s codes collected", len(code_objects))
 
         # Create the patients
-        ward = Ward.objects.get(id=1)
         creator = User.objects.get(id=4)
 
         for patient in patients:
@@ -178,5 +233,15 @@ class Command(BaseCommand):
         # Save the new data
         with open(target, "w", encoding="utf-8") as file:
             file.write(serializers.serialize("json", objects))
+        with open(
+            f"{target.split('.json')[0]}_icd10.json", "w", encoding="utf-8"
+        ) as file:
+            file.write(serializers.serialize("json", code_objects))
+        with open(
+            os.path.join(settings.BASE_DIR, "cms", "fixtures", "icd10_data.json"),
+            "w",
+            encoding="utf-8",
+        ) as file:
+            file.write(serializers.serialize("json", ICD10Entry.objects.all()))
 
         logger.info("done saving new objects")
