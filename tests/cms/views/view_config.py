@@ -17,7 +17,7 @@ This modules contains the config for the view tests
 """
 import json
 
-from ...conftest import MEDICAL_PERSONNEL, ROOT, STATION_MANAGEMENT
+from ...conftest import MEDICAL_PERSONNEL, ROLES, ROOT, STATION_MANAGEMENT, ZBM
 
 #: This list contains the config for all views
 #: Each element is a tuple which consists of two elements: A list of view configs and the keyword arguments that are
@@ -28,6 +28,17 @@ VIEWS = [
     (
         [
             ("cms:protected:patients", [ROOT, STATION_MANAGEMENT, MEDICAL_PERSONNEL]),
+            (
+                "cms:protected:create_patient",
+                [ROOT, STATION_MANAGEMENT, MEDICAL_PERSONNEL],
+                {
+                    "first_name": "Firstname",
+                    "last_name": "Lastname",
+                    "insurance_type": True,
+                    "date_of_birth": "2023-01-01",
+                    "gender": "d",
+                },
+            ),
             ("cms:protected:intake", [ROOT, STATION_MANAGEMENT, MEDICAL_PERSONNEL]),
             (
                 "cms:protected:intake",
@@ -55,6 +66,21 @@ VIEWS = [
             ),
         ],
         {},
+    ),
+    (
+        [
+            (
+                "cms:protected:update_patient",
+                [ROOT, STATION_MANAGEMENT, MEDICAL_PERSONNEL],
+                {"gender": "f"},
+            ),
+            (
+                "cms:protected:delete_patient",
+                [ROOT, STATION_MANAGEMENT, MEDICAL_PERSONNEL],
+                {"post": ""},
+            ),
+        ],
+        {"pk": 191},
     ),
     (
         [
@@ -97,6 +123,44 @@ VIEWS = [
             )
         ],
         {"assignment_id": 19},
+    ),
+    (
+        [
+            (
+                "cms:protected:assign_patient",
+                [ROOT, STATION_MANAGEMENT, MEDICAL_PERSONNEL],
+                {"post": ""},
+            )
+        ],
+        {"ward_id": 1, "assignment_id": 19},
+    ),
+    (
+        [
+            ("cms:protected:autocomplete_icd10", ROLES, {"q": "M2"}),
+            ("cms:protected:autocomplete_patient", ROLES, {"q": "Per"}),
+            ("change-theme", ROLES, {"post": ""}),
+        ],
+        {},
+    ),
+    ([("switch-language", ROLES, {"post": ""})], {"language_code": "en"}),
+    (
+        [
+            ("cms:protected:create_user", [ROOT, ZBM, STATION_MANAGEMENT]),
+            (
+                "cms:protected:create_user",
+                [ROOT, ZBM, STATION_MANAGEMENT],
+                {
+                    "personnel_id": "ABCDE12345",
+                    "email": "test@ycms.de",
+                    "job_type": "DOCTOR",
+                    "first_name": "First",
+                    "last_name": "Last",
+                    "assigned_ward": 1,
+                    "group": "MEDICAL_PERSONNEL",
+                },
+            ),
+        ],
+        {},
     ),
 ]
 

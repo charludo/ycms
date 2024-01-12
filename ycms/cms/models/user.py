@@ -226,4 +226,4 @@ class User(AbstractBaseUser, PermissionsMixin, AbstractBaseModel):
         verbose_name = _("user")
         verbose_name_plural = _("users")
         ordering = ["personnel_id"]
-        default_permissions = ("change", "delete", "view")
+        default_permissions = ("add", "change", "delete", "view")
