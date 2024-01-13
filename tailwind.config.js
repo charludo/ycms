@@ -58,7 +58,7 @@ module.exports = {
       },
       backgroundImage: {
         "ycms-icon": "url('../images/favicon.svg')",
-        "ycms-logo": "url('../images/logo-ycms.png')",
+        "ycms-logo": "url('../images/logo-bed.svg')",
       },
       fontFamily: {
         "default": ["Roboto", "Raleway", "Lateef", "Noto Sans SC", "sans-serif", "Noto Sans Ethiopic"],
