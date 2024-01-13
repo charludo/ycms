@@ -488,6 +488,10 @@ msgstr "Mach das Licht aus"
 msgid "Logged in as"
 msgstr "Angemeldet als"
 
+#: cms/templates/_base.html
+msgid "Toggle sidebar"
+msgstr "Seitenleiste umschalten"
+
 #: cms/templates/authentication/create_user.html
 msgid "Registration"
 msgstr "Registrierung"
