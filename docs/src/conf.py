@@ -128,7 +128,7 @@ html_css_files = ["custom.css"]
 #: Additional template context
 html_context = {"current_year": date.today().year}
 #: The logo shown in the menu bar
-html_logo = "../../ycms/static/images/logo-ycms.png"
+html_logo = "../../ycms/static/images/logo-bed.svg"
 #: The favicon of the html doc files
 html_favicon = "../../ycms/static/images/favicon.svg"
 #: Do not include links to the documentation source (.rst files) in build
