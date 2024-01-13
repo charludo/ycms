@@ -121,7 +121,9 @@ class BedAssignment(AbstractBaseModel):
         ) < 0:
             return None
 
-        if (total := int((self.discharge_date - self.admission_date).days)) <= 0:
+        if (
+            total := int((self.discharge_date.date() - self.admission_date.date()).days)
+        ) <= 0:
             return 100
 
         return int((duration / total) * 100)
