@@ -173,6 +173,7 @@ class User(AbstractBaseUser, PermissionsMixin, AbstractBaseModel):
         help_text=_("Ward this employee is assigned to (if any)"),
         on_delete=models.SET_NULL,
     )
+    ward_as_timeline = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
