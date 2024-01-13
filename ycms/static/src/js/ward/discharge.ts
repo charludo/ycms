@@ -28,7 +28,7 @@ const handleDischarge = (button: HTMLElement): void => {
     const options: ModalOptions = {
         placement: "center-center" as ModalOptions["placement"],
         backdrop: "dynamic",
-        backdropClasses: "bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-40",
+        backdropClasses: "bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-[40]",
         closable: true,
     };
     const modal = new Modal(targetEl, options);

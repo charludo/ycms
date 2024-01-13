@@ -19,12 +19,18 @@ limitations under the License.
 {% endcomment %}
 {% block raw_content %}
     <div class="lg:flex dark:bg-gray-900 min-h-full">
-        <button id="sidebarToggle" class="block lg:hidden text-gray-600 px-4 py-3">
+        <button id="sidebarOpen" class="block lg:hidden text-gray-600 px-4 py-3">
             <i id="menuIcon" icon-name="menu"></i>
-            <i id="closeIcon" class="hidden" icon-name="x"></i>
         </button>
+        <div id="sidebarBackdrop"
+             class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-[29] hidden"></div>
         <div id="sidebar"
-             class="fixed h-full w-64 bg-white border-r shadow-md transform -translate-x-full lg:translate-x-0 lg:block dark:border-gray-600">
+             class="fixed top-0 bottom-0 h-full w-64 bg-white border-r shadow-md transform -translate-x-full lg:translate-x-0 lg:block dark:border-gray-600 overflow-y-auto z-[30]">
+            <div class="absolute top-0 right-0 z-100 p-4 lg:hidden">
+                <button id="sidebarClose" class="hidden" class="text-gray-600 px-4 py-3">
+                    <i id="closeIcon" icon-name="x"></i>
+                </button>
+            </div>
             <a href="{% url 'cms:protected:index' %}"
                class="block border-b dark:border-gray-600 flex items-center text-gray-600 dark:text-white">
                 {% if is_dark_theme %}

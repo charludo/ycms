@@ -176,6 +176,8 @@ class Patient(AbstractBaseModel):
         :return: the current admission date
         :rtype: str
         """
+        if not self.current_stay:
+            return None
         return self._get_date_status(self.current_stay.admission_date)
 
     @cached_property
@@ -186,6 +188,8 @@ class Patient(AbstractBaseModel):
         :return: the current discharge date
         :rtype: str
         """
+        if not self.current_stay:
+            return None
         return self._get_date_status(self.current_stay.discharge_date)
 
     def __str__(self):
