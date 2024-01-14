@@ -16,15 +16,18 @@ import logging
 
 from django.contrib import messages
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
 from django.utils.translation import gettext as _
 from django.views.generic.edit import CreateView
 
+from ...decorators import permission_required
 from ...forms import RegistrationForm
 from ...utils.email_utils import send_activation_mail
 
 logger = logging.getLogger(__name__)
 
 
+@method_decorator(permission_required("cms.add_user"), name="dispatch")
 class RegistrationView(CreateView):
     """
     View allowing new users to sign up as offer providers
@@ -32,7 +35,7 @@ class RegistrationView(CreateView):
 
     template_name = "authentication/create_user.html"
     form_class = RegistrationForm
-    success_url = reverse_lazy("cms:protected:index")
+    success_url = reverse_lazy("cms:protected:create_user")
 
     def get_form_kwargs(self):
         """
