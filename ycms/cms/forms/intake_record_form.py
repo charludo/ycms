@@ -33,11 +33,20 @@ class IntakeRecordForm(CustomModelForm):
         :param \**kwargs: The supplied keyword arguments
         :type \**kwargs: dict
         """
+        initial_patient = kwargs.pop("initial_patient", None)
         super().__init__(*args, **kwargs)
 
-        self.fields["patient"].required = False
-        self.fields["patient"].choices = [("", _("Search for existing patient"))]
+        if initial_patient:
+            initial = (
+                initial_patient.id,
+                f"{initial_patient.last_name}, {initial_patient.first_name}, {initial_patient.date_of_birth}",
+            )
+            self.fields["patient"].choices = [initial]
+        else:
+            self.fields["patient"].required = False
+            self.fields["patient"].choices = [("", _("Search for existing patient"))]
         self.fields["diagnosis_code"].choices = [("", _("Search for diagnosis code"))]
+        self.fields["diagnosis_code"].widget.attrs["class"] = "async_diagnosis_code"
 
     def save(self, commit=True):
         """

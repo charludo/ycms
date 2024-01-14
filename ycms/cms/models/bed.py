@@ -51,6 +51,13 @@ class Bed(AbstractBaseModel):
             return not active_assignments.exists()
         return True
 
+    @cached_property
+    def bed_type_name(self):
+        """
+        Helper property to get the human-readable representation of the bed's type
+        """
+        return dict(bed_types.CHOICES)[self.bed_type]
+
     def __str__(self):
         """
         This overwrites the default Django :meth:`~django.db.models.Model.__str__` method which would return ``Bed object (id)``.

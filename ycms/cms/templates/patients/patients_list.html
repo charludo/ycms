@@ -15,7 +15,7 @@
             <input id="search-patient-input"
                    type="text"
                    placeholder="{% translate "Search for name..." %}" />
-            <table id="patients" class="w-full text-sm text-gray-500">
+            <table id="patients" class="w-full text-sm text-gray-500 mt-4">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-100">
                     <tr>
                         <th class="px-6 py-3">{% translate "Patient name" %}</th>
@@ -27,30 +27,32 @@
                     </tr>
                 </thead>
                 <tbody class="overflow-y-auto">
-                    <tr class="odd:bg-white even:bg-gray-100 border-b dark:odd:bg-gray-800 dark:even:bg-gray-700 dark:border-gray-700">
-                        <td class="px-6 py-4">
-                            <div class="flex flex-nowrap gap-4">
-                                {% render_field new_patient_form.last_name form="add-patient" %}
-                                {% render_field new_patient_form.first_name form="add-patient" %}
-                            </div>
-                        </td>
-                        <td class="px-6 py-4">{% render_field new_patient_form.gender form="add-patient" %}</td>
-                        <td class="px-6 py-4">{% render_field new_patient_form.date_of_birth form="add-patient" %}</td>
-                        <td class="px-6 py-4 text-center">{% render_field new_patient_form.insurance_type form="add-patient" %}</td>
-                        <td class="px-6 py-4"></td>
-                        <td class="p-4 text-center">
-                            <button class="px-2 text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-700 rounded px-5 py-2.5 text-center"
-                                    form="add-patient">
-                                <form hidden
-                                      id="add-patient"
-                                      method="post"
-                                      action="{% url "cms:protected:create_patient" %}">
-                                    {% csrf_token %}
-                                </form>
-                                {% translate "Add" %}
-                            </button>
-                        </td>
-                    </tr>
+                    {% if perms.cms.add_user %}
+                        <tr class="odd:bg-white even:bg-gray-100 border-b dark:odd:bg-gray-800 dark:even:bg-gray-700 dark:border-gray-700">
+                            <td class="px-6 py-4">
+                                <div class="flex flex-nowrap gap-4">
+                                    {% render_field new_patient_form.last_name form="add-patient" %}
+                                    {% render_field new_patient_form.first_name form="add-patient" %}
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">{% render_field new_patient_form.gender form="add-patient" %}</td>
+                            <td class="px-6 py-4">{% render_field new_patient_form.date_of_birth form="add-patient" %}</td>
+                            <td class="px-6 py-4 text-center">{% render_field new_patient_form.insurance_type form="add-patient" %}</td>
+                            <td class="px-6 py-4"></td>
+                            <td class="p-4 text-center">
+                                <button class="px-2 text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-700 rounded px-5 py-2.5 text-center"
+                                        form="add-patient">
+                                    <form hidden
+                                          id="add-patient"
+                                          method="post"
+                                          action="{% url "cms:protected:create_patient" %}">
+                                        {% csrf_token %}
+                                    </form>
+                                    {% translate "Add" %}
+                                </button>
+                            </td>
+                        </tr>
+                    {% endif %}
                     <tr class="h-3 w-full"></tr>
                     {% for patient, patient_form in patients %}
                         <tr data-patient-id="{{ patient.id }}"
@@ -93,25 +95,42 @@
                             <td class="px-6 py-4 text-center">
                                 <span>
                                     {% if patient.current_room %}
-                                        {% url 'cms:protected:ward_detail' pk=patient.current_ward.ward_number as url %}
-                                        Stays in: <a class="text-blue-500" href="{{ url }}">{{ patient.current_ward.name }}, Room {{ patient.current_room.room_number }}</a>
+                                        {% url "cms:protected:ward_detail" pk=patient.current_ward.ward_number as url %}
+                                        {% translate "Stays in:" %} <a class="text-blue-500" href="{{ url }}">{{ patient.current_ward.name }}, {% translate "Room" %} {{ patient.current_room.room_number }}</a>
                                     {% elif patient.current_stay %}
-                                        {% url 'cms:protected:ward_detail' pk=patient.current_stay.recommended_ward.ward_number as url %}
-                                        <b class="text-red-500">Waits for assignment
+                                        <b class="text-red-500">
                                             {% if patient.current_stay.recommended_ward %}
-                                                in Ward <a class="text-blue-500" href="{{ url }}">{{ patient.current_stay.recommended_ward.name }}</a>
-                                            {% endif %}
-                                        </b>
+                                                {% url "cms:protected:ward_detail" pk=patient.current_stay.recommended_ward.ward_number as url %}
+                                                {% translate "Waits for bed assignment in ward" %}
+                                                <a class="text-blue-500" href="{{ url }}">{{ patient.current_stay.recommended_ward.name }}</a>
+                                            {% else %}
+                                                {% translate "Waits for assignment to ward" %}
+                                            </b>
+                                        {% endif %}
                                     {% else %}
                                         -
                                     {% endif %}
                                 </span>
                             </td>
                             <td class="p-4">
-                                <div class="text-center">
-                                    <button class="edit-patient-button text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-700 rounded px-5 py-2.5">
+                                <div class="text-center flex gap-1 justify-end">
+                                    {% if patient.current_stay.recommended_ward %}
+                                        <a href="{% url 'cms:protected:assign_patient' ward_id=patient.current_stay.recommended_ward.id assignment_id=patient.current_stay.id %}"
+                                           class="text-white border-2 border-green-500 hover:border-green-700 bg-green-500 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-700 rounded px-5 py-2.5">
+                                            {% if patient.current_stay.bed %}
+                                                {% translate "Transfer" %}
+                                            {% else %}
+                                                {% translate "Assign bed" %}
+                                            {% endif %}
+                                        {% endif %}
+                                    </a>
+                                    <a class="edit-patient-button border-2 border-blue-500 hover:border-blue-700 text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-700 rounded px-5 py-2.5">
                                         {% translate "Edit" %}
-                                    </button>
+                                    </a>
+                                    <a href="{% url "cms:protected:patient_details" patient.id %}"
+                                       class="text-blue-500 border-2 border-blue-500 hover:border-blue-700 hover:text-white hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-700 rounded px-5 py-2.5">
+                                        {% translate "Details" %}
+                                    </a>
                                 </div>
                                 <div class="hidden flex flex-wrap gap-1">
                                     <button class="grow edit-patient-button text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-700 rounded px-5 py-2.5">

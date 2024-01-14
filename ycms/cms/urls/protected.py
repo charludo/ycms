@@ -14,9 +14,19 @@ urlpatterns = [
             [
                 path("", patients.PatientsListView.as_view(), name="patients"),
                 path(
+                    "<int:pk>/",
+                    patients.PatientDetailsView.as_view(),
+                    name="patient_details",
+                ),
+                path(
                     "create/",
                     patients.PatientCreateView.as_view(),
                     name="create_patient",
+                ),
+                path(
+                    "record/<int:pk>/",
+                    patients.RecordCreateView.as_view(),
+                    name="create_record",
                 ),
                 path(
                     "update/<int:patient>/<int:bed_assignment>/",
@@ -46,7 +56,24 @@ urlpatterns = [
             ]
         ),
     ),
-    path("intake/", patients.IntakeFormView.as_view(), name="intake"),
+    path(
+        "intake/",
+        include(
+            [
+                path("", patients.IntakeFormView.as_view(), name="intake"),
+                path(
+                    "update/<int:pk>/",
+                    patients.IntakeUpdateView.as_view(),
+                    name="update_intake",
+                ),
+                path(
+                    "cancel/<int:pk>/",
+                    patients.PlannedStayCancelView.as_view(),
+                    name="cancel_stay",
+                ),
+            ]
+        ),
+    ),
     path(
         "accounts/",
         include(

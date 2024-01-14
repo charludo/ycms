@@ -82,6 +82,10 @@ msgstr "Patientenaufnahmeformular"
 msgid "note"
 msgstr "Notiz"
 
+#: cms/constants/record_types.py
+msgid "lab report"
+msgstr "Laborwerte"
+
 #: cms/forms/authentication/password_reset_request_form.py
 msgid "Enter your email"
 msgstr "Email eingeben"
@@ -110,7 +114,7 @@ msgstr "{} hier eingeben"
 msgid "Search for existing patient"
 msgstr "Bestandspatient*innen durchsuchen"
 
-#: cms/forms/intake_record_form.py
+#: cms/forms/intake_record_form.py cms/forms/patients/record_form.py
 msgid "Search for diagnosis code"
 msgstr "Diagnosecodes durchsuchen"
 
@@ -460,7 +464,7 @@ msgstr "Patientendaten"
 msgid "Ward View"
 msgstr "Stationsansicht"
 
-#: cms/templates/_base.html cms/templates/intake_form.html
+#: cms/templates/_base.html cms/templates/patients/patient_intake_form.html
 msgid "Patient Intake"
 msgstr "Patientenaufnahme"
 
@@ -509,6 +513,7 @@ msgid "Create a new user"
 msgstr "Neuen Benutzer anlegen"
 
 #: cms/templates/authentication/create_user.html
+#: cms/templates/patients/patient_details.html
 msgid "Create"
 msgstr "Anlegen"
 
@@ -577,7 +582,8 @@ msgid "Unassign"
 msgstr "Zuweisung aufheben"
 
 #: cms/templates/bed_assignment/assign_bed_assignment.html
-#: cms/templates/patient/patient_card.html cms/templates/patients_list.html
+#: cms/templates/patients/patient_card.html
+#: cms/templates/patients/patients_list.html
 #: cms/templates/timeline/timeline.html
 msgid "Cancel"
 msgstr "Abbrechen"
@@ -681,160 +687,254 @@ msgstr ""
 msgid "Use the link below to set a new password."
 msgstr "Nutzen Sie den folgenden Link um ein neues Passwort festzulegen."
 
-#: cms/templates/intake_form.html
-msgid "Select existing patient"
-msgstr "Bestehende*n Patient*in auswählen"
+#: cms/templates/patients/hospital_stay_form.html
+msgid "Medical details"
+msgstr "Medizinische Details"
 
-#: cms/templates/intake_form.html
-msgid "reset form"
-msgstr "zurücksetzen"
+#: cms/templates/patients/hospital_stay_form.html
+msgid "Organizational details"
+msgstr "Organisatorische Details"
 
-#: cms/templates/intake_form.html
-msgid "Or perform emergency intake"
-msgstr "Oder Notaufnahme durchführen"
-
-#: cms/templates/intake_form.html
-msgid "Or create new patient"
-msgstr "Oder Patient*in hinzufügen"
-
-#: cms/templates/intake_form.html
-msgid "Complete patient intake"
-msgstr "Patientenaufnahme abschließen"
-
-#: cms/templates/patient/patient_card.html cms/templates/ward/ward_info.html
-msgid "Patient Information"
-msgstr "Patienteninformationen"
-
-#: cms/templates/patient/patient_card.html
-msgid "Personal Details"
-msgstr "Persönliche Daten"
-
-#: cms/templates/patient/patient_card.html
-msgid "Name"
-msgstr "Name"
-
-#: cms/templates/patient/patient_card.html
-msgid "Age"
-msgstr "Alter"
-
-#: cms/templates/patient/patient_card.html cms/templates/patients_list.html
-msgid "Gender"
-msgstr "Geschlecht"
-
-#: cms/templates/patient/patient_card.html cms/templates/ward/ward_beds.html
-msgid "Accompanied"
-msgstr "Begleitet"
-
-#: cms/templates/patient/patient_card.html cms/templates/patients_list.html
-msgid "Privately insured"
-msgstr "Privatversichert"
-
-#: cms/templates/patient/patient_card.html
-msgid "Hospital Stay Details"
-msgstr "Details zum Krankenhausaufenthalt"
-
-#: cms/templates/patient/patient_card.html
-msgid "Diagnosis"
-msgstr "Diagnose"
-
-#: cms/templates/patient/patient_card.html
-msgid "Note"
-msgstr "Notiz"
-
-#: cms/templates/patient/patient_card.html
-msgid "Admission date"
-msgstr "Aufnahmedatum"
-
-#: cms/templates/patient/patient_card.html
-msgid "Discharge date"
-msgstr "Entlassungsdatum"
-
-#: cms/templates/patient/patient_card.html cms/templates/patients_list.html
-msgid "Edit"
-msgstr "Bearbeiten"
-
-#: cms/templates/patient/patient_card.html
-msgid "Details"
-msgstr "Details"
-
-#: cms/templates/patient/patient_card.html
-msgid "Assign"
-msgstr "Zuweisen"
-
-#: cms/templates/patient/patient_card.html
-msgid "Transfer"
-msgstr "Verschieben"
-
-#: cms/templates/patient/patient_card.html
-msgid "Discharge"
-msgstr "Entlassen"
-
-#: cms/templates/patient/patient_card.html
-msgid "Edit Patient Information"
-msgstr "Patienteninformationen bearbeiten"
-
-#: cms/templates/patient/patient_card.html
-msgid "Edit Personal Details"
-msgstr "Persönliche Daten bearbeiten"
-
-#: cms/templates/patient/patient_card.html
-msgid "Edit Hospital Stay Details"
-msgstr "Details zum Krankenhausaufenthalt bearbeiten"
-
-#: cms/templates/patient/patient_card.html cms/templates/patients_list.html
+#: cms/templates/patients/hospital_stay_form.html
+#: cms/templates/patients/patient_card.html
+#: cms/templates/patients/patient_details.html
+#: cms/templates/patients/patients_list.html
 #: cms/templates/timeline/timeline.html cms/templates/user_settings.html
 msgid "Save"
 msgstr "Speichern"
 
-#: cms/templates/patient/patient_card_wrapper.html
+#: cms/templates/patients/hospital_stay_form.html
+msgid "Discharge now"
+msgstr "Jetzt entlassen"
+
+#: cms/templates/patients/hospital_stay_form.html
+#: cms/templates/patients/patient_card.html
+#: cms/templates/patients/patients_list.html
+msgid "Transfer"
+msgstr "Verschieben"
+
+#: cms/templates/patients/hospital_stay_form.html
+#: cms/templates/patients/patient_card.html
+#: cms/templates/patients/patients_list.html
+msgid "Assign bed"
+msgstr "Bett zuweisen"
+
+#: cms/templates/patients/hospital_stay_form.html
+msgid "Cancel planned stay"
+msgstr "Geplanten Aufenthalt absagen"
+
+#: cms/templates/patients/patient_card.html cms/templates/ward/ward_info.html
+msgid "Patient Information"
+msgstr "Patienteninformationen"
+
+#: cms/templates/patients/patient_card.html
+msgid "Personal Details"
+msgstr "Persönliche Daten"
+
+#: cms/templates/patients/patient_card.html
+msgid "Name"
+msgstr "Name"
+
+#: cms/templates/patients/patient_card.html
+msgid "Age"
+msgstr "Alter"
+
+#: cms/templates/patients/patient_card.html
+#: cms/templates/patients/patients_list.html
+msgid "Gender"
+msgstr "Geschlecht"
+
+#: cms/templates/patients/patient_card.html
+#: cms/templates/patients/patient_details.html
+#: cms/templates/ward/ward_beds.html
+msgid "Accompanied"
+msgstr "Begleitet"
+
+#: cms/templates/patients/patient_card.html
+#: cms/templates/patients/patients_list.html
+msgid "Privately insured"
+msgstr "Privatversichert"
+
+#: cms/templates/patients/patient_card.html
+msgid "Hospital Stay Details"
+msgstr "Details zum Krankenhausaufenthalt"
+
+#: cms/templates/patients/patient_card.html
+#: cms/templates/patients/patient_details.html
+msgid "Diagnosis"
+msgstr "Diagnose"
+
+#: cms/templates/patients/patient_card.html
+#: cms/templates/patients/patient_details.html
+msgid "Note"
+msgstr "Notiz"
+
+#: cms/templates/patients/patient_card.html
+msgid "Admission date"
+msgstr "Aufnahmedatum"
+
+#: cms/templates/patients/patient_card.html
+msgid "Discharge date"
+msgstr "Entlassungsdatum"
+
+#: cms/templates/patients/patient_card.html
+#: cms/templates/patients/patients_list.html
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: cms/templates/patients/patient_card.html
+#: cms/templates/patients/patients_list.html
+msgid "Details"
+msgstr "Details"
+
+#: cms/templates/patients/patient_card.html
+#: cms/templates/patients/patient_details.html
+msgid "Discharge"
+msgstr "Entlassen"
+
+#: cms/templates/patients/patient_card.html
+msgid "Edit Patient Information"
+msgstr "Patienteninformationen bearbeiten"
+
+#: cms/templates/patients/patient_card.html
+msgid "Edit Personal Details"
+msgstr "Persönliche Daten bearbeiten"
+
+#: cms/templates/patients/patient_card.html
+msgid "Edit Hospital Stay Details"
+msgstr "Details zum Krankenhausaufenthalt bearbeiten"
+
+#: cms/templates/patients/patient_card_wrapper.html
 msgid "Edit Patient Stay"
 msgstr "Patientenaufenthalt bearbeiten"
 
-#: cms/templates/patients_list.html
+#: cms/templates/patients/patient_details.html
+msgid "Current hospital stay"
+msgstr "Aktueller Krankenhausaufenthalt"
+
+#: cms/templates/patients/patient_details.html
+msgid "Planned hospital stays"
+msgstr "Geplante Krankenhausaufenthalte"
+
+#: cms/templates/patients/patient_details.html
+msgid "Plan new stay"
+msgstr "Neuen Aufenthalt planen"
+
+#: cms/templates/patients/patient_details.html
+msgid "No planned stays."
+msgstr "Keine geplanten Krankenhausaufenthalte."
+
+#: cms/templates/patients/patient_details.html
+msgid "Medical history (by date descending)"
+msgstr "Krankengeschichte (absteigend nach Datum)"
+
+#: cms/templates/patients/patient_details.html
+msgid "Record type"
+msgstr "Unterlagenart"
+
+#: cms/templates/patients/patient_details.html
+msgid "Admission"
+msgstr "Aufnahme"
+
+#: cms/templates/patients/patient_details.html
+msgid "Bed"
+msgstr "Bett"
+
+#: cms/templates/patients/patient_details.html
+#: cms/templates/patients/patients_list.html
+#: cms/templates/ward/ward_drawer.html cms/templates/ward/ward_room_card.html
+msgid "Room"
+msgstr "Zimmer"
+
+#: cms/templates/patients/patient_details.html
+msgid "Type"
+msgstr "Typ"
+
+#: cms/templates/patients/patient_details.html
+msgid ""
+"No hospital stay data is associated with this intake. Most likely, the stay "
+"was cancelled in advance."
+msgstr ""
+"Mit dieser Aufnahme sind keine Aufenthaltsdaten assoziiert. Vermutlich wurde "
+"der Krankenhausaufenthalt im Vorhinein abgesagt."
+
+#: cms/templates/patients/patient_intake_form.html
+msgid "Select existing patient"
+msgstr "Bestehende*n Patient*in auswählen"
+
+#: cms/templates/patients/patient_intake_form.html
+msgid "reset form"
+msgstr "zurücksetzen"
+
+#: cms/templates/patients/patient_intake_form.html
+msgid "Or perform emergency intake"
+msgstr "Oder Notaufnahme durchführen"
+
+#: cms/templates/patients/patient_intake_form.html
+msgid "Or create new patient"
+msgstr "Oder Patient*in hinzufügen"
+
+#: cms/templates/patients/patient_intake_form.html
+msgid "Complete patient intake"
+msgstr "Patientenaufnahme abschließen"
+
+#: cms/templates/patients/patients_list.html
 msgid "Manage Patients"
 msgstr "Patient*innen verwalten"
 
-#: cms/templates/patients_list.html
+#: cms/templates/patients/patients_list.html
 msgid "Patients list"
 msgstr "Patientenliste"
 
-#: cms/templates/patients_list.html
+#: cms/templates/patients/patients_list.html
 msgid "Search for name..."
 msgstr "Nach Name suchen..."
 
-#: cms/templates/patients_list.html
+#: cms/templates/patients/patients_list.html
 msgid "Patient name"
 msgstr "Patientenname"
 
-#: cms/templates/patients_list.html
+#: cms/templates/patients/patients_list.html
 msgid "Date of Birth"
 msgstr "Geburtsdatum"
 
-#: cms/templates/patients_list.html
+#: cms/templates/patients/patients_list.html
 msgid "Status"
 msgstr "Status"
 
-#: cms/templates/patients_list.html
+#: cms/templates/patients/patients_list.html
 msgid "Action"
 msgstr "Aktion"
 
-#: cms/templates/patients_list.html
+#: cms/templates/patients/patients_list.html
 msgid "Add"
 msgstr "Hinzufügen"
 
-#: cms/templates/patients_list.html cms/templates/ward/ward_info.html
+#: cms/templates/patients/patients_list.html cms/templates/ward/ward_info.html
 msgid "Male"
 msgstr "Männlich"
 
-#: cms/templates/patients_list.html cms/templates/ward/ward_info.html
+#: cms/templates/patients/patients_list.html cms/templates/ward/ward_info.html
 msgid "Female"
 msgstr "Weiblich"
 
-#: cms/templates/patients_list.html
+#: cms/templates/patients/patients_list.html
 msgid "Diverse"
 msgstr "Divers"
 
-#: cms/templates/patients_list.html
+#: cms/templates/patients/patients_list.html
+msgid "Stays in:"
+msgstr "Liegt in:"
+
+#: cms/templates/patients/patients_list.html
+msgid "Waits for bed assignment in ward"
+msgstr "Wartet auf Bettenzuweisung in Station"
+
+#: cms/templates/patients/patients_list.html
+msgid "Waits for assignment to ward"
+msgstr "Wartet auf Stationszuweisung"
+
+#: cms/templates/patients/patients_list.html
 msgid "Delete"
 msgstr "Löschen"
 
@@ -861,10 +961,6 @@ msgstr "Entlassung in"
 #: cms/templates/ward/ward_beds.html
 msgid "Stay"
 msgstr "Aufenthalt"
-
-#: cms/templates/ward/ward_drawer.html cms/templates/ward/ward_room_card.html
-msgid "Room"
-msgstr "Zimmer"
 
 #: cms/templates/ward/ward_info.html
 msgid "Total"
@@ -1023,6 +1119,18 @@ msgstr ""
 "Wir haben eine Bestätigungsmail an \"{}\" gesandt. Bitten nutzen Sie den "
 "Link in der E-Mail, um Ihren Account zu aktivieren."
 
+#: cms/views/patients/assign_view.py
+msgid "Successfully assigned \"{}, {}\" to bed {} in room {}."
+msgstr "\"{}, {}\" erfolgreich zu Bett {} in Raum {} zugewiesen."
+
+#: cms/views/patients/assign_view.py
+msgid "Successfully unassigned \"{}, {}\"."
+msgstr "Zuewisung für \"{}, {}\" erfolgreich aufgehoben."
+
+#: cms/views/patients/assign_view.py
+msgid "Successfully moved \"{}, {}\" to {}."
+msgstr "\"{}, {}\" erfolgreich nach {} verschoben."
+
 #: cms/views/patients/intake_form_view.py
 msgid "Patient \"{} {}\" has been saved."
 msgstr "Patient*in \"{} {}\" wurde gespeichert."
@@ -1030,6 +1138,18 @@ msgstr "Patient*in \"{} {}\" wurde gespeichert."
 #: cms/views/patients/intake_form_view.py
 msgid "Intake for patient \"{} {}\" with diagnosis \"{}\" has been saved."
 msgstr "Patient*in \"{} {}\" mit Diagnose \"{}\" wurde gespeichert."
+
+#: cms/views/patients/patient_details_view.py
+msgid "New record has been created."
+msgstr "Neue medizinische Unterlage wurde erstellt."
+
+#: cms/views/patients/patient_details_view.py
+msgid "Hospital stay for patient {}, {} has been updated."
+msgstr "Krankenhausaufenthalt für Patient*in {}, {} wurde bearbeitet."
+
+#: cms/views/patients/patient_details_view.py
+msgid "The planned stay has been canceled."
+msgstr "Der geplante Krankenhausaufenthalt wurde abgesagt."
 
 #: cms/views/patients/patients_list_view.py
 msgid "Patient {}, {} has been created."
@@ -1088,17 +1208,26 @@ msgstr "Deutsch"
 msgid "English"
 msgstr "Englisch"
 
+#~ msgid "Assign"
+#~ msgstr "Zuweisen"
+
+#~ msgid "Hostpital Stay Details"
+#~ msgstr "Details zum Krankenhausaufenthalt"
+
 #~ msgid "Bed Assignments"
 #~ msgstr "Bettzuweisungen"
-
-#~ msgid "Bed"
-#~ msgstr "Betten"
 
 #~ msgid ""
 #~ "You do not have permission view patient data. To do so, please log in."
 #~ msgstr ""
 #~ "Sie haben keine Berechtigung zum Betrachten von Patientendaten. Um dies "
 #~ "zu tun, loggen Sie sich bitte ein."
+
+#~ msgid "in Ward"
+#~ msgstr "in Station"
+
+#~ msgid "to ward"
+#~ msgstr "zu Station"
 
 #~ msgid "Diagnosis code"
 #~ msgstr "Diagnosecode"
@@ -1117,12 +1246,6 @@ msgstr "Englisch"
 
 #~ msgid "Added at"
 #~ msgstr "Hinzugefügt am"
-
-#~ msgid "Edit the bed assignment"
-#~ msgstr "Bearbeiten Sie die Bettenzuweisung"
-
-#~ msgid "Medical Details"
-#~ msgstr "Medizinische Details"
 
 #~ msgid "New Bed Assignment"
 #~ msgstr "Neue Bettenzuweisung"
@@ -1151,9 +1274,6 @@ msgstr "Englisch"
 #~ msgid "date the need for a hospital stay became known"
 #~ msgstr ""
 #~ "Datum zu dem die Notwendigkeit eines Krankenhausaufenthalts bekannt wurde"
-
-#~ msgid "admission"
-#~ msgstr "Aufnahme"
 
 #~ msgid "Fields with * are required."
 #~ msgstr "Felder mit * sind Pflichtfelder."

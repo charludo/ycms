@@ -10,7 +10,7 @@ from ...models import BedAssignment, Ward
 from ...models.timetravel_manager import current_or_travelled_time
 
 
-@method_decorator(permission_required("cms.add_patient"), name="dispatch")
+@method_decorator(permission_required("cms.change_patient"), name="dispatch")
 class WardView(TemplateView):
     """
     View to see a ward
@@ -77,7 +77,7 @@ class WardView(TemplateView):
                     models.Q(recommended_ward__isnull=True)
                     | models.Q(recommended_ward=ward)
                 )
-            )
+            ).order_by("-updated_at")
         ]
 
         return {

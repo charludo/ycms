@@ -22,7 +22,9 @@ window.addEventListener("load", () => {
         });
     });
 
-    const toOpen = localStorage.getItem("openDrawer");
+    const urlParams = new URLSearchParams(window.location.search);
+    const passedDrawer = urlParams.get("drawer");
+    const toOpen = passedDrawer || localStorage.getItem("openDrawer");
     if (!toOpen) {
         return;
     }

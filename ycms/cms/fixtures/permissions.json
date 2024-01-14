@@ -17,9 +17,9 @@
       "name": "STATION_MANAGEMENT",
       "permissions": [
         ["view_patient", "cms", "patient"],
-        ["add_patient", "cms", "patient"],
         ["change_ward", "cms", "ward"],
-        ["add_user", "cms", "user"]
+        ["add_user", "cms", "user"],
+        ["change_patient", "cms", "patient"]
       ]
     }
   },

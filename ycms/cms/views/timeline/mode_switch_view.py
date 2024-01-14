@@ -10,7 +10,7 @@ from ...models import User
 logger = logging.getLogger(__name__)
 
 
-@method_decorator(permission_required("cms.add_patient"), name="dispatch")
+@method_decorator(permission_required("cms.change_patient"), name="dispatch")
 class ModeSwitchView(UpdateView):
     """
     View to the mode in which a user sees wards

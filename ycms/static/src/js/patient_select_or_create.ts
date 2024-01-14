@@ -45,4 +45,11 @@ window.addEventListener("load", () => {
     ageSlider.addEventListener("input", () => {
         ageDisplay.innerHTML = ageSlider.value;
     });
+
+    // If a patient was passed to the intake form, use it
+    const patientSearch = document.querySelector("#id_patient");
+    const urlParams = new URLSearchParams(window.location.href);
+    if (urlParams.get("patient") && patientSearch) {
+        patientSearch.dispatchEvent(new Event("change"));
+    }
 });

@@ -22,7 +22,7 @@
     <div class="flex flex-col gap-4">
         {% for patient, patient_form, bed_assignment_form in patients %}
             {% with bed_assignment=patient.current_stay %}
-                {% include "patient/patient_card.html" %}
+                {% include "patients/patient_card.html" %}
             {% endwith %}
         {% endfor %}
     </div>

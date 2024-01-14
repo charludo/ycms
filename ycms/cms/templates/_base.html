@@ -53,7 +53,7 @@ limitations under the License.
                         </a>
                     </li>
                 {% endif %}
-                {% if perms.cms.add_patient %}
+                {% if perms.cms.change_patient %}
                     <li>
                         {% url 'cms:protected:patients' as url %}
                         <a href="{{ url }}"
@@ -62,7 +62,7 @@ limitations under the License.
                         </a>
                     </li>
                 {% endif %}
-                {% if perms.cms.add_patient %}
+                {% if perms.cms.change_patient %}
                     <span class="block mt-5 px-5 text-gray-500 tracking-wide dark:text-gray-300">{% translate "Ward" %}</span>
                     <li>
                         {% url 'cms:protected:ward_detail_default' as url %}
