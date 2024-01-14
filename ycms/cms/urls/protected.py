@@ -3,7 +3,7 @@ URLconf for login-protected views of the cms package.
 """
 from django.urls import include, path
 
-from ..views import authentication, bed_assignment, index, patients, timeline, ward
+from ..views import authentication, index, patients, timeline, ward
 from ..views.utility.autocomplete import autocomplete_icd10, autocomplete_patient
 
 urlpatterns = [
@@ -90,18 +90,6 @@ urlpatterns = [
                     timeline.ModeSwitchView.as_view(),
                     name="mode_switch",
                 ),
-            ]
-        ),
-    ),
-    path(
-        "bed-assignments/",
-        include(
-            [
-                path(
-                    "",
-                    bed_assignment.BedAssignmentView.as_view(),
-                    name="manage_bed_assignment",
-                )
             ]
         ),
     ),
