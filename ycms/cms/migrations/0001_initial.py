@@ -417,7 +417,7 @@ class Migration(migrations.Migration):
                     "admission_date",
                     models.DateField(
                         blank=True,
-                        help_text="date the hostpital stay begins",
+                        help_text="date the hospital stay begins",
                         verbose_name="admission date",
                     ),
                 ),
