@@ -118,13 +118,14 @@ limitations under the License.
                 </ul>
                 <div class="text-center text-gray-600 w-full mt-auto">
                     <li class="mb-4" id="timetravel-start">
-                        <a href="?time=2024-01-01T00%3A00%3A00.000Z" class="justify-center">
+                        <a href="?time={% now "Y-m-d" %}T{% now "H:i:s" %}.000Z"
+                           class="justify-center">
                             <i icon-name="timer-reset"></i>
                             {% translate "Start Timetravel" %}
                         </a>
                     </li>
                     <li class="hidden mb-4" id="timetravel-stop">
-                        <a href="?" class="justify-center"><i icon-name="timer-off"></i> {% translate "Stop Timetravel" %}</a>
+                        <a href="?" class="stop-timetravel justify-center"><i icon-name="timer-off"></i> {% translate "Stop Timetravel" %}</a>
                     </li>
                     <div class="flex justify-center items-center mb-4 gap-4">
                         <a href="{% url 'change-theme' %}"

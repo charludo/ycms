@@ -107,6 +107,11 @@ window.addEventListener("load", () => {
         changesForm.submit();
     });
 
+    const timetravel = document.querySelector("#timetravel-start") as HTMLElement;
+    if (timetravel) {
+        timetravel.classList.add("hidden");
+    }
+
     const options: TimelineOptions = {
         groupHeightMode: "auto",
         autoResize: false,

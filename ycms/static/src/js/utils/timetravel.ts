@@ -35,7 +35,7 @@ window.addEventListener("load", () => {
     dateInput.value = dateTime.toISOString().slice(0, datestringLength);
 
     dateInput.addEventListener("change", () => {
-        setTime(dateInput.value);
+        setTime(`${dateInput.value.replace("T", " ")}:00Z`);
     });
 
     buttons.forEach((button) => {
@@ -46,4 +46,24 @@ window.addEventListener("load", () => {
             setTime(dateTime.toISOString());
         });
     });
+
+    // Append the time parameter to all links - hacky, but works...
+    const outgoingLinks = document.querySelectorAll<HTMLElement>("a:not(.no-timetravel), form:not(.no-timetravel)");
+    outgoingLinks.forEach((link) => {
+        const href = link.getAttribute("href") || link.getAttribute("action");
+        if (href) {
+            if (href.indexOf("?") === -1) {
+                link.setAttribute("href", `${href}?time=${timeParameter}`);
+            } else {
+                link.setAttribute("href", `${href}&time=${timeParameter}`);
+            }
+        }
+    });
+
+    // Disable switching to the timeline while timetravelling
+    const wardModeSwitch = document.querySelector("#ward-mode-switch") as HTMLInputElement;
+    if (wardModeSwitch) {
+        wardModeSwitch.disabled = true;
+        wardModeSwitch.classList.add("!bg-gray-600");
+    }
 });
