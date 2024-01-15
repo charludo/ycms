@@ -44,7 +44,7 @@ def load_test_data(django_db_setup, django_db_blocker):
         call_command("loaddata", "permissions")
         call_command("loaddata", "hospital_data")
         call_command("loaddata", "test_data_icd10")
-        call_command("loaddata", "test_data")
+        call_command("loaddata", "constant_test_data")
 
 
 @pytest.fixture(scope="function")
@@ -62,7 +62,7 @@ def load_test_data_transactional(transactional_db, django_db_blocker):
         call_command("loaddata", "permissions")
         call_command("loaddata", "hospital_data")
         call_command("loaddata", "test_data_icd10")
-        call_command("loaddata", "test_data")
+        call_command("loaddata", "constant_test_data")
 
 
 # pylint: disable=redefined-outer-name

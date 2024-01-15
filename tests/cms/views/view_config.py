@@ -44,7 +44,7 @@ VIEWS = [
                 "cms:protected:intake",
                 [ROOT, MEDICAL_PERSONNEL],
                 {
-                    "patient": "185",
+                    "patient": 1,
                     "diagnosis_code": "80173",
                     "admission_date": "2023-01-01T11:42:11.331Z",
                 },
@@ -91,7 +91,7 @@ VIEWS = [
                 {"post": ""},
             ),
         ],
-        {"pk": 191},
+        {"pk": 1},
     ),
     (
         [
@@ -105,7 +105,7 @@ VIEWS = [
                 {"record_type": "lab", "note": "test note"},
             ),
         ],
-        {"pk": 192},
+        {"pk": 1},
     ),
     (
         [
@@ -158,7 +158,7 @@ VIEWS = [
                 {"post": ""},
             ),
         ],
-        {"pk": 189},
+        {"pk": 1},
     ),
     (
         [
@@ -168,7 +168,7 @@ VIEWS = [
                 {"next": ""},
             )
         ],
-        {"assignment_id": 19},
+        {"assignment_id": 1},
     ),
     (
         [
@@ -182,7 +182,7 @@ VIEWS = [
                 {"next": ""},
             ),
         ],
-        {"ward_id": 1, "assignment_id": 155},
+        {"ward_id": 1, "assignment_id": 1},
     ),
     (
         [
@@ -192,7 +192,7 @@ VIEWS = [
                 {"next": "", "new_ward": 2},
             )
         ],
-        {"ward_id": 1, "assignment_id": 155},
+        {"ward_id": 1, "assignment_id": 1},
     ),
     (
         [
