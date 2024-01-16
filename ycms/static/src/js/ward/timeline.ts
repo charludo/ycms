@@ -10,6 +10,7 @@ type TimelineItem = {
     end: string;
     requiredBeds: number;
     group: Id;
+    className: string;
 };
 
 type GroupItem = {
@@ -39,8 +40,34 @@ const maxConcurrentBeds = (unsortedObjects: TimelineItem[]) => {
     return maxConcurrentBeds;
 };
 
+const showUnsaved = (totalChanges: number) => {
+    const changeCounterContainer = document.querySelector("#change-counter") as HTMLElement;
+    const changeCounter = document.querySelector("#change-counter span") as HTMLElement;
+    if (!changeCounterContainer || !changeCounter) {
+        return;
+    }
+
+    changeCounter.innerHTML = String(totalChanges);
+    if (totalChanges > 0) {
+        changeCounterContainer.classList.remove("hidden");
+    } else {
+        changeCounterContainer.classList.add("hidden");
+    }
+};
+
 class ChangeTracker {
     changeList: Change[] = [];
+    constructor(items: DataSet<TimelineItem>, initialChanges: Change[]) {
+        this.changeList = initialChanges;
+        showUnsaved(this.changeList.length);
+
+        items.forEach((item) => {
+            if (this.changeList.some((change) => change.assignmentId === item.id)) {
+                // eslint-disable-next-line no-param-reassign
+                item.className += " changed";
+            }
+        });
+    }
     trackChange = (assignmentId: number, roomId: number) => {
         const existingAssignment = this.changeList.find((a) => a.assignmentId === assignmentId);
         if (existingAssignment) {
@@ -55,34 +82,27 @@ class ChangeTracker {
 
 window.addEventListener("load", () => {
     const timelineContainer = document.querySelector("#timeline-container") as HTMLElement;
-    const changeCounterContainer = document.querySelector("#change-counter") as HTMLElement;
-    const changeCounter = document.querySelector("#change-counter span") as HTMLElement;
     const changesForm = document.querySelector("#timeline-changes-form") as HTMLFormElement;
     const changesInput = document.querySelector("#timeline-changes") as HTMLInputElement;
     const changesButton = document.querySelector("#timeline-changes-form button") as HTMLButtonElement;
-    if (
-        !timelineContainer ||
-        !changeCounterContainer ||
-        !changeCounter ||
-        !changesForm ||
-        !changesInput ||
-        !changesButton
-    ) {
+    if (!timelineContainer || !changesForm || !changesInput || !changesButton) {
         return;
     }
 
-    const changeTracker = new ChangeTracker();
+    /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+    const items = new DataSet<TimelineItem>(JSON.parse((globalThis as any).timeline_items as string));
+    /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+    const groups = new DataSet<GroupItem>(JSON.parse((globalThis as any).timeline_groups as string));
+    /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+    const suggestions = JSON.parse((globalThis as any).timeline_suggestions as string) as Change[];
+
+    const changeTracker = new ChangeTracker(items, Object.keys(suggestions).length ? suggestions : []);
 
     changesButton.addEventListener("click", (event) => {
         event.preventDefault();
         changesInput.value = changeTracker.serialize();
         changesForm.submit();
     });
-
-    /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-    const items = new DataSet<TimelineItem>(JSON.parse((globalThis as any).timeline_items as string));
-    /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-    const groups = new DataSet<GroupItem>(JSON.parse((globalThis as any).timeline_groups as string));
 
     const options: TimelineOptions = {
         groupHeightMode: "auto",
@@ -120,12 +140,7 @@ window.addEventListener("load", () => {
         // Only called once we drop the item into a group
         onMove: (item, callback) => {
             const totalChanges = changeTracker.trackChange(item.id as number, item.group as number);
-            changeCounter.innerHTML = String(totalChanges);
-            if (totalChanges > 0) {
-                changeCounterContainer.classList.remove("hidden");
-            } else {
-                changeCounterContainer.classList.add("hidden");
-            }
+            showUnsaved(totalChanges);
             // eslint-disable-next-line no-param-reassign
             item.className += " changed";
             callback(item);

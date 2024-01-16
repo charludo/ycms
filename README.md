@@ -40,6 +40,13 @@ cd ycms
 ./tools/install.sh --pre-commit
 ````
 
+And if you want to use the "suggest assignment" functionality:
+- clone [TabeaBrandt/patient-to-room_assignment](https://github.com/TabeaBrandt/patient-to-room_assignment/tree/v1) next to where your copy of `ycms` lives
+- inside `patient-to-room_assignment`, do
+    - `python -m venv .venv`
+    - `. .venv/bin/activate`
+    - `pip install gurobipy`
+
 ### Run development server
 
 ````
