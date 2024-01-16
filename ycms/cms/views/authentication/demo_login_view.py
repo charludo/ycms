@@ -27,7 +27,8 @@ class DemoLoginView(TemplateView):
         :rtype: ~django.template.response.TemplateResponse
         """
         return {
-            "users": User.objects.filter(is_active=True, is_staff=False),
+            # "users": User.objects.filter(is_active=True, is_staff=False),
+            "users": User.objects.filter(is_active=True),
             **super().get_context_data(),
         }
 

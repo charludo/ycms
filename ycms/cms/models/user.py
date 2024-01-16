@@ -200,6 +200,8 @@ class User(AbstractBaseUser, PermissionsMixin, AbstractBaseModel):
         :return: The group of this user
         :rtype: str
         """
+        if not self.group:
+            return "Root"
         return dict(group_names.CHOICES)[self.group.name]
 
     @cached_property
