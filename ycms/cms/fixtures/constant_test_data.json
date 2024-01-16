@@ -1,0 +1,46 @@
+[
+  {
+    "model": "cms.patient",
+    "pk": 1,
+    "fields": {
+      "creator": 4,
+      "created_at": "2024-01-02T14:53:00Z",
+      "updated_at": "2024-01-14T07:24:49.982Z",
+      "insurance_type": false,
+      "first_name": "Patrizio",
+      "last_name": "Brockstedt",
+      "gender": "m",
+      "date_of_birth": "1993-07-02",
+      "_first": "496b-82da-52b05d7b6ae5",
+      "_last": "3d8b6893-1510"
+    }
+  },
+  {
+    "model": "cms.medicalrecord",
+    "pk": 1,
+    "fields": {
+      "creator": 4,
+      "created_at": "2024-01-02T14:53:00Z",
+      "updated_at": "2024-01-14T07:24:49.988Z",
+      "patient": 1,
+      "diagnosis_code": 131733,
+      "record_type": "intake",
+      "note": ""
+    }
+  },
+  {
+    "model": "cms.bedassignment",
+    "pk": 1,
+    "fields": {
+      "creator": 4,
+      "created_at": "2024-01-02T14:53:00Z",
+      "updated_at": "2024-01-14T07:24:49.989Z",
+      "admission_date": "2023-01-03T12:07:00Z",
+      "discharge_date": "2029-01-06T14:48:00Z",
+      "accompanied": false,
+      "medical_record": 1,
+      "recommended_ward": 1,
+      "bed": null
+    }
+  }
+]
