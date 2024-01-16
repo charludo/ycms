@@ -21,42 +21,41 @@
 # shellcheck source=./tools/utils/_functions.sh
 source "$(dirname "${BASH_SOURCE[0]}")/utils/_functions.sh"
 
-# Check if local postgres server is running
-if nc -w1 localhost 5432; then
+# Check if docker is installed
+if command -v docker > /dev/null; then
 
-    echo "Please delete and re-create your database manually, typically like this:
+    # Make sure script has the permission to remove the .postgres directory owned by docker daemon user
+    ensure_docker_permission
 
-    user@host$ su postgres
-    postgres@host$ psql
+    # Check if postgres container is running
+    if [ "$(docker ps -q -f name="${DOCKER_CONTAINER_NAME}")" ]; then
+        # Stop Postgres Docker container
+        stop_docker_container
+    fi
+    # Check if a stopped database container exists
+    if [ "$(docker ps -aq -f status=exited -f name="${DOCKER_CONTAINER_NAME}")" ]; then
+        # Remove Postgres Docker container
+        docker rm "${DOCKER_CONTAINER_NAME}" > /dev/null
+        echo "Removed database container" | print_info
+    fi
 
-    > DROP DATABASE ycms;
-    > CREATE DATABASE ycms;
-" | print_info
+    # Remove database directory
+    rm -rfv "${BASE_DIR:?}/.postgres"
+    echo "Removed database contents" | print_info
 
 else
 
-    # Check if docker is installed
-    if command -v docker > /dev/null; then
+    # Check if local postgres server is running
+    if nc -w1 localhost 5432; then
 
-        # Make sure script has the permission to remove the .postgres directory owned by docker daemon user
-        ensure_docker_permission
+        echo "Please delete and re-create your database manually, typically like this:
 
-        # Check if postgres container is running
-        if [ "$(docker ps -q -f name="${DOCKER_CONTAINER_NAME}")" ]; then
-            # Stop Postgres Docker container
-            stop_docker_container
-        fi
-        # Check if a stopped database container exists
-        if [ "$(docker ps -aq -f status=exited -f name="${DOCKER_CONTAINER_NAME}")" ]; then
-            # Remove Postgres Docker container
-            docker rm "${DOCKER_CONTAINER_NAME}" > /dev/null
-            echo "Removed database container" | print_info
-        fi
+        user@host$ su postgres
+        postgres@host$ psql
 
-        # Remove database directory
-        rm -rfv "${BASE_DIR:?}/.postgres"
-        echo "Removed database contents" | print_info
-
+        > DROP DATABASE ycms;
+        > CREATE DATABASE ycms;
+    " | print_info
     fi
 
 fi
