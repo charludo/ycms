@@ -36,7 +36,7 @@ def test_login_success(load_test_data, client, settings, personnel_id):
     :type personnel_id: str
     """
     response = client.post(
-        reverse(settings.LOGIN_URL),
+        reverse("cms:public:login"),
         data={"username": personnel_id, "password": "changeme"},
     )
     assert response.status_code == 302
@@ -67,7 +67,7 @@ def test_login_failure(load_test_data, client, settings, personnel_id):
     """
     settings.LANGUAGE_CODE = "en"
     response = client.post(
-        reverse(settings.LOGIN_URL),
+        reverse("cms:public:login"),
         data={"username": personnel_id, "password": "incorrect"},
     )
     assert response.status_code == 200

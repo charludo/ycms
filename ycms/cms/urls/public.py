@@ -4,6 +4,7 @@ from django.urls import include, path
 from ..views import authentication
 
 urlpatterns = [
+    path("demo/", authentication.DemoLoginView.as_view(), name="demo_login"),
     path(
         "accounts/",
         include(
@@ -35,5 +36,5 @@ urlpatterns = [
                 ),
             ]
         ),
-    )
+    ),
 ]

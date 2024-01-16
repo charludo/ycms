@@ -525,9 +525,30 @@ msgstr "Neuen Benutzer anlegen"
 msgid "Create"
 msgstr "Anlegen"
 
+#: cms/templates/authentication/demo_login.html
 #: cms/templates/authentication/login.html
 msgid "Login"
 msgstr "Login"
+
+#: cms/templates/authentication/demo_login.html
+msgid "Select user to log in as:"
+msgstr "Nutzer wählen, um sich als dieser einzuloggen:"
+
+#: cms/templates/authentication/demo_login.html
+msgid "Personnel ID"
+msgstr "Personalnummer"
+
+#: cms/templates/authentication/demo_login.html
+msgid "Permission Group"
+msgstr "Berechtigungsgruppe"
+
+#: cms/templates/authentication/demo_login.html
+msgid "Assigned to Ward"
+msgstr "Zugewiesen zu Station"
+
+#: cms/templates/authentication/demo_login.html
+msgid "Or click here to use the normal login form"
+msgstr "Oder hier klicken, um das normale Loginformular zu nutzen"
 
 #: cms/templates/authentication/login.html
 msgid "The username or the password is incorrect."
