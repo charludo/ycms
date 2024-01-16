@@ -3,7 +3,7 @@ const editPatient = (id: string) => {
     if (row != null) {
         for (const column of row.children) {
             for (const child of column.children) {
-                child.classList.toggle("hidden");
+                child.classList.toggle("!hidden");
             }
         }
     }

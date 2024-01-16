@@ -404,3 +404,18 @@ input[type="submit"] {
 .vis-label .vis-inner {
     @apply dark:text-gray-300;
 }
+
+#patients {
+    table {
+        @apply block lg:table;
+    }
+    tr {
+        @apply block lg:table-row;
+    }
+    td {
+        @apply block lg:table-cell;
+    }
+    th {
+        @apply hidden lg:table-cell;
+    }
+}
