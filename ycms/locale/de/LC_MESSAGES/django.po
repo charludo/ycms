@@ -477,6 +477,10 @@ msgid "Create User"
 msgstr "Nutzer anlegen"
 
 #: cms/templates/_base.html
+msgid "Documentation"
+msgstr "Dokumentation"
+
+#: cms/templates/_base.html
 msgid "Logout"
 msgstr "Abmelden"
 
