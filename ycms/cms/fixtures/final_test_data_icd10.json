@@ -1,0 +1,901 @@
+[
+  {
+    "model": "cms.icd10entry",
+    "pk": 115856,
+    "fields": { "code": "I25.12", "description": "Koronare Zwei-Gefäß-Erkrankung" }
+  },
+  { "model": "cms.icd10entry", "pk": 120420, "fields": { "code": "J34.2", "description": "Septumverbiegung" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 133394,
+    "fields": { "code": "N13.5", "description": "Nierenbeckenabgangsstenose" }
+  },
+  { "model": "cms.icd10entry", "pk": 90272, "fields": { "code": "C61", "description": "Prostataadenokarzinom" } },
+  { "model": "cms.icd10entry", "pk": 122830, "fields": { "code": "K08.88", "description": "Odontogene Entzündung" } },
+  { "model": "cms.icd10entry", "pk": 149162, "fields": { "code": "R07.3", "description": "Retrosternale Schmerzen" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 89939,
+    "fields": { "code": "C50.9", "description": "Brustdrüsenkrebs beim Mann" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 105616,
+    "fields": { "code": "F10.0", "description": "Akute Alkoholintoxikation, im Sinne eines Rausches" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 113721,
+    "fields": { "code": "H49.4", "description": "Ophthalmoplegia progressiva externa" }
+  },
+  { "model": "cms.icd10entry", "pk": 125882, "fields": { "code": "K70.3", "description": "Laënnec-Zirrhose" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 106047,
+    "fields": { "code": "F19.5", "description": "Psychose durch Drogenintoxikation" }
+  },
+  { "model": "cms.icd10entry", "pk": 152236, "fields": { "code": "S20.2", "description": "Thoraxprellung" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 125924,
+    "fields": { "code": "K71.1", "description": "Toxische Leberkrankheit mit Lebernekrose" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 133201,
+    "fields": { "code": "N05.0", "description": "Minimalglomerulonephritis" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 116657,
+    "fields": { "code": "I48.1", "description": "Persistierendes Vorhofflimmern" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 116819,
+    "fields": { "code": "I50.14", "description": "Herzinsuffizienz mit Lungenödem" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 96279,
+    "fields": { "code": "D25.1", "description": "Intramurales Leiomyom des Uterus" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 115716,
+    "fields": { "code": "I21.4", "description": "Akuter nichttransmuraler Myokardinfarkt" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 160334,
+    "fields": {
+      "code": "M19.01",
+      "description": "Primäre Arthrose sonstiger Gelenke : Schulterregion [Klavikula, Skapula, Akromioklavikular-, Schulter-, Sternoklavikulargelenk]"
+    }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 106335,
+    "fields": { "code": "F32.3", "description": "Schwere depressive Episode mit psychotischen Symptomen" }
+  },
+  { "model": "cms.icd10entry", "pk": 91305, "fields": { "code": "C78.1", "description": "Mediastinummetastase" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 90763,
+    "fields": { "code": "C71.8", "description": "Bösartige Neubildung des Corpus callosum" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 113260,
+    "fields": { "code": "H40.1", "description": "Glaucoma chronicum simplex" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 100421,
+    "fields": { "code": "D69.3", "description": "Chronische idiopathische Thrombozytopenie" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 106739,
+    "fields": { "code": "F44.5", "description": "Dissoziativer Krampfanfall" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 115716,
+    "fields": { "code": "I21.4", "description": "Akuter nichttransmuraler Myokardinfarkt" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 138958,
+    "fields": { "code": "O36.5", "description": "Betreuung der Schwangeren bei fetaler Wachstumsretardierung" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 136590,
+    "fields": { "code": "N85.0", "description": "Glanduläre Endometriumhyperplasie" }
+  },
+  { "model": "cms.icd10entry", "pk": 80614, "fields": { "code": "A09.0", "description": "Magen-Darm-Katarrh" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 115856,
+    "fields": { "code": "I25.12", "description": "Koronare Zwei-Gefäß-Erkrankung" }
+  },
+  { "model": "cms.icd10entry", "pk": 126736, "fields": { "code": "K90.0", "description": "Einheimische Sprue" } },
+  { "model": "cms.icd10entry", "pk": 158422, "fields": { "code": "Z04.3", "description": "Beobachtung nach Unfall" } },
+  { "model": "cms.icd10entry", "pk": 152310, "fields": { "code": "S22.32", "description": "Rippenfraktur" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 117305,
+    "fields": { "code": "I63.3", "description": "Hirninfarkt durch Thrombose einer intrakraniellen Arterie" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 141597,
+    "fields": { "code": "P22.8", "description": "Respiratorische Anpassungsstörung beim Neugeborenen" }
+  },
+  { "model": "cms.icd10entry", "pk": 149162, "fields": { "code": "R07.3", "description": "Retrosternale Schmerzen" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 88164,
+    "fields": { "code": "C18.3", "description": "Bösartige Neubildung der Flexura coli hepatica" }
+  },
+  { "model": "cms.icd10entry", "pk": 129433, "fields": { "code": "L98.4", "description": "Chronisches Geschwür" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 116657,
+    "fields": { "code": "I48.1", "description": "Persistierendes Vorhofflimmern" }
+  },
+  { "model": "cms.icd10entry", "pk": 125288, "fields": { "code": "K61.0", "description": "Analphlegmone" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 139262,
+    "fields": { "code": "O60.0", "description": "Vorzeitige muttermundwirksame Wehentätigkeit" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 106405,
+    "fields": { "code": "F33.1", "description": "Rezidivierende depressive Störung als mittelgradige Episode" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 117328,
+    "fields": { "code": "I63.4", "description": "Hirninfarkt durch Embolie einer intrakraniellen Arterie" }
+  },
+  { "model": "cms.icd10entry", "pk": 111796, "fields": { "code": "H05.0", "description": "Akute Orbitaentzündung" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 125036,
+    "fields": { "code": "K57.22", "description": "Dickdarmdivertikulitis mit Perforation" }
+  },
+  { "model": "cms.icd10entry", "pk": 131523, "fields": { "code": "M54.17", "description": "Iliosakralfugensyndrom" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 116817,
+    "fields": { "code": "I50.13", "description": "Linksherzinsuffizienz mit Beschwerden bei leichterer Belastung" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 93305,
+    "fields": { "code": "C91.00", "description": "Akute lymphozytäre Leukämie" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 125191,
+    "fields": { "code": "K59.2", "description": "Neurogene Blasen-Darm-Störung a.n.k." }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 118060,
+    "fields": { "code": "I71.01", "description": "Thorakales Aneurysma dissecans aortae Typ A" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 140076,
+    "fields": { "code": "O82", "description": "Geburt durch elektive Schnittentbindung" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 115716,
+    "fields": { "code": "I21.4", "description": "Akuter nichttransmuraler Myokardinfarkt" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 101367,
+    "fields": { "code": "E05.2", "description": "Hyperthyreose mit toxischer mehrknotiger Struma" }
+  },
+  { "model": "cms.icd10entry", "pk": 116640, "fields": { "code": "I47.2", "description": "Ventrikuläre Tachykardie" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 140076,
+    "fields": { "code": "O82", "description": "Geburt durch elektive Schnittentbindung" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 92749,
+    "fields": { "code": "C80.0", "description": "Bösartige Neubildung unbekannter Primärlokalisation" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 134742,
+    "fields": { "code": "N39.0", "description": "Chronische Harnwegsinfektion" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 160335,
+    "fields": { "code": "M51.1", "description": "Lumbale und sonstige Bandscheibenschäden mit Radikulopathie" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 87718,
+    "fields": { "code": "C02.1", "description": "Bösartige Neubildung der Zungenspitze" }
+  },
+  { "model": "cms.icd10entry", "pk": 128296, "fields": { "code": "L50.4", "description": "Urticaria mechanica" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 87918,
+    "fields": { "code": "C10.8", "description": "Bösartige Neubildung der Verbindungszone des Rachenrings" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 116265,
+    "fields": { "code": "I35.2", "description": "Aortenklappenstenose mit Insuffizienz" }
+  },
+  { "model": "cms.icd10entry", "pk": 150045, "fields": { "code": "R40.0", "description": "Somnolenz" } },
+  { "model": "cms.icd10entry", "pk": 105204, "fields": { "code": "E87.5", "description": "Hyperkaliämie" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 141698,
+    "fields": { "code": "P28.5", "description": "Respiratorisches Versagen beim Neugeborenen" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 89073,
+    "fields": { "code": "C43.3", "description": "Malignes Melanom des Gesichts" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 153582,
+    "fields": { "code": "S64.4", "description": "Nervenverletzung am Finger" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 153683,
+    "fields": { "code": "S72.2", "description": "Dislozierte subtrochantäre Femurfraktur" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 101823,
+    "fields": { "code": "E14.30", "description": "Diabetes mellitus mit Augenkomplikation" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 150345,
+    "fields": { "code": "R51", "description": "Chronische Gesichtsschmerzen" }
+  },
+  { "model": "cms.icd10entry", "pk": 87603, "fields": { "code": "B99", "description": "Infektionskrankheit" } },
+  { "model": "cms.icd10entry", "pk": 124027, "fields": { "code": "K35.31", "description": "Appendixperforation" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 82189,
+    "fields": { "code": "A41.51", "description": "Generalisierte Kolibazillose a.n.k." }
+  },
+  { "model": "cms.icd10entry", "pk": 109438, "fields": { "code": "G40.1", "description": "Teilmotorische Epilepsie" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 115716,
+    "fields": { "code": "I21.4", "description": "Akuter nichttransmuraler Myokardinfarkt" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 153072,
+    "fields": { "code": "S39.0", "description": "Muskelzerrung im LWS-Bereich" }
+  },
+  { "model": "cms.icd10entry", "pk": 153846, "fields": { "code": "S82.82", "description": "Trimalleolarfraktur" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 109658,
+    "fields": { "code": "G41.2", "description": "Status epilepticus mit komplexfokalem Anfall" }
+  },
+  { "model": "cms.icd10entry", "pk": 153328, "fields": { "code": "S52.01", "description": "Olekranonfraktur" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 106320,
+    "fields": { "code": "F32.1", "description": "Mittelgradige depressive Episode" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 80162,
+    "fields": { "code": "P36.8", "description": "Sonstige bakterielle Sepsis beim Neugeborenen" }
+  },
+  { "model": "cms.icd10entry", "pk": 88331, "fields": { "code": "C24.0", "description": "Karzinom des Choledochus" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 115716,
+    "fields": { "code": "I21.4", "description": "Akuter nichttransmuraler Myokardinfarkt" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 134784,
+    "fields": { "code": "N39.3", "description": "Belastungsinkontinenz der Harnblase" }
+  },
+  { "model": "cms.icd10entry", "pk": 126693, "fields": { "code": "K86.8", "description": "Pankreolithiasis" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 109463,
+    "fields": { "code": "G40.2", "description": "Psychomotorische Epilepsie" }
+  },
+  { "model": "cms.icd10entry", "pk": 99465, "fields": { "code": "D50.8", "description": "Mikrozytäre Anämie" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 141597,
+    "fields": { "code": "P22.8", "description": "Respiratorische Anpassungsstörung beim Neugeborenen" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 121217,
+    "fields": { "code": "J45.1", "description": "Nichtallergisches Asthma bronchiale" }
+  },
+  { "model": "cms.icd10entry", "pk": 156829, "fields": { "code": "T81.4", "description": "Postoperative Infektion" } },
+  { "model": "cms.icd10entry", "pk": 120540, "fields": { "code": "J35.2", "description": "Adenoide Wucherung" } },
+  { "model": "cms.icd10entry", "pk": 99465, "fields": { "code": "D50.8", "description": "Mikrozytäre Anämie" } },
+  { "model": "cms.icd10entry", "pk": 148668, "fields": { "code": "Q90.9", "description": "Down-Syndrom" } },
+  { "model": "cms.icd10entry", "pk": 129317, "fields": { "code": "L92.0", "description": "Granuloma anulare" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 116819,
+    "fields": { "code": "I50.14", "description": "Herzinsuffizienz mit Lungenödem" }
+  },
+  { "model": "cms.icd10entry", "pk": 125669, "fields": { "code": "K65.0", "description": "Akute Peritonitis" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 106323,
+    "fields": { "code": "F32.2", "description": "Schwere depressive Episode ohne psychotische Symptome" }
+  },
+  { "model": "cms.icd10entry", "pk": 119338, "fields": { "code": "J00", "description": "Epipharyngitis" } },
+  { "model": "cms.icd10entry", "pk": 151342, "fields": { "code": "S00.95", "description": "Schädelprellung" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 116512,
+    "fields": { "code": "I44.4", "description": "Linksanteriorer Faszikelblock" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 157164,
+    "fields": { "code": "T84.04", "description": "Pfannenlockerung einer Hüftgelenktotalendoprothese [Hüft-TEP]" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 138307,
+    "fields": { "code": "O26.88", "description": "Peritonitis bei Gravidität" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 82189,
+    "fields": { "code": "A41.51", "description": "Generalisierte Kolibazillose a.n.k." }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 93231,
+    "fields": { "code": "C90.00", "description": "IgG [Immunglobulin G]-Plasmozytom" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 112575,
+    "fields": { "code": "H25.2", "description": "Cataracta senilis vom Morgagni-Typ" }
+  },
+  { "model": "cms.icd10entry", "pk": 156829, "fields": { "code": "T81.4", "description": "Postoperative Infektion" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 147560,
+    "fields": {
+      "code": "Q79.0",
+      "description": "Enterothorax beim Neugeborenen [Angeborener Zwerchfelldefekt mit Eventration]"
+    }
+  },
+  { "model": "cms.icd10entry", "pk": 119929, "fields": { "code": "J18.8", "description": "Segmentpneumonie" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 121102,
+    "fields": { "code": "J44.19", "description": "Chronisch-obstruktive Lungenerkrankung mit akuter Exazerbation" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 154879,
+    "fields": { "code": "T20.20", "description": "Kopfverbrennung 2. Grades" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 115664,
+    "fields": { "code": "I20.8", "description": "Angina pectoris durch Belastung" }
+  },
+  { "model": "cms.icd10entry", "pk": 115638, "fields": { "code": "I20.0", "description": "Graybiel-Syndrom" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 139730,
+    "fields": { "code": "O70.2", "description": "Dammriss 3. Grades bei Geburt" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 106291,
+    "fields": { "code": "F31.6", "description": "Manisch-depressiver Mischzustand" }
+  },
+  { "model": "cms.icd10entry", "pk": 141867, "fields": { "code": "P39.9", "description": "Neonatale Infektion" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 115961,
+    "fields": { "code": "I25.5", "description": "Ischämische Kardiomyopathie" }
+  },
+  { "model": "cms.icd10entry", "pk": 156957, "fields": { "code": "T82.5", "description": "Shuntverschluss" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 102419,
+    "fields": { "code": "E27.3", "description": "Arzneimittelinduzierte Nebennierenrindenunterfunktion" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 115716,
+    "fields": { "code": "I21.4", "description": "Akuter nichttransmuraler Myokardinfarkt" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 141301,
+    "fields": { "code": "P07.00", "description": "Geburtsgewicht unter 500 Gramm" }
+  },
+  { "model": "cms.icd10entry", "pk": 125669, "fields": { "code": "K65.0", "description": "Akute Peritonitis" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 117747,
+    "fields": { "code": "I67.6", "description": "Nichteitrige Durasinusthrombose" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 115664,
+    "fields": { "code": "I20.8", "description": "Angina pectoris durch Belastung" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 115784,
+    "fields": { "code": "I22.1", "description": "Rezidivierender inferiorer Myokardinfarkt" }
+  },
+  { "model": "cms.icd10entry", "pk": 80581, "fields": { "code": "A08.0", "description": "Enteritis durch Rotaviren" } },
+  { "model": "cms.icd10entry", "pk": 105204, "fields": { "code": "E87.5", "description": "Hyperkaliämie" } },
+  { "model": "cms.icd10entry", "pk": 147215, "fields": { "code": "Q76.4", "description": "Sacrum arcuatum" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 150345,
+    "fields": { "code": "R51", "description": "Chronische Gesichtsschmerzen" }
+  },
+  { "model": "cms.icd10entry", "pk": 153357, "fields": { "code": "S52.51", "description": "Colles-Fraktur" } },
+  { "model": "cms.icd10entry", "pk": 90900, "fields": { "code": "C73", "description": "Langhans-Struma" } },
+  { "model": "cms.icd10entry", "pk": 129100, "fields": { "code": "L88", "description": "Pyoderma gangraenosum" } },
+  { "model": "cms.icd10entry", "pk": 119894, "fields": { "code": "J18.0", "description": "Herdpneumonie" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 116658,
+    "fields": { "code": "I48.2", "description": "Chronisches Vorhofflimmern" }
+  },
+  { "model": "cms.icd10entry", "pk": 149002, "fields": { "code": "R04.0", "description": "Epistaxis" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 125960,
+    "fields": { "code": "K72.0", "description": "Subakute gelbe Leberatrophie" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 133347,
+    "fields": { "code": "N13.2", "description": "Hydronephrose bei Obstruktion durch Nierenstein" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 128302,
+    "fields": { "code": "L50.8", "description": "Chronisch-rezidivierende Urtikaria" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 88236,
+    "fields": { "code": "C20", "description": "Bösartige Neubildung der Ampulla recti" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 116613,
+    "fields": { "code": "I47.1", "description": "Supraventrikuläre Tachykardie" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 88562,
+    "fields": { "code": "C34.0", "description": "Bösartige Neubildung des Hauptbronchus" }
+  },
+  { "model": "cms.icd10entry", "pk": 119894, "fields": { "code": "J18.0", "description": "Herdpneumonie" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 153659,
+    "fields": { "code": "S72.04", "description": "Transzervikale Schenkelhalsfraktur" }
+  },
+  { "model": "cms.icd10entry", "pk": 88273, "fields": { "code": "C22.0", "description": "Cholangiohepatom" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 150345,
+    "fields": { "code": "R51", "description": "Chronische Gesichtsschmerzen" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 89922,
+    "fields": { "code": "C50.4", "description": "Bösartige Neubildung des oberen äußeren Quadranten der Mamma" }
+  },
+  { "model": "cms.icd10entry", "pk": 97803, "fields": { "code": "D39.0", "description": "Stromaendometriose" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 151789,
+    "fields": { "code": "S06.0", "description": "Isolierte Kommotio des Gehirns" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 116819,
+    "fields": { "code": "I50.14", "description": "Herzinsuffizienz mit Lungenödem" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 91238,
+    "fields": { "code": "C77.3", "description": "Bösartige Neubildung pektoraler Lymphknoten" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 143681,
+    "fields": { "code": "Q21.2", "description": "Defekt des Vorhofseptums und Kammerseptums" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 117539,
+    "fields": { "code": "I65.3", "description": "Beidseitige Stenose der Arteria carotis" }
+  },
+  { "model": "cms.icd10entry", "pk": 135598, "fields": { "code": "N61", "description": "Mammazellulitis" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 121891,
+    "fields": { "code": "J90", "description": "Bakterielle Pleuritis exsudativa" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 80584,
+    "fields": { "code": "A08.1", "description": "Akute Gastroenteritis durch Norwalk-Virus" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 122037,
+    "fields": { "code": "J96.10", "description": "Chronische respiratorische Insuffizienz, Typ I" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 160336,
+    "fields": {
+      "code": "G45.33",
+      "description": "Amaurosis fugax : Komplette Rückbildung innerhalb von weniger als 1 Stunde"
+    }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 141698,
+    "fields": { "code": "P28.5", "description": "Respiratorisches Versagen beim Neugeborenen" }
+  },
+  { "model": "cms.icd10entry", "pk": 82202, "fields": { "code": "A41.9", "description": "Pyämie" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 159178,
+    "fields": { "code": "Z45.00", "description": "Anpassung eines Herzschrittmachers" }
+  },
+  { "model": "cms.icd10entry", "pk": 149002, "fields": { "code": "R04.0", "description": "Epistaxis" } },
+  { "model": "cms.icd10entry", "pk": 153341, "fields": { "code": "S52.21", "description": "Monteggia-Fraktur" } },
+  { "model": "cms.icd10entry", "pk": 116256, "fields": { "code": "I35.0", "description": "Aortenklappenstenose" } },
+  { "model": "cms.icd10entry", "pk": 153791, "fields": { "code": "S82.18", "description": "Proximale Tibiafraktur" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 117915,
+    "fields": { "code": "I70.22", "description": "Periphere arterielle Verschlusskrankheit Stadium IIb (Fontaine)" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 109820,
+    "fields": { "code": "G47.31", "description": "Obstruktives Schlafapnoesyndrom" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 129858,
+    "fields": { "code": "M16.1", "description": "Einseitige primäre Koxarthrose" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 132316,
+    "fields": { "code": "M79.96", "description": "Nichttraumatischer prätibialer Weichteildefekt" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 141707,
+    "fields": { "code": "P28.8", "description": "Laryngealer Stridor congenitus" }
+  },
+  { "model": "cms.icd10entry", "pk": 149021, "fields": { "code": "R04.2", "description": "Hämoptoe" } },
+  { "model": "cms.icd10entry", "pk": 123251, "fields": { "code": "K12.3", "description": "Orale Mukositis" } },
+  { "model": "cms.icd10entry", "pk": 119493, "fields": { "code": "J03.8", "description": "Akute Angina" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 115716,
+    "fields": { "code": "I21.4", "description": "Akuter nichttransmuraler Myokardinfarkt" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 141311,
+    "fields": { "code": "P07.12", "description": "Geburtsgewicht 1500 bis unter 2500 Gramm" }
+  },
+  { "model": "cms.icd10entry", "pk": 89252, "fields": { "code": "C44.4", "description": "Halsbasaliom" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 138360,
+    "fields": { "code": "O28.8", "description": "Pathologisches Kardiotokogramm" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 106183,
+    "fields": { "code": "F23.2", "description": "Akute schizophreniforme psychotische Störung" }
+  },
+  { "model": "cms.icd10entry", "pk": 115457, "fields": { "code": "I10.90", "description": "Hypertonie" } },
+  { "model": "cms.icd10entry", "pk": 137106, "fields": { "code": "N92.0", "description": "Epimenorrhoe" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 113436,
+    "fields": { "code": "H44.0", "description": "Septische Endophthalmitis" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 106335,
+    "fields": { "code": "F32.3", "description": "Schwere depressive Episode mit psychotischen Symptomen" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 103208,
+    "fields": {
+      "code": "E66.02",
+      "description": "Adipositas durch übermäßige Kalorienzufuhr mit einem Body-Mass-Index [BMI] von 40 und mehr"
+    }
+  },
+  { "model": "cms.icd10entry", "pk": 122830, "fields": { "code": "K08.88", "description": "Odontogene Entzündung" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 90463,
+    "fields": { "code": "C67.8", "description": "Bösartige Neubildung des Harnblasensphinkters" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 115716,
+    "fields": { "code": "I21.4", "description": "Akuter nichttransmuraler Myokardinfarkt" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 150092,
+    "fields": { "code": "R42", "description": "Vaskuläre vertebragene Vertigo" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 108437,
+    "fields": { "code": "G04.9", "description": "Chronisch-entzündlicher Prozess des Zentralnervensystems" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 117305,
+    "fields": { "code": "I63.3", "description": "Hirninfarkt durch Thrombose einer intrakraniellen Arterie" }
+  },
+  { "model": "cms.icd10entry", "pk": 127623, "fields": { "code": "L20.9", "description": "Atopisches Ekzem" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 100514,
+    "fields": { "code": "D70.19", "description": "Leukopenie nach Zytostatikatherapie" }
+  },
+  { "model": "cms.icd10entry", "pk": 88595, "fields": { "code": "C34.9", "description": "Pneumoblastom" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 141698,
+    "fields": { "code": "P28.5", "description": "Respiratorisches Versagen beim Neugeborenen" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 133347,
+    "fields": { "code": "N13.2", "description": "Hydronephrose bei Obstruktion durch Nierenstein" }
+  },
+  { "model": "cms.icd10entry", "pk": 124053, "fields": { "code": "K35.8", "description": "Akute Appendizitis" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 160337,
+    "fields": {
+      "code": "G35.11",
+      "description": "Multiple Sklerose mit vorherrschend schubförmigem Verlauf : Mit Angabe einer akuten Exazerbation oder Progression"
+    }
+  },
+  { "model": "cms.icd10entry", "pk": 109668, "fields": { "code": "G43.1", "description": "Migräne mit Aura" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 116815,
+    "fields": { "code": "I50.12", "description": "Linksherzinsuffizienz, NYHA-Stadium II" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 82189,
+    "fields": { "code": "A41.51", "description": "Generalisierte Kolibazillose a.n.k." }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 160338,
+    "fields": {
+      "code": "P39.8",
+      "description": "Sonstige näher bezeichnete Infektionen, die für die Perinatalperiode spezifisch sind"
+    }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 115858,
+    "fields": { "code": "I25.13", "description": "Koronare Drei-Gefäß-Erkrankung" }
+  },
+  { "model": "cms.icd10entry", "pk": 91467, "fields": { "code": "C78.7", "description": "Lebermetastase" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 160339,
+    "fields": { "code": "M10.00", "description": "Idiopathische Gicht : Mehrere Lokalisationen" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 124271,
+    "fields": { "code": "K42.0", "description": "Inkarzerierte Nabelhernie" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 103208,
+    "fields": {
+      "code": "E66.02",
+      "description": "Adipositas durch übermäßige Kalorienzufuhr mit einem Body-Mass-Index [BMI] von 40 und mehr"
+    }
+  },
+  { "model": "cms.icd10entry", "pk": 91835, "fields": { "code": "C79.5", "description": "Knochenmetastase" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 121665,
+    "fields": { "code": "J80.03", "description": "Schweres Atemnotsyndrom beim Erwachsenen" }
+  },
+  { "model": "cms.icd10entry", "pk": 145288, "fields": { "code": "Q44.6", "description": "Zystische Leberkrankheit" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 151866,
+    "fields": { "code": "S06.5", "description": "Traumatische subdurale Blutung" }
+  },
+  { "model": "cms.icd10entry", "pk": 88273, "fields": { "code": "C22.0", "description": "Cholangiohepatom" } },
+  { "model": "cms.icd10entry", "pk": 106749, "fields": { "code": "F44.6", "description": "Hysterische Amaurose" } },
+  { "model": "cms.icd10entry", "pk": 82165, "fields": { "code": "A40.3", "description": "Sepsis durch Pneumokokken" } },
+  { "model": "cms.icd10entry", "pk": 130431, "fields": { "code": "M25.53", "description": "Handgelenkarthralgie" } },
+  { "model": "cms.icd10entry", "pk": 123217, "fields": { "code": "K12.28", "description": "Staphylitis" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 119735,
+    "fields": {
+      "code": "J10.0",
+      "description": "Bronchopneumonie bei Grippe [Influenza], saisonaler Influenzavirus nachgewiesen, ausgenommen Vogelgrippe- und Schweinegrippe-Virus"
+    }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 108910,
+    "fields": {
+      "code": "G20.10",
+      "description": "Primäres Parkinson-Syndrom mit mäßiger Beeinträchtigung ohne Wirkungsfluktuation"
+    }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 119940,
+    "fields": { "code": "J18.9", "description": "Hämorrhagische Lungenentzündung" }
+  },
+  { "model": "cms.icd10entry", "pk": 120450, "fields": { "code": "J34.8", "description": "Naseneingangsentzündung" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 88587,
+    "fields": { "code": "C34.3", "description": "Bronchialkarzinom des Unterlappens" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 151866,
+    "fields": { "code": "S06.5", "description": "Traumatische subdurale Blutung" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 117328,
+    "fields": { "code": "I63.4", "description": "Hirninfarkt durch Embolie einer intrakraniellen Arterie" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 88570,
+    "fields": { "code": "C34.1", "description": "Bronchialkarzinom des Oberlappens" }
+  },
+  { "model": "cms.icd10entry", "pk": 111112, "fields": { "code": "G93.4", "description": "Leukoenzephalopathie" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 153500,
+    "fields": { "code": "S62.51", "description": "Fraktur der proximalen Phalanx des Daumens" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 105541,
+    "fields": { "code": "F06.7", "description": "Leichte Gedächtnislücke nach organischer Hirnschädigung" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 115961,
+    "fields": { "code": "I25.5", "description": "Ischämische Kardiomyopathie" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 160340,
+    "fields": { "code": "S10.88", "description": "Oberflächliche Verletzung sonstiger Teile des Halses : Sonstige" }
+  },
+  { "model": "cms.icd10entry", "pk": 88668, "fields": { "code": "C38.4", "description": "Karzinom der Pleura" } },
+  { "model": "cms.icd10entry", "pk": 115996, "fields": { "code": "I26.0", "description": "Akutes Cor pulmonale" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 105031,
+    "fields": { "code": "E85.0", "description": "Nichtneuropathische heredofamiliäre Amyloidose" }
+  },
+  { "model": "cms.icd10entry", "pk": 125293, "fields": { "code": "K61.1", "description": "Rektumfurunkel" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 121092,
+    "fields": {
+      "code": "J44.09",
+      "description": "Chronische Emphysembronchitis mit akuter Infektion der unteren Atemwege"
+    }
+  },
+  { "model": "cms.icd10entry", "pk": 116256, "fields": { "code": "I35.0", "description": "Aortenklappenstenose" } },
+  { "model": "cms.icd10entry", "pk": 90272, "fields": { "code": "C61", "description": "Prostataadenokarzinom" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 99834,
+    "fields": { "code": "D59.5", "description": "Nächtliche paroxysmale Hämoglobinurie" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 117328,
+    "fields": { "code": "I63.4", "description": "Hirninfarkt durch Embolie einer intrakraniellen Arterie" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 101116,
+    "fields": { "code": "E01.1", "description": "Jodmangelbedingte mehrknotige Struma" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 159079,
+    "fields": { "code": "Z38.0", "description": "Geburt eines Neugeborenen im Krankenhaus" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 141581,
+    "fields": { "code": "P22.0", "description": "Hyaline Membranenkrankheit" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 92939,
+    "fields": { "code": "C82.0", "description": "Kleinzelliges gekerbtes follikuläres Lymphom" }
+  },
+  { "model": "cms.icd10entry", "pk": 149950, "fields": { "code": "R33", "description": "Harnsperre" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 116819,
+    "fields": { "code": "I50.14", "description": "Herzinsuffizienz mit Lungenödem" }
+  },
+  {
+    "model": "cms.icd10entry",
+    "pk": 158375,
+    "fields": { "code": "Z03.0", "description": "Beobachtung bei Verdacht auf Tuberkulose" }
+  },
+  { "model": "cms.icd10entry", "pk": 91835, "fields": { "code": "C79.5", "description": "Knochenmetastase" } },
+  { "model": "cms.icd10entry", "pk": 131502, "fields": { "code": "M54.16", "description": "LWS-Syndrom" } },
+  {
+    "model": "cms.icd10entry",
+    "pk": 99531,
+    "fields": { "code": "D52.0", "description": "Alimentäre Folsäuremangelanämie" }
+  },
+  { "model": "cms.icd10entry", "pk": 109888, "fields": { "code": "G51.0", "description": "Fazialisparese" } }
+]

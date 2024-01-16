@@ -3,7 +3,7 @@ import json
 import logging
 import os
 import random
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.core import serializers
@@ -59,8 +59,12 @@ class Command(BaseCommand):
         return random_date.strftime("%Y-%m-%d")
 
     @staticmethod
-    def _fix_time(time):
+    def _fix_time(time, rounded=False, offset=0):
         original = datetime.strptime(time, "%d.%m.%Y %H:%M")
+        if rounded:
+            original = original.replace(minute=0)
+        if offset:
+            original = original + timedelta(hours=1)
         return f"{str(original.isoformat())}Z"
 
     def _clean_patient(self, patient, pseudonymized):
@@ -78,8 +82,8 @@ class Command(BaseCommand):
             "diagnosis_code": patient["Diagnosecode"],
             "accompanied": bool(int(patient["mit_Begleitperson"])),
             "created_at": self._fix_time(patient["Erstellungsdatum"]),
-            "admission_date": self._fix_time(patient["Aufnahmedatum"]),
-            "discharge_date": self._fix_time(patient["Entlassdatum"]),
+            "admission_date": self._fix_time(patient["Aufnahmedatum"], True, 1),
+            "discharge_date": self._fix_time(patient["Entlassdatum"], True, 0),
         }
 
     def add_arguments(self, parser: CommandParser) -> None:
