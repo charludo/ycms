@@ -276,3 +276,6 @@ output-format = "colorized"
 
 [tool.pylint-per-file-ignores]
 "/tests/"="unused-argument,missing-function-docstring"
+
+[tool.coverage.run]
+omit = ["ycms/core/management/commands/*", "ycms/core/circleci_settings.py", "ycms/core/wsgi.py"]
