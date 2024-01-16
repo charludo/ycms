@@ -45,13 +45,18 @@ DEBUG = bool(strtobool(os.environ.get("YCMS_DEBUG", "False")))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("YCMS_SECRET_KEY", "dummy" if DEBUG else "")
 
-BASE_URL = os.environ.get("YCMS_BASE_URL", "https://ycms.paki.place")
+BASE_URL = os.environ.get("YCMS_BASE_URL", "http://localhost:8086")
 HOSTNAME = urlparse(BASE_URL).hostname
 
 #: This is a security measure to prevent HTTP Host header attacks, which are possible even under many seemingly-safe
-ALLOWED_HOSTS = [".localhost", "127.0.0.1", "[::1]", HOSTNAME, "192.168.20.38"] + [
-    x.strip() for x in os.environ.get("YCMS_ALLOWED_HOSTS", "").splitlines() if x
-]
+ALLOWED_HOSTS = [
+    ".localhost",
+    "127.0.0.1",
+    "[::1]",
+    HOSTNAME,
+    "192.168.20.38",
+    "ycms.paki.place",
+] + [x.strip() for x in os.environ.get("YCMS_ALLOWED_HOSTS", "").splitlines() if x]
 CSRF_TRUSTED_ORIGINS = ["https://ycms.paki.place"]
 
 
