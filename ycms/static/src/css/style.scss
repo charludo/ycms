@@ -122,7 +122,7 @@ textarea {
 }
 
 label {
-    @apply block mt-4 mb-2 text-xl font-bold text-gray-500 cursor-pointer align-middle dark:text-gray-200;
+    @apply block mt-4 mb-2 text-lg font-bold text-gray-500 cursor-pointer align-middle dark:text-gray-200;
 
     [type="radio"] {
         @apply align-baseline;
@@ -338,7 +338,8 @@ input[type="submit"] {
     @apply dark:text-white dark:bg-gray-700;
 }
 
-#sidebarToggle {
+#sidebarOpen,
+#sidebarClose {
     transition: all 0.3s ease;
 
     &:hover {

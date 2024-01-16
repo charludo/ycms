@@ -51,7 +51,7 @@ const handleAssign = (card: HTMLFormElement): void => {
     const options: ModalOptions = {
         placement: "center-center" as ModalOptions["placement"],
         backdrop: "dynamic",
-        backdropClasses: "bg-gray-900 bg-opacity-10 dark:bg-gray-800 dark:bg-opacity-10 fixed inset-0 z-40",
+        backdropClasses: "bg-gray-900 bg-opacity-10 dark:bg-gray-800 dark:bg-opacity-10 fixed inset-0 z-[40]",
         closable: true,
     };
 

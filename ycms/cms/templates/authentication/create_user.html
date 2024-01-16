@@ -21,7 +21,7 @@ limitations under the License.
 {% endblock title %}
 {% block content %}
     <div class="flex justify-center items-center">
-        <div class="w-1/3 rounded-lg border border-gray-300 bg-white p-8 shadow-md dark:bg-gray-800 dark:border-gray-700">
+        <div class="w-full lg:w-1/3 rounded-lg border border-gray-300 bg-white p-8 shadow-md dark:bg-gray-800 dark:border-gray-700">
             <h2>{% translate "Create a new user" %}</h2>
             <form action="{% url 'cms:protected:create_user' %}" method="post">
                 {% csrf_token %}
