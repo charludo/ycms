@@ -43,15 +43,18 @@ const maxConcurrentBeds = (unsortedObjects: TimelineItem[]) => {
 const showUnsaved = (totalChanges: number) => {
     const changeCounterContainer = document.querySelector("#change-counter") as HTMLElement;
     const changeCounter = document.querySelector("#change-counter span") as HTMLElement;
-    if (!changeCounterContainer || !changeCounter) {
+    const autosuggest = document.querySelector("#autosuggest") as HTMLElement;
+    if (!changeCounterContainer || !changeCounter || !autosuggest) {
         return;
     }
 
     changeCounter.innerHTML = String(totalChanges);
     if (totalChanges > 0) {
         changeCounterContainer.classList.remove("hidden");
+        autosuggest.classList.add("hidden");
     } else {
         changeCounterContainer.classList.add("hidden");
+        autosuggest.classList.remove("hidden");
     }
 };
 
