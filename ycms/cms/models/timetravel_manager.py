@@ -1,5 +1,6 @@
 import logging
 import threading
+from datetime import timedelta
 
 from django.core.exceptions import FieldError
 from django.db import models
@@ -26,9 +27,10 @@ class TimetravelManager(models.Manager):
         queryset = super().get_queryset()
 
         request = _thread_locals.request if hasattr(_thread_locals, "request") else None
-        if not (request and (time := parse_datetime(request.GET.get("time")))):
+        if not (request and request.GET.get("time")):
             return queryset
 
+        time = current_or_travelled_time()
         timetravel_filters = [
             "created_at__lte",
             "admission_date__lte",
@@ -48,7 +50,7 @@ def current_or_travelled_time():
     whenever we are timetravelling
     """
     try:
-        return parse_datetime(_thread_locals.request.GET["time"])
+        return parse_datetime(_thread_locals.request.GET["time"]) - timedelta(hours=1)
     except AttributeError:
         return timezone.now()
 

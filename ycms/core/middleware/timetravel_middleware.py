@@ -35,6 +35,8 @@ class TimetravelMiddleware:
         if time := request.GET.get("time"):
             logger.info("Timetravelling to %s", time)
             request_signal.send(sender=self, request=request)
+        else:
+            request_signal.send(sender=self, request=None)
         response = self.get_response(request)
 
         return response
