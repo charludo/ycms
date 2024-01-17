@@ -5,5 +5,10 @@ from django.utils.translation import gettext_lazy as _
 
 NORMAL = "normal"
 SMALL = "small"
+VENTILATOR = "ventilator"
 
-CHOICES = ((NORMAL, _("normal")), (SMALL, _("small")))
+CHOICES = (
+    (NORMAL, _("normal")),
+    (SMALL, _("small")),
+    (VENTILATOR, _("with ventilator")),
+)
