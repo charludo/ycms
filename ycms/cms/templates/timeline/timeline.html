@@ -30,14 +30,15 @@
                         {% translate "Cancel" %}
                     </a>
                 </div>
-                {% if "/suggest/" not in request.path %}
-                    <a href="{% url "cms:protected:timeline_suggest" selected_ward_id %}"
-                       class="btn w-full lg:w-auto"
-                       id="autosuggest">
-                        <i icon-name="bot" class="mr-2 align-text-bottom"></i>
-                        {% translate "Suggest Assignment" %}
-                    </a>
-                {% endif %}
+                <div id="autosuggest">
+                    {% if "/suggest/" not in request.path %}
+                        <a href="{% url "cms:protected:timeline_suggest" selected_ward_id %}"
+                           class="btn w-full lg:w-auto">
+                            <i icon-name="bot" class="mr-2 align-text-bottom"></i>
+                            {% translate "Suggest Assignment" %}
+                        </a>
+                    {% endif %}
+                </div>
                 {% with checked=True %}
                     {% include "ward/ward_mode_switch.html" %}
                 {% endwith %}

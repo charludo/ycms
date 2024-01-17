@@ -59,11 +59,4 @@ window.addEventListener("load", () => {
             }
         }
     });
-
-    // Disable switching to the timeline while timetravelling
-    const wardModeSwitch = document.querySelector("#ward-mode-switch") as HTMLInputElement;
-    if (wardModeSwitch) {
-        wardModeSwitch.disabled = true;
-        wardModeSwitch.classList.add("!bg-gray-600");
-    }
 });

@@ -107,11 +107,6 @@ window.addEventListener("load", () => {
         changesForm.submit();
     });
 
-    const timetravel = document.querySelector("#timetravel-start") as HTMLElement;
-    if (timetravel) {
-        timetravel.classList.add("hidden");
-    }
-
     const options: TimelineOptions = {
         groupHeightMode: "auto",
         autoResize: false,
@@ -155,5 +150,17 @@ window.addEventListener("load", () => {
         },
     };
 
-    const _ = new Timeline(timelineContainer, items, groups, options);
+    const timeline = new Timeline(timelineContainer, items, groups, options);
+
+    // If we are timetravelling, center the timeline on the travelled-to time
+    const urlParams = new URLSearchParams(window.location.search);
+    const timeParameter = urlParams.get("time");
+    if (!timeParameter) {
+        return;
+    }
+    const dateTime = new Date(timeParameter.replace("Z", "+01:00"));
+    timeline.toggleRollingMode();
+    timeline.addCustomTime(dateTime);
+    timeline.setCurrentTime(dateTime);
+    timeline.moveTo(dateTime, { animation: false });
 });
