@@ -30,6 +30,10 @@ msgstr "normales"
 msgid "small"
 msgstr "kleines"
 
+#: cms/constants/bed_types.py
+msgid "with ventilator"
+msgstr "mit Beatmungsgerät"
+
 #: cms/constants/gender.py
 msgid "male"
 msgstr "männlich"
@@ -1027,6 +1031,22 @@ msgid "Add a New Ward"
 msgstr "Eine Neue Station Hinzufügen"
 
 #: cms/templates/ward/ward_management.html
+msgid "Room number"
+msgstr "Zimmernummer"
+
+#: cms/templates/ward/ward_management.html
+msgid "Beds"
+msgstr "Betten"
+
+#: cms/templates/ward/ward_management.html
+msgid "Add bed"
+msgstr "Bett hinzufügen"
+
+#: cms/templates/ward/ward_management.html
+msgid "Add room"
+msgstr "Zimmer hinzufügen"
+
+#: cms/templates/ward/ward_management.html
 msgid "Add New Ward"
 msgstr "Neue Station Hinzufügen"
 
@@ -1208,6 +1228,10 @@ msgstr "Dein Passwort wurde erfolgreich geändert!"
 msgid "Addition of new ward \"{}\" successful!"
 msgstr "Hinzufügung der neuen Station \"{}\" erfolgreich!"
 
+#: cms/views/ward/ward_management_view.py
+msgid "Added {} rooms with {} beds to \"{}\"."
+msgstr "{} Räume mit {} Betten zu \"{}\" hinzugefügt."
+
 #: core/apps.py
 msgid "Core"
 msgstr "Core"
@@ -1243,9 +1267,6 @@ msgstr "Englisch"
 
 #~ msgid "Diagnosis code"
 #~ msgstr "Diagnosecode"
-
-#~ msgid "Beds"
-#~ msgstr "Betten"
 
 #~ msgid "Name: Wrong syntax. Use \"Lastname, Firstname\"."
 #~ msgstr "Name: Falsche Syntax. Benutze \"Nachname, Vorname\"."

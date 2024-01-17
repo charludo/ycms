@@ -1,16 +1,18 @@
+import json
+
 from django.contrib import messages
 from django.shortcuts import redirect, render
 from django.utils.decorators import method_decorator
 from django.utils.translation import gettext as _
 from django.views.generic import TemplateView
 
-from ...constants import job_types
+from ...constants import bed_types, job_types
 from ...decorators import permission_required
 from ...forms import WardForm
-from ...models import User, Ward
+from ...models import Bed, Room, User, Ward
 
 
-@method_decorator(permission_required("cms.change_ward"), name="dispatch")
+@method_decorator(permission_required("cms.add_ward"), name="dispatch")
 class WardManagementView(TemplateView):
     """
     View to see all wards data and add a new one
@@ -43,6 +45,7 @@ class WardManagementView(TemplateView):
             self.template_name,
             {
                 "ward_form": ward_form,
+                "bed_types": bed_types.CHOICES,
                 **self._get_ward_info(),
                 **super().get_context_data(**kwargs),
             },
@@ -93,5 +96,26 @@ class WardManagementView(TemplateView):
         ward = ward_form.save()
         messages.success(
             request, _('Addition of new ward "{}" successful!').format(ward.name)
+        )
+
+        if not (room_dict := request.POST.get("rooms")):
+            return redirect("cms:protected:ward_management")
+
+        room_counter = 0
+        bed_counter = 0
+        for room_number, beds in json.loads(room_dict).items():
+            room = Room.objects.create(
+                ward=ward, creator=request.user, room_number=room_number
+            )
+            room_counter += 1
+            for bed_type in beds:
+                bed_counter += 1
+                Bed.objects.create(room=room, creator=request.user, bed_type=bed_type)
+
+        messages.success(
+            request,
+            _('Added {} rooms with {} beds to "{}".').format(
+                room_counter, bed_counter, ward.name
+            ),
         )
         return redirect("cms:protected:ward_management")

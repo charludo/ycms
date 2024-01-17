@@ -75,6 +75,28 @@ VIEWS = [
                     "accompanied": False,
                 },
             ),
+            ("cms:protected:ward_management", [ROOT, ZBM]),
+            (
+                "cms:protected:ward_management",
+                [ROOT, ZBM],
+                {"ward_number": 11, "floor": 2, "name": "Testward"},
+            ),
+            (
+                "cms:protected:ward_management",
+                [ROOT, ZBM],
+                {
+                    "ward_number": 11,
+                    "floor": 2,
+                    "name": "Testward",
+                    "rooms": json.dumps(
+                        {
+                            "room_1": ["normal", "small"],
+                            "room_2": ["ventilator"],
+                            "room_3": [],
+                        }
+                    ),
+                },
+            ),
         ],
         {},
     ),
