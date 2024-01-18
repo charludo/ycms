@@ -103,14 +103,14 @@
                             <td class="px-6 py-3 text-center">
                                 <span>
                                     {% if patient.current_room %}
-                                        {% url "cms:protected:ward_detail" pk=patient.current_ward.ward_number as url %}
-                                        {% translate "Stays in:" %} <a class="text-blue-500" href="{{ url }}">{{ patient.current_ward.name }}, {% translate "Room" %} {{ patient.current_room.room_number }}</a>
+                                        {% translate "Stays in:" %} <a class="text-blue-500"
+    href="{% url "cms:protected:ward_detail" pk=patient.current_ward.id %}?drawer=drawer-right-{{ patient.current_room.room_number }}">{{ patient.current_ward.name }}, {% translate "Room" %} {{ patient.current_room.room_number }}</a>
                                     {% elif patient.current_stay %}
                                         <b class="text-red-500">
                                             {% if patient.current_stay.recommended_ward %}
-                                                {% url "cms:protected:ward_detail" pk=patient.current_stay.recommended_ward.ward_number as url %}
                                                 {% translate "Waits for bed assignment in ward" %}
-                                                <a class="text-blue-500" href="{{ url }}">{{ patient.current_stay.recommended_ward.name }}</a>
+                                                <a class="text-blue-500"
+                                                   href="{% url "cms:protected:ward_detail" pk=patient.current_stay.recommended_ward.id %}?drawer=drawer-right-unassigned">{{ patient.current_stay.recommended_ward.name }}</a>
                                             {% else %}
                                                 {% translate "Waits for assignment to ward" %}
                                             </b>

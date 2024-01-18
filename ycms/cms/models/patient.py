@@ -63,8 +63,8 @@ class Patient(AbstractBaseModel):
             today.month == self.date_of_birth.month
             and today.day < self.date_of_birth.day
         ):
-            return years_ago - 1
-        return years_ago
+            return max(0, years_ago - 1)
+        return max(0, years_ago)
 
     @cached_property
     def insurance_name(self):

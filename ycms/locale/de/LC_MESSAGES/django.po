@@ -163,12 +163,12 @@ msgid "date the hospital stay begins"
 msgstr "Datum zu dem der Krankenhausaufenthalt beginnt"
 
 #: cms/models/bed_assignment.py
-msgid "discharge date"
-msgstr "Entlassungsdatum"
+msgid "estimated discharge date"
+msgstr "Voraussichtliches Entlassungsdatum"
 
 #: cms/models/bed_assignment.py
-msgid "date the hospital stay ends"
-msgstr "Datum der Entlassung"
+msgid "date the hospital stay is estimated to end"
+msgstr "Datum der voraussichtlichen Entlassung"
 
 #: cms/models/bed_assignment.py
 msgid "accompanied"

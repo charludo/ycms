@@ -37,7 +37,9 @@ class PatientsListView(TemplateView):
         return {
             "patients": [
                 (patient, PatientForm(instance=patient, prefix=patient.id))
-                for patient in Patient.objects.all().order_by("-created_at")
+                for patient in Patient.objects.prefetch_related("medical_records")
+                .all()
+                .order_by("-updated_at")
             ],
             "new_patient_form": PatientForm(),
             **super().get_context_data(**kwargs),

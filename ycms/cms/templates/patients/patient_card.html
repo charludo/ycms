@@ -44,7 +44,11 @@
                     <h3 class="text-lg font-semibold dark:text-white mb-2">{% translate "Hospital Stay Details" %}</h3>
                     <p>
                         <span class="font-semibold dark:text-white">{% translate "Diagnosis" %}:</span>
-                        {{ bed_assignment.medical_record.diagnosis_code }} ({{ bed_assignment.medical_record.diagnosis_code.description }})
+                        {% if bed_assignment.medical_record.diagnosis_code %}
+                            {{ bed_assignment.medical_record.diagnosis_code }} ({{ bed_assignment.medical_record.diagnosis_code.description }})
+                        {% else %}
+                            -
+                        {% endif %}
                     </p>
                     <p>
                         <span class="font-semibold dark:text-white">{% translate "Note" %}:</span> {{ bed_assignment.medical_record.note }}
