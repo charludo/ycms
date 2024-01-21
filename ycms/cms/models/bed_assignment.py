@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.functional import cached_property
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 
 from .abstract_base_model import AbstractBaseModel
 from .bed import Bed
@@ -26,8 +26,8 @@ class BedAssignment(AbstractBaseModel):
     discharge_date = models.DateTimeField(
         blank=True,
         null=True,
-        verbose_name=_("discharge date"),
-        help_text=_("date the hospital stay ends"),
+        verbose_name=_("estimated discharge date"),
+        help_text=_("date the hospital stay is estimated to end"),
     )
     accompanied = models.BooleanField(
         blank=True,

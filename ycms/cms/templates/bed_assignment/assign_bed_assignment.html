@@ -16,10 +16,11 @@
                                 {% translate "Assigning patient" %} {{ patient.first_name }}
                                 {{ patient.last_name }}
                             </h2>
-                            <div class="flex flex-col lg:flex-row gap-2 items-center">
-                                <div class="lg:flex gap-2 items-center w-full">
-                                    <span class="font-bold dark:text-gray-300">{% translate "More reassignment options" %}:</span>
+                            <div class="flex flex-col xl:flex-row gap-2 items-center">
+                                <div class="xl:flex gap-2 items-center w-full">
+                                    <span class="shrink-0 font-bold dark:text-gray-300">{% translate "More reassignment options" %}:</span>
                                     <form method="post"
+                                          class="shrink-0 xl:shrink"
                                           id="ward-reassignment-form"
                                           action="{% url "cms:protected:assign_patient" ward.id bed_assignment.id %}">
                                         {% csrf_token %}
@@ -32,29 +33,25 @@
                                         <input type="hidden" name="next" value="{{ request.META.HTTP_REFERER }}">
                                     </form>
                                 </div>
-                                <div class="w-full flex gap-2 max-w-xs">
-                                    {% if bed_assignment.bed %}
-                                        <button class="w-full text-red-700 border-red-700 border-2 hover:border-red-800 dark:text-red-100 hover:text-white hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 rounded px-5 py-2 dark:hover:bg-red-700 dark:focus:ring-red-800"
-                                                type="submit"
-                                                form="unassign-form">
-                                            <form hidden
-                                                  id="unassign-form"
-                                                  method="post"
-                                                  action="{% url "cms:protected:assign_patient" ward.id bed_assignment.id %}">
-                                                {% csrf_token %}
-                                                <input type="hidden" name="next" value="{{ request.META.HTTP_REFERER }}">
-                                            </form>
-                                            {% translate "Unassign" %}
-                                        </button>
-                                    {% endif %}
-                                    <a href="{{ request.META.HTTP_REFERER }}">
-                                        <button type="button"
-                                                class="w-full text-white bg-red-700 hover:bg-red-800 border-2 border-red-700 hover:border-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 px-5 py-2 text-center inline-flex rounded items-center me-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
-                                            <i icon-name="x" class="mr-2"></i>
-                                            {% translate "Cancel" %}
-                                        </button>
-                                    </a>
-                                </div>
+                                {% if bed_assignment.bed %}
+                                    <button class="w-full xl:w-auto text-red-700 border-red-700 border-2 hover:border-red-800 dark:text-red-100 hover:text-white hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 rounded px-5 py-2 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                                            type="submit"
+                                            form="unassign-form">
+                                        <form hidden
+                                              id="unassign-form"
+                                              method="post"
+                                              action="{% url "cms:protected:assign_patient" ward.id bed_assignment.id %}">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="next" value="{{ request.META.HTTP_REFERER }}">
+                                        </form>
+                                        {% translate "Unassign" %}
+                                    </button>
+                                {% endif %}
+                                <a href="{{ request.META.HTTP_REFERER }}"
+                                   class="w-full xl:w-auto flex justify-center text-center text-white bg-red-700 hover:bg-red-800 border-2 border-red-700 hover:border-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 px-5 py-2 text-center inline-flex rounded items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                                    <i icon-name="x" class="mr-2"></i>
+                                    {% translate "Cancel" %}
+                                </a>
                             </div>
                         </div>
                         {% with assignment_mode=True %}
