@@ -27,7 +27,7 @@ class WardView(TemplateView):
         if not pk and self.request.user.assigned_ward:
             pk = self.request.user.assigned_ward.id
         elif not pk:
-            pk = 1
+            pk = 3 if Ward.objects.get(pk=3) else 1
 
         if self.request.user.ward_as_timeline:
             return redirect("cms:protected:timeline", pk=pk)

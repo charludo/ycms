@@ -193,6 +193,18 @@ class User(AbstractBaseUser, PermissionsMixin, AbstractBaseModel):
         return self.groups.first()
 
     @cached_property
+    def group_name(self):
+        """
+        Return the human-readable group of this user
+
+        :return: The group of this user
+        :rtype: str
+        """
+        if not self.group:
+            return "Root"
+        return dict(group_names.CHOICES)[self.group.name]
+
+    @cached_property
     def title(self):
         """
         Return the title of this user

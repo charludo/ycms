@@ -1,0 +1,42 @@
+{% extends "_base.html" %}
+{% load i18n %}
+{% load widget_tweaks %}
+{% block title %}
+    {% translate "Login" %}
+{% endblock title %}
+{% block raw_content %}
+    <div class="lg:flex justify-center items-center  min-h-full">
+        <div class="w-full xl:w-1/2 rounded-lg border border-gray-300 bg-white p-8 shadow-md dark:bg-gray-800 dark:border-gray-700 grid grid-cols-2 gap-2">
+            <h2 class="col-span-2">{% translate "Select user to log in as:" %}</h2>
+            {% for user in users %}
+                <button class="col-span-2 lg:col-span-1 block text-left p-6 rounded-xl border-2 border-gray-300 shadow-md relative hover:border-blue-300 {% if user.id == 1 %}col-start-1 row-start-2{% endif %}"
+                        form="user-{{ user.id }}">
+                    {% if user.id == 1 %}<i icon-name="alert-circle" class="absolute top-6 right-6 text-gray-600"></i>{% endif %}
+                    <h3 class="text-xl mb-2">{{ user.title }} {{ user.first_name }} {{ user.last_name }}</h3>
+                    <p>
+                        <span class="block md:inline help-text p-0 pr-1 !mb-0">{% translate "Personnel ID" %}:</span><span class="font-mono">{{ user.personnel_id }}</span>
+                    </p>
+                    <p>
+                        <span class="block md:inline help-text p-0 pr-1 !mb-0">{% translate "Permission Group" %}:</span>{{ user.group_name }}
+                    </p>
+                    <p>
+                        <span class="block md:inline help-text p-0 pr-1 !mb-0">{% translate "Assigned to Ward" %}:</span>
+                        {% if user.assigned_ward %}
+                            {{ user.assigned_ward.name }}
+                        {% else %}
+                            -
+                        {% endif %}
+                    </p>
+                    <form action="{% url 'cms:public:demo_login' %}"
+                          method="post"
+                          id="user-{{ user.id }}">
+                        {% csrf_token %}
+                        <input type="hidden" name="user" value="{{ user.id }}" />
+                    </form>
+                </button>
+            {% endfor %}
+            <a class="my-4 p-2 underline col-span-2"
+               href="{% url 'cms:public:login' %}">{% translate "Or click here to use the normal login form" %}</a>
+        </div>
+    </div>
+{% endblock raw_content %}

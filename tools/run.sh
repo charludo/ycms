@@ -56,4 +56,4 @@ done
 listen_for_devserver &
 
 # Start YCMS development webserver
-deescalate_privileges ycms-cli runserver "localhost:${YCMS_PORT}"
+deescalate_privileges ycms-cli runserver "0.0.0.0:${YCMS_PORT}"
